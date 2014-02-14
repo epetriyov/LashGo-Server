@@ -17,6 +17,7 @@
           <element id="library" level="project" name="postgresql-9.3-1100.jdbc41" />
           <element id="library" level="project" name="hamcrest-all-1.3" />
           <element id="library" level="project" name="commons-pool-1.6" />
+          <element id="library" level="project" name="jackson-annotations-2.2.3" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="CheckApi/web/Web" />

@@ -1,5 +1,7 @@
 package main.java.com.check.core.domain;
 
+import main.java.com.check.rest.dto.LoginInfo;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -44,6 +46,11 @@ public class Users implements Serializable {
     public Users(String login, String passwordHash) {
         this.login = login;
         this.passwordHash = passwordHash;
+    }
+
+    public Users(LoginInfo loginInfo) {
+        this.login = loginInfo.getLogin();
+        this.passwordHash = loginInfo.getPasswordHash();
     }
 
     public String getAvatarName() {
