@@ -5,11 +5,16 @@ import java.io.Serializable;
 /**
  * Created by Eugene on 13.02.14.
  */
-public class LoginInfo implements Serializable{
+public class LoginInfo implements Serializable {
 
     public LoginInfo()
     {
 
+    }
+
+    public LoginInfo(String login, String passwordHash) {
+        this.login = login;
+        this.passwordHash = passwordHash;
     }
 
     public String getLogin() {

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  */
 public interface UserService {
 
-    Users login(LoginInfo loginInfo);
+    String login(LoginInfo loginInfo, String uuid) throws Exception;
 
     void register(LoginInfo loginInfo);
 }

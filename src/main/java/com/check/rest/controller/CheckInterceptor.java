@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CheckInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+        if (httpServletRequest.getHeader(CheckApiHeaders.UUID) == null) {
+            throw new Exception("UUID header wasn't send");
+        }
         httpServletResponse.addHeader(CheckApiHeaders.API_VERSION, String.valueOf(1));
         return true;
     }

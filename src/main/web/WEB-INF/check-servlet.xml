@@ -48,6 +48,8 @@
 
     <bean id="userDao" class="main.java.com.check.core.repository.UserDaoImpl"/>
 
+    <bean id="sessionDao" class="main.java.com.check.core.repository.SessionDaoImpl"/>
+
     <bean class="main.java.com.check.rest.error.RestErrorHandler"/>
 
     <mvc:interceptors>

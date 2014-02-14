@@ -5,7 +5,6 @@ import main.java.com.check.rest.dto.LoginInfo;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
@@ -19,11 +18,6 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    public void addUser(Users user) {
-        sessionFactory.getCurrentSession().save(user);
-//        return jdbcTemplate.update("insert into \"Users\"(login,password_hash) values(?,?)", user.getLogin(), user.getPasswordHash());
-    }
 
     @Override
     public void removeAllUsers() {

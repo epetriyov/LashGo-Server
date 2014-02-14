@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.User;
  */
 public interface UserDao {
 
-    void addUser(Users user);
-
     void removeAllUsers();
 
     int getCount();

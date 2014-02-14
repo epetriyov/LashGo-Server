@@ -2,6 +2,7 @@ package test;
 
 import main.java.com.check.core.domain.Users;
 import main.java.com.check.core.repository.UserDao;
+import main.java.com.check.rest.dto.LoginInfo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +33,7 @@ public class UserDaoTest {
 
     @Test
     public void testInsertTopic() {
-        userDao.addUser(new Users("test", "test"));
+        userDao.createUser(new LoginInfo("test", "test"));
         assertTrue(userDao.getCount() == 1);
     }
 }

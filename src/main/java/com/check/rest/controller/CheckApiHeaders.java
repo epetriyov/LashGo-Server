@@ -10,4 +10,8 @@ public final class CheckApiHeaders {
     }
 
     public static final String API_VERSION = "api_version";
+
+    public static final String UUID = "uuid";
+
+    public static final String SESSION_ID = "session_id";
 }
