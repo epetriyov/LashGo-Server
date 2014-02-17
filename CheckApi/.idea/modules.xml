@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CheckApi.iml" filepath="$PROJECT_DIR$/CheckApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CheckDtoModel/CheckDtoModel.iml" filepath="$PROJECT_DIR$/CheckDtoModel/CheckDtoModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CheckModel/CheckModel.iml" filepath="$PROJECT_DIR$/../CheckModel/CheckModel.iml" />
+    </modules>
+  </component>
+</project>
+
