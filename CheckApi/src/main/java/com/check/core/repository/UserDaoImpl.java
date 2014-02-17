@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    private boolean isUserExists(String login) {
+    public boolean isUserExists(String login) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Users where login = :login");
         query.setParameter("login", login);
         List<Users> users = query.list();
@@ -50,11 +50,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void createUser(LoginInfo loginInfo) throws Exception {
-        if (!isUserExists(loginInfo.getLogin())) {
-            sessionFactory.getCurrentSession().save(new Users(loginInfo));
-        } else {
-            throw new Exception(ErrorCodes.USER_ALREADY_EXISTS);
-        }
+    public void createUser(LoginInfo loginInfo) {
+        sessionFactory.getCurrentSession().save(new Users(loginInfo));
     }
 }

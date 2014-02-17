@@ -39,7 +39,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public SessionInfo register(LoginInfo loginInfo, String uuid) throws Exception {
-        userDao.createUser(loginInfo);
-        return login(loginInfo, uuid);
+        if (userDao.isUserExists(loginInfo.getLogin())) {
+            userDao.createUser(loginInfo);
+            return login(loginInfo, uuid);
+        } else {
+            throw new Exception(ErrorCodes.USER_ALREADY_EXISTS);
+        }
     }
 }

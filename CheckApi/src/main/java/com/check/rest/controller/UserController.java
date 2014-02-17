@@ -4,6 +4,7 @@ import main.java.com.check.core.service.UserService;
 import com.check.model.dto.LoginInfo;
 import com.check.model.dto.SessionInfo;
 import main.java.com.check.rest.error.ErrorCodes;
+import main.java.com.check.rest.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -29,16 +30,8 @@ public class UserController {
     @ResponseBody
     SessionInfo login(@RequestHeader HttpHeaders requestHeaders, @RequestBody LoginInfo loginInfo) throws Exception {
         List<String> uuidHeaders = requestHeaders.get(CheckApiHeaders.UUID);
-        if (!CollectionUtils.isEmpty(uuidHeaders)) {
-            SessionInfo sessionInfo = userService.login(loginInfo, uuidHeaders.get(0));
-            if (sessionInfo == null) {
-                throw new Exception(ErrorCodes.USER_NOT_FOUND);
-            } else {
-                return sessionInfo;
-            }
-        } else {
-            throw new Exception(ErrorCodes.UUID_IS_EMPTY);
-        }
+        UserValidator.validateLogin(loginInfo, uuidHeaders);
+        return userService.login(loginInfo, uuidHeaders.get(0));
     }
 
     @RequestMapping("/register")
@@ -46,10 +39,7 @@ public class UserController {
     @ResponseBody
     SessionInfo register(@RequestHeader HttpHeaders requestHeaders, @RequestBody LoginInfo loginInfo) throws Exception {
         List<String> uuidHeaders = requestHeaders.get(CheckApiHeaders.UUID);
-        if (!CollectionUtils.isEmpty(uuidHeaders)) {
-            return userService.register(loginInfo, uuidHeaders.get(0));
-        } else {
-            throw new Exception(ErrorCodes.UUID_IS_EMPTY);
-        }
+        UserValidator.validateLogin(loginInfo, uuidHeaders);
+        return userService.register(loginInfo, uuidHeaders.get(0));
     }
 }

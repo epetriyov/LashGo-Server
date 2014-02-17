@@ -14,5 +14,7 @@ public interface UserDao {
 
     Users findUser(LoginInfo loginInfo);
 
-    void createUser(LoginInfo loginInfo) throws Exception;
+    void createUser(LoginInfo loginInfo);
+
+    boolean isUserExists(String login);
 }

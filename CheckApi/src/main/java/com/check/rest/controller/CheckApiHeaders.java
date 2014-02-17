@@ -5,12 +5,11 @@ package main.java.com.check.rest.controller;
  */
 public final class CheckApiHeaders {
     public static final String UUID = "uuid";
+    public static final String SESSION_ID = "session_id";
 
     private CheckApiHeaders()
     {
 
     }
-
-    public static final String SESSION_ID = "session_id";
 
 }
