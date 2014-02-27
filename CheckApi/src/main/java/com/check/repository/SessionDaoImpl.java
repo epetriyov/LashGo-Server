@@ -1,6 +1,6 @@
-package main.java.com.check.core.repository;
+package main.java.com.check.repository;
 
-import main.java.com.check.core.domain.Sessions;
+import main.java.com.check.domain.Sessions;
 import main.java.com.check.utils.CheckUtils;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;

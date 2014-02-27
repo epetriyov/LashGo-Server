@@ -13,6 +13,13 @@ public final class CheckUtils {
 
     }
 
+    public static boolean isEmpty(String text) {
+        if (text == null || text.trim().equals("")) {
+            return true;
+        }
+        return false;
+    }
+
     public static String generateSession(String uuid, int userId) {
         return md5(uuid + String.valueOf(userId) + new Date().getTime());
     }

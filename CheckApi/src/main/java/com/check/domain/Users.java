@@ -1,6 +1,6 @@
-package main.java.com.check.core.domain;
+package main.java.com.check.domain;
 
-import com.check.model.dto.LoginInfo;
+import com.check.model.dto.RegisterInfo;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,27 +18,27 @@ public class Users implements Serializable {
     @GeneratedValue(generator = "user_seq_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "user_seq_gen", sequenceName = "users_seq", allocationSize = 1)
     private int id;
-
     @Column(name = "login")
     private String login;
-
     @Column(name = "password_hash")
     private String passwordHash;
-
     @Column(name = "name")
     private String name;
-
     @Column(name = "surname")
     private String surname;
-
     @Column(name = "about")
     private String about;
-
     @Column(name = "birth_date")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date birthDate;
     @Column(name = "avatar_name")
     private String avatarName;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "social_login")
+    private String socialLogin;
+    @Column(name = "social_type")
+    private String socialType;
 
     public Users() {
     }
@@ -48,9 +48,34 @@ public class Users implements Serializable {
         this.passwordHash = passwordHash;
     }
 
-    public Users(LoginInfo loginInfo) {
-        this.login = loginInfo.getLogin();
-        this.passwordHash = loginInfo.getPasswordHash();
+    public Users(RegisterInfo registerInfo) {
+        this.login = registerInfo.getLogin();
+        this.passwordHash = registerInfo.getPasswordHash();
+        this.email = registerInfo.getEmail();
+    }
+
+    public String getSocialLogin() {
+        return socialLogin;
+    }
+
+    public void setSocialLogin(String socialLogin) {
+        this.socialLogin = socialLogin;
+    }
+
+    public String getSocialType() {
+        return socialType;
+    }
+
+    public void setSocialType(String socialType) {
+        this.socialType = socialType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAvatarName() {

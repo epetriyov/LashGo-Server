@@ -9,7 +9,7 @@
     <mvc:annotation-driven/>
     <context:annotation-config/>
 
-    <bean id="userDao" class="main.java.com.check.core.repository.UserDaoImpl"/>
+    <bean id="userDao" class="main.java.com.check.repository.UserDaoImpl"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>

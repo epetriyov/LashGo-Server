@@ -1,4 +1,4 @@
-package main.java.com.check.core.domain;
+package main.java.com.check.domain;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,8 +1,10 @@
-package main.java.com.check.core.service;
+package main.java.com.check.service;
 
-import main.java.com.check.core.domain.Users;
-import main.java.com.check.core.repository.SessionDao;
-import main.java.com.check.core.repository.UserDao;
+import com.check.model.dto.RegisterInfo;
+import com.check.model.dto.SocialInfo;
+import main.java.com.check.domain.Users;
+import main.java.com.check.repository.SessionDao;
+import main.java.com.check.repository.UserDao;
 import com.check.model.dto.LoginInfo;
 import com.check.model.dto.SessionInfo;
 import main.java.com.check.rest.error.ErrorCodes;
@@ -38,12 +40,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public SessionInfo register(LoginInfo loginInfo, String uuid) throws Exception {
-        if (userDao.isUserExists(loginInfo.getLogin())) {
-            userDao.createUser(loginInfo);
-            return login(loginInfo, uuid);
+    public SessionInfo register(RegisterInfo registerInfo, String uuid) throws Exception {
+        if (!userDao.isUserExists(registerInfo.getLogin())) {
+            userDao.createUser(registerInfo);
+            return login(registerInfo, uuid);
         } else {
             throw new Exception(ErrorCodes.USER_ALREADY_EXISTS);
+        }
+    }
+
+    @Override
+    public SessionInfo registerBySocial(SocialInfo socialInfo, String uuid) throws Exception {
+        Users user = userDao.findSocialUser(socialInfo.getUserName(), socialInfo.getSocialType());
+        if (user == null) {
+            LoginInfo loginInfo = userDao.createUser(socialInfo);
+            return login(loginInfo, uuid);
+        } else {
+            return login(new LoginInfo(user.getLogin(), user.getPasswordHash()), uuid);
         }
     }
 }

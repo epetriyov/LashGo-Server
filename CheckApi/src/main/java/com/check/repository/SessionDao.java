@@ -1,4 +1,4 @@
-package main.java.com.check.core.repository;
+package main.java.com.check.repository;
 
 /**
  * Created by Eugene on 14.02.14.

@@ -277,6 +277,9 @@
       <column name="about" sqlType="varchar" length="500" precision="0" nullable="true" jdbcType="12"/>
       <column name="birth_date" sqlType="timestamptz" length="35" precision="6" nullable="true" jdbcType="93"/>
       <column name="avatar_name" sqlType="varchar" length="150" precision="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="varchar" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="social_login" sqlType="varchar" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="social_type" sqlType="varchar" length="50" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="users_primary_key" columns="id"/>
       <exported-key name="Relationship10" table="check_photos" schema="public" catalog="check" columns="user_id"/>
       <exported-key name="Relationship12" table="comments" schema="public" catalog="check" columns="user_id"/>
@@ -285,7 +288,7 @@
       <exported-key name="Relationship3" table="subscriptions" schema="public" catalog="check" columns="checkist_id"/>
       <exported-key name="Relationship22" table="user_devices" schema="public" catalog="check" columns="user_id"/>
       <exported-key name="Relationship5" table="user_groups" schema="public" catalog="check" columns="user_id"/>
-      <index name="user_idx" unique="false" columns="login,name,surname"/>
+      <index name="user_idx" unique="false" columns="login,name,surname,email,social_login"/>
     </table>
     <table name="users_seq" schema="public" catalog="check" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
