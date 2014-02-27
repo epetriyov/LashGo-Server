@@ -20,7 +20,8 @@ public class CheckInterceptor implements HandlerInterceptor {
             throw new Exception(ErrorCodes.UUID_IS_EMPTY);
         }
         String clientType = httpServletRequest.getHeader(CheckApiHeaders.CLIENT_TYPE);
-        if (clientType == null || (clientType != ClientTypes.ANDROID && clientType != ClientTypes.IOS)) {
+        System.out.print("Client type = " + clientType);
+        if (clientType == null || (!clientType.equals(ClientTypes.ANDROID) && !clientType.equals(ClientTypes.IOS))) {
             throw new Exception(ErrorCodes.INVALID_CLIENT_TYPE);
         }
         return true;

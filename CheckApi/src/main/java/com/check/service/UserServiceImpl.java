@@ -1,13 +1,11 @@
 package main.java.com.check.service;
 
-import com.check.model.dto.RegisterInfo;
-import com.check.model.dto.SocialInfo;
+import com.check.model.dto.*;
 import main.java.com.check.domain.Users;
 import main.java.com.check.repository.SessionDao;
 import main.java.com.check.repository.UserDao;
-import com.check.model.dto.LoginInfo;
-import com.check.model.dto.SessionInfo;
 import main.java.com.check.rest.error.ErrorCodes;
+import main.java.com.check.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,8 +51,11 @@ public class UserServiceImpl implements UserService {
     public SessionInfo registerBySocial(SocialInfo socialInfo, String uuid) throws Exception {
         Users user = userDao.findSocialUser(socialInfo.getUserName(), socialInfo.getSocialType());
         if (user == null) {
-            LoginInfo loginInfo = userDao.createUser(socialInfo);
-            return login(loginInfo, uuid);
+            if (!CheckUtils.isEmpty(socialInfo.getEmail())) {
+                LoginInfo loginInfo = userDao.createUser(socialInfo);
+                return login(loginInfo, uuid);
+            }
+            return null;
         } else {
             return login(new LoginInfo(user.getLogin(), user.getPasswordHash()), uuid);
         }

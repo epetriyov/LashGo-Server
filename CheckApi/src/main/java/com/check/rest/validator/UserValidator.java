@@ -25,7 +25,7 @@ public class UserValidator {
     }
 
     public static void validateSocialRegister(SocialInfo socialInfo) throws Exception {
-        if (socialInfo == null || CheckUtils.isEmpty(socialInfo.getEmail()) || CheckUtils.isEmpty(socialInfo.getUserName()) || CheckUtils.isEmpty(socialInfo.getSocialType())) {
+        if (socialInfo == null || CheckUtils.isEmpty(socialInfo.getUserName()) || CheckUtils.isEmpty(socialInfo.getSocialType())) {
             throw new Exception(ErrorCodes.INCORRECT_DATA);
         }
     }

@@ -9,6 +9,7 @@ public final class ErrorCodes {
     public static final String UUID_IS_EMPTY = "uuid.is_empty";
     public static final String INCORRECT_DATA = "data.incorrect";
     public static final String INVALID_CLIENT_TYPE = "client_type.invalid";
+    public static final String EMPTY_EMAIL = "email.is_empty";
 
     private ErrorCodes() {
 
