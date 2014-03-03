@@ -66,4 +66,6 @@
 
     <bean id="userService" class="main.java.com.check.service.UserServiceImpl"/>
 
+    <bean class="main.java.com.check.rest.validator.UserValidator"/>
+
 </beans>

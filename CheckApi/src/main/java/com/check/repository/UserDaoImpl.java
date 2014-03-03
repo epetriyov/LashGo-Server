@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Users findUser(LoginInfo loginInfo) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Users where login = :login and passwordHash = :passwordHash");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Users where (login = :login or email = :login) and passwordHash = :passwordHash");
         query.setParameter("login", loginInfo.getLogin());
         query.setParameter("passwordHash", loginInfo.getPasswordHash());
         List<Users> userList = query.list();
@@ -52,23 +52,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Users findSocialUser(String socialLogin, String socialType) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Users where socialLogin = :socialLogin and socialType = :socialType");
-        query.setParameter("socialLogin", socialLogin);
-        query.setParameter("socialType", socialType);
-        List<Users> users = query.list();
-        return CollectionUtils.isEmpty(users) ? null : users.get(0);
-    }
-
-    @Override
     public void createUser(RegisterInfo registerInfo) {
         sessionFactory.getCurrentSession().save(new Users(registerInfo));
     }
 
     @Override
     public LoginInfo createUser(SocialInfo socialInfo) {
-        String userName = socialInfo.getSocialType() + socialInfo.getUserName();
-        String userPassword = CheckUtils.md5(CheckUtils.md5(userName));
+        String userName = socialInfo.getLogin();
+        String userPassword = socialInfo.getPasswordHash();
         Users user = new Users();
         user.setAvatarName(socialInfo.getAvatarUrl());
         user.setBirthDate(socialInfo.getBirthDay());
@@ -77,7 +68,6 @@ public class UserDaoImpl implements UserDao {
         user.setPasswordHash(userPassword);
         user.setName(socialInfo.getName());
         user.setSurname(socialInfo.getSurname());
-        user.setSocialLogin(socialInfo.getUserName());
         user.setSocialType(socialInfo.getSocialType());
         sessionFactory.getCurrentSession().save(user);
         return new LoginInfo(userName, userPassword);

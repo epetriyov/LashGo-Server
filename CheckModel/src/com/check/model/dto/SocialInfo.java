@@ -10,13 +10,11 @@ import java.util.Date;
  * Time: 22:06
  * To change this template use File | Settings | File Templates.
  */
-public class SocialInfo implements Serializable {
+public class SocialInfo extends RegisterInfo {
 
     private String name;
     private String surname;
     private Date birthDay;
-    private String email;
-    private String userName;
     private String avatarUrl;
     private String socialType;
 
@@ -54,22 +52,6 @@ public class SocialInfo implements Serializable {
 
     public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getAvatarUrl() {

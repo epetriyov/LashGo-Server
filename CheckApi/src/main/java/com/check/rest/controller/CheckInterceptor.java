@@ -3,6 +3,7 @@ package main.java.com.check.rest.controller;
 import com.check.model.CheckApiHeaders;
 import com.check.model.ClientTypes;
 import main.java.com.check.rest.error.ErrorCodes;
+import main.java.com.check.rest.error.WrongHeadersException;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,12 +18,11 @@ public class CheckInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         if (httpServletRequest.getHeader(CheckApiHeaders.UUID) == null) {
-            throw new Exception(ErrorCodes.UUID_IS_EMPTY);
+            throw new WrongHeadersException(ErrorCodes.UUID_IS_EMPTY);
         }
         String clientType = httpServletRequest.getHeader(CheckApiHeaders.CLIENT_TYPE);
-        System.out.print("Client type = " + clientType);
         if (clientType == null || (!clientType.equals(ClientTypes.ANDROID) && !clientType.equals(ClientTypes.IOS))) {
-            throw new Exception(ErrorCodes.INVALID_CLIENT_TYPE);
+            throw new WrongHeadersException(ErrorCodes.INVALID_CLIENT_TYPE);
         }
         return true;
     }

@@ -8,6 +8,9 @@ import java.io.Serializable;
 public class ErrorDto implements Serializable {
     private String errorCode;
 
+    public ErrorDto() {
+    }
+
     public ErrorDto(String errorCode) {
         this.errorCode = errorCode;
     }

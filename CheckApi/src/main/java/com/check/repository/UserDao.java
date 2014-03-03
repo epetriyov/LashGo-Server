@@ -21,6 +21,4 @@ public interface UserDao {
     LoginInfo createUser(SocialInfo socialInfo);
 
     boolean isUserExists(String login);
-
-    Users findSocialUser(String userName, String socialType);
 }

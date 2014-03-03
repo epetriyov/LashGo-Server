@@ -3,16 +3,19 @@ package main.java.com.check.rest.controller;
 import com.check.model.CheckApiHeaders;
 import com.check.model.dto.*;
 import main.java.com.check.rest.error.ErrorCodes;
+import main.java.com.check.rest.error.LoginException;
+import main.java.com.check.rest.error.RegisterException;
+import main.java.com.check.rest.error.ValidationException;
 import main.java.com.check.service.UserService;
 import main.java.com.check.rest.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,34 +28,33 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserValidator userValidator;
+
     @RequestMapping("/login")
     public
     @ResponseBody
-    Response<SessionInfo> login(@RequestHeader HttpHeaders requestHeaders, @RequestBody LoginInfo loginInfo) throws Exception {
+    Response<SessionInfo> login(@RequestHeader HttpHeaders requestHeaders, @RequestBody LoginInfo loginInfo) throws LoginException, ValidationException {
         List<String> uuidHeaders = requestHeaders.get(CheckApiHeaders.UUID);
-        UserValidator.validateLogin(loginInfo);
+        userValidator.validateLogin(loginInfo);
         return new Response<>(userService.login(loginInfo, uuidHeaders.get(0)));
     }
 
     @RequestMapping("/register")
     public
     @ResponseBody
-    Response<SessionInfo> register(@RequestHeader HttpHeaders requestHeaders, @RequestBody RegisterInfo registerInfo) throws Exception {
+    Response<SessionInfo> register(@RequestHeader HttpHeaders requestHeaders, @RequestBody RegisterInfo registerInfo) throws RegisterException, ValidationException {
         List<String> uuidHeaders = requestHeaders.get(CheckApiHeaders.UUID);
-        UserValidator.validateRegsiter(registerInfo);
+        userValidator.validateRegsiter(registerInfo);
         return new Response<>(userService.register(registerInfo, uuidHeaders.get(0)));
     }
 
     @RequestMapping("/social-sign-in")
     public
     @ResponseBody
-    Response<SessionInfo> signInWithSocial(@RequestHeader HttpHeaders requestHeaders, @RequestBody SocialInfo socialInfo) throws Exception {
+    Response<SessionInfo> signInWithSocial(@RequestHeader HttpHeaders requestHeaders, @RequestBody SocialInfo socialInfo) throws RegisterException, ValidationException {
         List<String> uuidHeaders = requestHeaders.get(CheckApiHeaders.UUID);
-        UserValidator.validateSocialRegister(socialInfo);
-        SessionInfo sessionInfo = userService.registerBySocial(socialInfo, uuidHeaders.get(0));
-        if (sessionInfo == null) {
-            throw new Exception(ErrorCodes.EMPTY_EMAIL);
-        }
-        return new Response<>(sessionInfo);
+        userValidator.validateSocialRegister(socialInfo);
+        return new Response<>(userService.registerBySocial(socialInfo, uuidHeaders.get(0)));
     }
 }

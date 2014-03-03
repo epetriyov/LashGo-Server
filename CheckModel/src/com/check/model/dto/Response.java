@@ -10,6 +10,9 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 public class Response<T extends Serializable> implements Serializable {
+    private T result;
+    private ErrorDto error;
+
     public Response() {
     }
 
@@ -20,8 +23,6 @@ public class Response<T extends Serializable> implements Serializable {
     public Response(ErrorDto errorDto) {
         this.error = errorDto;
     }
-
-    private T result;
 
     public T getResult() {
         return result;
@@ -38,6 +39,4 @@ public class Response<T extends Serializable> implements Serializable {
     public void setError(ErrorDto error) {
         this.error = error;
     }
-
-    private ErrorDto error;
 }
