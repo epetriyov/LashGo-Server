@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="check-web">
+    <output-path>$PROJECT_DIR$/out/artifacts/check_web</output-path>
+    <root id="archive" name="check-web.war">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/webapp/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="CheckWeb" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jsf-2.2.1" />
+          <element id="library" level="project" name="cdi-2.0.3" />
+          <element id="library" level="project" name="javax.servlet-api" />
+          <element id="library" level="project" name="primefaces-4.0" />
+          <element id="library" level="project" name="commons-io-2.4" />
+          <element id="library" level="project" name="commons-fileupload-1.3.1" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="CheckWeb/web/Web" />
+    </root>
+  </artifact>
+</component>

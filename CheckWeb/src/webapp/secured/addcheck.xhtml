@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Add check</title>
+</h:head>
+<h:body>
+    <h:form enctype="multipart/form-data">
+        <h:outputText value="Check name:"/>
+        <h:inputText id="checkname" value="#{checkcreator.checkname}"
+                >
+            <f:validateLength minimum="1"/>
+        </h:inputText>
+        <br/>
+
+        <h:outputText value="Check description:"/>
+        <h:inputText id="checkdescription" value="#{checkcreator.description}"
+                >
+            <f:validateLength minimum="1"/>
+        </h:inputText>
+        <br/>
+
+        <h:outputText value="Check duration:"/>
+        <h:inputText id="checkduration" value="#{checkcreator.duration}"
+                >
+            <f:validateLength minimum="1"/>
+        </h:inputText>
+        <br/>
+
+        <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                      value="#{checkcreator.uploadedFile}"
+                      mode="simple"
+                />
+        <p:commandButton value="Save" actionListener="#{checkcreator.createPerson}" ajax="false"/>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Login into Lash Go</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="username:"/>
+        <h:inputText id="username" value="#{login.username}"
+                     >
+            <f:validateLength minimum="1"/>
+        </h:inputText>
+        <br/>
+        <h:outputText value="password:"/>
+        <h:inputSecret id="password" value="#{login.password}"
+                     >
+            <f:validateLength minimum="1"/>
+        </h:inputSecret>
+        <br/>
+        <h:commandButton action="#{login.login}" value="Login"/>
+        <br/>
+        <h:messages />
+        <br/>
+    </h:form>
+</h:body>
+</html>
