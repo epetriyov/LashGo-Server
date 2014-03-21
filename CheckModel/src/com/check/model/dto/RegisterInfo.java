@@ -1,5 +1,7 @@
 package com.check.model.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Eugene
@@ -9,6 +11,7 @@ package com.check.model.dto;
  */
 public class RegisterInfo extends LoginInfo {
 
+    @NotEmpty
     private String email;
 
     public RegisterInfo() {

@@ -7,7 +7,7 @@ package main.java.com.check.rest.error;
  * Time: 23:50
  * To change this template use File | Settings | File Templates.
  */
-public class ValidationException extends Throwable {
+public class ValidationException extends RuntimeException {
     public ValidationException(String error) {
         super(error);
     }

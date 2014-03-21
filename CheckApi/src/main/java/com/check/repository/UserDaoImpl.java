@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public LoginInfo createUser(SocialInfo socialInfo) {
+    public void createUser(SocialInfo socialInfo) {
         String userName = socialInfo.getLogin();
         String userPassword = socialInfo.getPasswordHash();
         Users user = new Users();
@@ -70,6 +70,5 @@ public class UserDaoImpl implements UserDao {
         user.setSurname(socialInfo.getSurname());
         user.setSocialType(socialInfo.getSocialType());
         sessionFactory.getCurrentSession().save(user);
-        return new LoginInfo(userName, userPassword);
     }
 }

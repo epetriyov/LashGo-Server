@@ -20,20 +20,20 @@ public class SessionDaoImpl implements SessionDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public String saveSession(String uuid, int userId) {
+    public Sessions saveSession(String uuid, int userId) {
         Sessions session = new Sessions(userId, CheckUtils.generateSession(uuid, userId), new Date(), uuid);
         sessionFactory.getCurrentSession().save(session);
-        return session.getSessionId();
+        return session;
     }
 
     @Override
-    public String getSession(String uuid, int userId) {
+    public Sessions  getSession(String uuid, int userId) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Sessions where userId = :userId and uuid =:uuid");
         query.setParameter("userId", userId);
         query.setParameter("uuid", uuid);
         List<Sessions> sessionsList = query.list();
         if (!CollectionUtils.isEmpty(sessionsList)) {
-            return sessionsList.get(0).getSessionId();
+            return sessionsList.get(0);
         }
         return null;
     }

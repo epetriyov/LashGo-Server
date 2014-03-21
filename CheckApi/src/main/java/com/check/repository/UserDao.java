@@ -18,7 +18,7 @@ public interface UserDao {
 
     void createUser(RegisterInfo registerInfo);
 
-    LoginInfo createUser(SocialInfo socialInfo);
+    void createUser(SocialInfo socialInfo);
 
     boolean isUserExists(String login);
 }

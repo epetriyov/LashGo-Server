@@ -1,5 +1,7 @@
 package com.check.model.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +18,7 @@ public class SocialInfo extends RegisterInfo {
     private String surname;
     private Date birthDay;
     private String avatarUrl;
+    @NotEmpty
     private String socialType;
 
     public SocialInfo() {

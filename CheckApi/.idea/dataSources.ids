@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="PostgreSQL - check@localhost" product="PostgreSQL" version="9.3.2" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.3 JDBC4.1 (build 1100)" uuid="7114f3ad-9924-47ef-a4eb-580c5a66e0af">
-    <identifier-quote-string>&quot;</identifier-quote-string>
-    <synchronize>true</synchronize>
-    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-    <jdbc-url>jdbc:postgresql://localhost:5432/check</jdbc-url>
-    <user-name>postgres</user-name>
-    <user-password>dfdfdfe5dfc1dfcedfeedfe9dfcedfc4dfffdffedfc8df99dff9dfc5df9edffddfe7dfe9df9edfef</user-password>
-    <schema-pattern>check.public</schema-pattern>
-    <libraries>
-      <library>
-        <url>jar://$PROJECT_DIR$/lib/postgresql-9.3-1100.jdbc41.jar!/</url>
-      </library>
-    </libraries>
+  <data-source source="LOCAL" name="PostgreSQL - check@localhost" uuid="7114f3ad-9924-47ef-a4eb-580c5a66e0af">
+    <database-info product="PostgreSQL" version="9.3.2" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.3 JDBC4.1 (build 1100)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
     <schema name="public" catalog="check"/>
     <table name="check_comments" schema="public" catalog="check" type="TABLE">
       <column name="id" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
@@ -80,6 +72,11 @@
       <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
       <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="gcm_registration" schema="public" catalog="check" type="TABLE">
+      <column name="registration_id" sqlType="varchar" length="150" precision="0" nullable="false" jdbcType="12"/>
+      <column name="uuid" sqlType="varchar" length="150" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="Key25" columns="registration_id"/>
     </table>
     <table name="group_checks" schema="public" catalog="check" type="TABLE">
       <column name="id" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
@@ -277,9 +274,6 @@
       <column name="about" sqlType="varchar" length="500" precision="0" nullable="true" jdbcType="12"/>
       <column name="birth_date" sqlType="timestamptz" length="35" precision="6" nullable="true" jdbcType="93"/>
       <column name="avatar_name" sqlType="varchar" length="150" precision="0" nullable="true" jdbcType="12"/>
-      <column name="email" sqlType="varchar" length="100" precision="0" nullable="true" jdbcType="12"/>
-      <column name="social_login" sqlType="varchar" length="100" precision="0" nullable="true" jdbcType="12"/>
-      <column name="social_type" sqlType="varchar" length="50" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="users_primary_key" columns="id"/>
       <exported-key name="Relationship10" table="check_photos" schema="public" catalog="check" columns="user_id"/>
       <exported-key name="Relationship12" table="comments" schema="public" catalog="check" columns="user_id"/>
@@ -288,7 +282,7 @@
       <exported-key name="Relationship3" table="subscriptions" schema="public" catalog="check" columns="checkist_id"/>
       <exported-key name="Relationship22" table="user_devices" schema="public" catalog="check" columns="user_id"/>
       <exported-key name="Relationship5" table="user_groups" schema="public" catalog="check" columns="user_id"/>
-      <index name="user_idx" unique="false" columns="login,name,surname,email,social_login"/>
+      <index name="user_idx" unique="false" columns="login,name,surname"/>
     </table>
     <table name="users_seq" schema="public" catalog="check" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>

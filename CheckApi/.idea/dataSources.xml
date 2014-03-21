@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1196744721">
-    <data-source source="LOCAL" name="PostgreSQL - check@localhost" product="PostgreSQL" version="9.3.2" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.3 JDBC4.1 (build 1100)" uuid="7114f3ad-9924-47ef-a4eb-580c5a66e0af">
-      <identifier-quote-string>&quot;</identifier-quote-string>
+  <component name="DataSourceManagerImpl" format="xml" hash="2726764805">
+    <data-source source="LOCAL" name="PostgreSQL - check@localhost" uuid="7114f3ad-9924-47ef-a4eb-580c5a66e0af">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/check</jdbc-url>
       <user-name>postgres</user-name>
-      <user-password>dfdfdfe5dfc1dfcedfeedfe9dfcedfc4dfffdffedfc8df99dff9dfc5df9edffddfe7dfe9df9edfef</user-password>
+      <user-password>dfe0dfcbdfdcdfcbdfcddfcfdfcfdfc1dfd9df9fdf92</user-password>
       <schema-pattern>check.public</schema-pattern>
-      <libraries>
-        <library>
-          <url>jar://$PROJECT_DIR$/lib/postgresql-9.3-1100.jdbc41.jar!/</url>
-        </library>
-      </libraries>
+      <libraries />
     </data-source>
   </component>
 </project>
