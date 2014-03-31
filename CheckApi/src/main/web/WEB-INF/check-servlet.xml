@@ -83,10 +83,10 @@
             </list>
         </property>
         <property name="interceptors">
-            <bean class="main.java.com.check.rest.controller.LoggingInterceptor"/>
+            <bean class="main.java.com.check.gcm.LoggingInterceptor"/>
         </property>
         <property name="requestFactory">
-            <bean class="main.java.com.check.service.CustomClientHttpRequestFactory"/>
+            <bean class="main.java.com.check.gcm.CustomClientHttpRequestFactory"/>
         </property>
     </bean>
 </beans>

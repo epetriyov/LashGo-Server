@@ -1,4 +1,4 @@
-package main.java.com.check.service;
+package main.java.com.check.gcm;
 
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Component;

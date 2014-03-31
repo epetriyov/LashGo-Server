@@ -15,5 +15,7 @@ import main.java.com.check.rest.error.ValidationException;
 public interface GcmService {
     void addRegistrationId(String uuid, GcmRegistrationDto registrationDto) throws ValidationException;
 
-    MulticastResult multicastSend() throws GcmSendException, ValidationException;
+    void multicastSend();
+
+    void sendChecks();
 }

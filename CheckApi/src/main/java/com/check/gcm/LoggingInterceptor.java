@@ -1,7 +1,8 @@
-package main.java.com.check.rest.controller;
+package main.java.com.check.gcm;
 
-import main.java.com.check.service.CustomClientHttpResponse;
 import main.java.com.check.utils.CheckUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -12,8 +13,6 @@ import org.springframework.stereotype.Component;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,7 +24,7 @@ import java.util.logging.Logger;
 @Component
 public class LoggingInterceptor implements ClientHttpRequestInterceptor {
 
-    private final Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = LoggerFactory.getLogger("FILE");
 
     public LoggingInterceptor() {
 
@@ -69,7 +68,7 @@ public class LoggingInterceptor implements ClientHttpRequestInterceptor {
             stringBuilder.append(CheckUtils.convertStreamToString(new ByteArrayInputStream(bodyArray)));
             customClientHttpResponse.setBody(bodyArray);
         }
-        logger.log(Level.INFO, stringBuilder.toString());
+        logger.info(stringBuilder.toString());
         return customClientHttpResponse;
     }
 

@@ -2,19 +2,22 @@ package main.java.com.check.service;
 
 import com.check.model.dto.GcmRegistrationDto;
 import com.check.model.dto.MulticastResult;
-import com.check.model.dto.Result;
 import main.java.com.check.CheckConstants;
-import main.java.com.check.gcm.*;
+import main.java.com.check.domain.Check;
+import main.java.com.check.gcm.InvalidRequestException;
+import main.java.com.check.gcm.Message;
+import main.java.com.check.repository.CheckDao;
 import main.java.com.check.repository.GcmDao;
 import main.java.com.check.rest.error.ErrorCodes;
-import main.java.com.check.rest.error.GcmSendException;
 import main.java.com.check.rest.error.ValidationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
@@ -22,13 +25,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+import java.io.IOException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static main.java.com.check.gcm.Constants.*;
 
@@ -45,20 +43,27 @@ public class GcmServiceImpl implements GcmService {
     @Autowired
     private GcmDao gcmDao;
 
+    @Autowired
+    private CheckDao checkDao;
+
+    private final Logger logger = LoggerFactory.getLogger("FILE");
+
+    private static final String CURRENT_CHECK_ID = "check_id";
+
     /**
      * Sends a message without retrying in case of service unavailability. See
      *
      * @return multicast results if the message was sent successfully,
-     *         {@literal null} if it failed but could be retried.
+     * {@literal null} if it failed but could be retried.
      * @throws IllegalArgumentException if registrationIds is {@literal null} or
      *                                  empty.
      * @throws InvalidRequestException  if GCM didn't returned a 200 status.
      * @throws IOException              if there was a JSON parsing error
      */
-    private MulticastResult sendNoRetry(Message message,
-                                       List<String> registrationIds) throws ValidationException, GcmSendException {
+    private void sendNoRetry(Message message,
+                             List<String> registrationIds) {
         if (StringUtils.isEmpty(registrationIds)) {
-            throw new ValidationException(ErrorCodes.REGISTRATION_ID_IS_EMPTY);
+            logger.error(ErrorCodes.REGISTRATION_ID_IS_EMPTY);
         }
         Map<Object, Object> jsonRequest = new HashMap<>();
         setJsonField(jsonRequest, PARAM_TIME_TO_LIVE, message.getTimeToLive());
@@ -78,12 +83,11 @@ public class GcmServiceImpl implements GcmService {
         headers.add("Authorization", "key=" + CheckConstants.GCM_PROJECT_API);
         HttpEntity entity = new HttpEntity(jsonRequest, headers);
         try {
-            ResponseEntity<MulticastResult> responseEntity = restTemplate.exchange(GCM_SEND_ENDPOINT, HttpMethod.POST, entity, MulticastResult.class, null);
-            return responseEntity.getBody();
+            ResponseEntity<MulticastResult> responseEntity = restTemplate.exchange(GCM_SEND_ENDPOINT, HttpMethod.POST, entity, MulticastResult.class);
+            logger.info(responseEntity.getBody().toString());
         } catch (RestClientException e) {
-            throw new GcmSendException(e);
+            logger.error(e.getMessage());
         }
-
     }
 
     /**
@@ -105,11 +109,32 @@ public class GcmServiceImpl implements GcmService {
         }
     }
 
-    @Override
-    public MulticastResult multicastSend() throws ValidationException, GcmSendException {
+    public void sendChecks() {
         List<String> registrationIds = gcmDao.getAllRegistrationIds();
-        Message.Builder messageBuilder = new Message.Builder();
-        messageBuilder.addData("test", "test");
-        return sendNoRetry(messageBuilder.build(), registrationIds);
+        Check check = checkDao.getNextCheck();
+        if (check != null) {
+            Message.Builder messageBuilder = new Message.Builder();
+            messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
+            sendNoRetry(messageBuilder.build(), registrationIds);
+        }
+        logger.info("There is no check to send");
+    }
+
+    @Scheduled(cron = "0 0 0 * * *")
+    @Override
+    public void multicastSend() {
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                sendChecks();
+            }
+        };
+        Check check = checkDao.getNextCheck();
+        if (check != null) {
+            timer.schedule(timerTask, check.getExpireDate());
+        } else {
+            logger.info("There is no check to send");
+        }
     }
 }

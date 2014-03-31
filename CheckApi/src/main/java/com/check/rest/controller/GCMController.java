@@ -40,7 +40,7 @@ public class GCMController {
     @RequestMapping(value = "/gcm-test", method = RequestMethod.POST)
     public
     @ResponseBody
-    Response<MulticastResult> sendMultiCast() throws GcmSendException, ValidationException {
-        return new Response<>(gcmService.multicastSend());
+    void sendMultiCast() {
+        gcmService.sendChecks();
     }
 }

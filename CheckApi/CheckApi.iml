@@ -62,6 +62,10 @@
     <orderEntry type="library" name="jackson-annotations-2.2.3" level="project" />
     <orderEntry type="module" module-name="CheckModel" />
     <orderEntry type="library" scope="PROVIDED" name="Glassfish 4.0.0" level="application_server_libraries" />
+    <orderEntry type="library" name="logback-core-1.1.1" level="project" />
+    <orderEntry type="library" name="slf4j-api-1.7.6" level="project" />
+    <orderEntry type="library" name="logback-access-1.1.1" level="project" />
+    <orderEntry type="library" name="logback-classic-1.1.1" level="project" />
   </component>
 </module>
 
