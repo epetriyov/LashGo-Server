@@ -1,13 +1,12 @@
 package main.java.com.check.repository;
 
 import main.java.com.check.domain.Check;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
-import javax.persistence.Query;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +20,7 @@ public class CheckDaoImpl implements CheckDao {
 
     @Override
     public Check getNextCheck() {
-        org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery("from Check where expireDate > current_date order by expireDate asc");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Check where expireDate > current_date order by expireDate asc");
         query.setMaxResults(1);
         List<Check> checks = query.list();
         if (!CollectionUtils.isEmpty(checks)) {
@@ -32,6 +31,7 @@ public class CheckDaoImpl implements CheckDao {
 
     @Override
     public List<Check> getAllChecks() {
-        return null;
+        Query query = sessionFactory.getCurrentSession().createQuery("from Check order by expireDate desc ");
+        return query.list();
     }
 }

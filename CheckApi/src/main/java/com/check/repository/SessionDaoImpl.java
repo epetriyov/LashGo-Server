@@ -28,7 +28,7 @@ public class SessionDaoImpl implements SessionDao {
 
     @Override
     public Sessions  getSession(String uuid, int userId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Sessions where userId = :userId and uuid =:uuid");
+                    Query query = sessionFactory.getCurrentSession().createQuery("from Sessions where userId = :userId and uuid =:uuid");
         query.setParameter("userId", userId);
         query.setParameter("uuid", uuid);
         List<Sessions> sessionsList = query.list();
