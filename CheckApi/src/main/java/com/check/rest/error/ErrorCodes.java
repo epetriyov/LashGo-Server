@@ -12,6 +12,7 @@ public final class ErrorCodes {
     public static final String REGISTRATION_ID_ALREADY_EXISTS = "registration_id.already_exists";
     public static final String SESSION_EXPIRED = "session.expired";
     public static final String REGISTRATION_ID_IS_EMPTY = "registration_id.empty";
+    public static final String SESSION_IS_EMPTY = "session.empty";
 
     private ErrorCodes() {
 

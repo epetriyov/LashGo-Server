@@ -1,6 +1,7 @@
 package main.java.com.check.utils;
 
 import main.java.com.check.rest.error.ValidationException;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
@@ -23,11 +24,13 @@ public final class CheckUtils {
     }
 
     public static void handleBindingResult(BindingResult result) throws ValidationException {
-        if (result.hasErrors()) {
+        if (result != null && result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
-            ObjectError error = errors.get(0);
-            String[] codes = error.getCodes();
-            throw new ValidationException(codes[0].toString());
+            if (!CollectionUtils.isEmpty(errors)) {
+                ObjectError error = errors.get(0);
+                String[] codes = error.getCodes();
+                throw new ValidationException(codes[0].toString());
+            }
         }
     }
 

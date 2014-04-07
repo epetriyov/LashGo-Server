@@ -1,6 +1,6 @@
 package com.check.model.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +11,15 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class RegisterInfo extends LoginInfo {
 
-    @NotEmpty
+    private String name;
+    private String surname;
+    private String about;
+    private String city;
+    private String birthDate;
+    private String avatar;
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@\n" +
+            "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+(?:[A-Z]{2}|com|org|net|edu|gov|mil|\n" +
+            "biz|info|mobi|name|aero|asia|jobs|museum)\\b")
     private String email;
 
     public RegisterInfo() {
@@ -21,6 +29,54 @@ public class RegisterInfo extends LoginInfo {
     public RegisterInfo(String login, String passwordHash, String email) {
         super(login, passwordHash);
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getEmail() {

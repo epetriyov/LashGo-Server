@@ -9,12 +9,21 @@ package com.check.model;
  */
 public final class ClientTypes {
 
-    private ClientTypes()
-    {
+    private ClientTypes() {
 
     }
 
-    public static final String ANDROID = "android";
+    public static boolean isClientTypeValid(String clientType) {
+        for (ClientTypesEnum clientTypesEnum : ClientTypesEnum.values()) {
+            if (clientTypesEnum.name().equals(clientType)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public static final String IOS = "ios";
+
+    private enum ClientTypesEnum {
+        ANDROID, IOS
+    }
 }

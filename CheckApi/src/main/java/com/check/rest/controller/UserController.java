@@ -13,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * Created by Eugene on 13.02.14.
  */
@@ -25,26 +27,26 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public
     @ResponseBody
-    Response<SessionInfo> login(@RequestHeader HttpHeaders requestHeaders, @Validated @RequestBody LoginInfo loginInfo, BindingResult result) throws ValidationException, UnautharizedException {
+    Response<SessionInfo> login(@Valid @RequestBody LoginInfo loginInfo, BindingResult result) throws ValidationException {
         CheckUtils.handleBindingResult(result);
-        return new Response<>(userService.login(loginInfo, requestHeaders.get(CheckApiHeaders.UUID).get(0)));
+        return new Response<>(userService.login(loginInfo));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public
     @ResponseBody
-    Response register(@Validated @RequestBody RegisterInfo registerInfo, BindingResult result) throws ValidationException {
+    Response register(@Valid @RequestBody RegisterInfo registerInfo, BindingResult result) throws ValidationException {
         CheckUtils.handleBindingResult(result);
         userService.register(registerInfo);
         return new Response<>();
     }
 
-    @RequestMapping(value = "/social-sign-in", method = RequestMethod.POST)
+    @RequestMapping(value = "/recover", method = RequestMethod.PUT)
     public
     @ResponseBody
-    Response signInWithSocial(@Validated @RequestBody SocialInfo socialInfo, BindingResult result) throws ValidationException {
+    Response recover(@Valid @RequestBody RecoverInfo recoverInfo, BindingResult result) throws ValidationException {
         CheckUtils.handleBindingResult(result);
-        userService.registerBySocial(socialInfo);
+        userService.sendRecoverPassword(recoverInfo);
         return new Response<>();
     }
 }

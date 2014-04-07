@@ -1,7 +1,6 @@
 package com.check.model.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -9,10 +8,10 @@ import java.io.Serializable;
  */
 public class LoginInfo implements Serializable {
 
-    @NotEmpty
+    @Size(min = 1)
     private String login;
 
-    @NotEmpty
+    @Size(min = 1)
     private String passwordHash;
 
     public LoginInfo() {

@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
             if (session == null) {
                 session = sessionDao.saveSession(uuid, users.getId());
             } else if (System.currentTimeMillis() - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
-                throw new UnautharizedException(ErrorCodes.SESSION_EXPIRED);
+                throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);
             }
             return new SessionInfo(session.getSessionId());
         } else {
