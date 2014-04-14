@@ -28,6 +28,10 @@
         </property>
     </bean>
 
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="check_resource"/>
         <property name="lookupOnStartup" value="false"/>
@@ -35,6 +39,7 @@
         <property name="proxyInterface" value="javax.sql.DataSource"/>
     </bean>
 
+    <!--
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -57,6 +62,7 @@
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    -->
 
     <mvc:interceptors>
         <mvc:interceptor>

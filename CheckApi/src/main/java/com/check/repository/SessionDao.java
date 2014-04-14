@@ -7,7 +7,9 @@ import main.java.com.check.domain.Sessions;
  */
 public interface SessionDao {
 
-    Sessions saveSession(String uuid, int userId);
+    Sessions createSession(int userId);
 
-    Sessions getSession(String uuid, int userId);
+    Sessions getSession(int userId);
+
+    long getUserBySession(String sessionId);
 }

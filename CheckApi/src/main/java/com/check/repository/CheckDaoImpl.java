@@ -1,9 +1,11 @@
 package main.java.com.check.repository;
 
 import main.java.com.check.domain.Check;
+import main.java.com.check.mappers.CheckMapper;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
@@ -16,22 +18,15 @@ import java.util.List;
 public class CheckDaoImpl implements CheckDao {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public Check getNextCheck() {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Check where expireDate > current_date order by expireDate asc");
-        query.setMaxResults(1);
-        List<Check> checks = query.list();
-        if (!CollectionUtils.isEmpty(checks)) {
-            return checks.get(0);
-        }
-        return null;
+        return jdbcTemplate.queryForObject("SELECT c.* FROM Checks c WHERE c.expireDate > current_date ORDER BY c.expireDate ASC", new CheckMapper());
     }
 
     @Override
     public List<Check> getAllChecks() {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Check order by expireDate desc ");
-        return query.list();
+        return jdbcTemplate.queryForList("SELECT c.* FROM Checks ORDER BY start_date desc", Check.class);
     }
 }

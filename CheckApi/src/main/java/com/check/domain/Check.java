@@ -18,19 +18,39 @@ public class Check {
     private long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "info")
-    private String info;
-    @Column(name = "expire_date")
-    private Date expireDate;
+    @Column(name = "duration")
+    private int duration;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "photo")
+    private String photo;
+    @Column(name = "start_date")
+    private Date startDate;
 
     public Check() {
     }
 
-    public Check(long id, String name, String info, Date expireDate) {
+    public Check(long id, String name, String photo, Date startDate) {
         this.id = id;
         this.name = name;
-        this.info = info;
-        this.expireDate = expireDate;
+        this.photo = photo;
+        this.startDate = startDate;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getId() {
@@ -49,19 +69,19 @@ public class Check {
         this.name = name;
     }
 
-    public String getInfo() {
-        return info;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
-    public Date getExpireDate() {
-        return expireDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 }

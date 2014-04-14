@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3754040203">
-    <data-source source="LOCAL" name="PostgreSQL - check@localhost" uuid="7114f3ad-9924-47ef-a4eb-580c5a66e0af">
+  <component name="DataSourceManagerImpl" format="xml" hash="1875132142">
+    <data-source source="LOCAL" name="lashgo" uuid="0e151463-83af-4421-9ce4-549c06c19d30">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/check</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/lashgo</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfe0dfcbdfdcdfcbdfcddfcfdfcfdfc1dfd9df9fdf92</user-password>
-      <schema-pattern>check.public</schema-pattern>
       <libraries>
         <library>
           <url>file://$PROJECT_DIR$/lib/postgresql-9.3-1100.jdbc41.jar</url>

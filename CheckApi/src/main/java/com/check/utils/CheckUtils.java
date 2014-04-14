@@ -34,10 +34,6 @@ public final class CheckUtils {
         }
     }
 
-    public static String generateSession(String uuid, int userId) {
-        return md5(uuid + String.valueOf(userId) + new Date().getTime());
-    }
-
     public static String md5(final String s) {
         if (s != null) {
             try {

@@ -6,8 +6,10 @@ import main.java.com.check.domain.Users;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,31 +21,21 @@ import java.util.List;
 public class GcmDaoImpl implements GcmDao {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private JdbcTemplate jdbcTemplate;
 
     public boolean isRegistrationIdExists(String registrationId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from GcmRegistration where registrationId = :registrationId");
-        query.setParameter("registrationId", registrationId);
-        List<Users> users = query.list();
-        return !CollectionUtils.isEmpty(users);
+        String regId = jdbcTemplate.queryForObject("SELECT gr.registration_id FROM gcm_registrations gr WHERE gr.registration_id = ?",
+                String.class, registrationId);
+        return !StringUtils.isEmpty(regId);
     }
 
     @Override
     public List<String> getAllRegistrationIds() {
-        Query query = sessionFactory.getCurrentSession().createQuery("from GcmRegistration");
-        List<GcmRegistration> gcmRegistrations = query.list();
-        List<String> registrationIds = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(gcmRegistrations)) {
-            for (GcmRegistration gcmRegistration : gcmRegistrations) {
-                registrationIds.add(gcmRegistration.getRegistrationId());
-            }
-        }
-        return registrationIds;
+        return jdbcTemplate.queryForList("SELECT gr.registration_id FROM gcm_registrations", String.class);
     }
 
     @Override
-    public void addRegistrationId(String uuid, GcmRegistrationDto registrationDto) {
-        GcmRegistration gcmRegistration = new GcmRegistration(registrationDto.getRegistrationId(), uuid);
-        sessionFactory.getCurrentSession().save(gcmRegistration);
+    public void addRegistrationId(long userId, GcmRegistrationDto registrationDto) {
+        jdbcTemplate.update("INSERT INTO gcm_registrations VALUES (?,?)", userId, registrationDto.getRegistrationId());
     }
 }

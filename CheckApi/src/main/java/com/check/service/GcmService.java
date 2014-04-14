@@ -13,7 +13,7 @@ import main.java.com.check.rest.error.ValidationException;
  * To change this template use File | Settings | File Templates.
  */
 public interface GcmService {
-    void addRegistrationId(String uuid, GcmRegistrationDto registrationDto) throws ValidationException;
+    void addRegistrationId(String sessionId, GcmRegistrationDto registrationDto) throws ValidationException;
 
     void multicastSend();
 

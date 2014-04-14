@@ -18,26 +18,15 @@ public class Sessions {
     @Column(name = "start_time")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date startTime;
-    @Column(name = "uuid")
-    private String uuid;
 
     public Sessions() {
 
     }
 
-    public Sessions(int userId, String sessionId, Date startTime, String uuid) {
+    public Sessions(int userId, String sessionId, Date startTime) {
         this.sessionId = sessionId;
         this.userId = userId;
         this.startTime = startTime;
-        this.uuid = uuid;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
     public Date getStartTime() {

@@ -8,6 +8,7 @@ import main.java.com.check.gcm.InvalidRequestException;
 import main.java.com.check.gcm.Message;
 import main.java.com.check.repository.CheckDao;
 import main.java.com.check.repository.GcmDao;
+import main.java.com.check.repository.SessionDao;
 import main.java.com.check.rest.error.ErrorCodes;
 import main.java.com.check.rest.error.ValidationException;
 import org.slf4j.Logger;
@@ -34,7 +35,7 @@ import static main.java.com.check.gcm.Constants.*;
  * Created by Eugene on 19.03.14.
  */
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class GcmServiceImpl implements GcmService {
 
     @Autowired
@@ -42,6 +43,9 @@ public class GcmServiceImpl implements GcmService {
 
     @Autowired
     private GcmDao gcmDao;
+
+    @Autowired
+    private SessionDao sessionDao;
 
     @Autowired
     private CheckDao checkDao;
@@ -100,12 +104,12 @@ public class GcmServiceImpl implements GcmService {
         }
     }
 
+    @Transactional
     @Override
-    public void addRegistrationId(String uuid, GcmRegistrationDto registrationDto) throws ValidationException {
+    public void addRegistrationId(String sessionId, GcmRegistrationDto registrationDto) throws ValidationException {
+        long userId = sessionDao.getUserBySession(sessionId);
         if (!gcmDao.isRegistrationIdExists(registrationDto.getRegistrationId())) {
-            gcmDao.addRegistrationId(uuid, registrationDto);
-        } else {
-            throw new ValidationException(ErrorCodes.REGISTRATION_ID_ALREADY_EXISTS);
+            gcmDao.addRegistrationId(userId, registrationDto);
         }
     }
 
@@ -132,7 +136,7 @@ public class GcmServiceImpl implements GcmService {
         };
         Check check = checkDao.getNextCheck();
         if (check != null) {
-            timer.schedule(timerTask, check.getExpireDate());
+            timer.schedule(timerTask, check.getStartDate());
         } else {
             logger.info("There is no check to send");
         }

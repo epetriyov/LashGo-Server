@@ -15,13 +15,13 @@ public class Users implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "user_seq_gen", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "user_seq_gen", sequenceName = "users_seq", allocationSize = 1)
+    @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "user_id_seq", sequenceName = "users_seq", allocationSize = 1)
     private int id;
     @Column(name = "login")
     private String login;
-    @Column(name = "password_hash")
-    private String passwordHash;
+    @Column(name = "password")
+    private String password;
     @Column(name = "name")
     private String name;
     @Column(name = "surname")
@@ -31,43 +31,43 @@ public class Users implements Serializable {
     @Column(name = "birth_date")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date birthDate;
-    @Column(name = "avatar_name")
-    private String avatarName;
+    @Column(name = "avatar")
+    private String avatar;
     @Column(name = "email")
     private String email;
-    @Column(name = "social_login")
-    private String socialLogin;
-    @Column(name = "social_type")
-    private String socialType;
+    @Column(name = "is_admin")
+    private boolean admin;
+    @Column(name = "city")
+    private String city;
 
     public Users() {
     }
 
-    public Users(String login, String passwordHash) {
+    public Users(String login, String password) {
         this.login = login;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
     public Users(RegisterInfo registerInfo) {
         this.login = registerInfo.getLogin();
-        this.passwordHash = registerInfo.getPasswordHash();
+        this.password = registerInfo.getPasswordHash();
         this.email = registerInfo.getEmail();
     }
 
-    public String getSocialLogin() {
-        return socialLogin;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setSocialLogin(String socialLogin) {
-        this.socialLogin = socialLogin;
+    public void setAdmin(boolean isAdmin) {
+        this.admin = isAdmin;
     }
 
-    public String getSocialType() {
-        return socialType;
+    public String getCity() {
+        return city;
     }
 
-    public void setSocialType(String socialType) {
-        this.socialType = socialType;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getEmail() {
@@ -78,12 +78,12 @@ public class Users implements Serializable {
         this.email = email;
     }
 
-    public String getAvatarName() {
-        return avatarName;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvatarName(String avatarName) {
-        this.avatarName = avatarName;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public Date getBirthDate() {
@@ -118,12 +118,12 @@ public class Users implements Serializable {
         this.name = name;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getLogin() {

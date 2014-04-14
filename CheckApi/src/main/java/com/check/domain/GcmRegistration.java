@@ -9,22 +9,22 @@ import javax.persistence.Table;
  * Created by Eugene on 19.03.14.
  */
 @Entity
-@Table(name = "gcm_registration")
+@Table(name = "gcm_registrations")
 public class GcmRegistration {
 
     @Id
     @Column(name = "registration_id")
     private String registrationId;
-    @Column(name = "uuid")
-    private String uuid;
+    @Column(name = "user_id")
+    private String userId;
 
     public GcmRegistration() {
 
     }
 
-    public GcmRegistration(String registrationId, String uuid) {
+    public GcmRegistration(String registrationId, String userId) {
         this.registrationId = registrationId;
-        this.uuid = uuid;
+        this.userId = userId;
     }
 
     public String getRegistrationId() {
@@ -35,11 +35,11 @@ public class GcmRegistration {
         this.registrationId = registrationId;
     }
 
-    public String getUuid() {
-        return uuid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

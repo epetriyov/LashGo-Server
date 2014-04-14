@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by Eugene on 13.02.14.
  */
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -27,14 +27,13 @@ public class UserServiceImpl implements UserService {
     private SessionDao sessionDao;
 
     @Override
-    public SessionInfo login(LoginInfo loginInfo, String uuid) throws ValidationException, UnautharizedException {
+    @Transactional
+    public SessionInfo login(LoginInfo loginInfo) throws ValidationException, UnautharizedException {
         Users users = userDao.findUser(loginInfo);
         if (users != null) {
-            Sessions session = sessionDao.getSession(uuid, users.getId());
-            if (session == null) {
-                session = sessionDao.saveSession(uuid, users.getId());
-            } else if (System.currentTimeMillis() - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
-                throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);
+            Sessions session = sessionDao.getSession(users.getId());
+            if (session == null || System.currentTimeMillis() - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
+                session = sessionDao.createSession(users.getId());
             }
             return new SessionInfo(session.getSessionId());
         } else {
@@ -43,6 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void register(RegisterInfo registerInfo) throws ValidationException {
         if (!userDao.isUserExists(registerInfo.getLogin())) {
             userDao.createUser(registerInfo);
@@ -52,11 +52,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerBySocial(SocialInfo socialInfo) throws ValidationException {
-        if (!userDao.isUserExists(socialInfo.getLogin())) {
-            userDao.createUser(socialInfo);
-        } else {
-            throw new ValidationException(ErrorCodes.USER_ALREADY_EXISTS);
-        }
+    @Transactional
+    public void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException {
+
     }
 }
