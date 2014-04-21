@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public SessionInfo login(LoginInfo loginInfo) throws ValidationException, UnautharizedException {
         Users users = userDao.findUser(loginInfo);
         if (users != null) {
-            Sessions session = sessionDao.getSession(users.getId());
+            Sessions session = sessionDao.getSessionByUser(users.getId());
             if (session == null || System.currentTimeMillis() - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
                 session = sessionDao.createSession(users.getId());
             }
@@ -55,5 +55,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException {
 
+    }
+
+    @Override
+    public UserDto getProfile(String sessionId) {
+        Sessions sessions = sessionDao.getSessionById(sessionId);
+        Users users = userDao.getUserById(sessions.getUserId());
+        return new UserDto(users.getId(), users.getLogin(), users.getName(), users.getSurname(), users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar(), users.getEmail());
     }
 }

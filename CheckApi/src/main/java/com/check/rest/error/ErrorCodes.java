@@ -14,6 +14,7 @@ public final class ErrorCodes {
     public static final String REGISTRATION_ID_IS_EMPTY = "registration_id.empty";
     public static final String SESSION_IS_EMPTY = "session.empty";
     public static final String WRONG_CURRENT_CHECK_REQUEST = "check.current.false";
+    public static final String WRONG_SESSION = "session.not_exists";
 
     private ErrorCodes() {
 

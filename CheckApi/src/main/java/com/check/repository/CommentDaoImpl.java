@@ -2,6 +2,7 @@ package main.java.com.check.repository;
 
 import com.check.model.dto.CommentDto;
 import main.java.com.check.domain.Comments;
+import main.java.com.check.mappers.CommentsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -26,10 +27,10 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public List<Comments> getCommentsByCheck(long checkId) {
-        return jdbcTemplate.queryForList("" +
+        return jdbcTemplate.query("" +
                 "                  SELECT c.* FROM comments c" +
                 "                   RIGHT JOIN check_comments cc ON (cc.comment_id = c.id)" +
-                "                   WHERE cc.check_id = ?", Comments.class, checkId);
+                "                   WHERE cc.check_id = ?", new CommentsMapper(), checkId);
     }
 
     @Override
@@ -41,10 +42,10 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public List<Comments> getCommentsByPhoto(long photoId) {
-        return jdbcTemplate.queryForList("" +
+        return jdbcTemplate.query("" +
                 "                  SELECT c.* FROM comments c" +
                 "                   RIGHT JOIN photo_comments pc ON (pc.comment_id = c.id)" +
-                "                   WHERE pc.photo_id = ?", Comments.class, photoId);
+                "                   WHERE pc.photo_id = ?", new CommentsMapper(), photoId);
     }
 
     private Number addComment(final CommentDto commentDto) {

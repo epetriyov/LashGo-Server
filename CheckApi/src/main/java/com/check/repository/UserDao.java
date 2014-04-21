@@ -18,4 +18,6 @@ public interface UserDao {
     void createUser(RegisterInfo registerInfo);
 
     boolean isUserExists(String login);
+
+    Users getUserById(long userId);
 }

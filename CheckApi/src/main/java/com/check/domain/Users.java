@@ -43,6 +43,10 @@ public class Users implements Serializable {
     public Users() {
     }
 
+    public Users(int id) {
+        this.id = id;
+    }
+
     public Users(String login, String password) {
         this.login = login;
         this.password = password;

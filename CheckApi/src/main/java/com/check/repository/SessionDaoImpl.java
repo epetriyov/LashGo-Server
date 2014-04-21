@@ -2,10 +2,15 @@ package main.java.com.check.repository;
 
 import main.java.com.check.domain.Sessions;
 import main.java.com.check.mappers.SessionsMapper;
+import main.java.com.check.rest.error.ErrorCodes;
+import main.java.com.check.rest.error.ValidationException;
 import main.java.com.check.utils.CheckUtils;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -16,6 +21,7 @@ import org.springframework.util.CollectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -25,25 +31,25 @@ import java.util.List;
 @Repository
 public class SessionDaoImpl implements SessionDao {
 
+    private static final Logger logger = LoggerFactory.getLogger("FILE");
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public Sessions createSession(final int userId) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(
-                new PreparedStatementCreator() {
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                        PreparedStatement ps =
-                                connection.prepareStatement("INSERT INTO Sessions (session_id, user_id,start_time) VALUES (?,?,?)");
-                        ps.setString(1, generateSession(userId));
-                        ps.setInt(2, userId);
-                        ps.setDate(3, new java.sql.Date(System.currentTimeMillis()));
-                        return ps;
-                    }
-                },
-                keyHolder
-        );
-        return jdbcTemplate.queryForObject("SELECT s.* FROM Sessions s WHERE s.id = ?", new SessionsMapper(), keyHolder.getKey());
+        Sessions sessions = null;
+        try {
+            sessions = jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.user_id = ?", new SessionsMapper(), userId);
+        } catch (DataAccessException e) {
+            logger.info("Create new session");
+        }
+        String sessionId = generateSession(userId);
+        if (sessions == null) {
+            jdbcTemplate.update("INSERT INTO sessions (session_id, user_id,start_time) VALUES (?,?,?)", sessionId, userId, new Timestamp(System.currentTimeMillis()));
+        } else {
+            jdbcTemplate.update("UPDATE sessions SET session_id = ?, start_time = ? WHERE user_id = ?", sessionId, new Timestamp(System.currentTimeMillis()), userId);
+        }
+        return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.session_id = ?", new SessionsMapper(), sessionId);
     }
 
 
@@ -52,12 +58,22 @@ public class SessionDaoImpl implements SessionDao {
     }
 
     @Override
-    public Sessions getSession(int userId) {
-        return jdbcTemplate.queryForObject("SELECT s.* FROM Sessions WHERE user_id = ?", new SessionsMapper(), userId);
+    public Sessions getSessionByUser(int userId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.user_id = ?", new SessionsMapper(), userId);
+        } catch (DataAccessException e) {
+            logger.info("There are no session for user with id: " + userId);
+            return null;
+        }
     }
 
     @Override
-    public long getUserBySession(String sessionId) {
-        return jdbcTemplate.queryForObject("SELECT s.user_id FROM sessions s WHERE s.session_id = ?", Long.class, sessionId);
+    public Sessions getSessionById(String sessionId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.session_id = ?", new SessionsMapper(), sessionId);
+        } catch (DataAccessException e) {
+            logger.info("There are no session  with id: " + sessionId);
+            throw new ValidationException(ErrorCodes.WRONG_SESSION);
+        }
     }
 }

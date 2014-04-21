@@ -1,7 +1,7 @@
 <configuration>
 
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
-		<file>testFile.log</file>
+		<file>D:\Check\projects\LashGo\Server\logs\testFile.log</file>
 		<append>true</append>
 		
    <!-- encoders are assigned the type

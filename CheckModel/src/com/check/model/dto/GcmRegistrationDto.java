@@ -1,5 +1,7 @@
 package com.check.model.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -13,7 +15,7 @@ import java.io.Serializable;
  */
 public class GcmRegistrationDto implements Serializable {
 
-    @Size(min = 1)
+    @NotEmpty
     private String registrationId;
 
     public GcmRegistrationDto() {

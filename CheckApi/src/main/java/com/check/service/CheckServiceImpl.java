@@ -40,7 +40,10 @@ public class CheckServiceImpl implements CheckService {
     @Override
     public CheckDto getCurrentCheck() {
         Check check = checkDao.getNextCheck();
-        return new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto());
+        if (check != null) {
+            return new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto());
+        }
+        return null;
     }
 
 }

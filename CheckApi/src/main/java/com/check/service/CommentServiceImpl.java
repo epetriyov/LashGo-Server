@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
         if (!CollectionUtils.isEmpty(commentsList)) {
             for (Comments comments : commentsList) {
                 Users users = comments.getUser();
-                UserDto userDto = new UserDto(users.getId(), users.getLogin(), users.getName(), users.getSurname(), users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar());
+                UserDto userDto = new UserDto(users.getId(), users.getLogin(), users.getName(), users.getSurname(), users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar(), users.getEmail());
                 commentDtoList.add(new CommentDto(comments.getId(), comments.getContent(), comments.getCreateDate(), userDto));
             }
         }

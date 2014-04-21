@@ -9,7 +9,10 @@ import main.java.com.check.rest.error.GcmSendException;
 import main.java.com.check.rest.error.UnautharizedException;
 import main.java.com.check.rest.error.ValidationException;
 import main.java.com.check.service.GcmService;
+import main.java.com.check.service.SessionValidator;
 import main.java.com.check.utils.CheckUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
@@ -34,11 +37,17 @@ public class GCMController {
     @Autowired
     private GcmService gcmService;
 
+    @Autowired
+    private SessionValidator sessionValidator;
+
+    private static Logger logger = LoggerFactory.getLogger("FILE");
+
     @RequestMapping(value = "/gcm-register", method = RequestMethod.POST)
     public
     @ResponseBody
-    Response registerDevice(@RequestHeader HttpHeaders httpHeaders, @Valid @RequestBody GcmRegistrationDto registrationDto, BindingResult result) throws ValidationException {
-        CheckUtils.handleBindingResult(result);
+    Response registerDevice(@RequestHeader HttpHeaders httpHeaders, @Valid @RequestBody GcmRegistrationDto registrationDto, BindingResult result) {
+        sessionValidator.validate(httpHeaders);
+        CheckUtils.handleBindingResult(logger,result);
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         if (CollectionUtils.isEmpty(sessionId)) {
             throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);

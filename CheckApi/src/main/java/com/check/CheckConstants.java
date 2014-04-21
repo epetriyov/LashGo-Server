@@ -5,11 +5,10 @@ package main.java.com.check;
  */
 public final class CheckConstants {
 
-    public static final String  GCM_PROJECT_API = "AIzaSyD0LL29286WEtv9jOe9H5ke6tO-J8PXb5k";
-    public static final int SESSION_EXPIRE_PERIOD_MILLIS = 3600000;
+    public static final String GCM_PROJECT_API = "AIzaSyD0LL29286WEtv9jOe9H5ke6tO-J8PXb5k";
+    public static final long SESSION_EXPIRE_PERIOD_MILLIS = 3600000l;
 
-    private CheckConstants()
-    {
+    private CheckConstants() {
 
     }
 

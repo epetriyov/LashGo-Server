@@ -23,11 +23,12 @@ public class UserDto implements Serializable {
     private Date birthDate;
 
     private String avatar;
+    private String email;
 
     public UserDto() {
     }
 
-    public UserDto(long id, String login, String name, String surname, String about, String city, Date birthDate, String avatar) {
+    public UserDto(long id, String login, String name, String surname, String about, String city, Date birthDate, String avatar, String email) {
         this.id = id;
         this.login = login;
         this.name = name;
@@ -36,6 +37,15 @@ public class UserDto implements Serializable {
         this.city = city;
         this.birthDate = birthDate;
         this.avatar = avatar;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public long getId() {

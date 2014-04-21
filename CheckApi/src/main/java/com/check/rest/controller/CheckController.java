@@ -6,12 +6,11 @@ import com.check.model.dto.Response;
 import main.java.com.check.rest.error.ErrorCodes;
 import main.java.com.check.rest.error.ValidationException;
 import main.java.com.check.service.CheckService;
+import main.java.com.check.service.SessionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Eugene on 14.04.2014.
@@ -22,20 +21,22 @@ public class CheckController {
     @Autowired
     private CheckService checkService;
 
-    @RequestMapping(value = "/checks", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    Response<CheckDtoList> getChecks() {
-        return new Response<>(checkService.getChecks());
-    }
+    @Autowired
+    private SessionValidator sessionValidator;
 
     @RequestMapping(value = "/checks", method = RequestMethod.GET)
     public
     @ResponseBody
-    Response<CheckDto> getCurrentCheck(@RequestParam("current") boolean current) {
-        if (current) {
-            return new Response<>(checkService.getCurrentCheck());
-        }
-        throw new ValidationException(ErrorCodes.WRONG_CURRENT_CHECK_REQUEST);
+    Response<CheckDtoList> getChecks(@RequestHeader HttpHeaders httpHeaders) {
+        sessionValidator.validate(httpHeaders);
+        return new Response<>(checkService.getChecks());
+    }
+
+    @RequestMapping(value = "/current-check", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Response<CheckDto> getCurrentCheck(@RequestHeader HttpHeaders httpHeaders) {
+        sessionValidator.validate(httpHeaders);
+        return new Response<>(checkService.getCurrentCheck());
     }
 }

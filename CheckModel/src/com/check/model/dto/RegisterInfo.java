@@ -1,5 +1,8 @@
 package com.check.model.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 /**
@@ -17,9 +20,7 @@ public class RegisterInfo extends LoginInfo {
     private String city;
     private String birthDate;
     private String avatar;
-    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@\n" +
-            "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+(?:[A-Z]{2}|com|org|net|edu|gov|mil|\n" +
-            "biz|info|mobi|name|aero|asia|jobs|museum)\\b")
+    @NotEmpty
     private String email;
 
     public RegisterInfo() {

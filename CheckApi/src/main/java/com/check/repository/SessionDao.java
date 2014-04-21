@@ -9,7 +9,7 @@ public interface SessionDao {
 
     Sessions createSession(int userId);
 
-    Sessions getSession(int userId);
+    Sessions getSessionByUser(int userId);
 
-    long getUserBySession(String sessionId);
+    Sessions getSessionById(String sessionId);
 }

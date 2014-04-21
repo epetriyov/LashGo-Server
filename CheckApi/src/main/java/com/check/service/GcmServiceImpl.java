@@ -4,6 +4,7 @@ import com.check.model.dto.GcmRegistrationDto;
 import com.check.model.dto.MulticastResult;
 import main.java.com.check.CheckConstants;
 import main.java.com.check.domain.Check;
+import main.java.com.check.domain.Sessions;
 import main.java.com.check.gcm.InvalidRequestException;
 import main.java.com.check.gcm.Message;
 import main.java.com.check.repository.CheckDao;
@@ -107,9 +108,9 @@ public class GcmServiceImpl implements GcmService {
     @Transactional
     @Override
     public void addRegistrationId(String sessionId, GcmRegistrationDto registrationDto) throws ValidationException {
-        long userId = sessionDao.getUserBySession(sessionId);
+        Sessions sessions = sessionDao.getSessionById(sessionId);
         if (!gcmDao.isRegistrationIdExists(registrationDto.getRegistrationId())) {
-            gcmDao.addRegistrationId(userId, registrationDto);
+            gcmDao.addRegistrationId(sessions.getUserId(), registrationDto);
         }
     }
 
