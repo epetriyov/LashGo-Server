@@ -1,5 +1,6 @@
 package com.check.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Pattern;
  * Time: 21:50
  * To change this template use File | Settings | File Templates.
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class RegisterInfo extends LoginInfo {
 
     private String name;

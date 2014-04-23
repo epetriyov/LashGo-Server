@@ -1,6 +1,8 @@
 package main.java.com.check.service;
 
-import com.check.model.dto.*;
+import com.check.model.dto.CommentDto;
+import com.check.model.dto.CommentsDto;
+import com.check.model.dto.UserDto;
 import main.java.com.check.domain.Comments;
 import main.java.com.check.domain.Users;
 import main.java.com.check.repository.CommentDao;

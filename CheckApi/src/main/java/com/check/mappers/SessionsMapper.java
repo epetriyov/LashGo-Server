@@ -14,7 +14,7 @@ public class SessionsMapper implements org.springframework.jdbc.core.RowMapper<m
         Sessions sessions = new Sessions();
         sessions.setSessionId(resultSet.getString("session_id"));
         sessions.setUserId(resultSet.getInt("user_id"));
-        sessions.setStartTime(resultSet.getDate("start_time"));
+        sessions.setStartTime(resultSet.getTimestamp("start_time"));
         return sessions;
     }
 }

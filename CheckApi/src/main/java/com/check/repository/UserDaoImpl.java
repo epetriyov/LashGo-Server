@@ -10,12 +10,15 @@ import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Eugene on 12.02.14.
@@ -25,6 +28,9 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private MessageSource messageSource;
 
     private static final Logger logger = LoggerFactory.getLogger("FILE");
 
@@ -42,8 +48,10 @@ public class UserDaoImpl implements UserDao {
     public Users findUser(LoginInfo loginInfo) {
         try {
             return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE (u.login = ? or u.email = ?) and u.password = ?", new UsersMapper(), loginInfo.getLogin(), loginInfo.getLogin(), loginInfo.getPasswordHash());
-        } catch (DataAccessException e) {
-            throw new ValidationException(ErrorCodes.USER_NOT_FOUND);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage("user.not.exists", new String[]{loginInfo.getLogin()}, Locale.ENGLISH));
+            return null;
+
         }
     }
 
@@ -51,8 +59,8 @@ public class UserDaoImpl implements UserDao {
         Integer usersCount = 0;
         try {
             usersCount = jdbcTemplate.queryForObject("SELECT count(u.id) FROM users u WHERE u.login = ?", Integer.class, login);
-        } catch (DataAccessException e) {
-            logger.info("There are no user with login: " + login);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage("user.not.exists", new String[]{login}, Locale.ENGLISH));
         }
         return usersCount > 0;
     }
@@ -61,8 +69,8 @@ public class UserDaoImpl implements UserDao {
     public Users getUserById(long userId) {
         try {
             return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE u.id = ?", new UsersMapper(), userId);
-        } catch (DataAccessException e) {
-            logger.info("There are no user with id: " + userId);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage("user.not.exists", new Long[]{userId}, Locale.ENGLISH));
             return null;
         }
     }

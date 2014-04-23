@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -24,6 +26,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Eugene on 14.02.14.
@@ -36,18 +39,16 @@ public class SessionDaoImpl implements SessionDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private MessageSource messageSource;
+
     public Sessions createSession(final int userId) {
-        Sessions sessions = null;
-        try {
-            sessions = jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.user_id = ?", new SessionsMapper(), userId);
-        } catch (DataAccessException e) {
-            logger.info("Create new session");
-        }
+        Sessions sessions = getSessionByUser(userId);
         String sessionId = generateSession(userId);
         if (sessions == null) {
-            jdbcTemplate.update("INSERT INTO sessions (session_id, user_id,start_time) VALUES (?,?,?)", sessionId, userId, new Timestamp(System.currentTimeMillis()));
+            jdbcTemplate.update("INSERT INTO sessions (session_id, user_id,start_time) VALUES (?,?,current_timestamp)", sessionId, userId);
         } else {
-            jdbcTemplate.update("UPDATE sessions SET session_id = ?, start_time = ? WHERE user_id = ?", sessionId, new Timestamp(System.currentTimeMillis()), userId);
+            jdbcTemplate.update("UPDATE sessions SET session_id = ?, start_time = current_timestamp WHERE user_id = ?", sessionId, userId);
         }
         return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.session_id = ?", new SessionsMapper(), sessionId);
     }
@@ -61,8 +62,8 @@ public class SessionDaoImpl implements SessionDao {
     public Sessions getSessionByUser(int userId) {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.user_id = ?", new SessionsMapper(), userId);
-        } catch (DataAccessException e) {
-            logger.info("There are no session for user with id: " + userId);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage("user.session.not.exists", new Integer[]{userId}, Locale.ENGLISH));
             return null;
         }
     }
@@ -72,8 +73,8 @@ public class SessionDaoImpl implements SessionDao {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.session_id = ?", new SessionsMapper(), sessionId);
         } catch (DataAccessException e) {
-            logger.info("There are no session  with id: " + sessionId);
-            throw new ValidationException(ErrorCodes.WRONG_SESSION);
+            logger.info(messageSource.getMessage("session.not.exists", new String[]{sessionId}, Locale.ENGLISH));
+            return null;
         }
     }
 }

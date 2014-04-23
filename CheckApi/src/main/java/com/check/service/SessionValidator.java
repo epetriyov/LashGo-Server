@@ -35,6 +35,9 @@ public class SessionValidator {
             throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);
         }
         Sessions session = sessionDao.getSessionById(sessionId.get(0));
+        if (session == null) {
+            throw new ValidationException(ErrorCodes.WRONG_SESSION);
+        }
         long currentTimestamp = System.currentTimeMillis();
         logger.info("Current timestamp - " + currentTimestamp);
         logger.info("Session start date timestamp - " + session.getStartTime().getTime());

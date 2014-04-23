@@ -1,11 +1,14 @@
 package com.check.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Eugene on 14.04.2014.
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class CheckDto implements Serializable {
 
     private long id;

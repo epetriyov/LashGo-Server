@@ -1,5 +1,6 @@
 package com.check.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * Time: 21:57
  * To change this template use File | Settings | File Templates.
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class GcmRegistrationDto implements Serializable {
 
     @NotEmpty

@@ -42,7 +42,7 @@ CREATE TABLE checks (
 	name            varchar(50)               NOT NULL UNIQUE CHECK (name <> ''),
 	description     varchar(500)              NOT NULL CHECK (description <> ''),
 	start_date      timestamp with time zone  NOT NULL CHECK (start_date >= current_timestamp) DEFAULT current_timestamp,
-	duration        interval HOUR 		      NOT NULL CHECK (duration > '0 HOUR' AND duration < '12 HOUR') DEFAULT INTERVAL '3 HOUR',
+	duration        int 		              NOT NULL CHECK (duration > 0 AND duration < 12) DEFAULT 3,
 	photo           varchar(50)
 );
 
@@ -83,7 +83,7 @@ CREATE UNIQUE INDEX check_comments_idx ON check_comments (check_id, comment_id);
 CREATE TABLE subscriptions (
     id              serial                    NOT NULL PRIMARY KEY,
     user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,	    
-    checklist_id     int                       CHECK (checklist_id <> user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE	    
+    checklist_id    int                       CHECK (checklist_id <> user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE	    
 );
 
 CREATE UNIQUE INDEX subscriptions_idx ON subscriptions (user_id, checklist_id);

@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException {
-
+        //TODO implement
     }
 
     @Override

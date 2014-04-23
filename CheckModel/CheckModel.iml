@@ -25,6 +25,7 @@
     <orderEntry type="library" name="Hibernate 4.2.2-4.2.2" level="project" />
     <orderEntry type="library" name="hibernate-validator-5.1.0.Final" level="project" />
     <orderEntry type="library" name="validation-api-1.1.0.Final" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.2.3" level="project" />
   </component>
 </module>
 

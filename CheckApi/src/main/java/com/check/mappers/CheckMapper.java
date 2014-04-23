@@ -1,6 +1,7 @@
 package main.java.com.check.mappers;
 
 import main.java.com.check.domain.Check;
+import org.postgresql.util.PGInterval;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<main
         check.setId(resultSet.getInt("id"));
         check.setName(resultSet.getString("name"));
         check.setDescription(resultSet.getString("description"));
-        check.setStartDate(resultSet.getDate("start_date"));
+        check.setStartDate(resultSet.getTimestamp("start_date"));
         check.setDuration(resultSet.getInt("duration"));
         check.setPhoto(resultSet.getString("photo"));
         return check;

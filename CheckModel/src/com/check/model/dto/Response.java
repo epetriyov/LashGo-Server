@@ -1,5 +1,7 @@
 package com.check.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * Time: 22:12
  * To change this template use File | Settings | File Templates.
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class Response<T extends Serializable> implements Serializable {
     private T result;
     private ErrorDto error;

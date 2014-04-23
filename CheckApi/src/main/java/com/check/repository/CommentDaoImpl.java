@@ -6,6 +6,7 @@ import main.java.com.check.mappers.CommentsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Eugene on 14.04.2014.
@@ -36,8 +39,10 @@ public class CommentDaoImpl implements CommentDao {
     @Override
     public void addCheckComment(final long checkId, final CommentDto checkCommentDto) {
         Number commentId = addComment(checkCommentDto);
-        jdbcTemplate.update("INSERT INTO check_comments (comment_id, check_id) " +
-                "            VALUES (?,?)", commentId, checkId);
+        if (commentId != null) {
+            jdbcTemplate.update("INSERT INTO check_comments (comment_id, check_id) " +
+                    "            VALUES (?,?)", commentId, checkId);
+        }
     }
 
     @Override
@@ -49,21 +54,11 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     private Number addComment(final CommentDto commentDto) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(
-                new PreparedStatementCreator() {
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                        PreparedStatement ps =
-                                connection.prepareStatement("INSERT INTO comments (content, create_date, user_id) VALUES (?,?,?)");
-                        ps.setString(1, commentDto.getContent());
-                        ps.setDate(2, new Date(commentDto.getCreateDate().getTime()));
-                        ps.setLong(3, commentDto.getUser().getId());
-                        return ps;
-                    }
-                },
-                keyHolder
-        );
-        return keyHolder.getKey();
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        Map<String, Object> params = new HashMap<>();
+        params.put("content", commentDto.getContent());
+        params.put("user_id", commentDto.getUser().getId());
+        return simpleJdbcInsert.withTableName("comments").usingGeneratedKeyColumns("id").usingColumns("content", "user_id").executeAndReturnKey(params);
     }
 
     @Override

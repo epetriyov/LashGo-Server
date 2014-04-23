@@ -2,11 +2,14 @@ package main.java.com.check.rest.error;
 
 import com.check.model.dto.ErrorDto;
 import com.check.model.dto.Response;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import javax.xml.crypto.Data;
 
 /**
  * Created by Eugene on 13.02.14.
@@ -32,6 +35,13 @@ public class RestErrorHandler {
     @ExceptionHandler(GcmSendException.class)
     @ResponseBody
     public Response processGcmSendError(GcmSendException exception) {
+        return new Response(new ErrorDto(exception.getMessage()));
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(DataAccessException.class)
+    @ResponseBody
+    public Response processDataAccessError(DataAccessException exception) {
         return new Response(new ErrorDto(exception.getMessage()));
     }
 }

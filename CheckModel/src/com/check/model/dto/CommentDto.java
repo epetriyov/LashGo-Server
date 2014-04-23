@@ -1,5 +1,7 @@
 package com.check.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
@@ -10,6 +12,7 @@ import java.util.Date;
 /**
  * Created by Eugene on 14.04.2014.
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class CommentDto implements Serializable {
 
     @Min(1)

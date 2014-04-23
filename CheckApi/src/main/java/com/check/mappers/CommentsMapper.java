@@ -16,7 +16,7 @@ public class CommentsMapper implements RowMapper<Comments> {
         Comments comments = new Comments();
         comments.setId(resultSet.getLong("id"));
         comments.setContent(resultSet.getString("content"));
-        comments.setCreateDate(resultSet.getDate("create_date"));
+        comments.setCreateDate(resultSet.getTimestamp("create_date"));
         comments.setUser(new Users(resultSet.getInt("user_id")));
         return comments;
     }
