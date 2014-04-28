@@ -11,7 +11,7 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class UserDto implements Serializable {
 
-    private long id;
+    private int id;
 
     private String login;
 
@@ -31,7 +31,7 @@ public class UserDto implements Serializable {
     public UserDto() {
     }
 
-    public UserDto(long id, String login, String name, String surname, String about, String city, Date birthDate, String avatar, String email) {
+    public UserDto(int id, String login, String name, String surname, String about, String city, Date birthDate, String avatar, String email) {
         this.id = id;
         this.login = login;
         this.name = name;
@@ -51,11 +51,11 @@ public class UserDto implements Serializable {
         this.email = email;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

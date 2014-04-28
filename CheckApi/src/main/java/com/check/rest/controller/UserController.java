@@ -39,9 +39,9 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public
     @ResponseBody
-    Response<SessionInfo> login(@Valid @RequestBody LoginInfo loginInfo, BindingResult result) {
+    Response<SessionInfo> login(@RequestHeader HttpHeaders httpHeaders, @Valid @RequestBody LoginInfo loginInfo, BindingResult result) {
         CheckUtils.handleBindingResult(logger, result);
-        return new Response<>(userService.login(loginInfo));
+        return new Response<>(userService.login(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), loginInfo));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

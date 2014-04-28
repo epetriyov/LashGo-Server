@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1875132142">
+  <component name="DataSourceManagerImpl" format="xml" hash="1530139953">
     <data-source source="LOCAL" name="lashgo" uuid="0e151463-83af-4421-9ce4-549c06c19d30">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>

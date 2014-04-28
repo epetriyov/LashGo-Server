@@ -10,9 +10,6 @@
           <root url="file://$MODULE_DIR$/src/webapp" relative="/" />
         </webroots>
       </configuration>
-      <facet type="jsf" name="JSF">
-        <configuration />
-      </facet>
     </facet>
     <facet type="JRebel" name="JRebel">
       <configuration>

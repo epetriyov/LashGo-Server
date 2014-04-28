@@ -2350,8 +2350,8 @@
       <column name="name" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="description" sqlType="varchar" precision="500" scale="0" nullable="false" jdbcType="12"/>
       <column name="start_date" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93" def="bm93KCk="/>
-      <column name="duration" sqlType="interval" precision="49" scale="65535" nullable="false" jdbcType="1111" def="JzAzOjAwOjAwJw=="/>
       <column name="photo" sqlType="varchar" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="duration" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4" def="Mw=="/>
       <primary-key name="checks_pkey" columns="id"/>
       <exported-key name="check_comments_check_id_fkey" table="check_comments" schema="public" catalog="lashgo" columns="check_id"/>
       <exported-key name="photos_check_id_fkey" table="photos" schema="public" catalog="lashgo" columns="check_id"/>
@@ -2469,6 +2469,7 @@
       <foreign-key name="photos_check_id_fkey" columns="check_id" ref-table="checks" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="0" delete-rule="1" deferrability="2"/>
       <foreign-key name="photos_user_id_fkey" columns="user_id" ref-table="users" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="0" delete-rule="1" deferrability="2"/>
       <exported-key name="photo_comments_photo_id_fkey" table="photo_comments" schema="public" catalog="lashgo" columns="photo_id"/>
+      <exported-key name="user_ratings_photo_id_fkey" table="user_ratings" schema="public" catalog="lashgo" columns="photo_id"/>
       <index name="photo_idx" unique="true" columns="user_id,check_id"/>
       <index name="photos_picture_key" unique="true" columns="picture"/>
     </table>
@@ -2513,6 +2514,27 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="user_ratings" schema="public" catalog="lashgo" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgndXNlcl9yYXRpbmdzX2lkX3NlcSc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="photo_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="user_ratings_pkey" columns="id"/>
+      <foreign-key name="user_ratings_photo_id_fkey" columns="photo_id" ref-table="photos" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="user_ratings_user_id_fkey" columns="user_id" ref-table="users" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="user_rating_idx" unique="true" columns="user_id,photo_id"/>
+    </table>
+    <table name="user_ratings_id_seq" schema="public" catalog="lashgo" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="users" schema="public" catalog="lashgo" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgndXNlcnNfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="login" sqlType="varchar" precision="35" scale="0" nullable="false" jdbcType="12"/>
@@ -2532,6 +2554,7 @@
       <exported-key name="sessions_user_id_fkey" table="sessions" schema="public" catalog="lashgo" columns="user_id"/>
       <exported-key name="subscriptions_checklist_id_fkey" table="subscriptions" schema="public" catalog="lashgo" columns="checklist_id"/>
       <exported-key name="subscriptions_user_id_fkey" table="subscriptions" schema="public" catalog="lashgo" columns="user_id"/>
+      <exported-key name="user_ratings_user_id_fkey" table="user_ratings" schema="public" catalog="lashgo" columns="user_id"/>
       <exported-key name="users_interfaces_user_id_fkey" table="users_interfaces" schema="public" catalog="lashgo" columns="user_id"/>
       <index name="users_email_key" unique="true" columns="email"/>
       <index name="users_login_key" unique="true" columns="login"/>

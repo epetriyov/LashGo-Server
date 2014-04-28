@@ -30,6 +30,11 @@ public class Check {
     public Check() {
     }
 
+    public Check(long id)
+    {
+        this.id = id;
+    }
+
     public Check(long id, String name, String photo, Date startDate) {
         this.id = id;
         this.name = name;

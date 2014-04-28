@@ -4,8 +4,10 @@ import com.check.model.dto.*;
 import main.java.com.check.CheckConstants;
 import main.java.com.check.domain.Sessions;
 import main.java.com.check.domain.Users;
+import main.java.com.check.repository.ClientInterfaceDao;
 import main.java.com.check.repository.SessionDao;
 import main.java.com.check.repository.UserDao;
+import main.java.com.check.repository.UserInterfaceDao;
 import main.java.com.check.rest.error.ErrorCodes;
 import main.java.com.check.rest.error.UnautharizedException;
 import main.java.com.check.rest.error.ValidationException;
@@ -26,11 +28,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private SessionDao sessionDao;
 
-    @Override
+    @Autowired
+    private UserInterfaceDao userInterfaceDao;
+
+    @Autowired
+    private ClientInterfaceDao clientInterfaceDao;
+
     @Transactional
-    public SessionInfo login(LoginInfo loginInfo) throws ValidationException, UnautharizedException {
+    @Override
+    public SessionInfo login(String interfaceTypeCode, LoginInfo loginInfo) throws ValidationException, UnautharizedException {
         Users users = userDao.findUser(loginInfo);
         if (users != null) {
+            int interfaceId = clientInterfaceDao.getIntefaceIdByCode(interfaceTypeCode);
+            if (!userInterfaceDao.isUserInterfaceExists(users.getId(), interfaceId)) {
+                userInterfaceDao.addUserInteface(users.getId(), interfaceId);
+            }
             Sessions session = sessionDao.getSessionByUser(users.getId());
             if (session == null || System.currentTimeMillis() - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
                 session = sessionDao.createSession(users.getId());

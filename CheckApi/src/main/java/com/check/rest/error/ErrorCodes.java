@@ -15,6 +15,9 @@ public final class ErrorCodes {
     public static final String SESSION_IS_EMPTY = "session.empty";
     public static final String WRONG_CURRENT_CHECK_REQUEST = "check.current.false";
     public static final String WRONG_SESSION = "session.not_exists";
+    public static final String PHOTO_ALREADY_EXISTS = "photo.already_exists";
+    public static final String PHOTO_READ_ERROR = "photo.read_error";
+    public static final String PHOTO_WRITE_ERROR = "photo.write_error";
 
     private ErrorCodes() {
 

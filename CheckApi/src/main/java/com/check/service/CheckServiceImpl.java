@@ -5,6 +5,8 @@ import com.check.model.dto.CheckDtoList;
 import main.java.com.check.domain.Check;
 import main.java.com.check.repository.CheckDao;
 import main.java.com.check.repository.CommentDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

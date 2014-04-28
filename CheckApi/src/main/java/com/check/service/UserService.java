@@ -9,7 +9,7 @@ import main.java.com.check.rest.error.ValidationException;
  */
 public interface UserService {
 
-    SessionInfo login(LoginInfo loginInfo) throws ValidationException, UnautharizedException;
+    SessionInfo login(String interfaceTypeCode, LoginInfo loginInfo) throws ValidationException, UnautharizedException;
 
     void register(RegisterInfo registerInfo) throws ValidationException;
 

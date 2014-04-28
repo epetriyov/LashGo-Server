@@ -43,8 +43,13 @@ public class Photos {
         this.check = check;
     }
 
-    public long getId() {
+    public Photos(String picture, int userId, long checkId) {
+        this.picture = picture;
+        this.user = new Users(userId);
+        this.check = new Check(checkId);
+    }
 
+    public long getId() {
         return id;
     }
 

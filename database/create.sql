@@ -57,6 +57,14 @@ CREATE TABLE photos (
 
 CREATE UNIQUE INDEX photo_idx ON photos (user_id, check_id);
 
+CREATE TABLE user_ratings (
+	id              serial                    NOT NULL PRIMARY KEY,
+	photo_id        int                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE,	
+	user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE	
+);
+
+CREATE UNIQUE INDEX user_rating_idx ON user_ratings (user_id, photo_id);
+
 CREATE TABLE comments (
 	id 				serial                    NOT NULL PRIMARY KEY,
 	content			varchar(500)              NOT NULL,

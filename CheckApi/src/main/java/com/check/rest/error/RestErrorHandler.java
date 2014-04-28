@@ -44,4 +44,18 @@ public class RestErrorHandler {
     public Response processDataAccessError(DataAccessException exception) {
         return new Response(new ErrorDto(exception.getMessage()));
     }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(PhotoReadException.class)
+    @ResponseBody
+    public Response processPhotoReadError(PhotoReadException exception) {
+        return new Response(new ErrorDto(exception.getMessage()));
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(PhotoWriteException.class)
+    @ResponseBody
+    public Response processPhotoWriteError(PhotoWriteException exception) {
+        return new Response(new ErrorDto(exception.getMessage()));
+    }
 }

@@ -3,14 +3,15 @@ package main.java.com.check.rest.controller;
 import com.check.model.dto.CheckDto;
 import com.check.model.dto.CheckDtoList;
 import com.check.model.dto.Response;
-import main.java.com.check.rest.error.ErrorCodes;
-import main.java.com.check.rest.error.ValidationException;
 import main.java.com.check.service.CheckService;
 import main.java.com.check.service.SessionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by Eugene on 14.04.2014.
