@@ -2,18 +2,21 @@ package main.java.com.check.service;
 
 import com.check.model.dto.*;
 import main.java.com.check.CheckConstants;
+import main.java.com.check.domain.Check;
+import main.java.com.check.domain.Photos;
 import main.java.com.check.domain.Sessions;
 import main.java.com.check.domain.Users;
-import main.java.com.check.repository.ClientInterfaceDao;
-import main.java.com.check.repository.SessionDao;
-import main.java.com.check.repository.UserDao;
-import main.java.com.check.repository.UserInterfaceDao;
+import main.java.com.check.repository.*;
 import main.java.com.check.rest.error.ErrorCodes;
 import main.java.com.check.rest.error.UnautharizedException;
 import main.java.com.check.rest.error.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Eugene on 13.02.14.
@@ -33,6 +36,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ClientInterfaceDao clientInterfaceDao;
+
+    @Autowired
+    private PhotoDao photoDao;
+
+    @Autowired
+    private SubscriptionsDao subscriptionsDao;
+
+    @Autowired
+    private CheckDao checkDao;
 
     @Transactional
     @Override
@@ -75,4 +87,36 @@ public class UserServiceImpl implements UserService {
         Users users = userDao.getUserById(sessions.getUserId());
         return new UserDto(users.getId(), users.getLogin(), users.getName(), users.getSurname(), users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar(), users.getEmail());
     }
+
+    @Override
+    public PhotoDtoList getPhotos(String sessionId) {
+        Sessions sessions = sessionDao.getSessionById(sessionId);
+        Users users = userDao.getUserById(sessions.getUserId());
+        return new PhotoDtoList(photoDao.getPhotosByUserId(users.getId()));
+    }
+
+    @Override
+    public SubscriptionDtoList getSubscriptions(String sessionId) {
+        Sessions sessions = sessionDao.getSessionById(sessionId);
+        Users users = userDao.getUserById(sessions.getUserId());
+        return new SubscriptionDtoList(subscriptionsDao.getSubscriptions(users.getId()));
+    }
+
+    @Transactional
+    @Override
+    public void unsubscribe(String sessionId, int userId) {
+        Sessions sessions = sessionDao.getSessionById(sessionId);
+        Users users = userDao.getUserById(sessions.getUserId());
+        subscriptionsDao.removeSubscription(users.getId(), userId);
+    }
+
+    @Transactional
+    @Override
+    public void subscribe(String sessionId, int userId) {
+        Sessions sessions = sessionDao.getSessionById(sessionId);
+        Users users = userDao.getUserById(sessions.getUserId());
+        subscriptionsDao.addSubscription(users.getId(), userId);
+    }
+
+
 }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CheckApi.iml" filepath="$PROJECT_DIR$/CheckApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/../CheckModel/CheckModel.iml" filepath="$PROJECT_DIR$/../CheckModel/CheckModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../LashGoApiDoc/LashGoApiDoc.iml" filepath="$PROJECT_DIR$/../LashGoApiDoc/LashGoApiDoc.iml" />
     </modules>
   </component>
 </project>

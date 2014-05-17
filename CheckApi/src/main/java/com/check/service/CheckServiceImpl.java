@@ -2,9 +2,13 @@ package main.java.com.check.service;
 
 import com.check.model.dto.CheckDto;
 import com.check.model.dto.CheckDtoList;
+import com.check.model.dto.PhotoDtoList;
 import main.java.com.check.domain.Check;
+import main.java.com.check.domain.Sessions;
+import main.java.com.check.domain.Users;
 import main.java.com.check.repository.CheckDao;
 import main.java.com.check.repository.CommentDao;
+import main.java.com.check.repository.PhotoDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,9 @@ public class CheckServiceImpl implements CheckService {
 
     @Autowired
     private CheckDao checkDao;
+
+    @Autowired
+    private PhotoDao photoDao;
 
     @Override
     public CheckDtoList getChecks() {
@@ -46,6 +53,11 @@ public class CheckServiceImpl implements CheckService {
             return new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto());
         }
         return null;
+    }
+
+    @Override
+    public PhotoDtoList getPhotos(long checkId) {
+        return new PhotoDtoList(photoDao.getPhotosByCheckId(checkId));
     }
 
 }

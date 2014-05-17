@@ -26,15 +26,13 @@ import java.util.List;
  * Created by Eugene on 13.02.14.
  */
 @Controller
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
 
     @Autowired
     private SessionValidator sessionValidator;
-
-    private static Logger logger = LoggerFactory.getLogger("FILE");
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public
@@ -68,5 +66,39 @@ public class UserController {
     Response<UserDto> getProfile(@RequestHeader HttpHeaders httpHeaders) {
         sessionValidator.validate(httpHeaders);
         return new Response<>(userService.getProfile(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+    }
+
+    @RequestMapping(value = "/photos", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Response<PhotoDtoList> getUserPhotos(@RequestHeader HttpHeaders httpHeaders) {
+        sessionValidator.validate(httpHeaders);
+        return new Response<>(userService.getPhotos(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+    }
+
+    @RequestMapping(value = "/subscriptions", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Response<SubscriptionDtoList> getSubscriptions(@RequestHeader HttpHeaders httpHeaders) {
+        sessionValidator.validate(httpHeaders);
+        return new Response<>(userService.getSubscriptions(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+    }
+
+    @RequestMapping(value = "/subscriptions/{userId}", method = RequestMethod.DELETE)
+    public
+    @ResponseBody
+    Response unsubscribe(@RequestHeader HttpHeaders httpHeaders, @PathVariable("userId") int userId) {
+        sessionValidator.validate(httpHeaders);
+        userService.unsubscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),userId);
+        return new Response();
+    }
+
+    @RequestMapping(value = "/subscriptions/{userId}", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Response subscribe(@RequestHeader HttpHeaders httpHeaders, @PathVariable("userId") int userId) {
+        sessionValidator.validate(httpHeaders);
+        userService.subscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),userId);
+        return new Response();
     }
 }

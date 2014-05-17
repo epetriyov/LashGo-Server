@@ -20,7 +20,7 @@ import java.io.File;
  * Created by Eugene on 28.04.2014.
  */
 @Controller
-public class PhotoController {
+public class PhotoController extends BaseController {
 
     @Autowired
     private PhotoService photoService;
@@ -31,7 +31,9 @@ public class PhotoController {
     @RequestMapping(value = "/photos/{fileName}", method = RequestMethod.GET)
     public ResponseEntity<FileSystemResource> getFile(@RequestHeader HttpHeaders httpHeaders, @PathVariable("fileName") String fileName) {
         sessionValidator.validate(httpHeaders);
+        logger.debug("Get photo request validated");
         FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
+        logger.debug("Resource get {}", resource.getPath());
         ResponseEntity<FileSystemResource> responseEntity = new ResponseEntity<>(resource, HttpStatus.OK);
         return responseEntity;
     }

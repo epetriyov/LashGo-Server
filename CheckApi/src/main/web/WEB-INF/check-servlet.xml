@@ -15,14 +15,6 @@
 
     <bean name="objectMapper" class="main.java.com.check.rest.controller.LashGoObjectMapper"/>
 
-    <mvc:annotation-driven validator="validator">
-        <mvc:message-converters register-defaults="false">
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="objectMapper" ref="objectMapper"/>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -98,4 +90,28 @@
             <bean class="main.java.com.check.gcm.CustomClientHttpRequestFactory"/>
         </property>
     </bean>
+
+    <bean id="documentationController" class="org.jsondoc.springmvc.controller.JSONDocController">
+        <property name="version" value="1.0"/>
+        <property name="basePath" value="http://localhost:8080/api"/>
+        <property name="packages">
+            <list>
+                <value>main.java.com.check.rest.controller</value>
+                <!-- put here packages in which you have your spring controllers -->
+                <value>com.check.model.dto</value>
+                <!-- put here packages in which you have your objects -->
+            </list>
+        </property>
+    </bean>
+
+
+
+    <mvc:annotation-driven validator="validator">
+        <mvc:message-converters register-defaults="false">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" ref="objectMapper"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
 </beans>

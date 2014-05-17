@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by Eugene on 14.04.2014.
  */
 @Controller
-public class CommentController {
+public class CommentController extends BaseController{
 
     @Autowired
     private CommentService commentService;

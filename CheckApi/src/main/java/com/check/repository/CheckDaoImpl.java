@@ -41,4 +41,14 @@ public class CheckDaoImpl implements CheckDao {
     public List<Check> getAllChecks() {
         return jdbcTemplate.query("SELECT c.* FROM checks c ORDER BY c.start_date DESC", new CheckMapper());
     }
+
+    @Override
+    public Check getCheckById(long id) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.id = ?", new CheckMapper(), id);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage("checks.empty", new Object[]{id}, Locale.ENGLISH));
+            return null;
+        }
+    }
 }

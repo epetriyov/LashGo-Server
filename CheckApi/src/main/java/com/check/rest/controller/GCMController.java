@@ -32,15 +32,13 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-public class GCMController {
+public class GCMController extends BaseController{
 
     @Autowired
     private GcmService gcmService;
 
     @Autowired
     private SessionValidator sessionValidator;
-
-    private static Logger logger = LoggerFactory.getLogger("FILE");
 
     @RequestMapping(value = "/gcm-register", method = RequestMethod.POST)
     public

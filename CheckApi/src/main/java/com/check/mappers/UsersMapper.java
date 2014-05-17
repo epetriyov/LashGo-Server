@@ -15,13 +15,13 @@ public class UsersMapper implements RowMapper<Users> {
         Users users = new Users();
         users.setId(resultSet.getInt("id"));
         users.setLogin(resultSet.getString("login"));
+        users.setAvatar(resultSet.getString("avatar"));
         users.setPassword(resultSet.getString("password"));
         users.setName(resultSet.getString("name"));
         users.setSurname(resultSet.getString("surname"));
         users.setAbout(resultSet.getString("about"));
         users.setCity(resultSet.getString("city"));
         users.setBirthDate(resultSet.getTimestamp("birth_date"));
-        users.setAvatar(resultSet.getString("avatar"));
         users.setEmail(resultSet.getString("email"));
         users.setAdmin(resultSet.getBoolean("is_admin"));
         return users;

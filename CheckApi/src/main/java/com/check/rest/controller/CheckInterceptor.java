@@ -26,17 +26,19 @@ public class CheckInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        logger.info("Request url: " + httpServletRequest.getRequestURL().toString());
-        String uuid = httpServletRequest.getHeader(CheckApiHeaders.UUID);
-        if (StringUtils.isEmpty(uuid)) {
-            throw new ValidationException(ErrorCodes.UUID_IS_EMPTY);
+        logger.info("Request uri: " + httpServletRequest.getRequestURI());
+        if (!httpServletRequest.getPathInfo().equals(Path.JSONDOC) && !httpServletRequest.getPathInfo().equals("/doc")) {
+            String uuid = httpServletRequest.getHeader(CheckApiHeaders.UUID);
+            if (StringUtils.isEmpty(uuid)) {
+                throw new ValidationException(ErrorCodes.UUID_IS_EMPTY);
+            }
+            logger.info("UUID: " + uuid);
+            String clientType = httpServletRequest.getHeader(CheckApiHeaders.CLIENT_TYPE);
+            if (!ClientTypes.isClientTypeValid(clientType)) {
+                throw new ValidationException(ErrorCodes.INVALID_CLIENT_TYPE);
+            }
+            logger.info("Client type: " + clientType);
         }
-        logger.info("UUID: " + uuid);
-        String clientType = httpServletRequest.getHeader(CheckApiHeaders.CLIENT_TYPE);
-        if (!ClientTypes.isClientTypeValid(clientType)) {
-            throw new ValidationException(ErrorCodes.INVALID_CLIENT_TYPE);
-        }
-        logger.info("Client type: " + clientType);
         return true;
     }
 

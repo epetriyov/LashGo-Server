@@ -1,6 +1,8 @@
 package com.check.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.jsondoc.core.annotation.ApiObject;
+import org.jsondoc.core.annotation.ApiObjectField;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,9 +10,11 @@ import java.util.Date;
 /**
  * Created by Eugene on 14.04.2014.
  */
+@ApiObject(name = "check")
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class CheckDto implements Serializable {
 
+    @ApiObjectField(description = "id")
     private long id;
 
     private String name;
@@ -34,6 +38,11 @@ public class CheckDto implements Serializable {
         this.startDate = startDate;
         this.duration = duration;
         this.photoUrl = photoUrl;
+    }
+
+    public CheckDto(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public long getId() {

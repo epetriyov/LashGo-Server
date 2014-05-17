@@ -13,4 +13,6 @@ public interface CheckDao {
     Check getNextCheck();
 
     List<Check> getAllChecks();
+
+    Check getCheckById(long id);
 }

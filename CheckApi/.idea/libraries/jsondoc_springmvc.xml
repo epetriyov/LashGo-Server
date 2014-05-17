@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="jsondoc-springmvc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jsondoc-springmvc.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/jsondoc-springmvc-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jsondoc-springmvc-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
