@@ -8,12 +8,12 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
         >
-    <context:component-scan base-package="main.java.com.check.repository"/>
-    <context:component-scan base-package="main.java.com.check.rest.controller"/>
-    <context:component-scan base-package="main.java.com.check.rest.error"/>
-    <context:component-scan base-package="main.java.com.check.service"/>
+    <context:component-scan base-package="main.java.com.lashgo.repository"/>
+    <context:component-scan base-package="main.java.com.lashgo.controller"/>
+    <context:component-scan base-package="main.java.com.lashgo.error"/>
+    <context:component-scan base-package="main.java.com.lashgo.service"/>
 
-    <bean name="objectMapper" class="main.java.com.check.rest.controller.LashGoObjectMapper"/>
+    <bean name="objectMapper" class="main.java.com.lashgo.controller.LashGoObjectMapper"/>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
@@ -69,7 +69,7 @@
             <mvc:exclude-mapping path="/img/**"/>
             <mvc:exclude-mapping path="/js/**"/>
             <mvc:exclude-mapping path="/pict/**"/>
-            <bean class="main.java.com.check.rest.controller.CheckInterceptor"/>
+            <bean class="main.java.com.lashgo.controller.CheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -84,21 +84,21 @@
             </list>
         </property>
         <property name="interceptors">
-            <bean class="main.java.com.check.gcm.LoggingInterceptor"/>
+            <bean class="main.java.com.lashgo.gcm.LoggingInterceptor"/>
         </property>
         <property name="requestFactory">
-            <bean class="main.java.com.check.gcm.CustomClientHttpRequestFactory"/>
+            <bean class="main.java.com.lashgo.gcm.CustomClientHttpRequestFactory"/>
         </property>
     </bean>
 
-    <bean id="documentationController" class="org.jsondoc.springmvc.controller.JSONDocController">
+    <bean id="documentationController" class="main.java.com.lashgo.controller.DocumentationController">
         <property name="version" value="1.0"/>
-        <property name="basePath" value="http://localhost:8080/api"/>
+        <property name="basePath" value="http://localhost:8080/lashgo-api"/>
         <property name="packages">
             <list>
-                <value>main.java.com.check.rest.controller</value>
+                <value>main.java.com.lashgo.controller</value>
                 <!-- put here packages in which you have your spring controllers -->
-                <value>com.check.model.dto</value>
+                <value>com.lashgo.model.dto</value>
                 <!-- put here packages in which you have your objects -->
             </list>
         </property>

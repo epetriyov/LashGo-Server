@@ -1,6 +1,6 @@
 package test;
 
-import main.java.com.check.repository.UserDao;
+import main.java.com.lashgo.repository.UserDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

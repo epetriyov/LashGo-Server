@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Eugene on 13.05.2014.
  */
 @Controller
-@RequestMapping("/doc")
-public class JsonDocUiController{
+public class JsonDocUiController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/doc", method = RequestMethod.GET)
     public String printHello(ModelMap model) {
         return "jsondoc";
     }
