@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
