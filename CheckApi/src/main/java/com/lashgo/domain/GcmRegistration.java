@@ -1,4 +1,4 @@
-package main.java.com.lashgo.domain;
+package com.lashgo.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

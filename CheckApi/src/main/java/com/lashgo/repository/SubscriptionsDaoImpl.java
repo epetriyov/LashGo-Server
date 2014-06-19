@@ -1,7 +1,7 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 import com.lashgo.model.dto.SubscriptionDto;
-import main.java.com.lashgo.mappers.SubscriptionsMapper;
+import com.lashgo.mappers.SubscriptionsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

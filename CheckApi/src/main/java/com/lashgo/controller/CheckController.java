@@ -1,12 +1,13 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
+import com.lashgo.model.Path;
 import com.lashgo.model.dto.*;
-import main.java.com.lashgo.service.CheckService;
-import main.java.com.lashgo.service.CommentService;
-import main.java.com.lashgo.service.PhotoService;
-import main.java.com.lashgo.service.SessionValidator;
-import main.java.com.lashgo.utils.CheckUtils;
+import com.lashgo.service.CheckService;
+import com.lashgo.service.CommentService;
+import com.lashgo.service.PhotoService;
+import com.lashgo.service.SessionValidator;
+import com.lashgo.utils.CheckUtils;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -60,7 +61,7 @@ public class CheckController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseList<CheckDto> getChecks(@RequestHeader HttpHeaders httpHeaders) {
-        sessionValidator.validate(httpHeaders);
+//        sessionValidator.validate(httpHeaders);
         return new ResponseList<>(checkService.getChecks());
     }
 
@@ -74,7 +75,6 @@ public class CheckController extends BaseController {
     @ApiHeaders(headers = {
             @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
             @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
     })
     @ApiErrors(apierrors = {
             @ApiError(code = "400", description = "Headers validation failed"),
@@ -85,7 +85,7 @@ public class CheckController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseObject<CheckDto> getCurrentCheck(@RequestHeader HttpHeaders httpHeaders) {
-        sessionValidator.validate(httpHeaders);
+//        sessionValidator.validate(httpHeaders);
         return new ResponseObject<>(checkService.getCurrentCheck());
     }
 
@@ -110,7 +110,7 @@ public class CheckController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseList<PhotoDto> getCheckPhotos(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") long checkId) {
-        sessionValidator.validate(httpHeaders);
+//        sessionValidator.validate(httpHeaders);
         return new ResponseList<>(checkService.getPhotos(checkId));
     }
 
@@ -135,7 +135,7 @@ public class CheckController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseList<CommentDto> getCheckComments(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") long checkId) {
-        sessionValidator.validate(httpHeaders);
+//        sessionValidator.validate(httpHeaders);
         return new ResponseList<>(commentService.getCheckComments(checkId));
     }
 

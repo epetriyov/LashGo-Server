@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CheckApi/CheckApi.iml" filepath="$PROJECT_DIR$/CheckApi/CheckApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CheckModel/CheckModel.iml" filepath="$PROJECT_DIR$/CheckModel/CheckModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LashGoApiDoc/LashGoApiDoc.iml" filepath="$PROJECT_DIR$/LashGoApiDoc/LashGoApiDoc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server.iml" filepath="$PROJECT_DIR$/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-social-vkontakte/spring-social-vkontakte.iml" filepath="$PROJECT_DIR$/spring-social-vkontakte/spring-social-vkontakte.iml" />
+    </modules>
+  </component>
+</project>
+

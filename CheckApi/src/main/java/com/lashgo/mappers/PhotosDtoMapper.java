@@ -1,4 +1,4 @@
-package main.java.com.lashgo.mappers;
+package com.lashgo.mappers;
 
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package main.java.com.lashgo.gcm;
+package com.lashgo.gcm;
 
 /**
  * Constants used on GCM service communication.

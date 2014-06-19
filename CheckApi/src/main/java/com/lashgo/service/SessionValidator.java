@@ -1,12 +1,12 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import com.lashgo.model.CheckApiHeaders;
-import main.java.com.lashgo.CheckConstants;
-import main.java.com.lashgo.domain.Sessions;
-import main.java.com.lashgo.repository.SessionDao;
-import main.java.com.lashgo.error.ErrorCodes;
-import main.java.com.lashgo.error.UnautharizedException;
-import main.java.com.lashgo.error.ValidationException;
+import com.lashgo.CheckConstants;
+import com.lashgo.domain.Sessions;
+import com.lashgo.repository.SessionDao;
+import com.lashgo.error.ErrorCodes;
+import com.lashgo.error.UnautharizedException;
+import com.lashgo.error.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package main.java.com.lashgo.utils;
+package com.lashgo.utils;
 
-import main.java.com.lashgo.error.ValidationException;
+import com.lashgo.error.ValidationException;
 import org.slf4j.Logger;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;

@@ -1,0 +1,57 @@
+apply plugin:'war'
+apply plugin: 'rebel'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        // This repo is optional, as since version 1.1.2, we also always deploy to Maven central.
+        // Be aware that it could take a bit of time (couple of hours) before a published new
+        // version will appear in the central repository.
+        mavenRepo(
+                name: 'zt-public-snapshots',
+                url: 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+        )
+    }
+
+    dependencies {
+        classpath group: 'org.zeroturnaround', name: 'gradle-jrebel-plugin', version: '1.1.2'
+    }
+}
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    runtime 'ch.qos.logback:logback-classic:1.1.2'
+    compile 'ch.qos.logback:logback-core:1.1.2'
+    compile 'org.springframework:spring-core:4.0.5.RELEASE'
+    compile 'org.springframework:spring-web:4.0.5.RELEASE'
+    compile 'org.springframework:spring-beans:4.0.5.RELEASE'
+    compile 'org.springframework:spring-context:4.0.5.RELEASE'
+    compile 'org.springframework:spring-context-support:4.0.5.RELEASE'
+    compile 'org.springframework:spring-tx:4.0.5.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.0.5.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.0.5.RELEASE'
+    compile 'org.springframework.social:spring-social-facebook:1.1.1.RELEASE'
+    compile 'org.springframework.social:spring-social-twitter:1.1.0.RELEASE'
+    compile 'javax.persistence:persistence-api:1.0.2'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.0'
+    runtime 'javax.mail:mail:1.5.0-b01'
+    runtime 'commons-fileupload:commons-fileupload:1.3.1'
+    runtime 'org.reflections:reflections:0.9.9-RC1'
+    runtime 'log4j:log4j:1.2.17'
+    compile project(':CheckModel')
+    compile files('../libs/spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT.jar')
+}
+
+repositories {
+    mavenCentral()
+}
+
+build.dependsOn(generateRebel)
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}

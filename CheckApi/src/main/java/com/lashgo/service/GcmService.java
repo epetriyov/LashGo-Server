@@ -1,7 +1,7 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import com.lashgo.model.dto.GcmRegistrationDto;
-import main.java.com.lashgo.error.ValidationException;
+import com.lashgo.error.ValidationException;
 
 /**
  * Created with IntelliJ IDEA.

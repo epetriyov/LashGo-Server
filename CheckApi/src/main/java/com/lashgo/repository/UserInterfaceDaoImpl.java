@@ -1,4 +1,4 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

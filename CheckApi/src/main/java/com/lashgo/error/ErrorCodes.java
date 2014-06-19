@@ -1,9 +1,10 @@
-package main.java.com.lashgo.error;
+package com.lashgo.error;
 
 /**
  * Created by Eugene on 13.02.14.
  */
 public final class ErrorCodes {
+    public static final String USER_NOT_EXISTS = "user.not.exists";
     public static final String USER_ALREADY_EXISTS = "user.already_exists";
     public static final String USER_NOT_FOUND = "user.not_found";
     public static final String UUID_IS_EMPTY = "uuid.is_empty";
@@ -18,6 +19,9 @@ public final class ErrorCodes {
     public static final String PHOTO_ALREADY_EXISTS = "photo.already_exists";
     public static final String PHOTO_READ_ERROR = "photo.read_error";
     public static final String PHOTO_WRITE_ERROR = "photo.write_error";
+    public static final String UNSUPPORTED_SOCIAL = "social.unsupported";
+    public static final String EMAIL_NEEDED = "email.is_needed";
+    public static final String TEMP_USER_NOT_EXISTS = "user.temp.not_exists";
 
     private ErrorCodes() {
 

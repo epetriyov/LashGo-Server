@@ -1,8 +1,8 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import main.java.com.lashgo.CheckConstants;
+import com.lashgo.CheckConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

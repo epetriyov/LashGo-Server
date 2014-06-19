@@ -1,6 +1,6 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
-import main.java.com.lashgo.domain.Check;
+import com.lashgo.domain.Check;
 
 import java.util.List;
 
@@ -14,4 +14,6 @@ public interface CheckDao {
     List<Check> getAllChecks();
 
     Check getCheckById(long id);
+
+    Check getLastCheck();
 }

@@ -1,7 +1,7 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 import com.lashgo.model.dto.CommentDto;
-import main.java.com.lashgo.domain.Comments;
+import com.lashgo.domain.Comments;
 
 import java.util.List;
 

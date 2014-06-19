@@ -1,9 +1,10 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
-import com.lashgo.model.dto.*;
-import main.java.com.lashgo.service.CommentService;
-import main.java.com.lashgo.service.SessionValidator;
+import com.lashgo.model.Path;
+import com.lashgo.model.dto.ResponseObject;
+import com.lashgo.service.CommentService;
+import com.lashgo.service.SessionValidator;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;

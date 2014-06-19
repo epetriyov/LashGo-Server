@@ -1,4 +1,4 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 import com.lashgo.model.dto.SubscriptionDto;
 

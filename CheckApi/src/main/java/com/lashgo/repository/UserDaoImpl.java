@@ -1,9 +1,10 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
-import com.lashgo.model.dto.RegisterInfo;
-import main.java.com.lashgo.domain.Users;
+import com.lashgo.domain.Users;
+import com.lashgo.error.ErrorCodes;
+import com.lashgo.mappers.UsersMapper;
 import com.lashgo.model.dto.LoginInfo;
-import main.java.com.lashgo.mappers.UsersMapper;
+import com.lashgo.model.dto.RegisterInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,22 +42,22 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Users findUser(LoginInfo loginInfo) {
         try {
-            return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE (u.login = ? or u.email = ?) and u.password = ?", new UsersMapper(), loginInfo.getLogin(), loginInfo.getLogin(), loginInfo.getPasswordHash());
+            return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE (u.login = ? OR u.email = ?) AND u.password = ?", new UsersMapper(), loginInfo.getLogin(), loginInfo.getLogin(), loginInfo.getPasswordHash());
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage("user.not.exists", new String[]{loginInfo.getLogin()}, Locale.ENGLISH));
+            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{loginInfo.getLogin()}, Locale.ENGLISH));
             return null;
 
         }
     }
 
-    public boolean isUserExists(String login) {
-        Integer usersCount = 0;
+    public boolean isUserExists(String email) {
         try {
-            usersCount = jdbcTemplate.queryForObject("SELECT count(u.id) FROM users u WHERE u.login = ?", Integer.class, login);
+            jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE u.email = ?", Integer.class, email);
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage("user.not.exists", new String[]{login}, Locale.ENGLISH));
+            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{email}, Locale.ENGLISH));
+            return false;
         }
-        return usersCount > 0;
+        return true;
     }
 
     @Override
@@ -64,17 +65,50 @@ public class UserDaoImpl implements UserDao {
         try {
             return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE u.id = ?", new UsersMapper(), userId);
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage("user.not.exists", new Long[]{userId}, Locale.ENGLISH));
+            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new Long[]{userId}, Locale.ENGLISH));
             return null;
         }
     }
 
     @Override
-    public void createUser(RegisterInfo registerInfo) {
-        jdbcTemplate.update("INSERT INTO users (login,password,name,surname,about,city,birth_date,avatar,email) " +
-                        "VALUES (?,?,?,?,?,?,?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(),
-                registerInfo.getName(), registerInfo.getSurname(), registerInfo.getAbout(), registerInfo.getCity(), registerInfo.getBirthDate(),
-                registerInfo.getAvatar(), registerInfo.getEmail()
+    public void createTempUser(RegisterInfo registerInfo) {
+        jdbcTemplate.update("INSERT INTO temp_users (login, password, name,surname,about,city,birth_date,avatar,email) " +
+                "VALUES (?,?,?,?,?,?,?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(), registerInfo.getName(), registerInfo.getSurname(), registerInfo.getAbout(), registerInfo.getCity(), registerInfo.getBirthDate(), registerInfo.getAvatar(), registerInfo.getEmail());
+    }
+
+    @Override
+    public void createUser(LoginInfo registerInfo) {
+        jdbcTemplate.update("INSERT INTO users (login,password,email) " +
+                        "VALUES (?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(),
+                registerInfo.getLogin()
         );
+    }
+
+    @Override
+    public void createUser(RegisterInfo registerInfo) {
+        jdbcTemplate.update("INSERT INTO users (login, password, name,surname,about,city,birth_date,avatar,email) " +
+                "VALUES (?,?,?,?,?,?,?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(), registerInfo.getName(), registerInfo.getSurname(), registerInfo.getAbout(), registerInfo.getCity(), registerInfo.getBirthDate(), registerInfo.getAvatar(), registerInfo.getEmail());
+    }
+
+    @Override
+    public Users findTempUser(String userName) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT u.* FROM temp_users u WHERE u.login = ?", new UsersMapper(), userName);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{userName}, Locale.ENGLISH));
+            return null;
+
+        }
+    }
+
+    @Override
+    public void createSocialUser(Users tempUser) {
+        jdbcTemplate.update("INSERT INTO users (login, password, name,surname,about,city,birth_date,avatar,email) " +
+                "VALUES (?,?,?,?,?,?,?,?,?)", tempUser.getLogin(), tempUser.getPassword(), tempUser.getName(), tempUser.getSurname(), tempUser.getAbout(), tempUser.getCity(), tempUser.getBirthDate(), tempUser.getAvatar(), tempUser.getEmail());
+    }
+
+    @Override
+    public void updatePassword(String email, String newPassword) {
+        jdbcTemplate.update("UPDATE users SET password = ? WHERE email = ?", newPassword, email);
     }
 }

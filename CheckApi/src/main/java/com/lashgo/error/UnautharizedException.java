@@ -1,4 +1,4 @@
-package main.java.com.lashgo.error;
+package com.lashgo.error;
 
 /**
  * Created by Eugene on 19.03.14.

@@ -1,8 +1,8 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 import com.lashgo.model.dto.CommentDto;
-import main.java.com.lashgo.domain.Comments;
-import main.java.com.lashgo.mappers.CommentsMapper;
+import com.lashgo.domain.Comments;
+import com.lashgo.mappers.CommentsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;

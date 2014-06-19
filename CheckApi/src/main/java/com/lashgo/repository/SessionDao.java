@@ -1,6 +1,6 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
-import main.java.com.lashgo.domain.Sessions;
+import com.lashgo.domain.Sessions;
 
 /**
  * Created by Eugene on 14.02.14.

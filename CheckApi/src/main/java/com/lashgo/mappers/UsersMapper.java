@@ -1,6 +1,6 @@
-package main.java.com.lashgo.mappers;
+package com.lashgo.mappers;
 
-import main.java.com.lashgo.domain.Users;
+import com.lashgo.domain.Users;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

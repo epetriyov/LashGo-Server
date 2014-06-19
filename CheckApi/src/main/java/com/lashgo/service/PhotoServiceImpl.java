@@ -1,14 +1,14 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import com.lashgo.model.dto.UserDto;
-import main.java.com.lashgo.CheckConstants;
-import main.java.com.lashgo.domain.Photos;
-import main.java.com.lashgo.repository.PhotoDao;
-import main.java.com.lashgo.repository.UserRatingDao;
-import main.java.com.lashgo.error.ErrorCodes;
-import main.java.com.lashgo.error.PhotoReadException;
-import main.java.com.lashgo.error.PhotoWriteException;
-import main.java.com.lashgo.error.ValidationException;
+import com.lashgo.CheckConstants;
+import com.lashgo.domain.Photos;
+import com.lashgo.repository.PhotoDao;
+import com.lashgo.repository.UserRatingDao;
+import com.lashgo.error.ErrorCodes;
+import com.lashgo.error.PhotoReadException;
+import com.lashgo.error.PhotoWriteException;
+import com.lashgo.error.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

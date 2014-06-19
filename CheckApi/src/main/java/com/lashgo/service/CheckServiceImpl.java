@@ -1,10 +1,10 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
-import main.java.com.lashgo.domain.Check;
-import main.java.com.lashgo.repository.CheckDao;
-import main.java.com.lashgo.repository.PhotoDao;
+import com.lashgo.domain.Check;
+import com.lashgo.repository.CheckDao;
+import com.lashgo.repository.PhotoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ public class CheckServiceImpl implements CheckService {
         List<CheckDto> checkDtos = new ArrayList<>();
         if (!CollectionUtils.isEmpty(checkList)) {
             for (Check check : checkList) {
-                checkDtos.add(new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto()));
+                checkDtos.add(new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto(),check.getVoteDuration()));
             }
         }
         return checkDtos;
@@ -40,9 +40,9 @@ public class CheckServiceImpl implements CheckService {
 
     @Override
     public CheckDto getCurrentCheck() {
-        Check check = checkDao.getNextCheck();
+        Check check = checkDao.getLastCheck();
         if (check != null) {
-            return new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto());
+            return new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto(), check.getVoteDuration());
         }
         return null;
     }

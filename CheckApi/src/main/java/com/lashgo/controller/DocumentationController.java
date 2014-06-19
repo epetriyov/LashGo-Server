@@ -1,4 +1,4 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import org.jsondoc.core.pojo.JSONDoc;
 import org.jsondoc.core.util.JSONDocUtils;

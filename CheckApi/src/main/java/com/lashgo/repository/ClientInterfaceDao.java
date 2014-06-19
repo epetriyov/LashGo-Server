@@ -1,4 +1,4 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 /**
  * Created by Eugene on 29.04.2014.

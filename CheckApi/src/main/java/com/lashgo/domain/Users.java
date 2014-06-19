@@ -1,4 +1,4 @@
-package main.java.com.lashgo.domain;
+package com.lashgo.domain;
 
 import com.lashgo.model.dto.RegisterInfo;
 
@@ -53,7 +53,7 @@ public class Users implements Serializable {
     }
 
     public Users(RegisterInfo registerInfo) {
-        this.login = registerInfo.getLogin();
+        this.login = registerInfo.getEmail();
         this.password = registerInfo.getPasswordHash();
         this.email = registerInfo.getEmail();
     }

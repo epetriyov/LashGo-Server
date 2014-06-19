@@ -1,10 +1,11 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
+import com.lashgo.model.Path;
 import com.lashgo.model.dto.*;
-import main.java.com.lashgo.service.SessionValidator;
-import main.java.com.lashgo.service.UserService;
-import main.java.com.lashgo.utils.CheckUtils;
+import com.lashgo.service.SessionValidator;
+import com.lashgo.service.UserService;
+import com.lashgo.utils.CheckUtils;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -71,10 +72,56 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject register(@ApiBodyObject @Valid @RequestBody RegisterInfo registerInfo, BindingResult result) {
+    ResponseObject register(@ApiBodyObject @Valid @RequestBody LoginInfo registerInfo, BindingResult result) {
         CheckUtils.handleBindingResult(logger, result);
         userService.register(registerInfo);
         return new ResponseObject<>();
+    }
+
+    @ApiMethod(
+            path = Path.Users.SOCIAL_SIGN_IN,
+            verb = ApiVerb.POST,
+            description = "social sign in",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed or user email is needed during registration"),
+    })
+    @RequestMapping(value = Path.Users.SOCIAL_SIGN_IN, method = RequestMethod.POST)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseObject<SessionInfo> socialSignIn(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SocialInfo socialInfo, BindingResult result) {
+        CheckUtils.handleBindingResult(logger, result);
+        return new ResponseObject<>(userService.socialSignIn(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
+    }
+
+    @ApiMethod(
+            path = Path.Users.SOCIAL_SIGN_UP,
+            verb = ApiVerb.POST,
+            description = "social sign up",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+    })
+    @RequestMapping(value = Path.Users.SOCIAL_SIGN_UP, method = RequestMethod.POST)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseObject<SessionInfo> confirmSocialSignUp(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody ExtendedSocialInfo socialInfo, BindingResult result) {
+        CheckUtils.handleBindingResult(logger, result);
+        return new ResponseObject<>(userService.socialSignUp(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
     }
 
     @ApiMethod(
@@ -96,6 +143,7 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject recover(@ApiBodyObject @Valid @RequestBody RecoverInfo recoverInfo, BindingResult result) {
+        logger.debug("Recover password");
         CheckUtils.handleBindingResult(logger, result);
         userService.sendRecoverPassword(recoverInfo);
         return new ResponseObject<>();

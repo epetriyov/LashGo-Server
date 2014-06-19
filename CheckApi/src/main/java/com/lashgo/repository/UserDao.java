@@ -1,7 +1,7 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 import com.lashgo.model.dto.RegisterInfo;
-import main.java.com.lashgo.domain.Users;
+import com.lashgo.domain.Users;
 import com.lashgo.model.dto.LoginInfo;
 
 /**
@@ -15,9 +15,19 @@ public interface UserDao {
 
     Users findUser(LoginInfo loginInfo);
 
-    void createUser(RegisterInfo registerInfo);
+    void createUser(LoginInfo registerInfo);
 
-    boolean isUserExists(String login);
+    boolean isUserExists(String email);
 
     Users getUserById(long userId);
+
+    void createTempUser(RegisterInfo registerInfo);
+
+    void createUser(RegisterInfo registerInfo);
+
+    Users findTempUser(String userName);
+
+    void createSocialUser(Users tempUser);
+
+    void updatePassword(String email, String newPassword);
 }

@@ -1,8 +1,8 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
-import main.java.com.lashgo.domain.Sessions;
-import main.java.com.lashgo.mappers.SessionsMapper;
-import main.java.com.lashgo.utils.CheckUtils;
+import com.lashgo.domain.Sessions;
+import com.lashgo.mappers.SessionsMapper;
+import com.lashgo.utils.CheckUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

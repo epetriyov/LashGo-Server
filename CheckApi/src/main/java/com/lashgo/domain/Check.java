@@ -1,4 +1,4 @@
-package main.java.com.lashgo.domain;
+package com.lashgo.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +26,7 @@ public class Check {
     private String photo;
     @Column(name = "start_date")
     private Date startDate;
+    private int voteDuration;
 
     public Check() {
     }
@@ -88,5 +89,13 @@ public class Check {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public int getVoteDuration() {
+        return voteDuration;
+    }
+
+    public void setVoteDuration(int voteDuration) {
+        this.voteDuration = voteDuration;
     }
 }

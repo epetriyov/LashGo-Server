@@ -1,7 +1,7 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
-import main.java.com.lashgo.domain.Check;
-import main.java.com.lashgo.mappers.CheckMapper;
+import com.lashgo.domain.Check;
+import com.lashgo.mappers.CheckMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +48,16 @@ public class CheckDaoImpl implements CheckDao {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.id = ?", new CheckMapper(), id);
         } catch (EmptyResultDataAccessException e) {
             logger.info(messageSource.getMessage("checks.empty", new Object[]{id}, Locale.ENGLISH));
+            return null;
+        }
+    }
+
+    @Override
+    public Check getLastCheck() {
+        try {
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date < current_date ORDER BY c.start_date LIMIT 1 ASC", new CheckMapper());
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage("checks.current.empty", null, Locale.ENGLISH));
             return null;
         }
     }

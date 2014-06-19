@@ -1,11 +1,12 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
+import com.lashgo.model.Path;
 import com.lashgo.model.dto.GcmRegistrationDto;
 import com.lashgo.model.dto.ResponseObject;
-import main.java.com.lashgo.service.GcmService;
-import main.java.com.lashgo.service.SessionValidator;
-import main.java.com.lashgo.utils.CheckUtils;
+import com.lashgo.service.GcmService;
+import com.lashgo.service.SessionValidator;
+import com.lashgo.utils.CheckUtils;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.springframework.beans.factory.annotation.Autowired;

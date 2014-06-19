@@ -1,8 +1,8 @@
-package main.java.com.lashgo.repository;
+package com.lashgo.repository;
 
 import com.lashgo.model.dto.PhotoDto;
-import main.java.com.lashgo.domain.Photos;
-import main.java.com.lashgo.mappers.PhotosDtoMapper;
+import com.lashgo.domain.Photos;
+import com.lashgo.mappers.PhotosDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

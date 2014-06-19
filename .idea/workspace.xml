@@ -1,0 +1,2398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7fcb4c9f-b52e-4d68-80a6-6e2f138fdce0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ExtendedSocialInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckApi/.idea/artifacts/Gradle___LashGoApiDoc___LashGoApiDoc_1_0_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckApi/.idea/artifacts/Gradle___LashGoApiDoc___LashGoApiDoc_1_0_war__exploded_.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/artifacts/Gradle___Server_LashGoApiDoc___LashGoApiDoc_1_0_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/artifacts/Gradle___Server_LashGoApiDoc___LashGoApiDoc_1_0_war__exploded_.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__activation_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_fileupload_1_3_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_2_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_1_1_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__dom4j_1_6_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__guava_11_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jackson_annotations_2_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jackson_core_2_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jackson_databind_2_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javassist_3_16_1_GA.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_api_3_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jsondoc_core.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/libraries/Gradle__jsondoc_core.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jsr305_1_3_9.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__log4j_1_2_17.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__logback_classic_1_1_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__logback_core_1_1_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__mail_1_5_0_b01.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__persistence_api_1_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__reflections_0_9_9_RC1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__slf4j_api_1_7_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_aop_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_beans_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_context_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_context_support_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_core_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_expression_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_jdbc_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_security_crypto_3_2_3_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_social_config_1_1_0_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_social_core_1_1_0_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_social_facebook_1_1_1_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_social_twitter_1_1_0_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_social_web_1_1_0_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_tx_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_web_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__spring_webmvc_4_0_5_RELEASE.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__validation_api_1_1_0_Final.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__xml_apis_1_0_b2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SocialInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SocialNames.java" />
+      <change type="NEW" beforePath="" afterPath="D:\Check\projects\LashGo\Server\Test\Test.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckApi/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckModel/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckApi/config/checkstyle/checkstyle.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/gradle.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/lashgo_api.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/lashgo_doc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/lashgo_model.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/rebel_project.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/rebel_project.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="D:\Check\projects\LashGo\Server\spring-social-vkontakte\spring-social-vkontakte.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LashGoApiDoc/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\artifacts\checkmodel.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\artifacts\lashgo_api.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\artifacts\lashgo_doc.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\copyright\profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\dataSources.ids" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\dataSources.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\dictionaries\Eugene.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\Hibernate_4_2_2_4_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\Spring_4_0_1_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\Spring_Integration_3_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\Spring_MVC_4_0_1_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\Spring_Security_3_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\Spring_Web_Services_2_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\Spring_Webflow_2_3_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\commons_dbcp_1_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\commons_fileupload_1_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\commons_io_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\commons_pool_1_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\hamcrest_all_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\hibernate_validator_5_1_0_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\jackson_annotations_2_2_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\javax_servlet_api.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\javax_servlet_jsp_jstl.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\jsondoc_core.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\jsondoc_springmvc.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\junit_4_11.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\log4j_1_2_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\logback_access_1_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\logback_classic_1_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\logback_core_1_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\postgresql_9_3_1100_jdbc41.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\reflections_0_9_9_RC1_uberjar.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\slf4j_api_1_7_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\.idea\libraries\validation_api_1_1_0_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\antlr-2.7.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\commons-dbcp-1.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\commons-fileupload-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\commons-io-2.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\commons-logging-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\commons-pool-1.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\dom4j-1.6.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\hamcrest-all-1.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\hibernate-commons-annotations-4.0.2.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\hibernate-core-4.2.2.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\hibernate-jpa-2.0-api-1.0.1.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\hibernate-validator-5.1.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jackson-annotations-2.2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jackson-core-2.2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jackson-databind-2.2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\javassist-3.15.0-GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\javax.servlet-api.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jboss-logging-3.1.0.GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jboss-transaction-api_1.1_spec-1.0.1.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jsondoc-core-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jsondoc-core-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jsondoc-core.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jsondoc-springmvc-javadoc.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jsondoc-springmvc-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\jsondoc-springmvc.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\junit-4.11.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\log4j-1.2.16.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\logback-access-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\logback-classic-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\logback-core-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\postgresql-9.3-1100.jdbc41.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\reflections-0.9.9-RC1-uberjar.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\reflections-spring-0.9.9-RC1.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\slf4j-api-1.7.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-aop-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-aspects-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-beans-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-binding-2.3.3.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-context-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-context-support-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-core-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-expression-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-faces-2.3.3.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-instrument-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-instrument-tomcat-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-jdbc-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-jms-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-js-2.3.3.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-js-resources-2.3.3.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-messaging-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-orm-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-oxm-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-acl-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-aspects-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-cas-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-config-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-core-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-crypto-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-ldap-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-openid-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-remoting-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-taglibs-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-security-web-3.2.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-test-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-tx-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-web-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-webflow-2.3.3.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-webmvc-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-webmvc-portlet-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\spring-websocket-4.0.1.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\lib\validation-api-1.1.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\src\rebel.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\rebel.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\javax.servlet.jsp.jstl.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-amqp-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-core-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-event-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-feed-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-file-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-ftp-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-gemfire-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-groovy-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-http-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-ip-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-jdbc-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-jms-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-jmx-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-jpa-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-mail-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-mongodb-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-redis-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-rmi-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-scripting-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-security-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-sftp-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-stream-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-syslog-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-test-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-twitter-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-ws-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-xml-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-integration-xmpp-3.0.0.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\lib\spring-ws.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\src\rebel.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\database\create.sql" afterPath="" />
+      <change type="DELETED" beforePath="D:\Check\projects\LashGo\Server\database\insert.sql" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/.idea/.name" afterPath="$PROJECT_DIR$/CheckApi/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/BaseController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/BaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/CheckApi.iml" afterPath="$PROJECT_DIR$/CheckApi/CheckApi.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/CheckConstants.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/CheckConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckInterceptor.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckModel/CheckModel.iml" afterPath="$PROJECT_DIR$/CheckModel/CheckModel.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckService.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/utils/CheckUtils.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/utils/CheckUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/ClientInterfaceDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/ClientInterfaceDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/ClientInterfaceDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/ClientInterfaceDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CommentController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CommentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CommentDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CommentDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CommentDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CommentDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CommentService.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CommentService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CommentServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CommentServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Comments.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Comments.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CommentsMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CommentsMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/Constants.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/ContentController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/ContentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/ContentDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/ContentDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/ContentService.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/ContentService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/ContentServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/ContentServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/CustomClientHttpRequestFactory.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/CustomClientHttpRequestFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/CustomClientHttpResponse.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/CustomClientHttpResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/DocumentationController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/DocumentationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ErrorCodes.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ErrorCodes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/GCMController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/GCMController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/GcmRegistration.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/GcmRegistration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmService.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/InvalidRequestException.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/InvalidRequestException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LashGoApiDoc/LashGoApiDoc.iml" afterPath="$PROJECT_DIR$/LashGoApiDoc/LashGoApiDoc.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/LashGoObjectMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/LashGoObjectMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/LoggingInterceptor.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/LoggingInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/Message.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/PhotoDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/PhotoDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/PhotoDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/PhotoDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/PhotoReadException.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/PhotoReadException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/PhotoService.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/PhotoService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/PhotoServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/PhotoServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/PhotoWriteException.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/PhotoWriteException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Photos.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Photos.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/PhotosDtoMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/PhotosDtoMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/SessionValidator.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/SessionValidator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Sessions.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Sessions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/SessionsMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/SessionsMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/SubscriptionsMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/SubscriptionsMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/UnautharizedException.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/UnautharizedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserInterfaceDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserInterfaceDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserInterfaceDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserInterfaceDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserRatingDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserRatingDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserRatingDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserRatingDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Users.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Users.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/UsersMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/UsersMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ValidationException.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ValidationException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckWeb/src/webapp/login.xhtml" afterPath="$PROJECT_DIR$/CheckWeb/src/webapp/login.xhtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties" afterPath="$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/.idea/misc.xml" afterPath="$PROJECT_DIR$/CheckApi/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/.idea/modules.xml" afterPath="$PROJECT_DIR$/CheckApi/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/.idea/rebel_project.xml" afterPath="$PROJECT_DIR$/CheckApi/.idea/rebel_project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/.idea/vcs.xml" afterPath="$PROJECT_DIR$/CheckApi/.idea/vcs.xml" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\META-INF\MANIFEST.MF" afterPath="$PROJECT_DIR$/CheckApi/src/main/webapp/WEB-INF/META-INF/MANIFEST.MF" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\src\logback.xml" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/logback.xml" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\src\main\java\com\lashgo\controller\Path.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/Path.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\src\main\web\WEB-INF\META-INF\MANIFEST.MF" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/WEB-INF/META-INF/MANIFEST.MF" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\src\main\web\WEB-INF\check-servlet.xml" afterPath="$PROJECT_DIR$/CheckApi/src/main/webapp/WEB-INF/check-servlet.xml" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckApi\src\main\web\WEB-INF\web.xml" afterPath="$PROJECT_DIR$/CheckApi/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\CheckApiHeaders.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/CheckApiHeaders.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\ClientTypes.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/ClientTypes.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\CheckDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\CommentDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CommentDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\ContentDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ContentDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\ErrorDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\ErrorResponse.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorResponse.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\GcmRegistrationDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/GcmRegistrationDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\LoginInfo.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/LoginInfo.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\MulticastResult.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/MulticastResult.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\PhotoDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/PhotoDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\RecoverInfo.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RecoverInfo.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\RegisterInfo.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RegisterInfo.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\ResponseList.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ResponseList.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\ResponseObject.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ResponseObject.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\Result.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/Result.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\SessionInfo.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SessionInfo.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\SubscriptionDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SubscriptionDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\CheckModel\src\com\lashgo\model\dto\UserDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/UserDto.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\src\com\lashgo\api\controller\JsonDocUiController.java" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/java/com/lashgo/api/controller/JsonDocUiController.java" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\WEB-INF\META-INF\MANIFEST.MF" afterPath="D:\Check\projects\LashGo\Server\classes\artifacts\CheckApi\exploded\CheckApi-1.0.war\META-INF\MANIFEST.MF" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\WEB-INF\jsondoc.jsp" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/WEB-INF/jsondoc.jsp" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\WEB-INF\lashgodoc-servlet.xml" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/WEB-INF/lashgodoc-servlet.xml" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\WEB-INF\web.xml" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\css\bootstrap-responsive.min.css" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/css/bootstrap-responsive.min.css" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\css\bootstrap.min.css" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/css/bootstrap.min.css" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\css\font-awesome.css" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/css/font-awesome.css" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\font\fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/font/fontawesome-webfont.eot" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\font\fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/font/fontawesome-webfont.svg" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\font\fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/font/fontawesome-webfont.ttf" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\font\fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/font/fontawesome-webfont.woff" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\js\bootstrap-button.js" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/js/bootstrap-button.js" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\js\bootstrap.min.js" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/js/bootstrap.min.js" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\js\handlebars-1.0.0.beta.6.js" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/js/handlebars-1.0.0.beta.6.js" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\js\jlinq.js" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/js/jlinq.js" />
+      <change type="MOVED" beforePath="D:\Check\projects\LashGo\Server\LashGoApiDoc\web\resources\js\prettify.js" afterPath="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/resources/js/prettify.js" />
+    </list>
+    <ignored path="Server.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Server" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="CheckServiceImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="395" max-vertical-offset="816">
+              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckDao.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="31" max-vertical-offset="391">
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckDaoImpl.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.18959108" vertical-offset="306" max-vertical-offset="1003">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding>
+                <marker date="1402935051558" expanded="true" signature="889:1006" placeholder="SELECT c.* F..checks..." />
+                <marker date="1402935051558" expanded="true" signature="1310:1361" placeholder="SELECT c.* F..checks..." />
+                <marker date="1402935051558" expanded="true" signature="1508:1547" placeholder="SELECT c.* F..checks..." />
+                <marker date="1402935051558" expanded="true" signature="1880:1972" placeholder="SELECT c.* F..checks..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckMapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+              <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Check.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1224">
+              <caret line="93" column="15" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckDto.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="412" max-vertical-offset="1496">
+              <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+              <folding>
+                <element signature="e#1692#1693#0" expanded="true" />
+                <element signature="e#1727#1728#0" expanded="true" />
+                <element signature="e#1780#1781#0" expanded="true" />
+                <element signature="e#1828#1829#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/BaseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="879" max-vertical-offset="3077">
+              <caret line="88" column="51" selection-start-line="88" selection-start-column="49" selection-end-line="88" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="check-servlet.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/webapp/WEB-INF/check-servlet.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="2.16" vertical-offset="1720" max-vertical-offset="2397">
+              <caret line="98" column="23" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="true" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="tasksExpandState">
+      <map>
+        <entry key="" value="true" />
+        <entry key=":CheckApi/Server/" value="true" />
+        <entry key=":CheckModel/Server/" value="true" />
+        <entry key="Server/" value="true" />
+      </map>
+    </option>
+    <option name="recentTasks">
+      <list>
+        <ExternalTaskExecutionInfo>
+          <option name="executorId" value="Run" />
+          <option name="settings">
+            <ExternalSystemSettings>
+              <option name="externalProjectPath" value="$PROJECT_DIR$" />
+              <option name="externalSystemIdString" value="GRADLE" />
+              <option name="scriptParameters" value="" />
+              <option name="taskNames">
+                <list>
+                  <option value="clean" />
+                  <option value="build" />
+                </list>
+              </option>
+              <option name="vmOptions" value="" />
+            </ExternalSystemSettings>
+          </option>
+        </ExternalTaskExecutionInfo>
+        <ExternalTaskExecutionInfo>
+          <option name="executorId" value="Run" />
+          <option name="settings">
+            <ExternalSystemSettings>
+              <option name="externalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+              <option name="externalSystemIdString" value="GRADLE" />
+              <option name="scriptParameters" value="" />
+              <option name="taskNames">
+                <list>
+                  <option value="build" />
+                </list>
+              </option>
+              <option name="vmOptions" value="" />
+            </ExternalSystemSettings>
+          </option>
+        </ExternalTaskExecutionInfo>
+        <ExternalTaskExecutionInfo>
+          <option name="executorId" value="Run" />
+          <option name="settings">
+            <ExternalSystemSettings>
+              <option name="externalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+              <option name="externalSystemIdString" value="GRADLE" />
+              <option name="scriptParameters" value="" />
+              <option name="taskNames">
+                <list>
+                  <option value="build" />
+                </list>
+              </option>
+              <option name="vmOptions" value="" />
+            </ExternalSystemSettings>
+          </option>
+        </ExternalTaskExecutionInfo>
+        <ExternalTaskExecutionInfo>
+          <option name="executorId" value="Run" />
+          <option name="settings">
+            <ExternalSystemSettings>
+              <option name="externalProjectPath" value="$PROJECT_DIR$" />
+              <option name="externalSystemIdString" value="GRADLE" />
+              <option name="scriptParameters" value="" />
+              <option name="taskNames">
+                <list>
+                  <option value="build" />
+                </list>
+              </option>
+              <option name="vmOptions" value="" />
+            </ExternalSystemSettings>
+          </option>
+        </ExternalTaskExecutionInfo>
+        <ExternalTaskExecutionInfo>
+          <option name="executorId" value="Run" />
+          <option name="settings">
+            <ExternalSystemSettings>
+              <option name="externalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+              <option name="externalSystemIdString" value="GRADLE" />
+              <option name="taskNames">
+                <list>
+                  <option value="generateRebel" />
+                </list>
+              </option>
+            </ExternalSystemSettings>
+          </option>
+        </ExternalTaskExecutionInfo>
+        <ExternalTaskExecutionInfo>
+          <option name="executorId" value="Run" />
+          <option name="settings">
+            <ExternalSystemSettings>
+              <option name="externalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+              <option name="externalSystemIdString" value="GRADLE" />
+              <option name="taskNames">
+                <list>
+                  <option value="generateRebel" />
+                </list>
+              </option>
+            </ExternalSystemSettings>
+          </option>
+        </ExternalTaskExecutionInfo>
+      </list>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="Server" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value=":CheckModel" />
+                <option name="path" value="$PROJECT_DIR$/CheckModel" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value=":CheckApi" />
+                <option name="path" value="$PROJECT_DIR$/CheckApi" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value=":spring-social-vkontakte" />
+                <option name="path" value="$PROJECT_DIR$/spring-social-vkontakte" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value=":LashGoApiDoc" />
+                <option name="path" value="$PROJECT_DIR$/LashGoApiDoc" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="Server" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="availableTasks">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates a war archive with all the compiled classes, the web-app content and the libraries." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="war" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'test'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'test:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'main:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateRebel" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'main'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'test:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'main:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/CheckApi">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'main'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'main:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'test:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="generateRebel" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'main:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'test:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'test'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates a war archive with all the compiled classes, the web-app content and the libraries." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="war" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/CheckModel">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'main'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'main:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'test:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="generateRebel" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'main:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'test:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'test'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LashGoApiDoc">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'main'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'main:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'test:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="generateRebel" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'main:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes resources 'test:resources'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'test'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates a war archive with all the compiled classes, the web-app content and the libraries." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="war" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/LashGoApiDoc" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="5610090825469" />
+        <entry key="$PROJECT_DIR$/CheckApi" value="4206131615896" />
+        <entry key="$PROJECT_DIR$/LashGoApiDoc" value="5608194575275" />
+      </map>
+    </option>
+    <option name="projectBuildClasspath">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <ExternalProjectBuildClasspathPojo>
+              <option name="modulesBuildClasspath">
+                <map>
+                  <entry key="$PROJECT_DIR$">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="path" value="$PROJECT_DIR$" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                  <entry key="$PROJECT_DIR$/CheckApi">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="entries">
+                          <list>
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.7/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.7/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.2/502e1c764542fe747896c1dc04f023acfe0e5cbc/logback-core-1.1.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.2/2d23694879c2c12f125dac5076bdfd5d771cc4cb/logback-core-1.1.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.0.5.RELEASE/c8ccd8ae8bb85f917ef429d3cad37b1b36c92c49/spring-core-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.0.5.RELEASE/cce94116431b5a1384d58316a4090bbe7718fd5a/spring-core-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.5.RELEASE/82389e66ef1cd0085d5a8a00c827ae5c93a8040b/spring-web-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.5.RELEASE/1819f6d4ab65fb33e19c492d5c5aa21396e42b3f/spring-web-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.0.5.RELEASE/589675b60574e292b76f8ef3bf36bec72a979e45/spring-beans-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.0.5.RELEASE/11e00022f109653ee0dbe16b59c26e19bd90fa08/spring-beans-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/aadd509610ea91906c177c33c22dd7e28df3b66/spring-context-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/98cd9a4b8bb0c695c0cfcc204cf804f433851cfe/spring-context-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.0.5.RELEASE/eb9f8032cf5733924099e4992215bfb768afd274/spring-context-support-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.0.5.RELEASE/bb6ddc22c49cb5bec1a756b0fbb138e2b705c508/spring-context-support-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.0.5.RELEASE/a1334d0da26cd44f3930c8930be786cb13e8e9ec/spring-tx-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.0.5.RELEASE/bc94807ffcf9a6934428eb7ecdf9c37c41dd95a1/spring-tx-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.0.5.RELEASE/a71e281249899ad9f4e856d142d9728d17844b63/spring-webmvc-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.0.5.RELEASE/2459455b0f2e19e7a51fc7bff4de341947d9bc57/spring-webmvc-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.0.5.RELEASE/74b483ae51c2645ef78c15103aaf5bf655c02c5a/spring-jdbc-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.0.5.RELEASE/464e18d797ef5f2f19e6b8c151ca0b196c806ad3/spring-jdbc-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-facebook/1.1.1.RELEASE/4cd5467734cb52706c2d8b458d163663c05938c3/spring-social-facebook-1.1.1.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-facebook/1.1.1.RELEASE/57841ae69014e1ec684d6e88f2b217aad750887/spring-social-facebook-1.1.1.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-twitter/1.1.0.RELEASE/8868e868bea7b397f5e03ac3fcaeba11cd29ea30/spring-social-twitter-1.1.0.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-twitter/1.1.0.RELEASE/52078c4e045998d16e62ba41e2ec8d7e7ab2fd61/spring-social-twitter-1.1.0.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.persistence/persistence-api/1.0.2/eb8ae77be88577b23e64ce1e5386e874b08b49cc/persistence-api-1.0.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.persistence/persistence-api/1.0.2/8a7f96961047da52a53b7347b6a919c6fbc6d7fa/persistence-api-1.0.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1.0/ab3976d4574c48d22dc1abf6a9e8bd0fdf928223/javax.servlet-api-3.1.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1.0/3cd63d075497751784b2fa84be59432f4905bf7c/javax.servlet-api-3.1.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.0/d35ff95921bc2aafd462a3ea7b0da558b99a1697/jackson-databind-2.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.0/473e063d6396a1ff6e4b9c7943e604291ce18b07/jackson-databind-2.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/28bb0405fddaf04f15058fbfbe01fe2780d7d3b6/commons-logging-1.1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f/commons-logging-1.1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.0.5.RELEASE/2d8ec0d3a074b4a193c16312ab2cda105d87871f/spring-aop-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.0.5.RELEASE/d22abbbba78f7c8854fc39346cc99362272c5c90/spring-aop-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.0.5.RELEASE/11f705f4d73aa2f074d32602fd6a80898fd50257/spring-expression-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.0.5.RELEASE/d7ddbc320c31c15cb3612ed64607e181c3b2d851/spring-expression-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-core/1.1.0.RELEASE/2f6f836d7ee473681a3cde7de89ccdf68432f2aa/spring-social-core-1.1.0.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-core/1.1.0.RELEASE/17399004ca49180476dc90df4d379e1c9b62f850/spring-social-core-1.1.0.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/a00123f261762a7c5e0ec916a2c7c8298d29c400/javax.inject-1-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-web/1.1.0.RELEASE/c0e4011e992da6da97f7e92bd50bdcbb7c59c5a7/spring-social-web-1.1.0.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-web/1.1.0.RELEASE/7446db1f18b314f792d4565e1c36f97c79b2eec4/spring-social-web-1.1.0.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-config/1.1.0.RELEASE/b366b9b9fa8e1581a3288bec83e87fd81e1e2af3/spring-social-config-1.1.0.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.social/spring-social-config/1.1.0.RELEASE/7103e311e82ac0ebe64defec176d626d083f36ae/spring-social-config-1.1.0.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.0/7fcf3182660e0be49c7448e13f91e655b2cba9bf/jackson-annotations-2.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.0/d6a66c7a5f01cf500377bd669507a08cfeba882a/jackson-annotations-2.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.4.0/1ae2159c2d4ac8e3d14dce4fe1223663b3f2b31a/jackson-core-2.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.4.0/1e33fd4cca6c4a9bf3d2f638cabb504a5b5c989d/jackson-core-2.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-crypto/3.2.3.RELEASE/a251e66008a22e7af6fb69b10dbb3e6d64ce62cf/spring-security-crypto-3.2.3.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-crypto/3.2.3.RELEASE/c1758dc01928ca70a59afc9c2033e29ced275baa/spring-security-crypto-3.2.3.RELEASE.jar" />
+                            <option value="$PROJECT_DIR$/libs/spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.zeroturnaround/gradle-jrebel-plugin/1.1.2/8328cf58105fff28e22bf5fa698b10bf6def2024/gradle-jrebel-plugin-1.1.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.zeroturnaround/gradle-jrebel-plugin/1.1.2/d5991b46cbd853246634e56461e1de8ec920a9ad/gradle-jrebel-plugin-1.1.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.4/2b8c4b3035e45520ef42033e823c7d33e4b4402c/commons-lang-2.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.4/16313e02a793435009f1e458fa4af5d879f6fb11/commons-lang-2.4.jar" />
+                          </list>
+                        </option>
+                        <option name="path" value="$PROJECT_DIR$/CheckApi" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                  <entry key="$PROJECT_DIR$/CheckModel">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="entries">
+                          <list>
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.0/7fcf3182660e0be49c7448e13f91e655b2cba9bf/jackson-annotations-2.4.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.0/d6a66c7a5f01cf500377bd669507a08cfeba882a/jackson-annotations-2.4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/7d49b53caed9bd81d172807c3e096d24f3c57090/validation-api-1.1.0.Final-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar" />
+                            <option value="$PROJECT_DIR$/libs/jsondoc-core.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.zeroturnaround/gradle-jrebel-plugin/1.1.2/8328cf58105fff28e22bf5fa698b10bf6def2024/gradle-jrebel-plugin-1.1.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.zeroturnaround/gradle-jrebel-plugin/1.1.2/d5991b46cbd853246634e56461e1de8ec920a9ad/gradle-jrebel-plugin-1.1.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.4/2b8c4b3035e45520ef42033e823c7d33e4b4402c/commons-lang-2.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.4/16313e02a793435009f1e458fa4af5d879f6fb11/commons-lang-2.4.jar" />
+                          </list>
+                        </option>
+                        <option name="path" value="$PROJECT_DIR$/CheckModel" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                  <entry key="$PROJECT_DIR$/LashGoApiDoc">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="entries">
+                          <list>
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.0.5.RELEASE/589675b60574e292b76f8ef3bf36bec72a979e45/spring-beans-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.0.5.RELEASE/11e00022f109653ee0dbe16b59c26e19bd90fa08/spring-beans-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.0.5.RELEASE/c8ccd8ae8bb85f917ef429d3cad37b1b36c92c49/spring-core-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.0.5.RELEASE/cce94116431b5a1384d58316a4090bbe7718fd5a/spring-core-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.5.RELEASE/82389e66ef1cd0085d5a8a00c827ae5c93a8040b/spring-web-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.5.RELEASE/1819f6d4ab65fb33e19c492d5c5aa21396e42b3f/spring-web-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/aadd509610ea91906c177c33c22dd7e28df3b66/spring-context-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/98cd9a4b8bb0c695c0cfcc204cf804f433851cfe/spring-context-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.0.5.RELEASE/a71e281249899ad9f4e856d142d9728d17844b63/spring-webmvc-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.0.5.RELEASE/2459455b0f2e19e7a51fc7bff4de341947d9bc57/spring-webmvc-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/28bb0405fddaf04f15058fbfbe01fe2780d7d3b6/commons-logging-1.1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f/commons-logging-1.1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.0.5.RELEASE/2d8ec0d3a074b4a193c16312ab2cda105d87871f/spring-aop-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.0.5.RELEASE/d22abbbba78f7c8854fc39346cc99362272c5c90/spring-aop-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.0.5.RELEASE/11f705f4d73aa2f074d32602fd6a80898fd50257/spring-expression-4.0.5.RELEASE-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.0.5.RELEASE/d7ddbc320c31c15cb3612ed64607e181c3b2d851/spring-expression-4.0.5.RELEASE.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.zeroturnaround/gradle-jrebel-plugin/1.1.2/8328cf58105fff28e22bf5fa698b10bf6def2024/gradle-jrebel-plugin-1.1.2-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.zeroturnaround/gradle-jrebel-plugin/1.1.2/d5991b46cbd853246634e56461e1de8ec920a9ad/gradle-jrebel-plugin-1.1.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.4/2b8c4b3035e45520ef42033e823c7d33e4b4402c/commons-lang-2.4-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.4/16313e02a793435009f1e458fa4af5d879f6fb11/commons-lang-2.4.jar" />
+                          </list>
+                        </option>
+                        <option name="path" value="$PROJECT_DIR$/LashGoApiDoc" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                  <entry key="$PROJECT_DIR$/spring-social-vkontakte">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="path" value="$PROJECT_DIR$/spring-social-vkontakte" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="name" value="CheckModel" />
+              <option name="projectBuildClasspath">
+                <list>
+                  <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
+                  <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
+                </list>
+              </option>
+            </ExternalProjectBuildClasspathPojo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/CheckModel/build.gradle" />
+        <option value="$PROJECT_DIR$/LashGoApiDoc/build.gradle" />
+        <option value="$PROJECT_DIR$/CheckApi/build.gradle" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/ContentController.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java" />
+        <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RecoverInfo.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/CheckConstants.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDao.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/webapp/WEB-INF/check-servlet.xml" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java" />
+        <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java" />
+      </list>
+    </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LashGoApiDoc" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LashGoApiDoc" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LashGoApiDoc" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CheckModel" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CheckModel" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/LashGoApiDoc/src/main/webapp/WEB-INF/META-INF/MANIFEST.MF" />
+    <property name="FullScreen" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Check\projects\LashGo\Server\CheckApi\src\main\java" />
+      <recent name="D:\Check\projects\LashGo\Server\CheckApi\src\main" />
+      <recent name="D:\Check\projects\LashGo\Server\CheckModel\src\main\java" />
+      <recent name="D:\Check\projects\LashGo\Server\LashGoApiDoc\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager" selected="GlassFish Server.LashGo">
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <module name="" />
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="depsClasspath" value="false" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GlassfishConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings>
+        <option name="DOMAIN" value="" />
+        <option name="PRESERVE" value="false" />
+        <option name="VIRTUAL_SERVER" />
+        <option name="USERNAME" value="admin" />
+        <option name="PASSWORD" value="" />
+      </server-settings>
+      <predefined_log_file id="GlassFish" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="false" name="LashGo" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="Glassfish 4.0.0" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="lashgo-api">
+          <settings />
+        </artifact>
+        <artifact name="lashgo-doc">
+          <settings />
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="DOMAIN" value="domain1" />
+        <option name="PRESERVE" value="false" />
+        <option name="VIRTUAL_SERVER" />
+        <option name="USERNAME" value="admin" />
+        <option name="PASSWORD" value="" />
+      </server-settings>
+      <predefined_log_file id="GlassFish" enabled="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="9009" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="JRebel Debug">
+        <option name="DEBUG_PORT" value="9009" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="JRebel Executor" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="JRebel Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="JRebel Executor">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="lashgo-api" />
+          <artifact name="lashgo-doc" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="false" name="Rebuild" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <RunnerSettings RunnerId="ExternalSystemTaskRunner" />
+      <ConfigurationWrapper RunnerId="ExternalSystemTaskRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="BuildModel" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/CheckModel" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <RunnerSettings RunnerId="ExternalSystemTaskRunner" />
+      <ConfigurationWrapper RunnerId="ExternalSystemTaskRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Build Api" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/CheckApi" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <RunnerSettings RunnerId="ExternalSystemTaskRunner" />
+      <ConfigurationWrapper RunnerId="ExternalSystemTaskRunner" />
+      <method />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="GlassFish Server.LashGo" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.Rebuild" />
+      <item index="2" class="java.lang.String" itemvalue="Gradle.BuildModel" />
+      <item index="3" class="java.lang.String" itemvalue="Gradle.Build Api" />
+    </list>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7fcb4c9f-b52e-4d68-80a6-6e2f138fdce0" name="Default" comment="" />
+      <created>1402550283215</created>
+      <updated>1402550283215</updated>
+      <workItem from="1402550291869" duration="75000" />
+      <workItem from="1402550391182" duration="10759000" />
+      <workItem from="1402759218281" duration="11213000" />
+      <workItem from="1402879329662" duration="9128000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="31175000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45676997" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java</url>
+          <line>9</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CheckModel/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3292683" vertical-offset="361" max-vertical-offset="731">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/jsondoc-core.jar!/org/jsondoc/core/util/JSONDocUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4057377" vertical-offset="54" max-vertical-offset="544">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58943087" vertical-offset="586" max-vertical-offset="1054">
+          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SocialInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/SessionValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="663">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CommentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/ContentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="816">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/GCMController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="1258">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2244">
+          <caret line="118" column="26" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ValidationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="639" max-vertical-offset="986">
+          <caret line="62" column="111" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/test/UserDaoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="527">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/CheckConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="269" max-vertical-offset="629">
+          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1285" max-vertical-offset="1751">
+          <caret line="110" column="15" selection-start-line="110" selection-start-column="15" selection-end-line="110" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/Path.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="594" max-vertical-offset="969">
+          <caret line="42" column="60" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="101" max-vertical-offset="595">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CommentServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="969">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/PhotoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="543" max-vertical-offset="1275">
+          <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/utils/CheckUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="1564">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RecoverInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2095" max-vertical-offset="4556">
+          <caret line="145" column="29" selection-start-line="145" selection-start-column="29" selection-end-line="145" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_45/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4955" max-vertical-offset="20145">
+          <caret line="326" column="25" selection-start-line="326" selection-start-column="25" selection-end-line="326" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="765">
+          <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/aadd509610ea91906c177c33c22dd7e28df3b66/spring-context-4.0.5.RELEASE-sources.jar!/org/springframework/context/MessageSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="764" max-vertical-offset="1275">
+          <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/aadd509610ea91906c177c33c22dd7e28df3b66/spring-context-4.0.5.RELEASE-sources.jar!/org/springframework/context/support/AbstractMessageSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5318" max-vertical-offset="5678">
+          <caret line="359" column="37" selection-start-line="359" selection-start-column="37" selection-end-line="359" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_45/src.zip!/java/util/ResourceBundle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4917" max-vertical-offset="48025">
+          <caret line="353" column="24" selection-start-line="353" selection-start-column="24" selection-end-line="353" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/aadd509610ea91906c177c33c22dd7e28df3b66/spring-context-4.0.5.RELEASE-sources.jar!/org/springframework/context/support/ResourceBundleMessageSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5104" max-vertical-offset="7344">
+          <caret line="356" column="46" selection-start-line="356" selection-start-column="46" selection-end-line="356" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/aadd509610ea91906c177c33c22dd7e28df3b66/spring-context-4.0.5.RELEASE-sources.jar!/org/springframework/context/support/MessageSourceSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2141" max-vertical-offset="2618">
+          <caret line="158" column="24" selection-start-line="158" selection-start-column="24" selection-end-line="158" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_45/src.zip!/java/text/MessageFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="22767" max-vertical-offset="26146">
+          <caret line="1405" column="17" selection-start-line="1405" selection-start-column="17" selection-end-line="1405" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <caret line="4" column="71" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3480" max-vertical-offset="4029">
+          <caret line="262" column="13" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.5.RELEASE/aadd509610ea91906c177c33c22dd7e28df3b66/spring-context-4.0.5.RELEASE-sources.jar!/org/springframework/scheduling/annotation/Scheduled.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1785">
+          <caret line="60" column="11" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1387" max-vertical-offset="1972">
+          <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/ClientTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SocialNames.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="391">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/rebel.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/DocumentationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="527">
+          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="7" max-vertical-offset="289">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/webapp/WEB-INF/check-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.16" vertical-offset="1720" max-vertical-offset="2397">
+          <caret line="98" column="23" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62222224" vertical-offset="813" max-vertical-offset="1173">
+          <caret line="92" column="4" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="412" max-vertical-offset="1496">
+          <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+          <folding>
+            <element signature="e#1692#1693#0" expanded="true" />
+            <element signature="e#1727#1728#0" expanded="true" />
+            <element signature="e#1780#1781#0" expanded="true" />
+            <element signature="e#1828#1829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1224">
+          <caret line="93" column="15" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="879" max-vertical-offset="3077">
+          <caret line="88" column="51" selection-start-line="88" selection-start-column="49" selection-end-line="88" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="395" max-vertical-offset="816">
+          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="31" max-vertical-offset="391">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18959108" vertical-offset="306" max-vertical-offset="1003">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <marker date="1402935051558" expanded="true" signature="889:1006" placeholder="SELECT c.* F..checks..." />
+            <marker date="1402935051558" expanded="true" signature="1310:1361" placeholder="SELECT c.* F..checks..." />
+            <marker date="1402935051558" expanded="true" signature="1508:1547" placeholder="SELECT c.* F..checks..." />
+            <marker date="1402935051558" expanded="true" signature="1880:1972" placeholder="SELECT c.* F..checks..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>lashgo-api</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web Gradle : CheckApi-1.0.war (CheckApi)|Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>LashGoApiDoc</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Gradle: activation-1.1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+

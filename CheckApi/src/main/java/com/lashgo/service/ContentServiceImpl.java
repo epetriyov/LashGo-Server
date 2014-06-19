@@ -1,10 +1,10 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import com.lashgo.model.dto.ContentDto;
-import main.java.com.lashgo.domain.Sessions;
-import main.java.com.lashgo.domain.Users;
-import main.java.com.lashgo.repository.SessionDao;
-import main.java.com.lashgo.repository.UserDao;
+import com.lashgo.domain.Sessions;
+import com.lashgo.domain.Users;
+import com.lashgo.repository.SessionDao;
+import com.lashgo.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

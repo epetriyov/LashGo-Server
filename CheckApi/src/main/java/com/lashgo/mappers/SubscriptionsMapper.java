@@ -1,4 +1,4 @@
-package main.java.com.lashgo.mappers;
+package com.lashgo.mappers;
 
 import com.lashgo.model.dto.SubscriptionDto;
 import org.springframework.jdbc.core.RowMapper;

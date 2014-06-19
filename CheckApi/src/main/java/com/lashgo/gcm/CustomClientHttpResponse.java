@@ -1,4 +1,4 @@
-package main.java.com.lashgo.gcm;
+package com.lashgo.gcm;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,8 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
+import com.lashgo.error.UnautharizedException;
+import com.lashgo.error.ValidationException;
 import com.lashgo.model.dto.*;
-import main.java.com.lashgo.error.UnautharizedException;
-import main.java.com.lashgo.error.ValidationException;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface UserService {
 
     SessionInfo login(String interfaceTypeCode, LoginInfo loginInfo) throws ValidationException, UnautharizedException;
 
-    void register(RegisterInfo registerInfo) throws ValidationException;
+    void register(LoginInfo registerInfo) throws ValidationException;
 
     void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException;
 
@@ -26,4 +26,8 @@ public interface UserService {
     void unsubscribe(String sessionId, int userId);
 
     void subscribe(String sessionId, int userId);
+
+    SessionInfo socialSignIn(String interfaceTypeCode, SocialInfo socialInfo);
+
+    SessionInfo socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo);
 }

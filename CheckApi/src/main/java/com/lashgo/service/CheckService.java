@@ -1,4 +1,4 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;

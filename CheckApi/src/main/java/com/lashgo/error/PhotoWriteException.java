@@ -1,4 +1,4 @@
-package main.java.com.lashgo.error;
+package com.lashgo.error;
 
 import java.io.IOException;
 

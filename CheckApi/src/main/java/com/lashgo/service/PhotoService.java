@@ -1,4 +1,4 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

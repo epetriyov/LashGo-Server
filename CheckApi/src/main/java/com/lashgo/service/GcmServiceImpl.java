@@ -1,17 +1,17 @@
-package main.java.com.lashgo.service;
+package com.lashgo.service;
 
 import com.lashgo.model.dto.GcmRegistrationDto;
 import com.lashgo.model.dto.MulticastResult;
-import main.java.com.lashgo.CheckConstants;
-import main.java.com.lashgo.domain.Check;
-import main.java.com.lashgo.domain.Sessions;
-import main.java.com.lashgo.gcm.InvalidRequestException;
-import main.java.com.lashgo.gcm.Message;
-import main.java.com.lashgo.repository.CheckDao;
-import main.java.com.lashgo.repository.GcmDao;
-import main.java.com.lashgo.repository.SessionDao;
-import main.java.com.lashgo.error.ErrorCodes;
-import main.java.com.lashgo.error.ValidationException;
+import com.lashgo.CheckConstants;
+import com.lashgo.domain.Check;
+import com.lashgo.domain.Sessions;
+import com.lashgo.gcm.InvalidRequestException;
+import com.lashgo.gcm.Message;
+import com.lashgo.repository.CheckDao;
+import com.lashgo.repository.GcmDao;
+import com.lashgo.repository.SessionDao;
+import com.lashgo.error.ErrorCodes;
+import com.lashgo.error.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.*;
 
-import static main.java.com.lashgo.gcm.Constants.*;
+import static com.lashgo.gcm.Constants.*;
 
 /**
  * Created by Eugene on 19.03.14.

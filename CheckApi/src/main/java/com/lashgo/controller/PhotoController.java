@@ -1,13 +1,14 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
+import com.lashgo.model.Path;
 import com.lashgo.model.dto.CommentDto;
 import com.lashgo.model.dto.ResponseList;
 import com.lashgo.model.dto.ResponseObject;
-import main.java.com.lashgo.CheckConstants;
-import main.java.com.lashgo.service.CommentService;
-import main.java.com.lashgo.service.PhotoService;
-import main.java.com.lashgo.service.SessionValidator;
+import com.lashgo.CheckConstants;
+import com.lashgo.service.CommentService;
+import com.lashgo.service.PhotoService;
+import com.lashgo.service.SessionValidator;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -59,7 +60,7 @@ public class PhotoController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseEntity<FileSystemResource> getFile(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
-        sessionValidator.validate(httpHeaders);
+//        sessionValidator.validate(httpHeaders);
         logger.debug("Get photo request validated");
         FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
         logger.debug("Resource get {}", resource.getPath());
@@ -114,7 +115,7 @@ public class PhotoController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseList<CommentDto> getPhotoComments(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
-        sessionValidator.validate(httpHeaders);
+//        sessionValidator.validate(httpHeaders);
         return new ResponseList<>(commentService.getPhotoComments(photoId));
     }
 

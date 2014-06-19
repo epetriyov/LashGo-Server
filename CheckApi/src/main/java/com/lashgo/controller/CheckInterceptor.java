@@ -1,9 +1,10 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.ClientTypes;
-import main.java.com.lashgo.error.ErrorCodes;
-import main.java.com.lashgo.error.ValidationException;
+import com.lashgo.error.ErrorCodes;
+import com.lashgo.error.ValidationException;
+import com.lashgo.model.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

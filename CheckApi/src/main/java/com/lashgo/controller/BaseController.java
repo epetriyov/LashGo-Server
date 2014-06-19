@@ -1,4 +1,4 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

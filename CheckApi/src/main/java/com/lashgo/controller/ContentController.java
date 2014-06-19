@@ -1,10 +1,11 @@
-package main.java.com.lashgo.controller;
+package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
+import com.lashgo.model.Path;
 import com.lashgo.model.dto.ContentDto;
 import com.lashgo.model.dto.ResponseList;
-import main.java.com.lashgo.service.ContentService;
-import main.java.com.lashgo.service.SessionValidator;
+import com.lashgo.service.ContentService;
+import com.lashgo.service.SessionValidator;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class ContentController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseList<ContentDto> getNews(@RequestHeader HttpHeaders httpHeaders) {
-        sessionValidator.validate(httpHeaders);
+//        sessionValidator.validate(httpHeaders);
         return new ResponseList<>(contentService.getNews(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0)));
     }
 }

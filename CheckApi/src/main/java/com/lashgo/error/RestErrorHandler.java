@@ -1,4 +1,4 @@
-package main.java.com.lashgo.error;
+package com.lashgo.error;
 
 import com.lashgo.model.dto.ErrorDto;
 import com.lashgo.model.dto.ResponseObject;

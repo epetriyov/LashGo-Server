@@ -11,18 +11,18 @@
 <h:body>
     <h:form>
         <h:outputText value="username:"/>
-        <h:inputText id="username" value="#{login.username}"
+        <h:inputText id="username" value="#{email.username}"
                      >
             <f:validateLength minimum="1"/>
         </h:inputText>
         <br/>
         <h:outputText value="password:"/>
-        <h:inputSecret id="password" value="#{login.password}"
+        <h:inputSecret id="password" value="#{email.password}"
                      >
             <f:validateLength minimum="1"/>
         </h:inputSecret>
         <br/>
-        <h:commandButton action="#{login.login}" value="Login"/>
+        <h:commandButton action="#{email.email}" value="Login"/>
         <br/>
         <h:messages />
         <br/>

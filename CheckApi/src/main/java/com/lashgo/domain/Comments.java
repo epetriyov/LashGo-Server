@@ -1,4 +1,4 @@
-package main.java.com.lashgo.domain;
+package com.lashgo.domain;
 
 import javax.persistence.*;
 import java.util.Date;
