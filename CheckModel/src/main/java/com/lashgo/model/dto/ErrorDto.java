@@ -23,8 +23,9 @@ public class ErrorDto implements Serializable {
     public ErrorDto() {
     }
 
-    public ErrorDto(String errorCode) {
+    public ErrorDto(String errorCode, String errorMessage) {
         this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
     }
 
     public String getErrorMessage() {

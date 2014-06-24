@@ -29,6 +29,10 @@ public class ExtendedSocialInfo extends SocialInfo {
 
     }
 
+    public ExtendedSocialInfo(SocialInfo socialInfo, String email) {
+        this(socialInfo.getAccessToken(), socialInfo.getAccessTokenSecret(), socialInfo.getSocialName(), email);
+    }
+
     public ExtendedSocialInfo(String accessToken, String accessTokenSecret, String socialName, String email) {
         super(accessToken, accessTokenSecret, socialName);
         this.email = email;

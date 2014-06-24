@@ -1,17 +1,17 @@
 package com.lashgo.service;
 
-import com.lashgo.model.dto.GcmRegistrationDto;
-import com.lashgo.model.dto.MulticastResult;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Check;
-import com.lashgo.domain.Sessions;
+import com.lashgo.error.ValidationException;
 import com.lashgo.gcm.InvalidRequestException;
 import com.lashgo.gcm.Message;
+import com.lashgo.model.ErrorCodes;
+import com.lashgo.model.dto.GcmRegistrationDto;
+import com.lashgo.model.dto.MulticastResult;
 import com.lashgo.repository.CheckDao;
 import com.lashgo.repository.GcmDao;
 import com.lashgo.repository.SessionDao;
-import com.lashgo.error.ErrorCodes;
-import com.lashgo.error.ValidationException;
+import com.lashgo.repository.UserGcmDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +44,9 @@ public class GcmServiceImpl implements GcmService {
 
     @Autowired
     private GcmDao gcmDao;
+
+    @Autowired
+    private UserGcmDao userGcmDao;
 
     @Autowired
     private SessionDao sessionDao;
@@ -108,9 +111,14 @@ public class GcmServiceImpl implements GcmService {
     @Transactional
     @Override
     public void addRegistrationId(String sessionId, GcmRegistrationDto registrationDto) throws ValidationException {
-        Sessions sessions = sessionDao.getSessionById(sessionId);
         if (!gcmDao.isRegistrationIdExists(registrationDto.getRegistrationId())) {
-            gcmDao.addRegistrationId(sessions.getUserId(), registrationDto);
+            gcmDao.addRegistrationId(registrationDto);
+        }
+        int userId = sessionId != null ? sessionDao.getSessionById(sessionId).getUserId() : -1;
+        if (userId > 0) {
+            if(!userGcmDao.isUserGcmExists(registrationDto.getRegistrationId(),userId)) {
+                userGcmDao.addUserRegistration(registrationDto.getRegistrationId(), userId);
+            }
         }
     }
 

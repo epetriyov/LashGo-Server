@@ -7,7 +7,7 @@ package com.lashgo.error;
  * Time: 23:50
  * To change this template use File | Settings | File Templates.
  */
-public class ValidationException extends RuntimeException {
+public class ValidationException extends LashgoRuntimeError {
     public ValidationException(String error) {
         super(error);
     }

@@ -33,7 +33,7 @@ public class GcmDaoImpl implements GcmDao {
                     String.class, registrationId);
             return !StringUtils.isEmpty(regId);
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage("registration_id.not.exists", new String[]{registrationId}, Locale.ENGLISH));
+            logger.info(messageSource.getMessage("registration_id.empty", new String[]{registrationId}, Locale.ENGLISH));
             return false;
         }
     }
@@ -44,7 +44,7 @@ public class GcmDaoImpl implements GcmDao {
     }
 
     @Override
-    public void addRegistrationId(long userId, GcmRegistrationDto registrationDto) {
-        jdbcTemplate.update("INSERT INTO gcm_registrations VALUES (?,?)", registrationDto.getRegistrationId(), userId);
+    public void addRegistrationId(GcmRegistrationDto registrationDto) {
+        jdbcTemplate.update("INSERT INTO gcm_registrations VALUES (?)", registrationDto.getRegistrationId());
     }
 }

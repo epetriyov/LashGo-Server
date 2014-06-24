@@ -5,7 +5,7 @@ import com.lashgo.domain.Sessions;
 import com.lashgo.domain.Users;
 import com.lashgo.model.dto.*;
 import com.lashgo.repository.*;
-import com.lashgo.error.ErrorCodes;
+import com.lashgo.model.ErrorCodes;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.utils.CheckUtils;
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
             mailMessage.setText(messageSource.getMessage("password.new", new Object[]{newPassword}, Locale.ENGLISH));
             mailSender.send(mailMessage);
         } else {
-            throw new ValidationException(ErrorCodes.USER_NOT_FOUND);
+            throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
         }
     }
 

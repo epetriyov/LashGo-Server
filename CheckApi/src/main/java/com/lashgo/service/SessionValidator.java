@@ -4,7 +4,7 @@ import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Sessions;
 import com.lashgo.repository.SessionDao;
-import com.lashgo.error.ErrorCodes;
+import com.lashgo.model.ErrorCodes;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
 import org.slf4j.Logger;

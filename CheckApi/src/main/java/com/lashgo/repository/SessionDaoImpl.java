@@ -60,7 +60,7 @@ public class SessionDaoImpl implements SessionDao {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.session_id = ?", new SessionsMapper(), sessionId);
         } catch (DataAccessException e) {
-            logger.info(messageSource.getMessage("session.not.exists", new String[]{sessionId}, Locale.ENGLISH));
+            logger.info(messageSource.getMessage("session.not_exists", new String[]{sessionId}, Locale.ENGLISH));
             return null;
         }
     }

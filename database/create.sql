@@ -47,9 +47,16 @@ CREATE TABLE sessions (
 );	
 
 CREATE TABLE gcm_registrations (
-	registration_id varchar(200)              NOT NULL PRIMARY KEY CHECK (registration_id <> ''),
-    user_id         int                       UNIQUE REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+	registration_id varchar(200)              NOT NULL PRIMARY KEY CHECK (registration_id <> '')
 );    
+
+CREATE TABLE gcm_users (
+	id              serial      			  NOT NULL PRIMARY KEY,
+	registration_id varchar(200)              UNIQUE REFERENCES gcm_registrations (registration_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    user_id         int                       UNIQUE REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE UNIQUE INDEX gcm_users_idx ON gcm_users (user_id, registration_id);
 
 CREATE TABLE checks (
 	id              serial                    NOT NULL PRIMARY KEY,

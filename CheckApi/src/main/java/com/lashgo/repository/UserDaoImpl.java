@@ -1,7 +1,7 @@
 package com.lashgo.repository;
 
 import com.lashgo.domain.Users;
-import com.lashgo.error.ErrorCodes;
+import com.lashgo.model.ErrorCodes;
 import com.lashgo.mappers.UsersMapper;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.model.dto.RegisterInfo;

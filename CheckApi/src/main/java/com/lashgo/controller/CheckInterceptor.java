@@ -1,12 +1,13 @@
 package com.lashgo.controller;
 
+import com.lashgo.model.ErrorCodes;
+import com.lashgo.error.ValidationException;
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.ClientTypes;
-import com.lashgo.error.ErrorCodes;
-import com.lashgo.error.ValidationException;
 import com.lashgo.model.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -43,6 +44,10 @@ public class CheckInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+        logger.info("Response status {}", httpServletResponse.getStatus());
+        if (httpServletResponse.getStatus() == HttpStatus.UNAUTHORIZED.value()) {
+            httpServletResponse.setHeader("WWW-Authenticate", "None");
+        }
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface GcmDao {
 
-    void addRegistrationId(long userId, GcmRegistrationDto registrationDto);
+    void addRegistrationId(GcmRegistrationDto registrationDto);
 
     boolean isRegistrationIdExists(String registrationId);
 

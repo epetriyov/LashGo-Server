@@ -5,7 +5,7 @@ import com.lashgo.CheckConstants;
 import com.lashgo.domain.Photos;
 import com.lashgo.repository.PhotoDao;
 import com.lashgo.repository.UserRatingDao;
-import com.lashgo.error.ErrorCodes;
+import com.lashgo.model.ErrorCodes;
 import com.lashgo.error.PhotoReadException;
 import com.lashgo.error.PhotoWriteException;
 import com.lashgo.error.ValidationException;
@@ -58,14 +58,14 @@ public class PhotoServiceImpl implements PhotoService {
                     src = ImageIO.read(new ByteArrayInputStream(photo.getBytes()));
                 } catch (IOException e) {
                     logger.error(e.getMessage());
-                    throw new PhotoReadException(e);
+                    throw new PhotoReadException();
                 }
                 File destination = new File(photoDestinationBuilder.toString());
                 try {
                     ImageIO.write(src, "png", destination);
                 } catch (IOException e) {
                     logger.error(e.getMessage());
-                    throw new PhotoWriteException(e);
+                    throw new PhotoWriteException();
                 }
                 photoDao.savePhoto(new Photos(photoNameBuilder.toString(), userDto.getId(), checkId));
             }
