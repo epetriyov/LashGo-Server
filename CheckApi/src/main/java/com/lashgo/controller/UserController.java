@@ -1,5 +1,6 @@
 package com.lashgo.controller;
 
+import com.lashgo.CheckConstants;
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.Path;
 import com.lashgo.model.dto.*;
@@ -10,6 +11,7 @@ import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * Created by Eugene on 13.02.14.
@@ -274,5 +277,30 @@ public class UserController extends BaseController {
         sessionValidator.validate(httpHeaders);
         userService.subscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), userId);
         return new ResponseObject();
+    }
+
+    @ApiMethod(
+            path = Path.Users.MAIN_SCREEN_INFO,
+            verb = ApiVerb.GET,
+            description = "get info for display at main screen",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Users.MAIN_SCREEN_INFO, method = RequestMethod.GET)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseObject<MainScreenInfoDto> getMainScreenInfo(@RequestHeader HttpHeaders httpHeaders, @RequestParam(value = "news_last_view") @DateTimeFormat(pattern = CheckConstants.DATE_FORMAT) Date newsLastView, @RequestParam(value = "subscriptions_last_view") @DateTimeFormat(pattern = CheckConstants.DATE_FORMAT) Date subscriptionsLastView) {
+        sessionValidator.validate(httpHeaders);
+        return new ResponseObject<>(userService.getMainScreenInfo(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), new UserLastViews(newsLastView, subscriptionsLastView)));
     }
 }

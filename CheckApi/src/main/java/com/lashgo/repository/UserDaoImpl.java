@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 
     public boolean isUserExists(String email) {
         try {
-            jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE u.email = ?", Integer.class, email);
+            jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE u.email = ? OR u.login = ?", Integer.class, email);
         } catch (EmptyResultDataAccessException e) {
             logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{email}, Locale.ENGLISH));
             return false;

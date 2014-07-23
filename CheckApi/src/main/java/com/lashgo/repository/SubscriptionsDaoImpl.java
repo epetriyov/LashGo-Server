@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Types;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,5 +31,13 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
     @Override
     public void addSubscription(int userId, int checkistId) {
         jdbcTemplate.update("INSERT INTO subscriptions (user_id,checklist_id) VALUES (?,?)", userId, checkistId);
+    }
+
+    @Override
+    public int getNewerSubscriptions(int userId, Date lastView) {
+        if (lastView != null) {
+            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions WHERE user_id = ? AND subscribe_date > ?", new Object[]{userId, lastView}, new int[]{Types.INTEGER, Types.TIMESTAMP}, Integer.class);
+        }
+        return 0;
     }
 }

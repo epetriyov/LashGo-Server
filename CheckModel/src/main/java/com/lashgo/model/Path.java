@@ -47,5 +47,6 @@ public final class Path {
         public static final String SUBSCRIPTION = "/users/subscriptions/{userId}";
         public static final String SOCIAL_SIGN_IN = "/users/social-sign-in";
         public static final String SOCIAL_SIGN_UP = "/users/social-sign-up";
+        public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
     }
 }

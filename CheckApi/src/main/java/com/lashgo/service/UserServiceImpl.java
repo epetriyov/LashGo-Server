@@ -47,6 +47,12 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Autowired
+    private CheckDao checkDao;
+
+    @Autowired
+    private NewsDao newsDao;
+
+    @Autowired
     private SessionDao sessionDao;
 
     @Autowired
@@ -256,6 +262,18 @@ public class UserServiceImpl implements UserService {
         tempUser.setPassword(loginInfo.getPasswordHash());
         userDao.createSocialUser(tempUser);
         return innerLogin(interfaceTypeCode, loginInfo);
+    }
+
+    @Override
+    public MainScreenInfoDto getMainScreenInfo(String sessionId, UserLastViews userLastViews) {
+        UserDto userDto = getProfile(sessionId);
+        MainScreenInfoDto mainScreenInfoDto = new MainScreenInfoDto();
+        mainScreenInfoDto.setUserAvatar(userDto.getAvatar());
+        mainScreenInfoDto.setUserName(userDto.getLogin());
+        mainScreenInfoDto.setNewsCount(newsDao.getNewerNews(userLastViews.getNewsLastView()));
+        mainScreenInfoDto.setSubscribesCount(subscriptionsDao.getNewerSubscriptions(userDto.getId(), userLastViews.getSubscribesLastView()));
+        mainScreenInfoDto.setTasksCount(checkDao.getActiveChecksCount());
+        return mainScreenInfoDto;
     }
 
 

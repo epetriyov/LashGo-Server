@@ -7,6 +7,7 @@ import org.jsondoc.core.annotation.ApiObjectField;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Eugene on 05.05.2014.
@@ -27,20 +28,29 @@ public class SubscriptionDto implements Serializable {
     @Size(min = 1)
     @ApiObjectField(description = "login")
     private String userLogin;
+    @ApiObjectField(description = "subscribe_date")
+    private Date subscriptionDate;
 
     public SubscriptionDto() {
     }
 
-    public SubscriptionDto(int id, int userId, String userAvatar, String userLogin) {
-
+    public SubscriptionDto(int id, int userId, String userAvatar, String userLogin, Date subscriptionDate) {
         this.id = id;
         this.userId = userId;
         this.userAvatar = userAvatar;
         this.userLogin = userLogin;
+        this.subscriptionDate = subscriptionDate;
+    }
+
+    public Date getSubscriptionDate() {
+        return subscriptionDate;
+    }
+
+    public void setSubscriptionDate(Date subscriptionDate) {
+        this.subscriptionDate = subscriptionDate;
     }
 
     public int getId() {
-
         return id;
     }
 

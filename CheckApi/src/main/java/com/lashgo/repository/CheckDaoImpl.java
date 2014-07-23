@@ -61,4 +61,14 @@ public class CheckDaoImpl implements CheckDao {
             return null;
         }
     }
+
+    @Override
+    public int getActiveChecksCount() {
+        try {
+            return jdbcTemplate.queryForObject("SELECT count(c.id) FROM checks c WHERE c.start_date + c.duration * INTERVAL '1 hour' > current_date", Integer.class);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage("checks.current.empty", null, Locale.ENGLISH));
+            return 0;
+        }
+    }
 }

@@ -18,6 +18,7 @@ public class SubscriptionsMapper implements RowMapper<SubscriptionDto> {
         subscriptionDto.setUserId(resultSet.getInt("user_id"));
         subscriptionDto.setUserLogin(resultSet.getString("login"));
         subscriptionDto.setUserAvatar(resultSet.getString("avatar"));
+        subscriptionDto.setSubscriptionDate(resultSet.getTimestamp("subscribe_date"));
         return subscriptionDto;
     }
 }

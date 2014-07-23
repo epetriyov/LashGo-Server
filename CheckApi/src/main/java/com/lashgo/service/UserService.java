@@ -30,4 +30,6 @@ public interface UserService {
     SessionInfo socialSignIn(String interfaceTypeCode, SocialInfo socialInfo);
 
     SessionInfo socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo);
+
+    MainScreenInfoDto getMainScreenInfo(String sessionId, UserLastViews userLastViews);
 }

@@ -113,7 +113,8 @@ CREATE UNIQUE INDEX check_comments_idx ON check_comments (check_id, comment_id);
 CREATE TABLE subscriptions (
     id              serial                    NOT NULL PRIMARY KEY,
     user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,	    
-    checklist_id    int                       CHECK (checklist_id <> user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE	    
+    checklist_id    int                       CHECK (checklist_id <> user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    subscribe_date  timestamp with time zone  NOT NULL CHECK (subscribe_date <= current_timestamp) DEFAULT current_timestamp
 );
 
 CREATE UNIQUE INDEX subscriptions_idx ON subscriptions (user_id, checklist_id);
@@ -122,4 +123,12 @@ CREATE TABLE content (
     id              serial                    NOT NULL PRIMARY KEY,
 	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= current_timestamp) DEFAULT current_timestamp,    
 	value			varchar(500)              NOT NULL CHECK (value <> '')
+);
+
+CREATE TABLE news (
+	id 				serial				      NOT NULL PRIMARY KEY,
+	theme           varchar(150)              NOT NULL UNIQUE CHECK (theme <> ''),
+	content         varchar(500)              NOT NULL CHECK (content <> ''),	
+	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= current_timestamp) DEFAULT current_timestamp,
+	image_url       varchar(50)               NOT NULL UNIQUE CHECK (image_url <> '')
 );

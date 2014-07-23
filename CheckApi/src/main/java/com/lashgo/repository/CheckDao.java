@@ -16,4 +16,6 @@ public interface CheckDao {
     Check getCheckById(long id);
 
     Check getLastCheck();
+
+    int getActiveChecksCount();
 }

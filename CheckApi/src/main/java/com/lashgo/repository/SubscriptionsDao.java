@@ -2,6 +2,7 @@ package com.lashgo.repository;
 
 import com.lashgo.model.dto.SubscriptionDto;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,4 +14,6 @@ public interface SubscriptionsDao {
     void removeSubscription(int userId, int checkistId);
 
     void addSubscription(int usersId, int checkistId);
+
+    int getNewerSubscriptions(int userId, Date lastView);
 }

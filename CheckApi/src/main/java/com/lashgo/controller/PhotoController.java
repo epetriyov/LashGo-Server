@@ -1,11 +1,11 @@
 package com.lashgo.controller;
 
+import com.lashgo.CheckConstants;
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.Path;
 import com.lashgo.model.dto.CommentDto;
 import com.lashgo.model.dto.ResponseList;
 import com.lashgo.model.dto.ResponseObject;
-import com.lashgo.CheckConstants;
 import com.lashgo.service.CommentService;
 import com.lashgo.service.PhotoService;
 import com.lashgo.service.SessionValidator;
@@ -43,7 +43,7 @@ public class PhotoController extends BaseController {
             path = Path.Photos.GET_FILE,
             verb = ApiVerb.GET,
             description = "Gets photo stream",
-            produces = {MediaType.APPLICATION_OCTET_STREAM_VALUE},
+            produces = {MediaType.MULTIPART_FORM_DATA_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
     @ApiHeaders(headers = {
@@ -55,11 +55,11 @@ public class PhotoController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Photos.GET_FILE, method = RequestMethod.GET)
+    @RequestMapping(value = Path.Photos.GET_FILE, method = RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseEntity<FileSystemResource> getFile(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
+    ResponseEntity<FileSystemResource> getFile(@ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
 //        sessionValidator.validate(httpHeaders);
         logger.debug("Get photo request validated");
         FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
