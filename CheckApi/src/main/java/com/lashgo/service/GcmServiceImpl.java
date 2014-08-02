@@ -6,6 +6,7 @@ import com.lashgo.error.ValidationException;
 import com.lashgo.gcm.InvalidRequestException;
 import com.lashgo.gcm.Message;
 import com.lashgo.model.ErrorCodes;
+import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.GcmRegistrationDto;
 import com.lashgo.model.dto.MulticastResult;
 import com.lashgo.repository.CheckDao;
@@ -124,7 +125,7 @@ public class GcmServiceImpl implements GcmService {
 
     public void sendChecks() {
         List<String> registrationIds = gcmDao.getAllRegistrationIds();
-        Check check = checkDao.getNextCheck();
+        CheckDto check = checkDao.getNextCheck();
         if (check != null) {
             Message.Builder messageBuilder = new Message.Builder();
             messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
@@ -143,7 +144,7 @@ public class GcmServiceImpl implements GcmService {
                 sendChecks();
             }
         };
-        Check check = checkDao.getNextCheck();
+        CheckDto check = checkDao.getNextCheck();
         if (check != null) {
             timer.schedule(timerTask, check.getStartDate());
         } else {

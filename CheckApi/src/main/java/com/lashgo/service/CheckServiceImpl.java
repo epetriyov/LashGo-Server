@@ -28,23 +28,12 @@ public class CheckServiceImpl implements CheckService {
 
     @Override
     public List<CheckDto> getChecks() {
-        List<Check> checkList = checkDao.getAllChecks();
-        List<CheckDto> checkDtos = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(checkList)) {
-            for (Check check : checkList) {
-                checkDtos.add(new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto(),check.getVoteDuration()));
-            }
-        }
-        return checkDtos;
+        return checkDao.getAllChecks();
     }
 
     @Override
     public CheckDto getCurrentCheck() {
-        Check check = checkDao.getLastCheck();
-        if (check != null) {
-            return new CheckDto(check.getId(), check.getName(), check.getDescription(), check.getStartDate(), check.getDuration(), check.getPhoto(), check.getVoteDuration());
-        }
-        return null;
+        return checkDao.getLastCheck();
     }
 
     @Override

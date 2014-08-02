@@ -1,7 +1,7 @@
 package com.lashgo.repository;
 
-import com.lashgo.domain.Check;
 import com.lashgo.mappers.CheckMapper;
+import com.lashgo.model.dto.CheckDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class CheckDaoImpl implements CheckDao {
     private static final Logger logger = LoggerFactory.getLogger("FILE");
 
     @Override
-    public Check getNextCheck() {
+    public CheckDto getNextCheck() {
         try {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date + c.duration * INTERVAL '1 hour' > current_date ORDER BY c.start_date ASC", new CheckMapper());
         } catch (EmptyResultDataAccessException e) {
@@ -38,12 +38,12 @@ public class CheckDaoImpl implements CheckDao {
     }
 
     @Override
-    public List<Check> getAllChecks() {
-        return jdbcTemplate.query("SELECT c.* FROM checks c ORDER BY c.start_date DESC", new CheckMapper());
+    public List<CheckDto> getAllChecks() {
+        return jdbcTemplate.query("SELECT c.*,p.picture AS check_photo FROM checks c LEFT JOIN photos p ON (p.check_id = c.id) ORDER BY c.start_date DESC", new CheckMapper());
     }
 
     @Override
-    public Check getCheckById(long id) {
+    public CheckDto getCheckById(long id) {
         try {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.id = ?", new CheckMapper(), id);
         } catch (EmptyResultDataAccessException e) {
@@ -53,7 +53,7 @@ public class CheckDaoImpl implements CheckDao {
     }
 
     @Override
-    public Check getLastCheck() {
+    public CheckDto getLastCheck() {
         try {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date < current_date ORDER BY c.start_date LIMIT 1 ASC", new CheckMapper());
         } catch (EmptyResultDataAccessException e) {

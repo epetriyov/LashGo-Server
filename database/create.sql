@@ -66,6 +66,10 @@ CREATE TABLE checks (
 	duration        int 		              NOT NULL CHECK (duration > 0 AND duration < 12) DEFAULT 3,
 	photo           varchar(50),	
 	vote_duration   int 		              NOT NULL CHECK (vote_duration > 0 AND vote_duration < 12) DEFAULT 3,
+	shares_count    int                       CHECK (shares_count >=0) DEFAULT 0,
+	likes_count     int                       CHECK (likes_count >=0) DEFAULT 0,
+	comments_count  int                       CHECK (comments_count >=0) DEFAULT 0,
+	players_count   int                       CHECK (players_count >=0) DEFAULT 0
 );
 
 CREATE TABLE photos (
@@ -78,14 +82,6 @@ CREATE TABLE photos (
 );
 
 CREATE UNIQUE INDEX photo_idx ON photos (user_id, check_id);
-
-CREATE TABLE user_ratings (
-	id              serial                    NOT NULL PRIMARY KEY,
-	photo_id        int                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE,	
-	user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE	
-);
-
-CREATE UNIQUE INDEX user_rating_idx ON user_ratings (user_id, photo_id);
 
 CREATE TABLE comments (
 	id 				serial                    NOT NULL PRIMARY KEY,

@@ -26,7 +26,16 @@ public class Check {
     private String photo;
     @Column(name = "start_date")
     private Date startDate;
+    @Column(name = "vote_duration")
     private int voteDuration;
+    @Column(name = "shares_count")
+    private int sharesCount;
+    @Column(name = "likes_count")
+    private int likesCount;
+    @Column(name = "comments_count")
+    private int commentsCount;
+    @Column(name = "players_count")
+    private int playersCount;
 
     public Check() {
     }
@@ -41,6 +50,38 @@ public class Check {
         this.name = name;
         this.photo = photo;
         this.startDate = startDate;
+    }
+
+    public int getSharesCount() {
+        return sharesCount;
+    }
+
+    public void setSharesCount(int sharesCount) {
+        this.sharesCount = sharesCount;
+    }
+
+    public int getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(int commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public int getPlayersCount() {
+        return playersCount;
+    }
+
+    public void setPlayersCount(int playersCount) {
+        this.playersCount = playersCount;
     }
 
     public int getDuration() {

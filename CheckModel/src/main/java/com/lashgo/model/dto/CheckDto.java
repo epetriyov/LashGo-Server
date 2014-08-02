@@ -31,12 +31,25 @@ public class CheckDto implements Serializable {
     @Min(1)
     @ApiObjectField(description = "duration")
     private int duration;
+    @ApiObjectField(description = "task photo url")
+    private String taskPhotoUrl;
     @ApiObjectField(description = "photo url")
     private String photoUrl;
     @Min(1)
     @ApiObjectField(description = "vote duration")
     private int voteDuration;
-
+    @Min(0)
+    @ApiObjectField(description = "count of shares")
+    private int sharesCount;
+    @Min(0)
+    @ApiObjectField(description = "count of likes")
+    private int likesCount;
+    @Min(0)
+    @ApiObjectField(description = "count of comments")
+    private int commentsCount;
+    @Min(0)
+    @ApiObjectField(description = "count of players")
+    private int playersCount;
     public CheckDto() {
 
     }
@@ -54,6 +67,46 @@ public class CheckDto implements Serializable {
     public CheckDto(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public String getTaskPhotoUrl() {
+        return taskPhotoUrl;
+    }
+
+    public void setTaskPhotoUrl(String taskPhotoUrl) {
+        this.taskPhotoUrl = taskPhotoUrl;
+    }
+
+    public int getSharesCount() {
+        return sharesCount;
+    }
+
+    public void setSharesCount(int sharesCount) {
+        this.sharesCount = sharesCount;
+    }
+
+    public int getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(int commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public int getPlayersCount() {
+        return playersCount;
+    }
+
+    public void setPlayersCount(int playersCount) {
+        this.playersCount = playersCount;
     }
 
     public int getVoteDuration() {

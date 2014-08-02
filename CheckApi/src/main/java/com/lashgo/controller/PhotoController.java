@@ -62,6 +62,7 @@ public class PhotoController extends BaseController {
     ResponseEntity<FileSystemResource> getFile(@ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
 //        sessionValidator.validate(httpHeaders);
         logger.debug("Get photo request validated");
+        logger.debug(fileName);
         FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
         logger.debug("Resource get {}", resource.getPath());
         ResponseEntity<FileSystemResource> responseEntity = new ResponseEntity<>(resource, HttpStatus.OK);
