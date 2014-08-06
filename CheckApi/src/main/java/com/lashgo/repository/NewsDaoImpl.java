@@ -24,13 +24,13 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public List<News> getNews() {
-        return jdbcTemplate.query("SELECT n.* FROM news n ORDER BY create_date", new NewsMapper());
+        return jdbcTemplate.query("SELECT n.* FROM news n ORDER BY n.create_date", new NewsMapper());
     }
 
     @Override
     public int getNewerNews(Date lastViewDate) {
         if (lastViewDate != null) {
-            return jdbcTemplate.queryForObject("SELECT count(n.id) FROM news WHERE create_date > ?", new Object[]{lastViewDate}, new int[]{Types.TIMESTAMP}, Integer.class);
+            return jdbcTemplate.queryForObject("SELECT count(n.id) FROM news n WHERE n.create_date > ?", new Object[]{lastViewDate}, new int[]{Types.TIMESTAMP}, Integer.class);
         }
         return 0;
     }

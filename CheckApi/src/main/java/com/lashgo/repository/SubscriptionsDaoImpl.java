@@ -36,7 +36,7 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
     @Override
     public int getNewerSubscriptions(int userId, Date lastView) {
         if (lastView != null) {
-            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions WHERE user_id = ? AND subscribe_date > ?", new Object[]{userId, lastView}, new int[]{Types.INTEGER, Types.TIMESTAMP}, Integer.class);
+            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.user_id = ? AND s.subscribe_date > ?", new Object[]{userId, lastView}, new int[]{Types.INTEGER, Types.TIMESTAMP}, Integer.class);
         }
         return 0;
     }

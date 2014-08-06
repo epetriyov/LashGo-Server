@@ -28,6 +28,10 @@ public class ErrorDto implements Serializable {
         this.errorMessage = errorMessage;
     }
 
+    public ErrorDto(String code) {
+        this.errorCode = code;
+    }
+
     public String getErrorMessage() {
         return errorMessage;
     }

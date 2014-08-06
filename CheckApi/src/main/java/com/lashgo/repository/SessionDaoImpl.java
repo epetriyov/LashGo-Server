@@ -46,11 +46,11 @@ public class SessionDaoImpl implements SessionDao {
     }
 
     @Override
-    public Sessions getSessionByUser(int userId) {
+    public Sessions getSessionByUser(final int userId) {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.user_id = ?", new SessionsMapper(), userId);
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage("user.session.not.exists", new Integer[]{userId}, Locale.ENGLISH));
+//            logger.info(messageSource.getMessage("user.session.not.exists", new String[]{String.valueOf(userId)}, Locale.ENGLISH));
             return null;
         }
     }

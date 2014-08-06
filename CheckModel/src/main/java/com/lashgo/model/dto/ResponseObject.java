@@ -26,10 +26,6 @@ public class ResponseObject<T extends Serializable> extends ErrorResponse implem
         this.result = result;
     }
 
-    public ResponseObject(ErrorDto errorDto) {
-        this.error = errorDto;
-    }
-
     public T getResult() {
         return result;
     }

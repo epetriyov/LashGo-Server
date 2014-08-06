@@ -6,18 +6,17 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7fcb4c9f-b52e-4d68-80a6-6e2f138fdce0" name="Default" comment="some work done">
-      <change type="DELETED" beforePath="D:\LashGo\projects\LashGo\Server\.idea\workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java" />
+    <list default="true" id="7fcb4c9f-b52e-4d68-80a6-6e2f138fdce0" name="Default" comment="added get main screen info method">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RegisterResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorDto.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/create.sql" afterPath="$PROJECT_DIR$/database/create.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ResponseObject.java" afterPath="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ResponseObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java" afterPath="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties" afterPath="$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,8 +70,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules converted="true" />
     <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -80,6 +79,114 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="UserController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="709" max-vertical-offset="4981">
+              <caret line="80" column="51" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.42348754" vertical-offset="0" max-vertical-offset="629">
+              <caret line="18" column="17" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3030" max-vertical-offset="4811">
+              <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDao.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="629">
+              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDaoImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="1751">
+              <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+              <folding>
+                <marker date="1404745644942" expanded="true" signature="1067:1097" placeholder="SELECT COUNT..users..." />
+                <marker date="1404745644942" expanded="true" signature="1248:1325" placeholder="SELECT u.* F..users..." />
+                <marker date="1404745644942" expanded="true" signature="1751:1808" placeholder="SELECT u.id ..users..." />
+                <marker date="1404745644942" expanded="true" signature="2187:2225" placeholder="SELECT u.* F..users..." />
+                <marker date="1404745644942" expanded="true" signature="2569:2706" placeholder="INSERT INTO ..." />
+                <marker date="1404745644942" expanded="true" signature="3050:3134" placeholder="INSERT INTO ..." />
+                <marker date="1404745644942" expanded="true" signature="3351:3483" placeholder="INSERT INTO ..." />
+                <marker date="1404745644942" expanded="true" signature="3856:3902" placeholder="SELECT u.* F..temp_users..." />
+                <marker date="1404745644942" expanded="true" signature="4244:4376" placeholder="INSERT INTO ..." />
+                <marker date="1404745644942" expanded="true" signature="4694:4739" placeholder="UPDATE users..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegisterResponse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RegisterResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+              <caret line="17" column="104" selection-start-line="17" selection-start-column="104" selection-end-line="17" selection-end-column="104" />
+              <folding>
+                <element signature="e#595#596#0" expanded="true" />
+                <element signature="e#626#627#0" expanded="true" />
+                <element signature="e#674#675#0" expanded="true" />
+                <element signature="e#714#715#0" expanded="true" />
+                <element signature="e#747#748#0" expanded="true" />
+                <element signature="e#776#777#0" expanded="true" />
+                <element signature="e#820#821#0" expanded="true" />
+                <element signature="e#856#857#0" expanded="true" />
+                <element signature="e#895#896#0" expanded="true" />
+                <element signature="e#933#934#0" expanded="true" />
+                <element signature="e#992#993#0" expanded="true" />
+                <element signature="e#1046#1047#0" expanded="true" />
+                <element signature="e#1086#1087#0" expanded="true" />
+                <element signature="e#1125#1126#0" expanded="true" />
+                <element signature="e#1186#1187#0" expanded="true" />
+                <element signature="e#1242#1243#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestErrorHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1037">
+              <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResponseObject.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ResponseObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CheckDto.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -90,103 +197,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java">
+      <file leaf-file-name="ErrorResponse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="166" max-vertical-offset="629">
-              <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-              <folding>
-                <element signature="e#780#781#0" expanded="true" />
-                <element signature="e#826#827#0" expanded="true" />
-                <element signature="e#881#882#0" expanded="true" />
-                <element signature="e#927#928#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GcmServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1559" max-vertical-offset="2108">
-              <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="544">
+              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4383" max-vertical-offset="4981">
-              <caret line="303" column="58" selection-start-line="303" selection-start-column="58" selection-end-line="303" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="629">
-              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3786" max-vertical-offset="4335">
-              <caret line="274" column="55" selection-start-line="274" selection-start-column="55" selection-end-line="274" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="34374">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CheckDao.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="459">
-              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Check.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1649">
-              <caret line="17" column="30" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CheckDaoImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1360">
-              <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-              <folding>
-                <marker date="1406465453650" expanded="true" signature="898:1015" placeholder="SELECT c.* F..checks..." />
-                <marker date="1406465453650" expanded="true" signature="1322:1440" placeholder="SELECT c.*,p..checks..." />
-                <marker date="1406465453650" expanded="true" signature="1590:1629" placeholder="SELECT c.* F..checks..." />
-                <marker date="1406465453650" expanded="true" signature="1965:2057" placeholder="SELECT c.* F..checks..." />
-                <marker date="1406465453650" expanded="true" signature="2388:2487" placeholder="SELECT count..checks..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -825,11 +841,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckInterceptor.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ErrorCodes.java" />
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/ErrorCodes.java" />
-        <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorDto.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/PhotoReadException.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/LashgoRuntimeError.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/PhotoWriteException.java" />
@@ -837,11 +850,8 @@
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ValidationException.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/InternalServerError.java" />
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/ErrorCodes.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/PhotoServiceImpl.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/GCMController.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDaoImpl.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDao.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserGcmDao.java" />
@@ -851,23 +861,17 @@
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/Path.java" />
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/MainScreenInfoDto.java" />
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/UserLastViews.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/News.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDao.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/NewsMapper.java" />
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SubscriptionDto.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/SubscriptionsMapper.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDao.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/rebel.xml" />
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/rebel.xml" />
         <option value="$PROJECT_DIR$/LashGoApiDoc/src/main/java/rebel.xml" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/CheckConstants.java" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDaoImpl.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/webapp/WEB-INF/check-servlet.xml" />
-        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java" />
         <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/CheckDto.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/CheckMapper.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java" />
@@ -876,6 +880,18 @@
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java" />
         <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDaoImpl.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java" />
+        <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorDto.java" />
+        <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ResponseObject.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java" />
+        <option value="$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RegisterResponse.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java" />
       </list>
     </option>
   </component>
@@ -918,7 +934,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -947,21 +962,7 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="LashGoApiDoc" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CheckModel" />
+              <option name="myItemId" value="CheckApi" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -978,6 +979,10 @@
               <option name="myItemId" value="CheckApi" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -989,12 +994,119 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
+              <option name="myItemId" value="CheckApi" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CheckApi" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CheckApi" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lashgo" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CheckApi" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lashgo" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1019,9 +1131,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.lashgo.model.dto" />
       <recent name="com.lashgo.mappers" />
       <recent name="com.lashgo.repository" />
-      <recent name="com.lashgo.model.dto" />
       <recent name="com.lashgo.error" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -1453,7 +1565,10 @@
       <workItem from="1405958717702" duration="3393000" />
       <workItem from="1406115892755" duration="3708000" />
       <workItem from="1406247394858" duration="6929000" />
-      <workItem from="1406955777942" duration="1049000" />
+      <workItem from="1406955777942" duration="4478000" />
+      <workItem from="1406977937440" duration="3991000" />
+      <workItem from="1407150864340" duration="1264000" />
+      <workItem from="1407171228821" duration="1982000" />
     </task>
     <task id="LOCAL-00001" summary="some work done">
       <created>1403628337664</created>
@@ -1463,15 +1578,19 @@
       <created>1406134328359</created>
       <updated>1406134328359</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added get main screen info method">
+      <created>1406956864072</created>
+      <updated>1406956864072</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87415000" />
+    <option name="totallyTimeSpent" value="98081000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1482,7 +1601,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel Executor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5008157" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39314845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1498,11 +1617,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2473525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32300162" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28773585" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33835846" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33768353" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1525,11 +1644,12 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="some work done" />
-    <option name="LAST_COMMIT_MESSAGE" value="some work done" />
+    <MESSAGE value="added get main screen info method" />
+    <option name="LAST_COMMIT_MESSAGE" value="added get main screen info method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1537,139 +1657,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Photos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1360">
-          <caret line="13" column="20" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/News.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1513">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CommentDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-          <caret line="28" column="91" selection-start-line="25" selection-start-column="0" selection-end-line="28" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/SessionsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/UsersMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/PhotosDtoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <caret line="31" column="61" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/SubscriptionsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <caret line="20" column="86" selection-start-line="20" selection-start-column="86" selection-end-line="20" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/SubscriptionDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1173">
-          <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/NewsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.5.RELEASE/82389e66ef1cd0085d5a8a00c827ae5c93a8040b/spring-web-4.0.5.RELEASE-sources.jar!/org/springframework/web/bind/annotation/RequestParam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="441" max-vertical-offset="1088">
-          <caret line="56" column="116" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/test/UserDaoTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="14" max-vertical-offset="527">
-          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/UserLastViews.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="337" max-vertical-offset="799">
-          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="14" max-vertical-offset="374">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="3077">
-          <caret line="62" column="36" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/rebel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="173" max-vertical-offset="697">
-          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="816">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="1054">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/gcm/LoggingInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1173">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/GcmDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="357">
@@ -1684,31 +1671,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="986">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1723,7 +1689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1580" max-vertical-offset="2142">
           <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1738,15 +1703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="457" max-vertical-offset="986">
           <caret line="34" column="55" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/CheckConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="113" max-vertical-offset="476">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1803,7 +1759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17435898" vertical-offset="0" max-vertical-offset="585">
           <caret line="6" column="77" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1811,15 +1766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2058" max-vertical-offset="2448">
           <caret line="125" column="26" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45454547" vertical-offset="471" max-vertical-offset="2261">
-          <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1827,7 +1773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
           <caret line="20" column="65" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1835,13 +1780,172 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1173">
           <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-          <folding>
-            <marker date="1406465453650" expanded="true" signature="898:1015" placeholder="SELECT c.* F..checks..." />
-            <marker date="1406465453650" expanded="true" signature="1322:1440" placeholder="SELECT c.*,p..checks..." />
-            <marker date="1406465453650" expanded="true" signature="1590:1629" placeholder="SELECT c.* F..checks..." />
-            <marker date="1406465453650" expanded="true" signature="1965:2057" placeholder="SELECT c.* F..checks..." />
-            <marker date="1406465453650" expanded="true" signature="2388:2487" placeholder="SELECT count..checks..." />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37777779" vertical-offset="0" max-vertical-offset="585">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1649">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="166" max-vertical-offset="629">
+          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1559" max-vertical-offset="2108">
+          <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4160839" vertical-offset="34" max-vertical-offset="33337">
+          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/mappers/UsersMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SessionDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="986">
+          <caret line="53" column="39" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/UserDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1717">
+          <caret line="82" column="18" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/CheckConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/NewsDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="544">
+          <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/SubscriptionsDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/PhotoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2312">
+          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="3077">
+          <caret line="62" column="36" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/ErrorCodes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="544">
+          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/resources/messages_en.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/LashgoRuntimeError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/SessionValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="298" max-vertical-offset="663">
+          <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="117" max-vertical-offset="765">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/CheckInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="816">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/ValidationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1802">
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1853,71 +1957,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/CheckDao.java">
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ErrorResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="442">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/domain/Check.java">
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/error/RestErrorHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1649">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1037">
+          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/CheckServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/RegisterResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="166" max-vertical-offset="629">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+          <caret line="17" column="104" selection-start-line="17" selection-start-column="104" selection-end-line="17" selection-end-column="104" />
           <folding>
-            <element signature="e#780#781#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-            <element signature="e#881#882#0" expanded="true" />
-            <element signature="e#927#928#0" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#674#675#0" expanded="true" />
+            <element signature="e#714#715#0" expanded="true" />
+            <element signature="e#747#748#0" expanded="true" />
+            <element signature="e#776#777#0" expanded="true" />
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="e#856#857#0" expanded="true" />
+            <element signature="e#895#896#0" expanded="true" />
+            <element signature="e#933#934#0" expanded="true" />
+            <element signature="e#992#993#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1086#1087#0" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#1186#1187#0" expanded="true" />
+            <element signature="e#1242#1243#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/GcmServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1559" max-vertical-offset="2108">
-          <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="629">
+          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java">
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/repository/UserDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="629">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="1751">
+          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+          <folding>
+            <marker date="1404745644942" expanded="true" signature="1067:1097" placeholder="SELECT COUNT..users..." />
+            <marker date="1404745644942" expanded="true" signature="1248:1325" placeholder="SELECT u.* F..users..." />
+            <marker date="1404745644942" expanded="true" signature="1751:1808" placeholder="SELECT u.id ..users..." />
+            <marker date="1404745644942" expanded="true" signature="2187:2225" placeholder="SELECT u.* F..users..." />
+            <marker date="1404745644942" expanded="true" signature="2569:2706" placeholder="INSERT INTO ..." />
+            <marker date="1404745644942" expanded="true" signature="3050:3134" placeholder="INSERT INTO ..." />
+            <marker date="1404745644942" expanded="true" signature="3351:3483" placeholder="INSERT INTO ..." />
+            <marker date="1404745644942" expanded="true" signature="3856:3902" placeholder="SELECT u.* F..temp_users..." />
+            <marker date="1404745644942" expanded="true" signature="4244:4376" placeholder="INSERT INTO ..." />
+            <marker date="1404745644942" expanded="true" signature="4694:4739" placeholder="UPDATE users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3030" max-vertical-offset="4811">
+          <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4383" max-vertical-offset="4981">
-          <caret line="303" column="58" selection-start-line="303" selection-start-column="58" selection-end-line="303" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="709" max-vertical-offset="4981">
+          <caret line="80" column="51" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/CheckModel/src/main/java/com/lashgo/model/dto/ResponseObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3786" max-vertical-offset="4335">
-          <caret line="274" column="55" selection-start-line="274" selection-start-column="55" selection-end-line="274" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="544">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/CheckApi/src/main/java/com/lashgo/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="34102">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.42348754" vertical-offset="0" max-vertical-offset="629">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>

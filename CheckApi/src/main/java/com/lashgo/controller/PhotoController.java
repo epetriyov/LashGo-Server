@@ -1,6 +1,7 @@
 package com.lashgo.controller;
 
 import com.lashgo.CheckConstants;
+import com.lashgo.error.PhotoReadException;
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.Path;
 import com.lashgo.model.dto.CommentDto;
@@ -55,7 +56,7 @@ public class PhotoController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Photos.GET_FILE, method = RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = Path.Photos.GET_FILE, method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public
     @ResponseBody
     @ApiResponseObject
@@ -63,10 +64,13 @@ public class PhotoController extends BaseController {
 //        sessionValidator.validate(httpHeaders);
         logger.debug("Get photo request validated");
         logger.debug(fileName);
-        FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
-        logger.debug("Resource get {}", resource.getPath());
-        ResponseEntity<FileSystemResource> responseEntity = new ResponseEntity<>(resource, HttpStatus.OK);
-        return responseEntity;
+        if (fileName != null) {
+            FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
+            logger.debug("Resource get {}", resource.getPath());
+            ResponseEntity<FileSystemResource> responseEntity = new ResponseEntity<>(resource, HttpStatus.OK);
+            return responseEntity;
+        }
+        throw new PhotoReadException();
     }
 
     @ApiMethod(
