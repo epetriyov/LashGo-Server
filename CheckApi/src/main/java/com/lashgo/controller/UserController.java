@@ -75,10 +75,9 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject register(@ApiBodyObject @Valid @RequestBody LoginInfo registerInfo, BindingResult result) {
+    ResponseObject<RegisterResponse> register(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody LoginInfo registerInfo, BindingResult result) {
         CheckUtils.handleBindingResult(logger, result);
-        userService.register(registerInfo);
-        return new ResponseObject<>();
+        return new ResponseObject<>(userService.register(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), registerInfo));
     }
 
     @ApiMethod(
@@ -99,7 +98,7 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject<SessionInfo> socialSignIn(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SocialInfo socialInfo, BindingResult result) {
+    ResponseObject<RegisterResponse> socialSignIn(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SocialInfo socialInfo, BindingResult result) {
         CheckUtils.handleBindingResult(logger, result);
         return new ResponseObject<>(userService.socialSignIn(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
     }
@@ -122,7 +121,7 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject<SessionInfo> confirmSocialSignUp(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody ExtendedSocialInfo socialInfo, BindingResult result) {
+    ResponseObject<RegisterResponse> confirmSocialSignUp(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody ExtendedSocialInfo socialInfo, BindingResult result) {
         CheckUtils.handleBindingResult(logger, result);
         return new ResponseObject<>(userService.socialSignUp(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
     }

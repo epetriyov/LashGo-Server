@@ -1,8 +1,9 @@
 package com.lashgo.repository;
 
-import com.lashgo.model.dto.SubscriptionDto;
 import com.lashgo.mappers.SubscriptionsMapper;
+import com.lashgo.model.dto.SubscriptionDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -39,5 +40,23 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
             return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.user_id = ? AND s.subscribe_date > ?", new Object[]{userId, lastView}, new int[]{Types.INTEGER, Types.TIMESTAMP}, Integer.class);
         }
         return 0;
+    }
+
+    @Override
+    public int getSubscriptionsCount(int usersId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.user_id = ?", new Object[]{usersId}, Integer.class);
+        } catch (EmptyResultDataAccessException e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public int getSubscribersCount(int usersId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.checklist_id = ?", new Object[]{usersId}, Integer.class);
+        } catch (EmptyResultDataAccessException e) {
+            return 0;
+        }
     }
 }

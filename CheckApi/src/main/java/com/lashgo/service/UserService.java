@@ -13,7 +13,7 @@ public interface UserService {
 
     SessionInfo login(String interfaceTypeCode, LoginInfo loginInfo) throws ValidationException, UnautharizedException;
 
-    void register(LoginInfo registerInfo) throws ValidationException;
+    RegisterResponse register(String interfaceTypeCode, LoginInfo registerInfo) throws ValidationException;
 
     void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException;
 
@@ -27,9 +27,9 @@ public interface UserService {
 
     void subscribe(String sessionId, int userId);
 
-    SessionInfo socialSignIn(String interfaceTypeCode, SocialInfo socialInfo);
+    RegisterResponse socialSignIn(String interfaceTypeCode, SocialInfo socialInfo);
 
-    SessionInfo socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo);
+    RegisterResponse socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo);
 
     MainScreenInfoDto getMainScreenInfo(String sessionId, UserLastViews userLastViews);
 }

@@ -1,14 +1,15 @@
 package com.lashgo.repository;
 
 import com.lashgo.domain.Users;
-import com.lashgo.model.ErrorCodes;
 import com.lashgo.mappers.UsersMapper;
+import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.model.dto.RegisterInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -52,9 +53,9 @@ public class UserDaoImpl implements UserDao {
 
     public boolean isUserExists(String email) {
         try {
-            jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE u.email = ? OR u.login = ?", Integer.class, email);
-        } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{email}, Locale.ENGLISH));
+            jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE u.email = ? OR u.login = ?", Integer.class, email, email);
+        } catch (DataAccessException e) {
+            logger.info(e.getMessage());
             return false;
         }
         return true;

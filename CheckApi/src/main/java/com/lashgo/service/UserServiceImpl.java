@@ -3,11 +3,11 @@ package com.lashgo.service;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Sessions;
 import com.lashgo.domain.Users;
-import com.lashgo.model.dto.*;
-import com.lashgo.repository.*;
-import com.lashgo.model.ErrorCodes;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
+import com.lashgo.model.ErrorCodes;
+import com.lashgo.model.dto.*;
+import com.lashgo.repository.*;
 import com.lashgo.utils.CheckUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
             if (session == null || System.currentTimeMillis() - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
                 session = sessionDao.createSession(users.getId());
             }
-            return new SessionInfo(session.getSessionId());
+            return new SessionInfo(session.getSessionId(), users.getId());
         } else {
             throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
         }
@@ -104,9 +104,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void register(LoginInfo registerInfo) throws ValidationException {
+    public RegisterResponse register(String interfaceTypeCode, LoginInfo registerInfo) throws ValidationException {
+        logger.info("Start register");
         if (!userDao.isUserExists(registerInfo.getLogin())) {
+            logger.info("User does not exists");
             userDao.createUser(registerInfo);
+            logger.info("User created");
+            return buildRegisterResponse(interfaceTypeCode, registerInfo);
         } else {
             throw new ValidationException(ErrorCodes.USER_ALREADY_EXISTS);
         }
@@ -178,7 +182,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public SessionInfo socialSignIn(String interfaceTypeCode, SocialInfo socialInfo) {
+    public RegisterResponse socialSignIn(String interfaceTypeCode, SocialInfo socialInfo) {
         RegisterInfo registerInfo = null;
         switch (socialInfo.getSocialName()) {
             case SocialNames.FACEBOOK:
@@ -226,14 +230,14 @@ public class UserServiceImpl implements UserService {
                 throw new ValidationException(ErrorCodes.EMAIL_NEEDED);
             } else {
                 userDao.createUser(registerInfo);
-                return innerLogin(interfaceTypeCode, registerInfo);
+                return buildRegisterResponse(interfaceTypeCode, registerInfo);
             }
         }
-        return sessionInfo;
+        return new RegisterResponse(sessionInfo.getSessionId());
     }
 
     @Override
-    public SessionInfo socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo) {
+    public RegisterResponse socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo) {
         LoginInfo loginInfo = null;
         switch (socialInfo.getSocialName()) {
             case SocialNames.FACEBOOK:
@@ -261,7 +265,23 @@ public class UserServiceImpl implements UserService {
         tempUser.setEmail(socialInfo.getEmail());
         tempUser.setPassword(loginInfo.getPasswordHash());
         userDao.createSocialUser(tempUser);
-        return innerLogin(interfaceTypeCode, loginInfo);
+        return buildRegisterResponse(interfaceTypeCode, loginInfo);
+    }
+
+    private RegisterResponse buildRegisterResponse(String interfaceTypeCode, LoginInfo loginInfo) {
+        Users users = userDao.findUser(loginInfo);
+        logger.info("User found");
+        SessionInfo sessionInfo = innerLogin(interfaceTypeCode, loginInfo);
+        logger.info("Session created");
+        RegisterResponse registerResponse = new RegisterResponse();
+        registerResponse.setUserId(users.getId());
+        registerResponse.setSessionId(sessionInfo.getSessionId());
+        registerResponse.setAvatar(users.getAvatar());
+        registerResponse.setUserName(users.getLogin() != null ? users.getLogin() : users.getEmail());
+        registerResponse.setSubscribesCount(subscriptionsDao.getSubscriptionsCount(users.getId()));
+        logger.info("Subscriptions count calced");
+        registerResponse.setSubscribersCount(subscriptionsDao.getSubscribersCount(users.getId()));
+        return registerResponse;
     }
 
     @Override
