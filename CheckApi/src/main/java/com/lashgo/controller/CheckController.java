@@ -191,4 +191,29 @@ public class CheckController extends BaseController {
         photoService.savePhoto(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), checkId, file);
         return new ResponseObject();
     }
+
+    @ApiMethod(
+            path = Path.Checks.VOTE_PHOTOS,
+            verb = ApiVerb.GET,
+            description = "get vote photos",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Checks.VOTE_PHOTOS, method = RequestMethod.GET)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseList<VotePhoto> getVotePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+        sessionValidator.validate(httpHeaders);
+        return new ResponseList<>(checkService.getVotePhotos(checkId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+    }
 }

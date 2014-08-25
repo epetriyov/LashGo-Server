@@ -13,6 +13,7 @@ public final class CheckConstants {
     public static final long SESSION_EXPIRE_PERIOD_MILLIS = 3600000l;
     public static final String DATE_FORMAT = "dd.MM.yyyy HH:mm:ss z";
     public static final String PHOTOS_FOLDER = "D:/LashGo/photos/";
+    public static final int VOTE_PHOTOS_LIMIT = 4;
 
     private CheckConstants() {
 

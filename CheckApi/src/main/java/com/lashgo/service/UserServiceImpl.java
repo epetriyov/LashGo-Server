@@ -141,38 +141,38 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getProfile(String sessionId) {
-        Sessions sessions = sessionDao.getSessionById(sessionId);
-        Users users = userDao.getUserById(sessions.getUserId());
+        Users users = getUserBySession(sessionId);
         return new UserDto(users.getId(), users.getLogin(), users.getName(), users.getSurname(), users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar(), users.getEmail());
     }
 
     @Override
     public List<PhotoDto> getPhotos(String sessionId) {
-        Sessions sessions = sessionDao.getSessionById(sessionId);
-        Users users = userDao.getUserById(sessions.getUserId());
+        Users users = getUserBySession(sessionId);
         return photoDao.getPhotosByUserId(users.getId());
+    }
+
+    public Users getUserBySession(String sessionId) {
+        Sessions sessions = sessionDao.getSessionById(sessionId);
+        return userDao.getUserById(sessions.getUserId());
     }
 
     @Override
     public List<SubscriptionDto> getSubscriptions(String sessionId) {
-        Sessions sessions = sessionDao.getSessionById(sessionId);
-        Users users = userDao.getUserById(sessions.getUserId());
+        Users users = getUserBySession(sessionId);
         return subscriptionsDao.getSubscriptions(users.getId());
     }
 
     @Transactional
     @Override
     public void unsubscribe(String sessionId, int userId) {
-        Sessions sessions = sessionDao.getSessionById(sessionId);
-        Users users = userDao.getUserById(sessions.getUserId());
+        Users users = getUserBySession(sessionId);
         subscriptionsDao.removeSubscription(users.getId(), userId);
     }
 
     @Transactional
     @Override
     public void subscribe(String sessionId, int userId) {
-        Sessions sessions = sessionDao.getSessionById(sessionId);
-        Users users = userDao.getUserById(sessions.getUserId());
+        Users users = getUserBySession(sessionId);
         subscriptionsDao.addSubscription(users.getId(), userId);
     }
 
@@ -295,6 +295,4 @@ public class UserServiceImpl implements UserService {
         mainScreenInfoDto.setTasksCount(checkDao.getActiveChecksCount());
         return mainScreenInfoDto;
     }
-
-
 }

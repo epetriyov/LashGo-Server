@@ -7,9 +7,11 @@ import com.lashgo.model.Path;
 import com.lashgo.model.dto.CommentDto;
 import com.lashgo.model.dto.ResponseList;
 import com.lashgo.model.dto.ResponseObject;
+import com.lashgo.model.dto.VoteAction;
 import com.lashgo.service.CommentService;
 import com.lashgo.service.PhotoService;
 import com.lashgo.service.SessionValidator;
+import com.lashgo.utils.CheckUtils;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -20,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -75,7 +78,7 @@ public class PhotoController extends BaseController {
 
     @ApiMethod(
             path = Path.Photos.VOTE,
-            verb = ApiVerb.PUT,
+            verb = ApiVerb.POST,
             description = "vote for photo",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
@@ -89,13 +92,14 @@ public class PhotoController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Photos.VOTE, method = RequestMethod.PUT)
+    @RequestMapping(value = Path.Photos.VOTE, method = RequestMethod.POST)
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject ratePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+    ResponseObject ratePhoto(@RequestHeader HttpHeaders httpHeaders, @RequestBody VoteAction voteAction, BindingResult result) {
         sessionValidator.validate(httpHeaders);
-        photoService.ratePhoto(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), photoId);
+        CheckUtils.handleBindingResult(logger, result);
+        photoService.ratePhoto(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), voteAction);
         return new ResponseObject();
     }
 

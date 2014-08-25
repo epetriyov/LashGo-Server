@@ -1,5 +1,6 @@
 package com.lashgo.service;
 
+import com.lashgo.model.dto.VoteAction;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -9,5 +10,5 @@ public interface PhotoService {
 
     void savePhoto(String sessionId, long checkId, MultipartFile photo);
 
-    void ratePhoto(String sessionId, long photoId);
+    void ratePhoto(String sessionId, VoteAction voteAction);
 }

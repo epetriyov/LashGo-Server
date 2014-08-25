@@ -128,3 +128,11 @@ CREATE TABLE news (
 	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= current_timestamp) DEFAULT current_timestamp,
 	image_url       varchar(50)               NOT NULL UNIQUE CHECK (image_url <> '')
 );
+
+CREATE TABLE user_votes (
+	id 				serial					  NOT NULL PRIMARY KEY,
+	user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,	    
+    photo_id        int                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE UNIQUE INDEX user_votes_idx ON user_votes (user_id, photo_id);

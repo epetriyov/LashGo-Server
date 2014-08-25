@@ -1,5 +1,6 @@
 package com.lashgo.service;
 
+import com.lashgo.domain.Users;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.dto.*;
@@ -32,4 +33,6 @@ public interface UserService {
     RegisterResponse socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo);
 
     MainScreenInfoDto getMainScreenInfo(String sessionId, UserLastViews userLastViews);
+
+    Users getUserBySession(String sessionId);
 }

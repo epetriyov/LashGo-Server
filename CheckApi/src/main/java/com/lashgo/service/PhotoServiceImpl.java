@@ -1,14 +1,16 @@
 package com.lashgo.service;
 
-import com.lashgo.model.dto.UserDto;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Photos;
-import com.lashgo.repository.PhotoDao;
-import com.lashgo.repository.UserRatingDao;
-import com.lashgo.model.ErrorCodes;
+import com.lashgo.domain.Users;
 import com.lashgo.error.PhotoReadException;
 import com.lashgo.error.PhotoWriteException;
 import com.lashgo.error.ValidationException;
+import com.lashgo.model.ErrorCodes;
+import com.lashgo.model.dto.UserDto;
+import com.lashgo.model.dto.VoteAction;
+import com.lashgo.repository.PhotoDao;
+import com.lashgo.repository.UserVotesDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class PhotoServiceImpl implements PhotoService {
     private PhotoDao photoDao;
 
     @Autowired
-    private UserRatingDao userRatingDao;
+    private UserVotesDao userVotesDao;
 
     private final Logger logger = LoggerFactory.getLogger("FILE");
 
@@ -76,14 +78,9 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Transactional
     @Override
-    public void ratePhoto(String sessionId, long photoId) {
-        UserDto userDto = userService.getProfile(sessionId);
-        if (userRatingDao.wasRated(userDto.getId(), photoId)) {
-            photoDao.unrate(photoId);
-            userRatingDao.removeRating(userDto.getId(), photoId);
-        } else {
-            photoDao.rate(photoId);
-            userRatingDao.addRating(userDto.getId(), photoId);
-        }
+    public void ratePhoto(String sessionId, VoteAction voteAction) {
+        Users users = userService.getUserBySession(sessionId);
+        photoDao.rate(voteAction.getVotedPhotoId());
+        userVotesDao.addUserVotes(users.getId(), voteAction.getPhotoIds());
     }
 }
