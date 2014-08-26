@@ -5,6 +5,7 @@ import com.lashgo.domain.Users;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VotePhoto;
+import com.lashgo.model.dto.VotePhotosResult;
 import com.lashgo.repository.CheckDao;
 import com.lashgo.repository.PhotoDao;
 import com.lashgo.repository.UserVotesDao;
@@ -49,9 +50,11 @@ public class CheckServiceImpl implements CheckService {
     }
 
     @Override
-    public List<VotePhoto> getVotePhotos(int checkId, String sessionId) {
+    public VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded) {
         Users users = userService.getUserBySession(sessionId);
-        return userVotesDao.getVotePhotos(users.getId(), checkId, CheckConstants.VOTE_PHOTOS_LIMIT);
+        List<VotePhoto> votePhotoList = userVotesDao.getVotePhotos(users.getId(), checkId, CheckConstants.VOTE_PHOTOS_LIMIT);
+        Integer photosCount = isCountIncluded ? userVotesDao.getVotePhotosCount(users.getId(), checkId) : null;
+        return new VotePhotosResult(votePhotoList, photosCount);
     }
 
 }

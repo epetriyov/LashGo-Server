@@ -11,4 +11,6 @@ public interface UserVotesDao {
     List<VotePhoto> getVotePhotos(int userId, int checkId, int limit);
 
     void addUserVotes(int userId, long[] photoIds);
+
+    int getVotePhotosCount(int userId, int checkId);
 }

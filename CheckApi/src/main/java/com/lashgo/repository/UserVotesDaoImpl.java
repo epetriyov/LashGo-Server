@@ -4,6 +4,7 @@ import com.lashgo.mappers.UserVotesMapper;
 import com.lashgo.model.dto.VotePhoto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -41,6 +42,22 @@ public class UserVotesDaoImpl implements UserVotesDao {
     public void addUserVotes(int userId, long[] photoIds) {
         for (int i = 0; i < photoIds.length; i++) {
             jdbcTemplate.update("INSERT INTO user_votes (user_id,photo_id) VALUES (?,?)", userId, photoIds[i]);
+        }
+    }
+
+    @Override
+    public int getVotePhotosCount(int userId, int checkId) {
+        try {
+            return jdbcTemplate.queryForObject(
+                    " SELECT COUNT(ph.id) " +
+                            "FROM photos ph " +
+                            "INNER JOIN users u ON " +
+                            "(u.id = ph.user_id) " +
+                            "WHERE ph.check_id = ? AND ph.id NOT IN " +
+                            "(SELECT uv.photo_id FROM user_votes uv " +
+                            " WHERE uv.user_id = ?)", Integer.class, checkId, userId);
+        } catch (IncorrectResultSizeDataAccessException e ) {
+            return 0;
         }
     }
 }

@@ -212,8 +212,8 @@ public class CheckController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseList<VotePhoto> getVotePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+    ResponseObject<VotePhotosResult> getVotePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId, @RequestParam(value = "is_count_included", required = false, defaultValue = "false") boolean isCountIncluded) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseList<>(checkService.getVotePhotos(checkId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+        return new ResponseObject<>(checkService.getVotePhotos(checkId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), isCountIncluded));
     }
 }

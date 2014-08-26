@@ -22,11 +22,9 @@ public class VotePhoto implements Serializable {
     @Min(1)
     @ApiObjectField(description = "userId")
     private int userId;
-
     @Size(min = 1)
     @ApiObjectField(description = "userAvatar")
     private String userAvatar;
-
     @Size(min = 1)
     @ApiObjectField(description = "userLogin")
     private String userLogin;
@@ -36,7 +34,6 @@ public class VotePhoto implements Serializable {
 
     public VotePhoto() {
     }
-
     public VotePhoto(String photoUrl, int userId, String userAvatar, String userLogin, long photoId) {
         this.photoUrl = photoUrl;
         this.userId = userId;

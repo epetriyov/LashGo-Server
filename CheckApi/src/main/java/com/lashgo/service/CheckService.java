@@ -2,7 +2,7 @@ package com.lashgo.service;
 
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
-import com.lashgo.model.dto.VotePhoto;
+import com.lashgo.model.dto.VotePhotosResult;
 
 import java.util.List;
 
@@ -17,5 +17,5 @@ public interface CheckService {
 
     List<PhotoDto> getPhotos(long checkId);
 
-    List<VotePhoto> getVotePhotos(int checkId,String sessionId);
+    VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded);
 }
