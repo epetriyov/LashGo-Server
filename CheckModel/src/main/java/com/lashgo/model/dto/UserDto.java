@@ -21,36 +21,37 @@ public class UserDto implements Serializable {
     @Size(min = 1)
     @ApiObjectField(description = "login")
     private String login;
-
-    @ApiObjectField(description = "name")
-    private String name;
-
-    @ApiObjectField(description = "surname")
-    private String surname;
-
+    @ApiObjectField(description = "fio")
+    private String fio;
     @ApiObjectField(description = "about")
     private String about;
-
     @ApiObjectField(description = "city")
     private String city;
-
     @ApiObjectField(description = "birthDate")
     private Date birthDate;
-
     @ApiObjectField(description = "avatar")
     private String avatar;
     @Size(min = 1)
     @ApiObjectField(description = "email")
     private String email;
+    @ApiObjectField(description = "count of user's subscribes")
+    private int userSubscribes;
+    @ApiObjectField(description = "count of user's subscribers")
+    private int userSubscribers;
+    @ApiObjectField(description = "count of user's checks")
+    private int checksCount;
+    @ApiObjectField(description = "count of user's comments")
+    private int commentsCount;
+    @ApiObjectField(description = "count of user's likes")
+    private int likesCount;
 
     public UserDto() {
     }
 
-    public UserDto(int id, String login, String name, String surname, String about, String city, Date birthDate, String avatar, String email) {
+    public UserDto(int id, String login, String fio, String about, String city, Date birthDate, String avatar, String email) {
         this.id = id;
         this.login = login;
-        this.name = name;
-        this.surname = surname;
+        this.fio = fio;
         this.about = about;
         this.city = city;
         this.birthDate = birthDate;
@@ -62,6 +63,54 @@ public class UserDto implements Serializable {
         this.id = id;
         this.login = login;
         this.avatar = avatar;
+    }
+
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public int getUserSubscribes() {
+        return userSubscribes;
+    }
+
+    public void setUserSubscribes(int userSubscribes) {
+        this.userSubscribes = userSubscribes;
+    }
+
+    public int getUserSubscribers() {
+        return userSubscribers;
+    }
+
+    public void setUserSubscribers(int userSubscribers) {
+        this.userSubscribers = userSubscribers;
+    }
+
+    public int getChecksCount() {
+        return checksCount;
+    }
+
+    public void setChecksCount(int checksCount) {
+        this.checksCount = checksCount;
+    }
+
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(int commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public int getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
     }
 
     public String getEmail() {
@@ -86,22 +135,6 @@ public class UserDto implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getAbout() {

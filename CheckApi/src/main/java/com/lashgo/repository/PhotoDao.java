@@ -15,10 +15,6 @@ public interface PhotoDao {
 
     boolean isPhotoExists(long userId, long checkId);
 
-    void unrate(long photoId);
-
-    void rate(long photoId);
-
     List<PhotoDto> getPhotosByUserId(int userId);
 
     List<PhotoDto> getPhotosByCheckId(long checkId);

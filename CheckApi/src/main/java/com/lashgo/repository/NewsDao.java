@@ -1,6 +1,6 @@
 package com.lashgo.repository;
 
-import com.lashgo.domain.News;
+import com.lashgo.model.dto.NewsDto;
 
 import java.util.Date;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface NewsDao {
 
-    List<News> getNews();
+    List<NewsDto> getNews();
 
     int getNewerNews(Date lastViewDate);
 }

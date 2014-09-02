@@ -28,9 +28,8 @@ public class PhotosDtoMapper implements RowMapper<PhotoDto> {
         PhotoDto photos = new PhotoDto();
         photos.setId(resultSet.getInt("id_photo"));
         photos.setUrl(resultSet.getString("picture"));
-        photos.setRating(resultSet.getInt("rating"));
         if (mapType.equals(MapType.USER_JOIN)) {
-            photos.setCheck(new CheckDto(resultSet.getInt("id"), resultSet.getString("name")));
+            photos.setCheck(new CheckDto(resultSet.getInt("id"), resultSet.getString("name"),resultSet.getString("task_photo")));
         } else {
             photos.setUser(new UserDto(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("avatar")));
         }

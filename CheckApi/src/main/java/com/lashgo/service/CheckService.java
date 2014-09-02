@@ -11,11 +11,11 @@ import java.util.List;
  */
 
 public interface CheckService {
-    List<CheckDto> getChecks();
-
-    CheckDto getCurrentCheck();
+    List<CheckDto> getChecks(String sessionId);
 
     List<PhotoDto> getPhotos(long checkId);
 
     VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded);
+
+    boolean likeCheck(int checkId, String sessionId);
 }

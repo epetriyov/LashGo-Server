@@ -22,10 +22,8 @@ public class Users implements Serializable {
     private String login;
     @Column(name = "password")
     private String password;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "surname")
-    private String surname;
+    @Column(name = "fio")
+    private String fio;
     @Column(name = "about")
     private String about;
     @Column(name = "birth_date")
@@ -106,20 +104,12 @@ public class Users implements Serializable {
         this.about = about;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFio() {
+        return fio;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
     public String getPassword() {

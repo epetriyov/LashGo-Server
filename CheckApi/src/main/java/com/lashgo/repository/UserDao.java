@@ -9,8 +9,6 @@ import com.lashgo.model.dto.LoginInfo;
  */
 public interface UserDao {
 
-    void removeAllUsers();
-
     int getCount();
 
     Users findUser(LoginInfo loginInfo);

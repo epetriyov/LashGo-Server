@@ -21,9 +21,6 @@ public class PhotoDto implements Serializable {
     @Size(min = 1)
     @ApiObjectField(description = "url of photo")
     private String url;
-    @Min(0)
-    @ApiObjectField(description = "rating")
-    private int rating;
     @NotNull
     @ApiObjectField(description = "check")
     private CheckDto check;
@@ -35,11 +32,10 @@ public class PhotoDto implements Serializable {
 
     }
 
-    public PhotoDto(long id, String url, CheckDto check, int rating, UserDto user) {
+    public PhotoDto(long id, String url, CheckDto check, UserDto user) {
         this.id = id;
         this.url = url;
         this.check = check;
-        this.rating = rating;
         this.user = user;
     }
 
@@ -49,14 +45,6 @@ public class PhotoDto implements Serializable {
 
     public void setUser(UserDto user) {
         this.user = user;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public CheckDto getCheck() {

@@ -8,5 +8,5 @@ import java.util.List;
  * Created by Eugene on 06.05.2014.
  */
 public interface ContentService {
-    List<ContentDto> getNews(String sessionId);
+    List<com.lashgo.model.dto.NewsDto> getNews();
 }

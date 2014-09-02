@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface CommentDao {
 
-    List<Comments> getCommentsByCheck(long checkId);
+    List<CommentDto> getCommentsByCheck(long checkId);
 
     void addCheckComment(long checkId, CommentDto checkCommentDto);
 
     void deleteComment(long commentId);
 
-    List<Comments> getCommentsByPhoto(long photoId);
+    List<CommentDto> getCommentsByPhoto(long photoId);
 
     void addPhotoComment(long photoId, CommentDto photoCommentDto);
 }

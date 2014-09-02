@@ -10,6 +10,7 @@ import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.UserDto;
 import com.lashgo.model.dto.VoteAction;
 import com.lashgo.repository.PhotoDao;
+import com.lashgo.repository.UserShownPhotosDao;
 import com.lashgo.repository.UserVotesDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,9 @@ public class PhotoServiceImpl implements PhotoService {
     private UserService userService;
 
     @Autowired
+    private UserShownPhotosDao userShownPhotosDao;
+
+    @Autowired
     private PhotoDao photoDao;
 
     @Autowired
@@ -42,18 +46,23 @@ public class PhotoServiceImpl implements PhotoService {
 
     private final Logger logger = LoggerFactory.getLogger("FILE");
 
+    private String buildNewPhotoName(int checkId, int userId) {
+        StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
+        StringBuilder photoNameBuilder = new StringBuilder("check_");
+        photoNameBuilder.append(checkId);
+        photoNameBuilder.append("_user_");
+        photoNameBuilder.append(userId);
+        photoNameBuilder.append(".png");
+        photoDestinationBuilder.append(photoNameBuilder);
+        return photoDestinationBuilder.toString();
+    }
+
     @Transactional
     @Override
-    public void savePhoto(String sessionId, long checkId, MultipartFile photo) {
+    public void savePhoto(String sessionId, int checkId, MultipartFile photo) {
         UserDto userDto = userService.getProfile(sessionId);
         if (!photoDao.isPhotoExists(userDto.getId(), checkId)) {
-            StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
-            StringBuilder photoNameBuilder = new StringBuilder("check_");
-            photoNameBuilder.append(checkId);
-            photoNameBuilder.append("_user_");
-            photoNameBuilder.append(userDto.getId());
-            photoNameBuilder.append(".png");
-            photoDestinationBuilder.append(photoNameBuilder);
+
             if (!photo.isEmpty()) {
                 BufferedImage src = null;
                 try {
@@ -62,14 +71,15 @@ public class PhotoServiceImpl implements PhotoService {
                     logger.error(e.getMessage());
                     throw new PhotoReadException();
                 }
-                File destination = new File(photoDestinationBuilder.toString());
+                String photoName = buildNewPhotoName(checkId, userDto.getId());
+                File destination = new File(photoName);
                 try {
                     ImageIO.write(src, "png", destination);
                 } catch (IOException e) {
                     logger.error(e.getMessage());
                     throw new PhotoWriteException();
                 }
-                photoDao.savePhoto(new Photos(photoNameBuilder.toString(), userDto.getId(), checkId));
+                photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
             }
         } else {
             throw new ValidationException(ErrorCodes.PHOTO_ALREADY_EXISTS);
@@ -80,7 +90,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void ratePhoto(String sessionId, VoteAction voteAction) {
         Users users = userService.getUserBySession(sessionId);
-        photoDao.rate(voteAction.getVotedPhotoId());
-        userVotesDao.addUserVotes(users.getId(), voteAction.getPhotoIds());
+        userVotesDao.addUserVote(users.getId(), voteAction.getVotedPhotoId());
+        userShownPhotosDao.addUserShownPhotos(users.getId(), voteAction.getPhotoIds());
     }
 }

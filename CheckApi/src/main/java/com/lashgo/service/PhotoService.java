@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface PhotoService {
 
-    void savePhoto(String sessionId, long checkId, MultipartFile photo);
+    void savePhoto(String sessionId, int checkId, MultipartFile photo);
 
     void ratePhoto(String sessionId, VoteAction voteAction);
 }

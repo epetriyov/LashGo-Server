@@ -11,42 +11,57 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Eugene on 14.04.2014.
+ * Created by Eugene on 30.08.2014.
  */
-@ApiObject(name = "comment")
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class CommentDto implements Serializable {
+@ApiObject(name = "news", description = "news")
+public class NewsDto implements Serializable {
 
     @Min(1)
-    @ApiObjectField(description = "identifier")
-    private long id;
+    @ApiObjectField(description = "id of news")
+    private int id;
+
     @Size(min = 1)
-    @ApiObjectField(description = "comment text")
+    @ApiObjectField(description = "news header")
+    private String theme;
+
+    @Size(min = 1)
+    @ApiObjectField(description = "content text")
     private String content;
     @NotNull
-    @ApiObjectField(description = "date of creation")
+    @ApiObjectField(description = "create date")
     private Date createDate;
-    @NotNull
-    @ApiObjectField(description = "author of comment")
-    private UserDto user;
 
+    @ApiObjectField(description = "url of news image")
+    private String imageUrl;
 
-    public CommentDto() {
+    public NewsDto() {
     }
 
-    public CommentDto(long id, String content, Date createDate, UserDto user) {
+    public NewsDto(int id, String theme, String content, Date createDate, String imageUrl) {
+
         this.id = id;
+        this.theme = theme;
         this.content = content;
         this.createDate = createDate;
-        this.user = user;
+        this.imageUrl = imageUrl;
     }
 
-    public long getId() {
+    public int getId() {
+
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
     public String getContent() {
@@ -65,11 +80,11 @@ public class CommentDto implements Serializable {
         this.createDate = createDate;
     }
 
-    public UserDto getUser() {
-        return user;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setUser(UserDto user) {
-        this.user = user;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

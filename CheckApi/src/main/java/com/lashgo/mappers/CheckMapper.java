@@ -12,13 +12,16 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<Chec
     @Override
     public CheckDto mapRow(ResultSet resultSet, int i) throws SQLException {
         CheckDto check = new CheckDto();
-        check.setId(resultSet.getInt("id"));
-        check.setName(resultSet.getString("name"));
-        check.setDescription(resultSet.getString("description"));
-        check.setStartDate(resultSet.getTimestamp("start_date"));
-        check.setDuration(resultSet.getInt("duration"));
-        check.setPhotoUrl(resultSet.getString("photo"));
+        check.setId(resultSet.getInt("check_id"));
+        check.setName(resultSet.getString("check_name"));
+        check.setDescription(resultSet.getString("check_description"));
+        check.setStartDate(resultSet.getTimestamp("check_start_date"));
+        check.setDuration(resultSet.getInt("check_duration"));
+        check.setTaskPhotoUrl(resultSet.getString("check_task_photo"));
         check.setVoteDuration(resultSet.getInt("vote_duration"));
+        check.setWinnerPhotoUrl(resultSet.getString("winner_photo"));
+        UserDtoMapper usersMapper = new UserDtoMapper();
+        check.setWinnerInfo(usersMapper.mapRow(resultSet, i));
         return check;
     }
 }

@@ -1,11 +1,8 @@
 package com.lashgo.repository;
 
-import com.lashgo.domain.News;
 import com.lashgo.mappers.NewsMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.lashgo.model.dto.NewsDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +20,7 @@ public class NewsDaoImpl implements NewsDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<News> getNews() {
+    public List<NewsDto> getNews() {
         return jdbcTemplate.query("SELECT n.* FROM news n ORDER BY n.create_date", new NewsMapper());
     }
 

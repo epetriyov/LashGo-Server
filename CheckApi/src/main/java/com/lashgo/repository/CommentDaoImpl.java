@@ -22,9 +22,10 @@ public class CommentDaoImpl implements CommentDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Comments> getCommentsByCheck(long checkId) {
+    public List<CommentDto> getCommentsByCheck(long checkId) {
         return jdbcTemplate.query("" +
-                "                  SELECT c.* FROM comments c" +
+                "                  SELECT c.*,u.id as user_id, u.login, u.avatar FROM comments c " +
+                "                  INNER JOIN users u ON (u.id = c.user_id)" +
                 "                   RIGHT JOIN check_comments cc ON (cc.comment_id = c.id)" +
                 "                   WHERE cc.check_id = ?", new CommentsMapper(), checkId);
     }
@@ -39,7 +40,7 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     @Override
-    public List<Comments> getCommentsByPhoto(long photoId) {
+    public List<CommentDto> getCommentsByPhoto(long photoId) {
         return jdbcTemplate.query("" +
                 "                  SELECT c.* FROM comments c" +
                 "                   RIGHT JOIN photo_comments pc ON (pc.comment_id = c.id)" +

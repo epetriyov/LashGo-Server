@@ -1,6 +1,6 @@
 package com.lashgo.mappers;
 
-import com.lashgo.domain.News;
+import com.lashgo.model.dto.NewsDto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -9,13 +9,13 @@ import java.sql.SQLException;
 /**
  * Created by Eugene on 14.07.2014.
  */
-public class NewsMapper implements RowMapper<News> {
+public class NewsMapper implements RowMapper<NewsDto> {
     @Override
-    public News mapRow(ResultSet rs, int rowNum) throws SQLException {
-        News news = new News();
+    public NewsDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+        NewsDto news = new NewsDto();
         news.setContent(rs.getString("content"));
         news.setCreateDate(rs.getTimestamp("create_date"));
-        news.setId(rs.getLong("id"));
+        news.setId(rs.getInt("id"));
         news.setImageUrl(rs.getString("image_url"));
         news.setTheme(rs.getString("theme"));
         return news;

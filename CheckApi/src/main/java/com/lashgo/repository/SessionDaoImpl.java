@@ -21,13 +21,8 @@ import java.util.Locale;
 @Repository
 public class SessionDaoImpl implements SessionDao {
 
-    private static final Logger logger = LoggerFactory.getLogger("FILE");
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    private MessageSource messageSource;
 
     public Sessions createSession(final int userId) {
         Sessions sessions = getSessionByUser(userId);
@@ -50,7 +45,6 @@ public class SessionDaoImpl implements SessionDao {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.user_id = ?", new SessionsMapper(), userId);
         } catch (EmptyResultDataAccessException e) {
-//            logger.info(messageSource.getMessage("user.session.not.exists", new String[]{String.valueOf(userId)}, Locale.ENGLISH));
             return null;
         }
     }
@@ -60,7 +54,6 @@ public class SessionDaoImpl implements SessionDao {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.session_id = ?", new SessionsMapper(), sessionId);
         } catch (DataAccessException e) {
-            logger.info(messageSource.getMessage("session.not_exists", new String[]{sessionId}, Locale.ENGLISH));
             return null;
         }
     }

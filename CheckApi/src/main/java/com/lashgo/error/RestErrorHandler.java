@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.Locale;
+
 /**
  * Created by Eugene on 13.02.14.
  */
@@ -26,8 +28,7 @@ public class RestErrorHandler {
 
     private ResponseObject buildErrorResponse(LashgoRuntimeError exception) {
         logger.info(exception.getErrorCode());
-//        logger.info(messageSource.getMessage(exception.getMessage(), new Object[]{}, Locale.ENGLISH));
-        logger.info("SUCCESS!");
+        logger.info(messageSource.getMessage(exception.getMessage(), new Object[]{}, Locale.ENGLISH));
         ResponseObject responseObject = new ResponseObject();
         responseObject.setError(new ErrorDto(exception.getErrorCode(), null));
         return responseObject;

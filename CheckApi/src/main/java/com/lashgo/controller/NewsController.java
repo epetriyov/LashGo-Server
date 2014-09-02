@@ -3,6 +3,7 @@ package com.lashgo.controller;
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.Path;
 import com.lashgo.model.dto.ContentDto;
+import com.lashgo.model.dto.NewsDto;
 import com.lashgo.model.dto.ResponseList;
 import com.lashgo.service.ContentService;
 import com.lashgo.service.SessionValidator;
@@ -22,13 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @Api(name = "content services", description = "methods for managing contents")
-public class ContentController extends BaseController {
+public class NewsController extends BaseController {
 
     @Autowired
     private ContentService contentService;
-
-    @Autowired
-    private SessionValidator sessionValidator;
 
     @ApiMethod(
             path = Path.Contents.GET,
@@ -50,8 +48,7 @@ public class ContentController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<ContentDto> getNews(@RequestHeader HttpHeaders httpHeaders) {
-//        sessionValidator.validate(httpHeaders);
-        return new ResponseList<>(contentService.getNews(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0)));
+    ResponseList<NewsDto> getNews() {
+        return new ResponseList<>(contentService.getNews());
     }
 }

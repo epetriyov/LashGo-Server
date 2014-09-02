@@ -1,6 +1,5 @@
 package com.lashgo.repository;
 
-import com.lashgo.model.dto.GcmRegistrationDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Locale;
@@ -29,9 +27,9 @@ public class GcmDaoImpl implements GcmDao {
 
     public boolean isRegistrationIdExists(String registrationId) {
         try {
-            String regId = jdbcTemplate.queryForObject("SELECT gr.registration_id FROM gcm_registrations gr WHERE gr.registration_id = ?",
-                    String.class, registrationId);
-            return !StringUtils.isEmpty(regId);
+            Integer registrationIdsCount = jdbcTemplate.queryForObject("SELECT COUNT(gr.registration_id) FROM gcm_registrations gr WHERE gr.registration_id = ?",
+                    Integer.class, registrationId);
+            return registrationIdsCount > 0;
         } catch (EmptyResultDataAccessException e) {
             logger.info(messageSource.getMessage("registration_id.empty", new String[]{registrationId}, Locale.ENGLISH));
             return false;
@@ -44,7 +42,7 @@ public class GcmDaoImpl implements GcmDao {
     }
 
     @Override
-    public void addRegistrationId(GcmRegistrationDto registrationDto) {
-        jdbcTemplate.update("INSERT INTO gcm_registrations VALUES (?)", registrationDto.getRegistrationId());
+    public void addRegistrationId(String registrationId, int userId) {
+        jdbcTemplate.update("INSERT INTO gcm_registrations (registration_id,user_id) VALUES (?,?)", registrationId, userId);
     }
 }

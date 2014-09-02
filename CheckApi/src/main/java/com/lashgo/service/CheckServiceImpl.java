@@ -7,9 +7,11 @@ import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VotePhoto;
 import com.lashgo.model.dto.VotePhotosResult;
 import com.lashgo.repository.CheckDao;
+import com.lashgo.repository.CheckLikesDao;
 import com.lashgo.repository.PhotoDao;
-import com.lashgo.repository.UserVotesDao;
+import com.lashgo.repository.UserShownPhotosDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,9 @@ import java.util.List;
 public class CheckServiceImpl implements CheckService {
 
     @Autowired
+    private CheckLikesDao userLikesDao;
+
+    @Autowired
     private CheckDao checkDao;
 
     @Autowired
@@ -32,16 +37,12 @@ public class CheckServiceImpl implements CheckService {
     private UserService userService;
 
     @Autowired
-    private UserVotesDao userVotesDao;
+    private UserShownPhotosDao userShownPhotosDao;
 
     @Override
-    public List<CheckDto> getChecks() {
-        return checkDao.getAllChecks();
-    }
-
-    @Override
-    public CheckDto getCurrentCheck() {
-        return checkDao.getLastCheck();
+    public List<CheckDto> getChecks(String sessionId) {
+        Users users = userService.getUserBySession(sessionId);
+        return checkDao.getAllChecks(users.getId());
     }
 
     @Override
@@ -52,9 +53,27 @@ public class CheckServiceImpl implements CheckService {
     @Override
     public VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded) {
         Users users = userService.getUserBySession(sessionId);
-        List<VotePhoto> votePhotoList = userVotesDao.getVotePhotos(users.getId(), checkId, CheckConstants.VOTE_PHOTOS_LIMIT);
-        Integer photosCount = isCountIncluded ? userVotesDao.getVotePhotosCount(users.getId(), checkId) : null;
+        List<VotePhoto> votePhotoList = userShownPhotosDao.getUserShownPhotos(users.getId(), checkId, CheckConstants.VOTE_PHOTOS_LIMIT);
+        Integer photosCount = isCountIncluded ? userShownPhotosDao.getUserShownPhotosCount(users.getId(), checkId) : null;
         return new VotePhotosResult(votePhotoList, photosCount);
+    }
+
+    @Override
+    @Transactional
+    public boolean likeCheck(int checkId, String sessionId) {
+        Users users = userService.getUserBySession(sessionId);
+        if (userLikesDao.isUserLiked(users.getId(), checkId)) {
+            userLikesDao.unlikeCheck(users.getId(), checkId);
+            return false;
+        } else {
+            userLikesDao.likeCheck(users.getId(), checkId);
+            return true;
+        }
+    }
+
+    @Scheduled(cron = "0 0 * * * *")
+    public void chooseWinner() {
+        checkDao.addWinners();
     }
 
 }

@@ -105,11 +105,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public RegisterResponse register(String interfaceTypeCode, LoginInfo registerInfo) throws ValidationException {
-        logger.info("Start register");
         if (!userDao.isUserExists(registerInfo.getLogin())) {
-            logger.info("User does not exists");
             userDao.createUser(registerInfo);
-            logger.info("User created");
             return buildRegisterResponse(interfaceTypeCode, registerInfo);
         } else {
             throw new ValidationException(ErrorCodes.USER_ALREADY_EXISTS);
@@ -119,7 +116,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException {
-        logger.debug("Recover password");
         if (userDao.isUserExists(recoverInfo.getEmail())) {
             String newPassword = generatePassword();
             userDao.updatePassword(recoverInfo.getEmail(), CheckUtils.md5(newPassword));
@@ -142,7 +138,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getProfile(String sessionId) {
         Users users = getUserBySession(sessionId);
-        return new UserDto(users.getId(), users.getLogin(), users.getName(), users.getSurname(), users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar(), users.getEmail());
+        return new UserDto(users.getId(), users.getLogin(), users.getFio(),users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar(), users.getEmail());
     }
 
     @Override
@@ -270,18 +266,22 @@ public class UserServiceImpl implements UserService {
 
     private RegisterResponse buildRegisterResponse(String interfaceTypeCode, LoginInfo loginInfo) {
         Users users = userDao.findUser(loginInfo);
-        logger.info("User found");
-        SessionInfo sessionInfo = innerLogin(interfaceTypeCode, loginInfo);
-        logger.info("Session created");
-        RegisterResponse registerResponse = new RegisterResponse();
-        registerResponse.setUserId(users.getId());
-        registerResponse.setSessionId(sessionInfo.getSessionId());
-        registerResponse.setAvatar(users.getAvatar());
-        registerResponse.setUserName(users.getLogin() != null ? users.getLogin() : users.getEmail());
-        registerResponse.setSubscribesCount(subscriptionsDao.getSubscriptionsCount(users.getId()));
-        logger.info("Subscriptions count calced");
-        registerResponse.setSubscribersCount(subscriptionsDao.getSubscribersCount(users.getId()));
-        return registerResponse;
+        if (users != null) {
+            logger.info("User found");
+            SessionInfo sessionInfo = innerLogin(interfaceTypeCode, loginInfo);
+            logger.info("Session created");
+            RegisterResponse registerResponse = new RegisterResponse();
+            registerResponse.setUserId(users.getId());
+            registerResponse.setSessionId(sessionInfo.getSessionId());
+            registerResponse.setAvatar(users.getAvatar());
+            registerResponse.setUserName(users.getLogin() != null ? users.getLogin() : users.getEmail());
+            registerResponse.setSubscribesCount(subscriptionsDao.getSubscriptionsCount(users.getId()));
+            logger.info("Subscriptions count calced");
+            registerResponse.setSubscribersCount(subscriptionsDao.getSubscribersCount(users.getId()));
+            return registerResponse;
+        } else {
+            throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
+        }
     }
 
     @Override

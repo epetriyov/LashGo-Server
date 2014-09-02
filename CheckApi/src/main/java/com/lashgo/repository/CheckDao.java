@@ -11,11 +11,9 @@ public interface CheckDao {
 
     CheckDto getNextCheck();
 
-    List<CheckDto> getAllChecks();
-
-    CheckDto getCheckById(long id);
-
-    CheckDto getLastCheck();
+    List<CheckDto> getAllChecks(int userId);
 
     int getActiveChecksCount();
+
+    void addWinners();
 }

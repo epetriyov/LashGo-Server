@@ -145,7 +145,6 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject recover(@ApiBodyObject @Valid @RequestBody RecoverInfo recoverInfo, BindingResult result) {
-        logger.debug("Recover password");
         CheckUtils.handleBindingResult(logger, result);
         userService.sendRecoverPassword(recoverInfo);
         return new ResponseObject<>();

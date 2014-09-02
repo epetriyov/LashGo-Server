@@ -1,6 +1,9 @@
 package com.lashgo.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -10,12 +13,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ClientInterfaceDaoImpl implements ClientInterfaceDao {
 
+    private static final Logger logger = LoggerFactory.getLogger("FILE");
+
+    @Autowired
+    private MessageSource messageSource;
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public int getIntefaceIdByCode(String clientInterfaceCode) {
-        Integer interfaceId = jdbcTemplate.queryForObject("SELECT id FROM client_interfaces WHERE code = ?",Integer.class,clientInterfaceCode);
+        Integer interfaceId = jdbcTemplate.queryForObject("SELECT id FROM client_interfaces WHERE code = ?", Integer.class, clientInterfaceCode);
         return interfaceId;
     }
 }

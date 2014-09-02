@@ -17,6 +17,7 @@ public final class Path {
         public static final String PHOTOS = "/checks/{checkId}/photos";
         public static final String COMMENTS = "/checks/{checkId}/comments";
         public static final String VOTE_PHOTOS = "/checks/{checkId}/vote/photos";
+        public static final String LIKE = "/checks/{checkId}/like";
     }
 
     public static final class Comments {

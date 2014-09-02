@@ -64,9 +64,6 @@ public class PhotoController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseEntity<FileSystemResource> getFile(@ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
-//        sessionValidator.validate(httpHeaders);
-        logger.debug("Get photo request validated");
-        logger.debug(fileName);
         if (fileName != null) {
             FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
             logger.debug("Resource get {}", resource.getPath());
@@ -123,8 +120,7 @@ public class PhotoController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<CommentDto> getPhotoComments(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
-//        sessionValidator.validate(httpHeaders);
+    ResponseList<CommentDto> getPhotoComments(@ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
         return new ResponseList<>(commentService.getPhotoComments(photoId));
     }
 

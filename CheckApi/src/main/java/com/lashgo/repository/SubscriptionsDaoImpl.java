@@ -3,7 +3,6 @@ package com.lashgo.repository;
 import com.lashgo.mappers.SubscriptionsMapper;
 import com.lashgo.model.dto.SubscriptionDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -36,27 +35,20 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
 
     @Override
     public int getNewerSubscriptions(int userId, Date lastView) {
-        if (lastView != null) {
-            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.user_id = ? AND s.subscribe_date > ?", new Object[]{userId, lastView}, new int[]{Types.INTEGER, Types.TIMESTAMP}, Integer.class);
-        }
-        return 0;
+        return jdbcTemplate.queryForObject(
+                "SELECT count(s.id) FROM subscriptions s " +
+                        " WHERE s.user_id = ?" + (lastView != null ? " AND s.subscribe_date > ?" : ""),
+                (lastView != null ? new Object[]{userId, lastView} : new Object[]{userId}),
+                (lastView != null ? new int[]{Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.INTEGER}), Integer.class);
     }
 
     @Override
     public int getSubscriptionsCount(int usersId) {
-        try {
-            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.user_id = ?", new Object[]{usersId}, Integer.class);
-        } catch (EmptyResultDataAccessException e) {
-            return 0;
-        }
+        return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.user_id = ?", new Object[]{usersId}, Integer.class);
     }
 
     @Override
     public int getSubscribersCount(int usersId) {
-        try {
-            return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.checklist_id = ?", new Object[]{usersId}, Integer.class);
-        } catch (EmptyResultDataAccessException e) {
-            return 0;
-        }
+        return jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.checklist_id = ?", new Object[]{usersId}, Integer.class);
     }
 }
