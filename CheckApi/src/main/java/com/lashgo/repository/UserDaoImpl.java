@@ -122,6 +122,6 @@ public class UserDaoImpl implements UserDao {
                 "                   LEFT JOIN subscriptions subs2 " +
                 "                      ON (subs2.checklist_id = u.id) " +
                 "                  WHERE users.id = ?"
-                , new UserDtoMapper(), userId);
+                , new UserDtoMapper(true), userId);
     }
 }

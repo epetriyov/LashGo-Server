@@ -38,15 +38,13 @@ public class CheckDaoImpl implements CheckDao {
                 "                         c.duration as check_duration, " +
                 "                         c.task_photo as check_task_photo," +
                 "                         c.vote_duration as check_vote_duration," +
-                "                         ph.picture as winner_photo, w.id as winner_id, u.*," +
-                "                         count(ph2.id) as checks_count, " +
-                "                         count(comm.id) as comments_count, " +
-                "                         count(likes.id) as likes_count, " +
-                "                         count(subs.id) as user_subscribes, " +
-                "                         count(subs2.id) as user_subscribers " +
+                "                         p2.picture as user_photo" +
+                "                         ph.picture as winner_photo, w.id as winner_id, u.*" +
                 "                    FROM checks c " +
                 "                    LEFT JOIN photos p " +
                 "                      ON (p.check_id = c.id)" +
+                "                    LEFT JOIN photos p2 " +
+                "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +
                 "                    LEFT JOIN check_comments com " +
                 "                      ON (com.check_id = c.id)" +
                 "                    LEFT JOIN user_check_likes lc" +
@@ -57,18 +55,8 @@ public class CheckDaoImpl implements CheckDao {
                 "                      ON (u.id = w.winner_id) " +
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
-                "                   LEFT JOIN photos ph2" +
-                "                      ON (ph2.user_id = u.id) " +
-                "                   LEFT JOIN comments comm" +
-                "                      ON (comm.user_id = u.id) " +
-                "                   LEFT JOIN user_photo_likes likes" +
-                "                      ON (likes.user_id = u.id) " +
-                "                   LEFT JOIN subscriptions subs" +
-                "                      ON (subs.user_id = u.id) " +
-                "                   LEFT JOIN subscriptions subs2 " +
-                "                      ON (subs2.checklist_id = u.id) " +
-                "                   GROUP BY c.id,ph.picture,w.id,u.id " +
-                "                   ORDER BY c.start_date DESC", new CheckMapper());
+                "                   GROUP BY c.id,ph.picture,w.id,u.id, p2.picture " +
+                "                   ORDER BY c.start_date DESC", new CheckMapper(),userId);
     }
 
     @Override

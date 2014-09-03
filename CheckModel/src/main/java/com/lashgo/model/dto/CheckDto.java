@@ -52,6 +52,8 @@ public class CheckDto implements Serializable {
     private int playersCount;
     @ApiObjectField(description = "winner info")
     private UserDto winnerInfo;
+    @ApiObjectField(description = "url of current user check photo")
+    private String userPhoto;
 
     public CheckDto() {
 
@@ -174,5 +176,13 @@ public class CheckDto implements Serializable {
 
     public void setWinnerPhotoUrl(String winnerPhotoUrl) {
         this.winnerPhotoUrl = winnerPhotoUrl;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
     }
 }

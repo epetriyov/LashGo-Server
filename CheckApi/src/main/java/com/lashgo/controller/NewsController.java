@@ -2,18 +2,14 @@ package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.Path;
-import com.lashgo.model.dto.ContentDto;
 import com.lashgo.model.dto.NewsDto;
 import com.lashgo.model.dto.ResponseList;
 import com.lashgo.service.ContentService;
-import com.lashgo.service.SessionValidator;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;

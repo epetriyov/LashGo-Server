@@ -1,7 +1,5 @@
 package com.lashgo.service;
 
-import com.lashgo.model.dto.ContentDto;
-
 import java.util.List;
 
 /**

@@ -20,7 +20,8 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<Chec
         check.setTaskPhotoUrl(resultSet.getString("check_task_photo"));
         check.setVoteDuration(resultSet.getInt("vote_duration"));
         check.setWinnerPhotoUrl(resultSet.getString("winner_photo"));
-        UserDtoMapper usersMapper = new UserDtoMapper();
+        check.setUserPhoto(resultSet.getString("user_photo"));
+        UserDtoMapper usersMapper = new UserDtoMapper(false);
         check.setWinnerInfo(usersMapper.mapRow(resultSet, i));
         return check;
     }
