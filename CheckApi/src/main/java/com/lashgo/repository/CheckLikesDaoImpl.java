@@ -20,8 +20,7 @@ public class CheckLikesDaoImpl implements CheckLikesDao {
 
     @Override
     public void unlikeCheck(int userId, int checkId) {
-        jdbcTemplate.update("DELETE FROM user_check_likes where user_id = ? AND check_id = " +
-                "?)", userId, checkId);
+        jdbcTemplate.update("DELETE FROM user_check_likes where user_id = ? AND check_id = ?", userId, checkId);
     }
 
     @Override

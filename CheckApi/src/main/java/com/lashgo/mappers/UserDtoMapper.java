@@ -22,7 +22,7 @@ public class UserDtoMapper implements org.springframework.jdbc.core.RowMapper<Us
         users.setId(resultSet.getInt("id"));
         users.setLogin(resultSet.getString("login"));
         users.setAvatar(resultSet.getString("avatar"));
-        users.setFio(resultSet.getString("name"));
+        users.setFio(resultSet.getString("fio"));
         users.setAbout(resultSet.getString("about"));
         users.setCity(resultSet.getString("city"));
         users.setBirthDate(resultSet.getTimestamp("birth_date"));

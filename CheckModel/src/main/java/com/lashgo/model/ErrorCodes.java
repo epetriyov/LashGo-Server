@@ -19,6 +19,7 @@ public final class ErrorCodes {
     public static final String EMAIL_NEEDED = "email.is_needed";
     public static final String TEMP_USER_NOT_EXISTS = "user.temp.not_exists";
     public static final String INTERNAL_SERVER_ERROR = "server.internal_error";
+    public static final String CHECK_ID_NULL = "check.empty_id";
 
     private ErrorCodes() {
 

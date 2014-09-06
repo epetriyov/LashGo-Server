@@ -1,39 +1,38 @@
-package com.lashgo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+package com.lashgo.utils;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 import java.util.Date;
 
 /**
  * Created by Eugene on 23.03.2014.
  */
-@Entity
-@Table(name = "checks")
 public class Check {
 
-    @Id
-    @Column(name = "id")
     private int id;
-    @Column(name = "name")
+    @JacksonXmlProperty(isAttribute = true)
     private String name;
-    @Column(name = "duration")
+
+    @JacksonXmlProperty(isAttribute = true)
     private int duration;
-    @Column(name = "description")
+
+    @JacksonXmlProperty(isAttribute = true)
     private String description;
-    @Column(name = "task_photo")
+
+    @JacksonXmlProperty(isAttribute = true)
     private String photo;
-    @Column(name = "start_date")
+
+    @JacksonXmlProperty(isAttribute = true)
     private Date startDate;
-    @Column(name = "vote_duration")
+
+    @JacksonXmlProperty(isAttribute = true)
     private int voteDuration;
 
     public Check() {
     }
 
-    public Check(int id)
-    {
+    public Check(int id) {
         this.id = id;
     }
 
@@ -60,7 +59,7 @@ public class Check {
         this.description = description;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

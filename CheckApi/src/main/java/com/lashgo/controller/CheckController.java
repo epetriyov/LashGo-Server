@@ -8,7 +8,6 @@ import com.lashgo.service.CommentService;
 import com.lashgo.service.PhotoService;
 import com.lashgo.service.SessionValidator;
 import com.lashgo.utils.CheckUtils;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -210,11 +209,11 @@ public class CheckController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Checks.VOTE_PHOTOS, method = RequestMethod.GET)
+    @RequestMapping(value = Path.Checks.LIKE, method = RequestMethod.POST)
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject<Boolean> likePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+    ResponseObject<Boolean> likePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestBody Integer checkId) {
         sessionValidator.validate(httpHeaders);
         return new ResponseObject<>(checkService.likeCheck(checkId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
     }

@@ -55,7 +55,7 @@ CREATE TABLE checks (
 	id              serial                    NOT NULL PRIMARY KEY,
 	name            varchar(50)               NOT NULL UNIQUE CHECK (name <> ''),
 	description     varchar(500)              NOT NULL CHECK (description <> ''),
-	start_date      timestamp with time zone  NOT NULL CHECK (start_date >= current_timestamp) DEFAULT current_timestamp,
+	start_date      timestamp with time zone  NOT NULL DEFAULT current_timestamp,
 	duration        int     		              NOT NULL CHECK (duration > 0 AND duration < 12) DEFAULT 3,
 	task_photo      varchar(50),	
 	vote_duration   int 		                  NOT NULL CHECK (vote_duration > 0 AND vote_duration < 12) DEFAULT 3

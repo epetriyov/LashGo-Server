@@ -18,11 +18,14 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<Chec
         check.setStartDate(resultSet.getTimestamp("check_start_date"));
         check.setDuration(resultSet.getInt("check_duration"));
         check.setTaskPhotoUrl(resultSet.getString("check_task_photo"));
-        check.setVoteDuration(resultSet.getInt("vote_duration"));
+        check.setVoteDuration(resultSet.getInt("check_vote_duration"));
         check.setWinnerPhotoUrl(resultSet.getString("winner_photo"));
         check.setUserPhoto(resultSet.getString("user_photo"));
         UserDtoMapper usersMapper = new UserDtoMapper(false);
         check.setWinnerInfo(usersMapper.mapRow(resultSet, i));
+        check.setPlayersCount(resultSet.getInt("players_count"));
+        check.setLikesCount(resultSet.getInt("likes_count"));
+        check.setCommentsCount(resultSet.getInt("comments_count"));
         return check;
     }
 }

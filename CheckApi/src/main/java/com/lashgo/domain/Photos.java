@@ -43,7 +43,7 @@ public class Photos {
         this.check = check;
     }
 
-    public Photos(String picture, int userId, long checkId) {
+    public Photos(String picture, int userId, int checkId) {
         this.picture = picture;
         this.user = new Users(userId);
         this.check = new Check(checkId);

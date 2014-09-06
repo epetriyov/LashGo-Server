@@ -17,5 +17,5 @@ public interface CheckService {
 
     VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded);
 
-    boolean likeCheck(int checkId, String sessionId);
+    boolean likeCheck(Integer checkId, String sessionId);
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checks>
+в 30 строке в дескрипшене используются кавычки. это не помешает?
+в 41 и 64 используются скобки для смайлов.
+
+<check name="Далеко гляжу" description="Фотографиремся с биноклем! Нет бинокля - включаем фантазию!" startDate = "2014-08-25T12:00:00" duration="1"	photo="task_1.jpg" voteDuration="3"/>
+<check name="Выглядываем из укрытия" description="Опасность миновала?! Надо бы это проверить!" startDate = "2014-08-26T12:00:00" duration="1" photo="task_2.jpg" voteDuration="3"/>
+<check name="Привет от Спока" description="Первый помощник капитана Спок, добро пожаловать на борт!" startDate = "2014-08-27T12:00:00" duration="1" photo="task_3.jpg" voteDuration="3"/>
+<check name="Гримаса" description="Корчим рожи, господа! Кажем личиком изюм, али что похожее" startDate = "2014-08-28T12:00:00" duration="1" photo="task_4.jpg" voteDuration="3"/>
+<check name="Вот это поворот!" description="Смотри-ка! Поворот!" startDate = "2014-08-29T12:00:00" duration="1"	photo="task_5.jpg" voteDuration="3"/>
+<check name="Необычное меню" description="Вот это салатик! Что, нет? Тогда удивись другому блюду!" startDate = "2014-08-30T12:00:00" duration="1"	photo="task_6.jpg" voteDuration="3"/>
+<check name="Носи усы" description="Всё просто, котаны: нарисуй себе усы!" startDate = "2014-08-31T12:00:00" duration="1" photo="task_7.jpg" voteDuration="3"/>
+<check name="У нас есть печеньки!" description="Переходи на тёмную сторону! У нас есть печеньки!" startDate = "2014-09-01T12:00:00" duration="1" photo="task_8.jpg" voteDuration="3"/>
+<check name="Маленькие радости жизни" description="Красавчики, сфотаем мелочи, которые нас радуют" startDate = "2014-09-02T12:00:00" duration="1" photo="task_9.jpg" voteDuration="3"/>
+<check name="Киллер" description="Леоны, берём в руки оружие! Если нет оружия, берём в руки руки" startDate = "2014-09-03T12:00:00" duration="1" photo="task_10.jpg" voteDuration="3"/>
+<check name="Зубастик" description="Клац-клац! Такими зубами и удивить можно!" startDate = "2014-09-04T12:00:00" duration="1" photo="task_11.jpg" voteDuration="3"/>
+<check name="Кубок чемпиона" description="Чемпионы! Репетируем вручение Кубка!" startDate = "2014-09-05T12:00:00" duration="1" photo="task_12.jpg" voteDuration="3"/>
+<check name="Всеядный" description="Я так голоден, что съел бы даже это!" startDate = "2014-09-06T12:00:00" duration="1" photo="task_13.jpg" voteDuration="3"/>
+<check name="Земля обезьян" description="Кинг Конги! Пора завязывать с эволюцией и вспомнить кем мы были!" startDate = "2014-09-07T12:00:00" duration="1" photo="task_14.jpg" voteDuration="3"/>
+<check name="Как я провёл лето?" description="Итак дети, сочинение на тему: &quot;как я провёл лето&quot;. Взяли телефоны в руки и фотографируем!" startDate = "2014-09-08T12:00:00" duration="1" photo="task_15.jpg" voteDuration="3"/>
+<check name="В прыжке" description="Попрыгунчики, пытаемся оторваться от земли и прыгаем, как можно выше!" startDate = "2014-09-09T12:00:00" duration="1" photo="task_16.jpg" voteDuration="3"/>
+<check name="Любимый фрукт" description="Яблоко или Ананас? Или что-нибудь ещё?.. А какой твой любимый фрукт?" startDate = "2014-09-10T12:00:00" duration="1" photo="task_17.jpg" voteDuration="3"/>
+<check name="Бородатое селфи" description="Что здесь ещё добавить?! Фотографируемся с бородой!" startDate = "2014-09-11T12:00:00" duration="1" photo="task_18.jpg" voteDuration="3"/>
+<check name="Кладоискатель" description="Кажется, где-то здесь клад... Ставим метку где он спрятан!" startDate = "2014-09-12T12:00:00" duration="1" photo="task_19.jpg" voteDuration="3"/>
+<check name="Пустое место" description="Здесь кого-то не хватает. Фотографируем пустое место" startDate = "2014-09-13T12:00:00" duration="1" photo="task_20.jpg" voteDuration="3"/>
+<check name="Браслет" description="Смотри какой браслет! А какой носишь ты?" startDate = "2014-09-14T12:00:00" duration="1"	photo="task_21.jpg" voteDuration="3"/>
+<check name="Завал на работе" description="Ни конца, ни края работы не видать" startDate = "2014-09-15T12:00:00" duration="1" photo="task_22.jpg" voteDuration="3"/>
+<check name="Зеваю" description="Зачем ты зевнул?! Всех заразил!" startDate = "2014-09-16T12:00:00" duration="1" photo="task_23.jpg" voteDuration="3"/>
+<check name="Вкусняшки!" description="Сластёны, делимся вкусняшками!" startDate = "2014-09-17T12:00:00" duration="1" photo="task_24.jpg" voteDuration="3"/>
+<check name="Барабанщик" description="Ударники, зададим ритм нашей жизни! Стукнем в барабаны!" startDate = "2014-09-18T12:00:00" duration="1" photo="task_25.jpg" voteDuration="3"/>
+<check name="Моя прелесть" description="Такое красивое, такое манящее. Моя прееелесть!" startDate = "2014-09-19T12:00:00" duration="1" photo="task_26.jpg" voteDuration="3"/>
+<check name="НЕ следуй за мной" description="Hey! Stop &quot;follow me&quot;!" startDate = "2014-09-20T12:00:00" duration="1" photo="task_27.jpg" voteDuration="3"/>
+<check name="Не трожь мою еду" description="Это моя еда! Убери свои руки! Кыш!" startDate = "2014-09-21T12:00:00" duration="1" photo="task_28.jpg" voteDuration="3"/>
+<check name="Боевой раскрас" description="В этих суровых каменных джунглях выживает сильнейший. Пора сделать свой боевой раскрас!" startDate = "2014-09-22T12:00:00" duration="1" photo="task_29.jpg" voteDuration="3"/>
+<check name="Врезался в стекло" description="Куда же ты, бедолага? Разве не видишь, там стекло!" startDate = "2014-09-23T12:00:00" duration="1" photo="task_30.jpg" voteDuration="3"/>
+<check name="Воздушный поцелуй" description="Котики, самое время передать приветы и воздушные поцелуи" startDate = "2014-09-24T12:00:00" duration="1" photo="task_31.jpg" voteDuration="3"/>
+<check name="Пятибалочка" description="Какой прекрасный день! Дай пять!" startDate = "2014-09-25T12:00:00" duration="1" photo="task_32.jpg" voteDuration="3"/>
+<check name="Селфи-селфи" description="Кто-то делает селфи? Не упусти момент! Сделай селфи на фоне селфи!" startDate = "2014-09-26T12:00:00" duration="1" photo="task_33.jpg" voteDuration="3"/>
+<check name="Фильм ужасов" description="Камера! Мотор! Снимаем фильм ужасов!" startDate = "2014-09-27T12:00:00" duration="1" photo="task_34.jpg" voteDuration="3"/>
+<check name="Четырёхглазый" description="Мне идут эти очки?" startDate = "2014-09-28T12:00:00" duration="1" photo="task_35.jpg" voteDuration="3"/>
+<check name="Книголюб" description="Чтецы, делимся своими любимыми книгами" startDate = "2014-09-29T12:00:00" duration="1" photo="task_36.jpg" voteDuration="3"/>
+<check name="Я танцую" description="Дэнсеры, вы готовы сразиться в танцевальном баттле?!" startDate = "2014-09-30T12:00:00" duration="1" photo="task_37.jpg" voteDuration="3"/>
+<check name="Амулет" description="Мой волшебный талисмат даёт мне +3 к удаче. А у тебя есть волшебные вещи? ;)" startDate = "2014-10-01T12:00:00" duration="1" photo="task_38.jpg" voteDuration="3"/>
+<check name="Галстук" description="Галстук интересный элемент гардероба. А как его ещё можно использовать?" startDate = "2014-10-02T12:00:00" duration="1" photo="task_39.jpg" voteDuration="3"/>
+<check name="Позвони мне" description="Call me maybe!" startDate = "2014-10-03T12:00:00" duration="1" photo="task_40.jpg" voteDuration="3"/>
+<check name="Не мой день" description="Вот это невезуха! Самое время сфотографировать!" startDate = "2014-10-04T12:00:00" duration="1"	 photo="task_41.jpg" voteDuration="3"/>
+<check name="Древние греки" description="Геракл был воином, Аристотель был ученым, а Диоген жил в бочке. А каким греком был бы ты?" startDate = "2014-10-05T12:00:00" duration="1" photo="task_42.jpg" voteDuration="3"/>
+<check name="Old school" description="Нет ничего лучше старой школы. Вспомним старые добрые времена" startDate = "2014-10-06T12:00:00" duration="1" photo="task_43.jpg" voteDuration="3"/>
+<check name="Ограбление" description="Злодеи, идём грабить караваны! Не забудьте сделать фото на память" startDate = "2014-10-07T12:00:00" duration="1"	photo="task_44.jpg" voteDuration="3"/>
+<check name="Сувенир" description="В путешествии все покупают сувениры. А что вам дарили на память?" startDate = "2014-10-08T12:00:00" duration="1" photo="task_45.jpg" voteDuration="3"/>
+<check name="Ванилька" description="Ми-ми-ми. Кофе, плед, подоконник. Кто ванильней?" startDate = "2014-10-09T12:00:00" duration="1" photo="task_46.jpg" voteDuration="3"/>
+<check name="Бородач" description="Извините, пожалуйста, не будет бороды сфотографироваться? Делаем фото с бородачом" startDate = "2014-10-10T12:00:00" duration="1" photo="task_47.jpg" voteDuration="3"/>
+<check name="Мем" description="Нельзя так просто взять и сделать фото с мемом... Но мы попробуем!" startDate = "2014-10-11T12:00:00" duration="1" photo="task_48.jpg" voteDuration="3"/>
+<check name="Против логики" description="В задании этом поступить так нужно. Логики что противоречит сфотографировать необходимо" startDate = "2014-10-12T12:00:00" duration="1" photo="task_49.jpg" voteDuration="3"/>
+<check name="Мыльные пузыри" description="Попускаем тонкие плёнки мыльной воды, наполненные воздухом, в виде переливчатой сферы. В общем, мыльные пузыри!" startDate = "2014-10-13T12:00:00" duration="1" photo="task_50.jpg" voteDuration="3"/>
+<check name="Под каблуком" description="Да... и такое бывает.. фото под каблуком.." startDate = "2014-10-14T12:00:00" duration="1" photo="task_51.jpg" voteDuration="3"/>
+<check name="Сложный выбор" description="Что же выбрать? Что же выбрать?? Что же выбрать???.. А в чем ваш сложный выбор?" startDate = "2014-10-15T12:00:00" duration="1" photo="task_52.jpg" voteDuration="3"/>
+<check name="Я худею" description="Фитнес и тренажёры, а кость всё равно широкая. Не подскажешь как похудеть?" startDate = "2014-10-16T12:00:00" duration="1" photo="task_53.jpg" voteDuration="3"/>
+<check name="Египтяне" description="Египтяне такие выдумщики.. А в какой позе вас бы врезали во фреску?" startDate = "2014-10-17T12:00:00"	 duration="1" photo="task_54.jpg" voteDuration="3"/>
+<check name="Уснул на работе" description="Всем тихо! Я здесь сплю!" startDate = "2014-10-18T12:00:00" duration="1" photo="	task_55.jpg" voteDuration="3"/>
+<check name="Forever alone" description="Зачем мне люди? Мне и одному хорошо. Докажи, что ты самый одинокий!" startDate = "2014-10-19T12:00:00" duration="1" photo="task_56.jpg" voteDuration="3"/>
+<check name="День рождения" description="Ура! Подарки, шарики, веселье! Представь, что у тебя сегодня День рождения!" startDate = "2014-10-20T12:00:00" duration="1" photo="task_57.jpg" voteDuration="3"/>
+<check name="Я вырастил это" description="Настоящий мужчина должен вырастить сына. Но не обязан, А что вырастил ты?" startDate = "2014-10-21T12:00:00" duration="1" photo="task_58.jpg" voteDuration="3"/>
+<check name="Маленькая шалость" description="Нет на свете лучше радости, чем делать маленькие шалости! Проказники, давайте разыграем наших друзей!" startDate = "2014-10-22T12:00:00" duration="1" photo="task_59.jpg" voteDuration="3"/>
+<check name="Фото с кинозвездой" description="Да-да, фото с кинозвездой! Все едем в Голливуд!.. или выкручиваемся как можем" startDate = "2014-10-23T12:00:00" duration="1" photo="task_60.jpg" voteDuration="3"/>
+<check name="Дарю!" description="Минутка доброты. Ну так, для галочки... Фотографируем как мы дарим подарок (дарить не обязательно :) )" startDate = "2014-10-24T12:00:00" duration="1" photo="task_61.jpg" voteDuration="3"/>
+<check name="Обычный рабочий день" description="Работяги, покажем у кого как проходит обычный рабочий день" startDate = "2014-10-25T12:00:00" duration="1" photo="task_62.jpg" voteDuration="3"/>
+<check name="Налейка на лоб" description="Кто я такой? Клеим на лоб стикер со своим именем... или не своим.. или не именем.. :)" startDate = "2014-10-26T12:00:00" duration="1" photo="task_63.jpg" voteDuration="3"/>
+
+</checks>

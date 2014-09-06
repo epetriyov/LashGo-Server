@@ -2,6 +2,8 @@ package com.lashgo.service;
 
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Users;
+import com.lashgo.error.ValidationException;
+import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VotePhoto;
@@ -60,7 +62,10 @@ public class CheckServiceImpl implements CheckService {
 
     @Override
     @Transactional
-    public boolean likeCheck(int checkId, String sessionId) {
+    public boolean likeCheck(Integer checkId, String sessionId) {
+        if (checkId == null) {
+            throw new ValidationException(ErrorCodes.CHECK_ID_NULL);
+        }
         Users users = userService.getUserBySession(sessionId);
         if (userLikesDao.isUserLiked(users.getId(), checkId)) {
             userLikesDao.unlikeCheck(users.getId(), checkId);

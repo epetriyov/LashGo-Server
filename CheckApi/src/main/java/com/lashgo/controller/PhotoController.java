@@ -65,10 +65,14 @@ public class PhotoController extends BaseController {
     @ApiResponseObject
     ResponseEntity<FileSystemResource> getFile(@ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
         if (fileName != null) {
-            FileSystemResource resource = new FileSystemResource(new File(CheckConstants.PHOTOS_FOLDER, fileName));
-            logger.debug("Resource get {}", resource.getPath());
-            ResponseEntity<FileSystemResource> responseEntity = new ResponseEntity<>(resource, HttpStatus.OK);
-            return responseEntity;
+            logger.debug("File name {}",fileName);
+            File file = new File(CheckConstants.PHOTOS_FOLDER, fileName);
+            if(file.exists()) {
+                FileSystemResource resource = new FileSystemResource(file);
+                logger.debug("Resource get {}", resource.getPath());
+                ResponseEntity<FileSystemResource> responseEntity = new ResponseEntity<>(resource, HttpStatus.OK);
+                return responseEntity;
+            }
         }
         throw new PhotoReadException();
     }

@@ -18,7 +18,7 @@ import java.util.Date;
 public class CheckDto implements Serializable {
     @Min(1)
     @ApiObjectField(description = "identifier")
-    private long id;
+    private int id;
 
     @ApiObjectField(description = "name")
     private String name;
@@ -59,7 +59,7 @@ public class CheckDto implements Serializable {
 
     }
 
-    public CheckDto(long id, String name, String description, Date startDate, int duration, String winnerPhotoUrl, int voteDuration) {
+    public CheckDto(int id, String name, String description, Date startDate, int duration, String winnerPhotoUrl, int voteDuration) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -130,11 +130,11 @@ public class CheckDto implements Serializable {
         this.voteDuration = voteDuration;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

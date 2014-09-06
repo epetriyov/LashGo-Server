@@ -38,7 +38,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                         c.duration as check_duration, " +
                 "                         c.task_photo as check_task_photo," +
                 "                         c.vote_duration as check_vote_duration," +
-                "                         p2.picture as user_photo" +
+                "                         p2.picture as user_photo," +
                 "                         ph.picture as winner_photo, w.id as winner_id, u.*" +
                 "                    FROM checks c " +
                 "                    LEFT JOIN photos p " +
@@ -51,10 +51,11 @@ public class CheckDaoImpl implements CheckDao {
                 "                      ON (lc.check_id = c.id)" +
                 "                    LEFT JOIN check_winners w" +
                 "                      ON (w.check_id = c.id) " +
-                "                   INNER JOIN users u" +
+                "                   LEFT JOIN users u" +
                 "                      ON (u.id = w.winner_id) " +
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
+                "                   WHERE c.start_date <= current_timestamp" +
                 "                   GROUP BY c.id,ph.picture,w.id,u.id, p2.picture " +
                 "                   ORDER BY c.start_date DESC", new CheckMapper(),userId);
     }

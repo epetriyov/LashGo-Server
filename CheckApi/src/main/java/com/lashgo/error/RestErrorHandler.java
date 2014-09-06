@@ -27,8 +27,8 @@ public class RestErrorHandler {
     private MessageSource messageSource;
 
     private ResponseObject buildErrorResponse(LashgoRuntimeError exception) {
-        logger.info(exception.getErrorCode());
-        logger.info(messageSource.getMessage(exception.getMessage(), new Object[]{}, Locale.ENGLISH));
+        logger.info("Error code {}",exception.getErrorCode());
+//        logger.info(messageSource.getMessage(exception.getMessage(), new Object[]{}, Locale.ENGLISH));
         ResponseObject responseObject = new ResponseObject();
         responseObject.setError(new ErrorDto(exception.getErrorCode(), null));
         return responseObject;

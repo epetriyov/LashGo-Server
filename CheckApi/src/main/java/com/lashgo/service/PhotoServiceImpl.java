@@ -47,14 +47,12 @@ public class PhotoServiceImpl implements PhotoService {
     private final Logger logger = LoggerFactory.getLogger("FILE");
 
     private String buildNewPhotoName(int checkId, int userId) {
-        StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
         StringBuilder photoNameBuilder = new StringBuilder("check_");
         photoNameBuilder.append(checkId);
         photoNameBuilder.append("_user_");
         photoNameBuilder.append(userId);
-        photoNameBuilder.append(".png");
-        photoDestinationBuilder.append(photoNameBuilder);
-        return photoDestinationBuilder.toString();
+        photoNameBuilder.append(".jpg");
+        return photoNameBuilder.toString();
     }
 
     @Transactional
@@ -71,10 +69,12 @@ public class PhotoServiceImpl implements PhotoService {
                     logger.error(e.getMessage());
                     throw new PhotoReadException();
                 }
+                StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
                 String photoName = buildNewPhotoName(checkId, userDto.getId());
-                File destination = new File(photoName);
+                String photoPath = photoDestinationBuilder.append(photoName).toString();
+                File destination = new File(photoPath);
                 try {
-                    ImageIO.write(src, "png", destination);
+                    ImageIO.write(src, "jpg", destination);
                 } catch (IOException e) {
                     logger.error(e.getMessage());
                     throw new PhotoWriteException();
