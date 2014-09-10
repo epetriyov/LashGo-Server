@@ -14,6 +14,7 @@ import com.lashgo.repository.PhotoDao;
 import com.lashgo.repository.UserShownPhotosDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.social.facebook.api.Photo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,19 +44,22 @@ public class CheckServiceImpl implements CheckService {
 
     @Override
     public List<CheckDto> getChecks(String sessionId) {
-        Users users = userService.getUserBySession(sessionId);
-        return checkDao.getAllChecks(users.getId());
+        int userId = -1;
+        if(sessionId != null) {
+            userId = userService.getUserBySession(sessionId).getId();
+        }
+        return checkDao.getAllChecks(userId);
     }
 
     @Override
-    public List<PhotoDto> getPhotos(long checkId) {
+    public List<PhotoDto> getPhotos(int checkId) {
         return photoDao.getPhotosByCheckId(checkId);
     }
 
     @Override
     public VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded) {
         Users users = userService.getUserBySession(sessionId);
-        List<VotePhoto> votePhotoList = userShownPhotosDao.getUserShownPhotos(users.getId(), checkId, CheckConstants.VOTE_PHOTOS_LIMIT);
+        List<PhotoDto> votePhotoList = userShownPhotosDao.getUserShownPhotos(users.getId(), checkId, CheckConstants.VOTE_PHOTOS_LIMIT);
         Integer photosCount = isCountIncluded ? userShownPhotosDao.getUserShownPhotosCount(users.getId(), checkId) : null;
         return new VotePhotosResult(votePhotoList, photosCount);
     }
@@ -74,6 +78,15 @@ public class CheckServiceImpl implements CheckService {
             userLikesDao.likeCheck(users.getId(), checkId);
             return true;
         }
+    }
+
+    @Override
+    public CheckDto getCheckById(String sessionId, int checkId) {
+        int userId = -1;
+        if(sessionId != null) {
+            userId = userService.getUserBySession(sessionId).getId();
+        }
+        return checkDao.getCheckById(userId, checkId);
     }
 
     @Scheduled(cron = "0 0 * * * *")

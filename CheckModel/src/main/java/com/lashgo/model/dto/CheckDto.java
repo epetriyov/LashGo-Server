@@ -33,8 +33,6 @@ public class CheckDto implements Serializable {
     private int duration;
     @ApiObjectField(description = "task photo url")
     private String taskPhotoUrl;
-    @ApiObjectField(description = "winner photo url")
-    private String winnerPhotoUrl;
     @Min(1)
     @ApiObjectField(description = "vote duration")
     private int voteDuration;
@@ -52,26 +50,44 @@ public class CheckDto implements Serializable {
     private int playersCount;
     @ApiObjectField(description = "winner info")
     private UserDto winnerInfo;
-    @ApiObjectField(description = "url of current user check photo")
-    private String userPhoto;
+    @ApiObjectField(description = "user photo info")
+    private PhotoDto userPhotoDto;
+    @ApiObjectField(description = "winner photo info")
+    private PhotoDto winnerPhotoDto;
 
     public CheckDto() {
 
     }
 
-    public CheckDto(int id, String name, String description, Date startDate, int duration, String winnerPhotoUrl, int voteDuration) {
+    public CheckDto(int id, String name, String description, Date startDate, int duration, int voteDuration) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.duration = duration;
-        this.winnerPhotoUrl = winnerPhotoUrl;
         this.voteDuration = voteDuration;
     }
+
     public CheckDto(int id, String name,String taskPhotoUrl) {
         this.id = id;
         this.name = name;
         this.taskPhotoUrl = taskPhotoUrl;
+    }
+
+    public PhotoDto getUserPhotoDto() {
+        return userPhotoDto;
+    }
+
+    public void setUserPhotoDto(PhotoDto userPhotoDto) {
+        this.userPhotoDto = userPhotoDto;
+    }
+
+    public PhotoDto getWinnerPhotoDto() {
+        return winnerPhotoDto;
+    }
+
+    public void setWinnerPhotoDto(PhotoDto winnerPhotoDto) {
+        this.winnerPhotoDto = winnerPhotoDto;
     }
 
     public UserDto getWinnerInfo() {
@@ -168,21 +184,5 @@ public class CheckDto implements Serializable {
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public String getWinnerPhotoUrl() {
-        return winnerPhotoUrl;
-    }
-
-    public void setWinnerPhotoUrl(String winnerPhotoUrl) {
-        this.winnerPhotoUrl = winnerPhotoUrl;
-    }
-
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
-    }
-
-    public String getUserPhoto() {
-        return userPhoto;
     }
 }

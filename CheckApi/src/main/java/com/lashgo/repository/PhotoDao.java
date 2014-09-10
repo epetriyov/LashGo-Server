@@ -13,9 +13,9 @@ public interface PhotoDao {
 
     void savePhoto(Photos photos);
 
-    boolean isPhotoExists(long userId, long checkId);
+    boolean isPhotoExists(int userId, int checkId);
 
     List<PhotoDto> getPhotosByUserId(int userId);
 
-    List<PhotoDto> getPhotosByCheckId(long checkId);
+    List<PhotoDto> getPhotosByCheckId(int checkId);
 }

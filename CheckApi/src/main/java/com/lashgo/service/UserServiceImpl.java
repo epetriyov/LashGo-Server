@@ -3,6 +3,8 @@ package com.lashgo.service;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Sessions;
 import com.lashgo.domain.Users;
+import com.lashgo.error.PhotoReadException;
+import com.lashgo.error.PhotoWriteException;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
@@ -25,7 +27,13 @@ import org.springframework.social.vkontakte.api.VKontakteProfile;
 import org.springframework.social.vkontakte.api.impl.VKontakteTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -136,9 +144,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getProfile(String sessionId) {
-        Users users = getUserBySession(sessionId);
-        return new UserDto(users.getId(), users.getLogin(), users.getFio(),users.getAbout(), users.getCity(), users.getBirthDate(), users.getAvatar(), users.getEmail());
+    public UserDto getProfile(int userId) {
+        return userDao.getUserProfile(userId);
     }
 
     @Override
@@ -150,6 +157,61 @@ public class UserServiceImpl implements UserService {
     public Users getUserBySession(String sessionId) {
         Sessions sessions = sessionDao.getSessionById(sessionId);
         return userDao.getUserById(sessions.getUserId());
+    }
+
+    @Override
+    public UserDto getProfile(String sessionId) {
+        return userDao.getUserProfile(getUserBySession(sessionId).getId());
+    }
+
+    @Override
+    public List<PhotoDto> getPhotos(int userId) {
+        return photoDao.getPhotosByUserId(userId);
+    }
+
+    @Override
+    @Transactional
+    public void saveAvatar(String sessionId, MultipartFile avatar) {
+        Users users = getUserBySession(sessionId);
+        if (!avatar.isEmpty()) {
+            BufferedImage src = null;
+            try {
+                src = ImageIO.read(new ByteArrayInputStream(avatar.getBytes()));
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+                throw new PhotoReadException();
+            }
+            StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
+            String photoName = buildNewPhotoName(users.getId());
+            String photoPath = photoDestinationBuilder.append(photoName).toString();
+            File destination = new File(photoPath);
+            try {
+                ImageIO.write(src, "jpg", destination);
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+                throw new PhotoWriteException();
+            }
+            userDao.updateAvatar(photoName, users.getId());
+        }
+    }
+
+    @Override
+    @Transactional
+    public void updateProfile(String sessionId,UserDto userDto) {
+        Users user = getUserBySession(sessionId);
+        if(user.getId() != userDto.getId())
+        {
+            throw new ValidationException(ErrorCodes.USERS_DOESNT_MATCHES);
+        }
+        userDao.updateProfile(user.getId(),userDto);
+    }
+
+    private String buildNewPhotoName(int userId) {
+        StringBuilder photoNameBuilder = new StringBuilder("avatar_");
+        photoNameBuilder.append("_user_");
+        photoNameBuilder.append(userId);
+        photoNameBuilder.append(".jpg");
+        return photoNameBuilder.toString();
     }
 
     @Override
@@ -266,18 +328,14 @@ public class UserServiceImpl implements UserService {
 
     private RegisterResponse buildRegisterResponse(String interfaceTypeCode, LoginInfo loginInfo) {
         Users users = userDao.findUser(loginInfo);
+
         if (users != null) {
             logger.info("User found");
             SessionInfo sessionInfo = innerLogin(interfaceTypeCode, loginInfo);
             logger.info("Session created");
             RegisterResponse registerResponse = new RegisterResponse();
-            registerResponse.setUserId(users.getId());
+            registerResponse.setUserDto(userDao.getUserProfile(users.getId()));
             registerResponse.setSessionId(sessionInfo.getSessionId());
-            registerResponse.setAvatar(users.getAvatar());
-            registerResponse.setUserName(users.getLogin() != null ? users.getLogin() : users.getEmail());
-            registerResponse.setSubscribesCount(subscriptionsDao.getSubscriptionsCount(users.getId()));
-            logger.info("Subscriptions count calced");
-            registerResponse.setSubscribersCount(subscriptionsDao.getSubscribersCount(users.getId()));
             return registerResponse;
         } else {
             throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
@@ -286,7 +344,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public MainScreenInfoDto getMainScreenInfo(String sessionId, UserLastViews userLastViews) {
-        UserDto userDto = getProfile(sessionId);
+        Users userDto = getUserBySession(sessionId);
         MainScreenInfoDto mainScreenInfoDto = new MainScreenInfoDto();
         mainScreenInfoDto.setUserAvatar(userDto.getAvatar());
         mainScreenInfoDto.setUserName(userDto.getLogin());

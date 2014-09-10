@@ -20,6 +20,7 @@ public final class ErrorCodes {
     public static final String TEMP_USER_NOT_EXISTS = "user.temp.not_exists";
     public static final String INTERNAL_SERVER_ERROR = "server.internal_error";
     public static final String CHECK_ID_NULL = "check.empty_id";
+    public static final String USERS_DOESNT_MATCHES = "users.not_matches";
 
     private ErrorCodes() {
 

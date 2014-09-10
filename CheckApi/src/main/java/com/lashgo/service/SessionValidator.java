@@ -1,12 +1,12 @@
 package com.lashgo.service;
 
-import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Sessions;
-import com.lashgo.repository.SessionDao;
-import com.lashgo.model.ErrorCodes;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
+import com.lashgo.model.CheckApiHeaders;
+import com.lashgo.model.ErrorCodes;
+import com.lashgo.repository.SessionDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,19 +30,30 @@ public class SessionValidator {
     private SessionDao sessionDao;
 
     public void validate(HttpHeaders httpHeaders) {
+        validate(httpHeaders, true);
+    }
+
+    private void validate(HttpHeaders httpHeaders, boolean throwUnauth) {
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         if (CollectionUtils.isEmpty(sessionId)) {
-            throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);
+            if (throwUnauth) {
+                throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);
+            }
+        } else {
+            Sessions session = sessionDao.getSessionById(sessionId.get(0));
+            if (session == null) {
+                throw new ValidationException(ErrorCodes.WRONG_SESSION);
+            }
+            long currentTimestamp = System.currentTimeMillis();
+            logger.info("Current timestamp - " + currentTimestamp);
+            logger.info("Session start date timestamp - " + session.getStartTime().getTime());
+            if (currentTimestamp - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
+                throw new ValidationException(ErrorCodes.SESSION_EXPIRED);
+            }
         }
-        Sessions session = sessionDao.getSessionById(sessionId.get(0));
-        if (session == null) {
-            throw new ValidationException(ErrorCodes.WRONG_SESSION);
-        }
-        long currentTimestamp = System.currentTimeMillis();
-        logger.info("Current timestamp - " + currentTimestamp);
-        logger.info("Session start date timestamp - " + session.getStartTime().getTime());
-        if (currentTimestamp - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
-            throw new ValidationException(ErrorCodes.SESSION_EXPIRED);
-        }
+    }
+
+    public void validateWithoutUnauthEx(HttpHeaders httpHeaders) {
+        validate(httpHeaders, false);
     }
 }

@@ -1,9 +1,8 @@
 package com.lashgo.repository;
 
-import com.lashgo.mappers.UserVotesMapper;
-import com.lashgo.model.dto.VotePhoto;
+import com.lashgo.mappers.PhotosDtoMapper;
+import com.lashgo.model.dto.PhotoDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,16 +17,16 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<VotePhoto> getUserShownPhotos(int userId, int checkId, int limit) {
+    public List<PhotoDto> getUserShownPhotos(int userId, int checkId, int limit) {
         return jdbcTemplate.query(
-                " SELECT ph.id AS photo_id,ph.picture AS photo,u.id AS user_id," +
-                        "u.login AS user_login,u.avatar AS user_avatar " +
-                        "FROM photos ph " +
-                        "INNER JOIN users u ON " +
-                        "(u.id = ph.user_id) " +
-                        "WHERE ph.check_id = ? AND ph.id NOT IN " +
-                        "(SELECT uv.photo_id FROM user_shown_photos uv " +
-                        " WHERE uv.user_id = ?) LIMIT ?", new UserVotesMapper(), checkId, userId, limit);
+                "SELECT p.id as id_photo, p.picture, u.id, u.login, u.avatar," +
+                        "                         COUNT(pc.id) AS comments_count,COUNT(pl.id) AS likes_count" +
+                        "                    FROM photos p, users u " +
+                        "                    LEFT JOIN photo_comments pc ON (pc.photo_id = p.id) " +
+                        "                    LEFT JOIN user_photo_likes pl ON (pl.photo_id = p.id) " +
+                        "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 AND p.id NOT IN " +
+                        "                        (SELECT uv.photo_id FROM user_shown_photos uv " +
+                        "                         WHERE uv.user_id = ?) LIMIT ?", new PhotosDtoMapper(PhotosDtoMapper.MapType.CHECK_JOIN), checkId, userId, limit);
     }
 
     @Override
@@ -39,13 +38,13 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
 
     @Override
     public int getUserShownPhotosCount(int userId, int checkId) {
-            return jdbcTemplate.queryForObject(
-                    " SELECT COUNT(ph.id) " +
-                            "FROM photos ph " +
-                            "INNER JOIN users u ON " +
-                            "(u.id = ph.user_id) " +
-                            "WHERE ph.check_id = ? AND ph.id NOT IN " +
-                            "(SELECT uv.photo_id FROM user_shown_photos uv " +
-                            " WHERE uv.user_id = ?)", Integer.class, checkId, userId);
+        return jdbcTemplate.queryForObject(
+                " SELECT COUNT(ph.id) " +
+                        "FROM photos ph " +
+                        "INNER JOIN users u ON " +
+                        "(u.id = ph.user_id) " +
+                        "WHERE ph.check_id = ? AND ph.id NOT IN " +
+                        "(SELECT uv.photo_id FROM user_shown_photos uv " +
+                        " WHERE uv.user_id = ?)", Integer.class, checkId, userId);
     }
 }

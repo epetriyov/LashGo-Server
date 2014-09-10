@@ -31,6 +31,9 @@ import java.util.List;
 public class GCMController extends BaseController {
 
     @Autowired
+    private SessionValidator sessionValidator;
+
+    @Autowired
     private GcmService gcmService;
 
     @ApiMethod(
@@ -53,6 +56,7 @@ public class GCMController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseObject registerDevice(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody GcmRegistrationDto registrationDto, BindingResult result) {
+        sessionValidator.validate(httpHeaders);
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         String session = !CollectionUtils.isEmpty(sessionId) ? sessionId.get(0) : null;
         gcmService.addRegistrationId(session, registrationDto);

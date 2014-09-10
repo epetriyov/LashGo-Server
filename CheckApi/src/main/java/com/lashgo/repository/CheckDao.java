@@ -16,4 +16,6 @@ public interface CheckDao {
     int getActiveChecksCount();
 
     void addWinners();
+
+    CheckDto getCheckById(int userdId, int checkId);
 }

@@ -34,6 +34,8 @@ public class UserDto implements Serializable {
     @Size(min = 1)
     @ApiObjectField(description = "email")
     private String email;
+    @ApiObjectField(description = "passwordHash")
+    private String passwordHash;
     @ApiObjectField(description = "count of user's subscribes")
     private int userSubscribes;
     @ApiObjectField(description = "count of user's subscribers")
@@ -44,10 +46,8 @@ public class UserDto implements Serializable {
     private int commentsCount;
     @ApiObjectField(description = "count of user's likes")
     private int likesCount;
-
     public UserDto() {
     }
-
     public UserDto(int id, String login, String fio, String about, String city, Date birthDate, String avatar, String email) {
         this.id = id;
         this.login = login;
@@ -63,6 +63,14 @@ public class UserDto implements Serializable {
         this.id = id;
         this.login = login;
         this.avatar = avatar;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public String getFio() {

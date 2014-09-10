@@ -51,7 +51,8 @@ public class RestErrorHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(DataAccessException.class)
     @ResponseBody
-    public ResponseObject processDataAccessError() {
+    public ResponseObject processDataAccessError(DataAccessException e) {
+        logger.error(e.getMessage());
         return buildErrorResponse(new InternalServerError());
     }
 

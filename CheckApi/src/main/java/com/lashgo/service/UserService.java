@@ -4,6 +4,7 @@ import com.lashgo.domain.Users;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.dto.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface UserService {
 
     void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException;
 
-    UserDto getProfile(String sessionId);
+    UserDto getProfile(int userId);
 
     List<PhotoDto> getPhotos(String sessionId);
 
@@ -35,4 +36,12 @@ public interface UserService {
     MainScreenInfoDto getMainScreenInfo(String sessionId, UserLastViews userLastViews);
 
     Users getUserBySession(String sessionId);
+
+    UserDto getProfile(String sessionId);
+
+    List<PhotoDto> getPhotos(int userId);
+
+    void saveAvatar(String sessionId, MultipartFile file);
+
+    void updateProfile(String sessionId, UserDto userDto);
 }

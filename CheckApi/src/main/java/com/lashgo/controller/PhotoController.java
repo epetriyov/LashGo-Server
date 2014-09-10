@@ -63,7 +63,8 @@ public class PhotoController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseEntity<FileSystemResource> getFile(@ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
+    ResponseEntity<FileSystemResource> getFile(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         if (fileName != null) {
             logger.debug("File name {}",fileName);
             File file = new File(CheckConstants.PHOTOS_FOLDER, fileName);
@@ -124,7 +125,8 @@ public class PhotoController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<CommentDto> getPhotoComments(@ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+    ResponseList<CommentDto> getPhotoComments(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseList<>(commentService.getPhotoComments(photoId));
     }
 

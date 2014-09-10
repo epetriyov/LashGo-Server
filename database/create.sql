@@ -72,7 +72,8 @@ CREATE TABLE photos (
 	picture	        varchar(50)               NOT NULL UNIQUE CHECK (picture <> ''),
 	make_date       timestamp with time zone  NOT NULL CHECK (make_date <= current_timestamp) DEFAULT current_timestamp,
   user_id         int                       REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  check_id        int                       REFERENCES checks (id) ON DELETE RESTRICT ON UPDATE CASCADE
+  check_id        int                       REFERENCES checks (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  is_banned       int                       DEFAULT 0
 );
 
 CREATE UNIQUE INDEX photo_idx ON photos (user_id, check_id);

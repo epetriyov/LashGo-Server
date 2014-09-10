@@ -15,6 +15,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -58,7 +60,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Users getUserById(long userId) {
+    public Users getUserById(int userId) {
         return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE u.id = ?", new UsersMapper(), userId);
     }
 
@@ -105,23 +107,70 @@ public class UserDaoImpl implements UserDao {
     }
 
     public UserDto getUserProfile(int userId) {
-        return jdbcTemplate.queryForObject("SELECT * FROM users,  " +
-                "                         count(ph2.id) as checks_count, " +
-                "                         count(comm.id) as comments_count, " +
-                "                         count(likes.id) as likes_count, " +
-                "                         count(subs.id) as user_subscribes, " +
-                "                         count(subs2.id) as user_subscribers " +
-                "                   LEFT JOIN photos ph2" +
-                "                      ON (ph2.user_id = u.id) " +
-                "                   LEFT JOIN comments comm" +
-                "                      ON (comm.user_id = u.id) " +
-                "                   LEFT JOIN user_photo_likes likes" +
-                "                      ON (likes.user_id = u.id) " +
-                "                   LEFT JOIN subscriptions subs" +
-                "                      ON (subs.user_id = u.id) " +
-                "                   LEFT JOIN subscriptions subs2 " +
-                "                      ON (subs2.checklist_id = u.id) " +
-                "                  WHERE users.id = ?"
+        return jdbcTemplate.queryForObject(
+                "SELECT u.* ," +
+                        " COUNT(ph2.id) as checks_count," +
+                        " COUNT(comm.id) as comments_count," +
+                        " COUNT(likes.id) as likes_count," +
+                        " COUNT(subs.id) as user_subscribes," +
+                        " COUNT(subs2.id) as user_subscribers" +
+                        "  FROM users u" +
+                        "  LEFT JOIN photos ph2" +
+                        "    ON (ph2.user_id = u.id)" +
+                        "  LEFT JOIN comments comm" +
+                        "    ON (comm.user_id = u.id)" +
+                        "  LEFT JOIN user_photo_likes likes" +
+                        "    ON (likes.user_id = u.id)" +
+                        "  LEFT JOIN subscriptions subs" +
+                        "    ON (subs.user_id = u.id)" +
+                        "  LEFT JOIN subscriptions subs2" +
+                        "    ON (subs2.checklist_id = u.id)" +
+                        " WHERE u.id = ?" +
+                        " GROUP BY u.id"
                 , new UserDtoMapper(true), userId);
+    }
+
+    @Override
+    public void updateAvatar(String photoName, int userId) {
+        jdbcTemplate.update("UPDATE users SET avatar = ? WHERE id = ?", photoName, userId);
+    }
+
+    @Override
+    public void updateProfile(int userId, UserDto userDto) {
+        List<Object> args = new ArrayList<>();
+        if (userDto.getFio() != null) {
+            args.add(userDto.getFio());
+        }
+        if (userDto.getCity() != null) {
+            args.add(userDto.getCity());
+        }
+        if (userDto.getEmail() != null) {
+            args.add(userDto.getEmail());
+        }
+        if (userDto.getAbout() != null) {
+            args.add(userDto.getAbout());
+        }
+        if(userDto.getPasswordHash() != null)
+        {
+            args.add(userDto.getPasswordHash());
+        }
+        args.add(userId);
+
+        jdbcTemplate.update("UPDATE users " +
+                        userDto.getFio() != null ? "SET fio = ?" : "" +
+                        userDto.getFio() != null && (userDto.getCity() != null || userDto.getEmail() != null || userDto.getAbout() !=null || userDto.getPasswordHash() != null) ? "," : "" +
+                        userDto.getFio() == null ? "SET " : "" +
+                        userDto.getCity() != null ? " city = ?" : "" +
+                        userDto.getCity() != null && (userDto.getEmail() != null || userDto.getAbout() !=null || userDto.getPasswordHash() != null) ? "," : "" +
+                        userDto.getFio() == null && userDto.getCity() == null ? "SET " : "" +
+                        userDto.getEmail() != null ? " email = ?" : "" +
+                        userDto.getEmail() != null && (userDto.getAbout() !=null || userDto.getPasswordHash() != null) ? "," : "" +
+                        userDto.getFio() == null && userDto.getCity() == null && userDto.getEmail() == null ? "SET " : "" +
+                        userDto.getAbout() != null ? " about = ?" : "" +
+                        userDto.getAbout() != null && userDto.getPasswordHash() != null ? "," : "" +
+                        userDto.getFio() == null && userDto.getCity() == null && userDto.getEmail() == null && userDto.getAbout() == null ? "SET " : "" +
+                        userDto.getPasswordHash() != null ? " password = ?" : "" +
+                        "             WHERE id = ?",args.toArray(new Object[args.size()])
+                );
     }
 }

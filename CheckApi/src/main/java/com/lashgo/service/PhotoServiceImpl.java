@@ -58,7 +58,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Transactional
     @Override
     public void savePhoto(String sessionId, int checkId, MultipartFile photo) {
-        UserDto userDto = userService.getProfile(sessionId);
+        Users userDto = userService.getUserBySession(sessionId);
         if (!photoDao.isPhotoExists(userDto.getId(), checkId)) {
 
             if (!photo.isEmpty()) {

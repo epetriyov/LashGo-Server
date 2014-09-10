@@ -13,7 +13,7 @@ public final class Path {
 
     public static final class Checks {
         public static final String GET = "/checks";
-        public static final String CURRENT = "/checks/current";
+        public static final String CHECK = "/checks/{checkId}";
         public static final String PHOTOS = "/checks/{checkId}/photos";
         public static final String COMMENTS = "/checks/{checkId}/comments";
         public static final String VOTE_PHOTOS = "/checks/{checkId}/vote/photos";
@@ -43,12 +43,15 @@ public final class Path {
         public static final String REGISTER = "/users/register";
         public static final String LOGIN = "/users/login";
         public static final String RECOVER = "/users/recover";
-        public static final String PROFILE = "/users/profile";
-        public static final String PHOTOS = "/users/photos";
+        public static final String MY_PROFILE = "/users/profile";
+        public static final String PROFILE = "/users/{userId}/profile";
+        public static final String MY_PHOTOS = "/users/photos";
+        public static final String PHOTOS = "/users/{userId}/photos";
         public static final String SUBSCRIPTIONS = "/users/subscriptions";
-        public static final String SUBSCRIPTION = "/users/subscriptions/{userId}";
+        public static final String SUBSCRIPTION = "/users/{userId}/subscriptions";
         public static final String SOCIAL_SIGN_IN = "/users/social-sign-in";
         public static final String SOCIAL_SIGN_UP = "/users/social-sign-up";
         public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
+        public static final String AVATAR = "/users/avatar";
     }
 }
