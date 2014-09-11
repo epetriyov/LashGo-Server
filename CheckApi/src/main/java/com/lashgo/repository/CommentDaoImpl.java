@@ -1,13 +1,13 @@
 package com.lashgo.repository;
 
-import com.lashgo.model.dto.CommentDto;
-import com.lashgo.domain.Comments;
 import com.lashgo.mappers.CommentsMapper;
+import com.lashgo.model.dto.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class CommentDaoImpl implements CommentDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<CommentDto> getCommentsByCheck(long checkId) {
+    public List<CommentDto> getCommentsByCheck(int checkId) {
         return jdbcTemplate.query("" +
                 "                  SELECT c.*,u.id as user_id, u.login, u.avatar FROM comments c " +
                 "                  INNER JOIN users u ON (u.id = c.user_id)" +
@@ -31,35 +31,44 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     @Override
-    public void addCheckComment(final long checkId, final CommentDto checkCommentDto) {
-        Number commentId = addComment(checkCommentDto);
-        if (commentId != null) {
-            jdbcTemplate.update("INSERT INTO check_comments (comment_id, check_id) " +
-                    "            VALUES (?,?)", commentId, checkId);
-        }
+    public CommentDto addCheckComment(int userId, int checkId, String commentText, Date commentDate) {
+        Number commentId = addComment(userId, commentText, commentDate);
+        jdbcTemplate.update("INSERT INTO check_comments (comment_id, check_id) " +
+                "            VALUES (?,?)", commentId.longValue(), checkId);
+        return getCommentById(commentId);
+    }
+
+    private CommentDto getCommentById(Number commentId) {
+        return jdbcTemplate.queryForObject("" +
+                "                  SELECT c.*,u.id as user_id, u.login, u.avatar FROM comments c " +
+                "                  INNER JOIN users u ON (u.id = c.user_id)" +
+                "                   WHERE c.id = ?", new CommentsMapper(), commentId);
     }
 
     @Override
     public List<CommentDto> getCommentsByPhoto(long photoId) {
         return jdbcTemplate.query("" +
-                "                  SELECT c.* FROM comments c" +
+                "                  SELECT c.*,u.id as user_id, u.login, u.avatar FROM comments c" +
+                "                  INNER JOIN users u ON (u.id = c.user_id)" +
                 "                   RIGHT JOIN photo_comments pc ON (pc.comment_id = c.id)" +
                 "                   WHERE pc.photo_id = ?", new CommentsMapper(), photoId);
     }
 
-    private Number addComment(final CommentDto commentDto) {
+    private Number addComment(int userId, String commentText, Date commentDate) {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         Map<String, Object> params = new HashMap<>();
-        params.put("content", commentDto.getContent());
-        params.put("user_id", commentDto.getUser().getId());
-        return simpleJdbcInsert.withTableName("comments").usingGeneratedKeyColumns("id").usingColumns("content", "user_id").executeAndReturnKey(params);
+        params.put("content", commentText);
+        params.put("user_id", userId);
+        params.put("create_date", commentDate);
+        return simpleJdbcInsert.withTableName("comments").usingGeneratedKeyColumns("id").usingColumns("content", "user_id", "create_date").executeAndReturnKey(params);
     }
 
     @Override
-    public void addPhotoComment(final long photoId, final CommentDto photoCommentDto) {
-        Number commentId = addComment(photoCommentDto);
+    public CommentDto addPhotoComment(int userId, long photoId, String commentText, Date commentDate) {
+        Number commentId = addComment(userId, commentText, commentDate);
         jdbcTemplate.update("INSERT INTO photo_comments (comment_id, photo_id) " +
-                "            VALUES (?,?)", commentId, photoId);
+                "            VALUES (?,?)", commentId.longValue(), photoId);
+        return getCommentById(commentId);
     }
 
     @Override

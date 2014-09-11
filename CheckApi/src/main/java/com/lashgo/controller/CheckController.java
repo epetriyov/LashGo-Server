@@ -163,11 +163,9 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject addCheckComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId, @ApiBodyObject @Valid @RequestBody CommentDto commentDto, BindingResult result) {
+    ResponseObject<CommentDto> addCheckComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId, @ApiBodyObject @Valid @RequestBody String commentText) {
         sessionValidator.validate(httpHeaders);
-        CheckUtils.handleBindingResult(logger, result);
-        commentService.addCheckComment(checkId, commentDto);
-        return new ResponseObject();
+        return new ResponseObject(commentService.addCheckComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),checkId, commentText));
     }
 
     @ApiMethod(

@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface CommentService {
 
-    List<CommentDto> getCheckComments(long checkId);
+    List<CommentDto> getCheckComments(int checkId);
 
     List<CommentDto> getPhotoComments(long photoId);
 
-    void addCheckComment(long checkId, CommentDto commentDto);
+    CommentDto addCheckComment(String sessionId,int checkId, String commentText);
 
-    void addPhotoComment(long photoId, CommentDto commentDto);
+    CommentDto addPhotoComment(String sessionId,long photoId, String commentText);
 
     void deleteComment(long commentId);
 }

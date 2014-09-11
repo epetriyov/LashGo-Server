@@ -1,11 +1,13 @@
 package com.lashgo.service;
 
+import com.lashgo.domain.Users;
 import com.lashgo.model.dto.CommentDto;
 import com.lashgo.repository.CommentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +20,10 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentDao commentDao;
 
-    public List<CommentDto> getCheckComments(long checkId) {
+    @Autowired
+    private UserService userService;
+
+    public List<CommentDto> getCheckComments(int checkId) {
         return commentDao.getCommentsByCheck(checkId);
     }
 
@@ -29,14 +34,16 @@ public class CommentServiceImpl implements CommentService {
 
     @Transactional
     @Override
-    public void addCheckComment(long checkId, CommentDto checkCommentDto) {
-        commentDao.addCheckComment(checkId, checkCommentDto);
+    public CommentDto addCheckComment(String sessionId, int checkId, String commentText) {
+        Users users = userService.getUserBySession(sessionId);
+        return commentDao.addCheckComment(users.getId(), checkId, commentText, new Date());
     }
 
     @Transactional
     @Override
-    public void addPhotoComment(long photoId, CommentDto photoCommentDto) {
-        commentDao.addPhotoComment(photoId, photoCommentDto);
+    public CommentDto addPhotoComment(String sessionId, long photoId, String commentText) {
+        Users users = userService.getUserBySession(sessionId);
+        return commentDao.addPhotoComment(users.getId(), photoId, commentText, new Date());
     }
 
     @Transactional

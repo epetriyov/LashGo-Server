@@ -3,6 +3,7 @@ package com.lashgo.repository;
 import com.lashgo.model.dto.CommentDto;
 import com.lashgo.domain.Comments;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,13 +11,13 @@ import java.util.List;
  */
 public interface CommentDao {
 
-    List<CommentDto> getCommentsByCheck(long checkId);
+    List<CommentDto> getCommentsByCheck(int checkId);
 
-    void addCheckComment(long checkId, CommentDto checkCommentDto);
+    CommentDto addCheckComment(int userId, int checkId, String commentText, Date commentDate);
 
     void deleteComment(long commentId);
 
     List<CommentDto> getCommentsByPhoto(long photoId);
 
-    void addPhotoComment(long photoId, CommentDto photoCommentDto);
+    CommentDto addPhotoComment(int userId, long photoId, String commentText, Date commentDate);
 }

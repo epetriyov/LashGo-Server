@@ -68,7 +68,7 @@ CREATE TABLE check_winners (
 );
 
 CREATE TABLE photos (
-	id              serial                    NOT NULL PRIMARY KEY,
+	id              bigserial                    NOT NULL PRIMARY KEY,
 	picture	        varchar(50)               NOT NULL UNIQUE CHECK (picture <> ''),
 	make_date       timestamp with time zone  NOT NULL CHECK (make_date <= current_timestamp) DEFAULT current_timestamp,
   user_id         int                       REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -79,30 +79,30 @@ CREATE TABLE photos (
 CREATE UNIQUE INDEX photo_idx ON photos (user_id, check_id);
 
 CREATE TABLE comments (
-	id 				      serial                    NOT NULL PRIMARY KEY,
+	id 				      bigserial                    NOT NULL PRIMARY KEY,
 	content			    varchar(500)              NOT NULL,
 	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= current_timestamp) DEFAULT current_timestamp,
   user_id         int                       REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE photo_comments (
-  id              serial                    NOT NULL PRIMARY KEY,
-  comment_id      int                       REFERENCES comments (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  id              bigserial                    NOT NULL PRIMARY KEY,
+  comment_id      bigint                       REFERENCES comments (id) ON DELETE CASCADE ON UPDATE CASCADE,
   photo_id        int                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE UNIQUE INDEX photo_comments_idx ON photo_comments (photo_id, comment_id);
 
 CREATE TABLE check_comments (
-  id              serial                    NOT NULL PRIMARY KEY,
-  comment_id      int                       REFERENCES comments (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  id              bigserial                    NOT NULL PRIMARY KEY,
+  comment_id      bigint                       REFERENCES comments (id) ON DELETE CASCADE ON UPDATE CASCADE,
   check_id        int                       REFERENCES checks (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE UNIQUE INDEX check_comments_idx ON check_comments (check_id, comment_id);
 
 CREATE TABLE subscriptions (
-  id              serial                    NOT NULL PRIMARY KEY,
+  id              bigserial                    NOT NULL PRIMARY KEY,
   user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
   checklist_id    int                       CHECK (checklist_id <> user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
   subscribe_date  timestamp with time zone  NOT NULL CHECK (subscribe_date <= current_timestamp) DEFAULT current_timestamp
@@ -119,23 +119,23 @@ CREATE TABLE news (
 );
 
 CREATE TABLE user_votes (
-	id      				serial			        		  NOT NULL PRIMARY KEY,
+	id      				bigserial			        		  NOT NULL PRIMARY KEY,
 	user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,	    
-  photo_id        int                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
+  photo_id        bigint                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE UNIQUE INDEX user_votes_idx ON user_votes (user_id, photo_id);
 
 CREATE TABLE user_shown_photos (
-	id 				      serial					          NOT NULL PRIMARY KEY,
+	id 				      bigserial					          NOT NULL PRIMARY KEY,
 	user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  photo_id        int                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
+  photo_id        bigint                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE UNIQUE INDEX user_shown_photos_idx ON user_shown_photos (user_id, photo_id);
 
 CREATE TABLE user_check_likes (
-	id              serial                    NOT NULL PRIMARY KEY,
+	id              bigserial                    NOT NULL PRIMARY KEY,
   user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
   check_id        int                       REFERENCES checks (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -143,9 +143,9 @@ CREATE TABLE user_check_likes (
 CREATE UNIQUE INDEX user_check_likes_idx ON user_check_likes (check_id, user_id);
 
 CREATE TABLE user_photo_likes (
-  id              serial                    NOT NULL PRIMARY KEY,
+  id              bigserial                    NOT NULL PRIMARY KEY,
   user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  photo_id        int                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
+  photo_id        bigint                       REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE UNIQUE INDEX user_photo_likes_idx ON user_photo_likes (photo_id, user_id);

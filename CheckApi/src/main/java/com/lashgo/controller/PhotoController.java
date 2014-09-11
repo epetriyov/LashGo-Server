@@ -150,9 +150,8 @@ public class PhotoController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject addPhotoComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId, @ApiBodyObject @RequestBody CommentDto commentDto) {
+    ResponseObject<CommentDto> addPhotoComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId, @ApiBodyObject @RequestBody String commentText) {
         sessionValidator.validate(httpHeaders);
-        commentService.addPhotoComment(photoId, commentDto);
-        return new ResponseObject();
+        return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),photoId, commentText));
     }
 }
