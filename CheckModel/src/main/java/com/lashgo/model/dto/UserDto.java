@@ -59,9 +59,10 @@ public class UserDto implements Serializable {
         this.email = email;
     }
 
-    public UserDto(int id, String login, String avatar) {
+    public UserDto(int id, String login, String fio, String avatar) {
         this.id = id;
         this.login = login;
+        this.fio = fio;
         this.avatar = avatar;
     }
 

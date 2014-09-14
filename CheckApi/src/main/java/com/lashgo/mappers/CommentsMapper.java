@@ -18,7 +18,7 @@ public class CommentsMapper implements RowMapper<CommentDto> {
         comments.setId(resultSet.getLong("id"));
         comments.setContent(resultSet.getString("content"));
         comments.setCreateDate(resultSet.getTimestamp("create_date"));
-        comments.setUser(new UserDto(resultSet.getInt("user_id"), resultSet.getString("login"), resultSet.getString("avatar")));
+        comments.setUser(new UserDto(resultSet.getInt("user_id"), resultSet.getString("login"), resultSet.getString("fio"),resultSet.getString("avatar")));
         return comments;
     }
 }

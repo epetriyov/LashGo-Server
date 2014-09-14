@@ -24,7 +24,7 @@ public class CommentDaoImpl implements CommentDao {
     @Override
     public List<CommentDto> getCommentsByCheck(int checkId) {
         return jdbcTemplate.query("" +
-                "                  SELECT c.*,u.id as user_id, u.login, u.avatar FROM comments c " +
+                "                  SELECT c.*,u.id as user_id, u.login, u.fio,u.avatar FROM comments c " +
                 "                  INNER JOIN users u ON (u.id = c.user_id)" +
                 "                   RIGHT JOIN check_comments cc ON (cc.comment_id = c.id)" +
                 "                   WHERE cc.check_id = ?", new CommentsMapper(), checkId);
@@ -40,7 +40,7 @@ public class CommentDaoImpl implements CommentDao {
 
     private CommentDto getCommentById(Number commentId) {
         return jdbcTemplate.queryForObject("" +
-                "                  SELECT c.*,u.id as user_id, u.login, u.avatar FROM comments c " +
+                "                  SELECT c.*,u.id as user_id, u.login, u.fio,u.avatar FROM comments c " +
                 "                  INNER JOIN users u ON (u.id = c.user_id)" +
                 "                   WHERE c.id = ?", new CommentsMapper(), commentId);
     }
@@ -48,7 +48,7 @@ public class CommentDaoImpl implements CommentDao {
     @Override
     public List<CommentDto> getCommentsByPhoto(long photoId) {
         return jdbcTemplate.query("" +
-                "                  SELECT c.*,u.id as user_id, u.login, u.avatar FROM comments c" +
+                "                  SELECT c.*,u.id as user_id, u.login,u.fio, u.avatar FROM comments c" +
                 "                  INNER JOIN users u ON (u.id = c.user_id)" +
                 "                   RIGHT JOIN photo_comments pc ON (pc.comment_id = c.id)" +
                 "                   WHERE pc.photo_id = ?", new CommentsMapper(), photoId);

@@ -104,28 +104,6 @@ public class UserController extends BaseController {
         return new ResponseObject<>(userService.socialSignIn(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
     }
 
-    @ApiMethod(
-            path = Path.Users.SOCIAL_SIGN_UP,
-            verb = ApiVerb.POST,
-            description = "social sign up",
-            produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE}
-    )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-    })
-    @RequestMapping(value = Path.Users.SOCIAL_SIGN_UP, method = RequestMethod.POST)
-    public
-    @ResponseBody
-    @ApiResponseObject
-    ResponseObject<RegisterResponse> confirmSocialSignUp(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody ExtendedSocialInfo socialInfo, BindingResult result) {
-        CheckUtils.handleBindingResult(logger, result);
-        return new ResponseObject<>(userService.socialSignUp(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
-    }
 
     @ApiMethod(
             path = Path.Users.RECOVER,
@@ -145,9 +123,9 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject recover(@ApiBodyObject @Valid @RequestBody RecoverInfo recoverInfo, BindingResult result) {
+    ResponseObject recover(@ApiBodyObject @Valid @RequestBody String email, BindingResult result) {
         CheckUtils.handleBindingResult(logger, result);
-        userService.sendRecoverPassword(recoverInfo);
+        userService.sendRecoverPassword(email);
         return new ResponseObject<>();
     }
 
@@ -350,7 +328,7 @@ public class UserController extends BaseController {
     }
 
     @ApiMethod(
-            path = Path.Users.PROFILE,
+            path = Path.Users.MY_PROFILE,
             verb = ApiVerb.PUT,
             description = "udpate user's profile",
             produces = {MediaType.APPLICATION_JSON_VALUE},
@@ -364,7 +342,7 @@ public class UserController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed or user already exists"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Users.PROFILE, method = RequestMethod.PUT)
+    @RequestMapping(value = Path.Users.MY_PROFILE, method = RequestMethod.PUT)
     public
     @ResponseBody
     @ApiResponseObject

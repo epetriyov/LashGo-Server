@@ -17,10 +17,8 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @ApiObject(name = "registerInfo", description = "info for registration")
 public class RegisterInfo extends LoginInfo {
-    @ApiObjectField(description = "name")
-    private String name;
-    @ApiObjectField(description = "surname")
-    private String surname;
+    @ApiObjectField(description = "fio")
+    private String fio;
     @ApiObjectField(description = "about")
     private String about;
     @ApiObjectField(description = "city")
@@ -32,31 +30,20 @@ public class RegisterInfo extends LoginInfo {
     @Size(min = 1)
     @ApiObjectField(description = "email")
     private String email;
-    private String gender;
-
     public RegisterInfo() {
         super();
     }
-
     public RegisterInfo(String login, String passwordHash, String email) {
         super(login, passwordHash);
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getFio() {
+        return fio;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
     public String getAbout() {
@@ -97,13 +84,5 @@ public class RegisterInfo extends LoginInfo {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getGender() {
-        return gender;
     }
 }

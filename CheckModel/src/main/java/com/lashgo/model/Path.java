@@ -18,6 +18,7 @@ public final class Path {
         public static final String COMMENTS = "/checks/{checkId}/comments";
         public static final String VOTE_PHOTOS = "/checks/{checkId}/vote/photos";
         public static final String LIKE = "/checks/like";
+        public static final String COUNTERS = "/checks/{checkId}/counters";
     }
 
     public static final class Comments {
@@ -37,6 +38,8 @@ public final class Path {
         public static final String GET_FILE = "/photos/{fileName:.+}";
         public static final String VOTE = "/photos/vote";
         public static final String COMMENTS = "/photos/{photoId}/comments";
+        public static final String COUNTERS = "/photos/{photoId}/counters";
+        public static final String LIKE = "/photos/like";
     }
 
     public static final class Users {
@@ -50,7 +53,6 @@ public final class Path {
         public static final String SUBSCRIPTIONS = "/users/subscriptions";
         public static final String SUBSCRIPTION = "/users/{userId}/subscriptions";
         public static final String SOCIAL_SIGN_IN = "/users/social-sign-in";
-        public static final String SOCIAL_SIGN_UP = "/users/social-sign-up";
         public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
         public static final String AVATAR = "/users/avatar";
     }

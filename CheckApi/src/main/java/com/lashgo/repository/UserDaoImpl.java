@@ -65,12 +65,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void createTempUser(RegisterInfo registerInfo) {
-        jdbcTemplate.update("INSERT INTO temp_users (login, password, name,surname,about,city,birth_date,avatar,email) " +
-                "VALUES (?,?,?,?,?,?,?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(), registerInfo.getName(), registerInfo.getSurname(), registerInfo.getAbout(), registerInfo.getCity(), registerInfo.getBirthDate(), registerInfo.getAvatar(), registerInfo.getEmail());
-    }
-
-    @Override
     public void createUser(LoginInfo registerInfo) {
         jdbcTemplate.update("INSERT INTO users (login,password,email) " +
                         "VALUES (?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(),
@@ -80,25 +74,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void createUser(RegisterInfo registerInfo) {
-        jdbcTemplate.update("INSERT INTO users (login, password, name,surname,about,city,birth_date,avatar,email) " +
-                "VALUES (?,?,?,?,?,?,?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(), registerInfo.getName(), registerInfo.getSurname(), registerInfo.getAbout(), registerInfo.getCity(), registerInfo.getBirthDate(), registerInfo.getAvatar(), registerInfo.getEmail());
-    }
-
-    @Override
-    public Users findTempUser(String userName) {
-        try {
-            return jdbcTemplate.queryForObject("SELECT u.* FROM temp_users u WHERE u.login = ?", new UsersMapper(), userName);
-        } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{userName}, Locale.ENGLISH));
-            return null;
-
-        }
-    }
-
-    @Override
-    public void createSocialUser(Users tempUser) {
         jdbcTemplate.update("INSERT INTO users (login, password, fio,about,city,birth_date,avatar,email) " +
-                "VALUES (?,?,?,?,?,?,?,?,?)", tempUser.getLogin(), tempUser.getPassword(), tempUser.getFio(), tempUser.getAbout(), tempUser.getCity(), tempUser.getBirthDate(), tempUser.getAvatar(), tempUser.getEmail());
+                "VALUES (?,?,?,?,?,?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(), registerInfo.getFio(), registerInfo.getAbout(), registerInfo.getCity(), registerInfo.getBirthDate(), registerInfo.getAvatar(), registerInfo.getEmail());
     }
 
     @Override
@@ -109,22 +86,12 @@ public class UserDaoImpl implements UserDao {
     public UserDto getUserProfile(int userId) {
         return jdbcTemplate.queryForObject(
                 "SELECT u.* ," +
-                        " COUNT(ph2.id) as checks_count," +
-                        " COUNT(comm.id) as comments_count," +
-                        " COUNT(likes.id) as likes_count," +
-                        " COUNT(subs.id) as user_subscribes," +
-                        " COUNT(subs2.id) as user_subscribers" +
+                        " (SELECT COUNT(ph2.id) FROM photos ph2 WHERE (ph2.user_id = u.id)) AS checks_count," +
+                        " (SELECT COUNT(comm.id) FROM comments comm WHERE (comm.user_id = u.id)) AS comments_count," +
+                        " (SELECT COUNT(likes.id) FROM user_photo_likes likes WHERE (likes.user_id = u.id)) AS likes_count," +
+                        " (SELECT COUNT(subs.id) FROM subscriptions subs WHERE (subs.user_id = u.id)) AS user_subscribes," +
+                        " (SELECT COUNT(subs2.id) FROM subscriptions subs2 WHERE (subs2.checklist_id = u.id)) AS user_subscribers" +
                         "  FROM users u" +
-                        "  LEFT JOIN photos ph2" +
-                        "    ON (ph2.user_id = u.id)" +
-                        "  LEFT JOIN comments comm" +
-                        "    ON (comm.user_id = u.id)" +
-                        "  LEFT JOIN user_photo_likes likes" +
-                        "    ON (likes.user_id = u.id)" +
-                        "  LEFT JOIN subscriptions subs" +
-                        "    ON (subs.user_id = u.id)" +
-                        "  LEFT JOIN subscriptions subs2" +
-                        "    ON (subs2.checklist_id = u.id)" +
                         " WHERE u.id = ?" +
                         " GROUP BY u.id"
                 , new UserDtoMapper(true), userId);
@@ -141,6 +108,9 @@ public class UserDaoImpl implements UserDao {
         if (userDto.getFio() != null) {
             args.add(userDto.getFio());
         }
+        if (userDto.getLogin() != null) {
+            args.add(userDto.getLogin());
+        }
         if (userDto.getCity() != null) {
             args.add(userDto.getCity());
         }
@@ -150,27 +120,43 @@ public class UserDaoImpl implements UserDao {
         if (userDto.getAbout() != null) {
             args.add(userDto.getAbout());
         }
-        if(userDto.getPasswordHash() != null)
-        {
+        if (userDto.getPasswordHash() != null) {
             args.add(userDto.getPasswordHash());
         }
         args.add(userId);
 
-        jdbcTemplate.update("UPDATE users " +
-                        userDto.getFio() != null ? "SET fio = ?" : "" +
-                        userDto.getFio() != null && (userDto.getCity() != null || userDto.getEmail() != null || userDto.getAbout() !=null || userDto.getPasswordHash() != null) ? "," : "" +
-                        userDto.getFio() == null ? "SET " : "" +
-                        userDto.getCity() != null ? " city = ?" : "" +
-                        userDto.getCity() != null && (userDto.getEmail() != null || userDto.getAbout() !=null || userDto.getPasswordHash() != null) ? "," : "" +
-                        userDto.getFio() == null && userDto.getCity() == null ? "SET " : "" +
-                        userDto.getEmail() != null ? " email = ?" : "" +
-                        userDto.getEmail() != null && (userDto.getAbout() !=null || userDto.getPasswordHash() != null) ? "," : "" +
-                        userDto.getFio() == null && userDto.getCity() == null && userDto.getEmail() == null ? "SET " : "" +
-                        userDto.getAbout() != null ? " about = ?" : "" +
-                        userDto.getAbout() != null && userDto.getPasswordHash() != null ? "," : "" +
-                        userDto.getFio() == null && userDto.getCity() == null && userDto.getEmail() == null && userDto.getAbout() == null ? "SET " : "" +
-                        userDto.getPasswordHash() != null ? " password = ?" : "" +
-                        "             WHERE id = ?",args.toArray(new Object[args.size()])
-                );
+        String sql =
+                "UPDATE users " +
+                        (userDto.getFio() != null ? "SET fio = ?" : "") +
+                        (userDto.getFio() != null && (userDto.getLogin() != null || userDto.getCity() != null || userDto.getEmail() != null || userDto.getAbout() != null || userDto.getPasswordHash() != null) ? "," : "") +
+                        (userDto.getFio() == null ? "SET " : "") +
+                        (userDto.getLogin() != null ? " login = ?" : "") +
+                        (userDto.getLogin() != null && (userDto.getCity() != null || userDto.getEmail() != null || userDto.getAbout() != null || userDto.getPasswordHash() != null) ? "," : "") +
+                        (userDto.getFio() == null && userDto.getLogin() == null ? "SET " : "") +
+                        (userDto.getCity() != null ? " city = ?" : "") +
+                        (userDto.getCity() != null && (userDto.getEmail() != null || userDto.getAbout() != null || userDto.getPasswordHash() != null) ? "," : "") +
+                        (userDto.getFio() == null && userDto.getLogin() == null && userDto.getCity() == null ? "SET " : "") +
+                        (userDto.getEmail() != null ? " email = ?" : "") +
+                        (userDto.getEmail() != null && (userDto.getAbout() != null || userDto.getPasswordHash() != null) ? "," : "") +
+                        (userDto.getFio() == null && userDto.getLogin() == null && userDto.getCity() == null && userDto.getEmail() == null ? "SET " : "") +
+                        (userDto.getAbout() != null ? " about = ?" : "") +
+                        (userDto.getAbout() != null && userDto.getPasswordHash() != null ? "," : "") +
+                        (userDto.getFio() == null && userDto.getLogin() == null && userDto.getCity() == null && userDto.getEmail() == null && userDto.getAbout() == null ? "SET " : "") +
+                        (userDto.getPasswordHash() != null ? " password = ?" : "") +
+                        "             WHERE id = ?";
+        System.out.println(sql);
+        jdbcTemplate.update(sql, args.toArray(new Object[args.size()])
+        );
+    }
+
+    @Override
+    public boolean isUserExists(int userId, String email) {
+        try {
+            jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE (u.email = ? OR u.login = ?) AND u.id <> ?", Integer.class, email, email, userId);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{email}, Locale.ENGLISH));
+            return false;
+        }
+        return true;
     }
 }

@@ -52,7 +52,7 @@ public class RestErrorHandler {
     @ExceptionHandler(DataAccessException.class)
     @ResponseBody
     public ResponseObject processDataAccessError(DataAccessException e) {
-        logger.error(e.getMessage());
+        System.out.println(e.getMessage());
         return buildErrorResponse(new InternalServerError());
     }
 

@@ -94,6 +94,29 @@ public class CheckController extends BaseController {
     }
 
     @ApiMethod(
+            path = Path.Checks.COUNTERS,
+            verb = ApiVerb.GET,
+            description = "Gets check counters by check id",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+    })
+    @RequestMapping(value = Path.Checks.COUNTERS, method = RequestMethod.GET)
+    public
+    @ApiResponseObject
+    @ResponseBody
+    ResponseObject<CheckCounters> getCheckCounters(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        return new ResponseObject<>(checkService.getCheckCounters(checkId));
+    }
+
+    @ApiMethod(
             path = Path.Checks.PHOTOS,
             verb = ApiVerb.GET,
             description = "Gets list of check's photos",
@@ -239,7 +262,7 @@ public class CheckController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject<Boolean> likePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestBody Integer checkId) {
+    ResponseObject<Boolean> likeCheck(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestBody Integer checkId) {
         sessionValidator.validate(httpHeaders);
         return new ResponseObject<>(checkService.likeCheck(checkId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
     }

@@ -7,9 +7,10 @@ import com.lashgo.error.PhotoReadException;
 import com.lashgo.error.PhotoWriteException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
-import com.lashgo.model.dto.UserDto;
+import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.VoteAction;
 import com.lashgo.repository.PhotoDao;
+import com.lashgo.repository.PhotoLikesDao;
 import com.lashgo.repository.UserShownPhotosDao;
 import com.lashgo.repository.UserVotesDao;
 import org.slf4j.Logger;
@@ -31,6 +32,9 @@ import java.io.IOException;
 @Service
 @Transactional(readOnly = true)
 public class PhotoServiceImpl implements PhotoService {
+
+    @Autowired
+    private PhotoLikesDao userLikesDao;
 
     @Autowired
     private UserService userService;
@@ -92,5 +96,25 @@ public class PhotoServiceImpl implements PhotoService {
         Users users = userService.getUserBySession(sessionId);
         userVotesDao.addUserVote(users.getId(), voteAction.getVotedPhotoId());
         userShownPhotosDao.addUserShownPhotos(users.getId(), voteAction.getPhotoIds());
+    }
+
+    @Override
+    public CheckCounters getPhotoCounters(long photoId) {
+        return photoDao.getPhotoCounters(photoId);
+    }
+
+    @Override
+    public Boolean likePhoto(Long photoId, String sessionId) {
+        if (photoId == null) {
+            throw new ValidationException(ErrorCodes.PHOTO_ID_NULL);
+        }
+        Users users = userService.getUserBySession(sessionId);
+        if (userLikesDao.isUserLiked(users.getId(), photoId)) {
+            userLikesDao.unlikeCheck(users.getId(), photoId);
+            return false;
+        } else {
+            userLikesDao.likeCheck(users.getId(), photoId);
+            return true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.lashgo.service;
 
+import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.VoteAction;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,4 +12,8 @@ public interface PhotoService {
     void savePhoto(String sessionId, int checkId, MultipartFile photo);
 
     void ratePhoto(String sessionId, VoteAction voteAction);
+
+    CheckCounters getPhotoCounters(long photoId);
+
+    Boolean likePhoto(Long photoid, String sessionId);
 }

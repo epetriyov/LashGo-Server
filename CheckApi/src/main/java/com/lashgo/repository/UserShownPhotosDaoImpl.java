@@ -19,11 +19,8 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
     @Override
     public List<PhotoDto> getUserShownPhotos(int userId, int checkId, int limit) {
         return jdbcTemplate.query(
-                "SELECT p.id as id_photo, p.picture, u.id, u.login, u.avatar," +
-                        "                         COUNT(pc.id) AS comments_count,COUNT(pl.id) AS likes_count" +
+                "SELECT p.id as id_photo, p.picture, u.id, u.login, u.fio,u.avatar" +
                         "                    FROM photos p, users u " +
-                        "                    LEFT JOIN photo_comments pc ON (pc.photo_id = p.id) " +
-                        "                    LEFT JOIN user_photo_likes pl ON (pl.photo_id = p.id) " +
                         "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 AND p.id NOT IN " +
                         "                        (SELECT uv.photo_id FROM user_shown_photos uv " +
                         "                         WHERE uv.user_id = ?) LIMIT ?", new PhotosDtoMapper(PhotosDtoMapper.MapType.CHECK_JOIN), checkId, userId, limit);

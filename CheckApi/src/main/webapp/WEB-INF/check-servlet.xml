@@ -94,7 +94,7 @@
 
     <bean id="documentationController" class="com.lashgo.controller.DocumentationController">
         <property name="version" value="1.0"/>
-        <property name="basePath" value="http://90.188.31.70:8080/lashgo-api"/>
+        <property name="basePath" value="http://78.47.39.245:8080/lashgo-api"/>
         <property name="packages">
             <list>
                 <value>com.lashgo.controller</value>
@@ -108,8 +108,8 @@
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="25"/>
-        <property name="username" value="eugene.petriyov@gmail.com"/>
-        <property name="password" value="4Iqz7Fxkp1HNZ3SpyH3S"/>
+        <property name="username" value="support@lashgo.com"/>
+        <property name="password" value="en9jYw8srqluWubUTg7e"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>

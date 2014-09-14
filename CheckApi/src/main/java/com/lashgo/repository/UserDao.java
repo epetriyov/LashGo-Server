@@ -20,13 +20,7 @@ public interface UserDao {
 
     Users getUserById(int userId);
 
-    void createTempUser(RegisterInfo registerInfo);
-
     void createUser(RegisterInfo registerInfo);
-
-    Users findTempUser(String userName);
-
-    void createSocialUser(Users tempUser);
 
     void updatePassword(String email, String newPassword);
 
@@ -35,4 +29,6 @@ public interface UserDao {
     void updateAvatar(String photoName, int userId);
 
     void updateProfile(int userId, UserDto userDto);
+
+    boolean isUserExists(int userId, String email);
 }

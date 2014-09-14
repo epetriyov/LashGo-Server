@@ -1,5 +1,6 @@
 package com.lashgo.repository;
 
+import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface CheckDao {
     CheckDto getNextCheck();
 
     List<CheckDto> getAllChecks(int userId);
+
+    CheckCounters getCheckCounters(int checkId);
 
     int getActiveChecksCount();
 

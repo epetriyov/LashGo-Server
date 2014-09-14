@@ -4,10 +4,7 @@ import com.lashgo.CheckConstants;
 import com.lashgo.domain.Users;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
-import com.lashgo.model.dto.CheckDto;
-import com.lashgo.model.dto.PhotoDto;
-import com.lashgo.model.dto.VotePhoto;
-import com.lashgo.model.dto.VotePhotosResult;
+import com.lashgo.model.dto.*;
 import com.lashgo.repository.CheckDao;
 import com.lashgo.repository.CheckLikesDao;
 import com.lashgo.repository.PhotoDao;
@@ -87,6 +84,11 @@ public class CheckServiceImpl implements CheckService {
             userId = userService.getUserBySession(sessionId).getId();
         }
         return checkDao.getCheckById(userId, checkId);
+    }
+
+    @Override
+    public CheckCounters getCheckCounters(int checkId) {
+        return checkDao.getCheckCounters(checkId);
     }
 
     @Scheduled(cron = "0 0 * * * *")

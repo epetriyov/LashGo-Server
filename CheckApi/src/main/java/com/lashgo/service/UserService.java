@@ -17,7 +17,7 @@ public interface UserService {
 
     RegisterResponse register(String interfaceTypeCode, LoginInfo registerInfo) throws ValidationException;
 
-    void sendRecoverPassword(RecoverInfo recoverInfo) throws ValidationException;
+    void sendRecoverPassword(String email) throws ValidationException;
 
     UserDto getProfile(int userId);
 
@@ -30,8 +30,6 @@ public interface UserService {
     void subscribe(String sessionId, int userId);
 
     RegisterResponse socialSignIn(String interfaceTypeCode, SocialInfo socialInfo);
-
-    RegisterResponse socialSignUp(String interfaceTypeCode, ExtendedSocialInfo socialInfo);
 
     MainScreenInfoDto getMainScreenInfo(String sessionId, UserLastViews userLastViews);
 

@@ -4,10 +4,7 @@ import com.lashgo.CheckConstants;
 import com.lashgo.error.PhotoReadException;
 import com.lashgo.model.CheckApiHeaders;
 import com.lashgo.model.Path;
-import com.lashgo.model.dto.CommentDto;
-import com.lashgo.model.dto.ResponseList;
-import com.lashgo.model.dto.ResponseObject;
-import com.lashgo.model.dto.VoteAction;
+import com.lashgo.model.dto.*;
 import com.lashgo.service.CommentService;
 import com.lashgo.service.PhotoService;
 import com.lashgo.service.SessionValidator;
@@ -76,6 +73,31 @@ public class PhotoController extends BaseController {
             }
         }
         throw new PhotoReadException();
+    }
+
+
+    @ApiMethod(
+            path = Path.Photos.COUNTERS,
+            verb = ApiVerb.GET,
+            description = "Gets photo's counters",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+    })
+    @RequestMapping(value = Path.Photos.COUNTERS, method = RequestMethod.GET)
+    public
+    @ApiResponseObject
+    @ResponseBody
+    ResponseObject<CheckCounters> getPhotoCounters(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        return new ResponseObject<>(photoService.getPhotoCounters(photoId));
     }
 
     @ApiMethod(
@@ -153,5 +175,30 @@ public class PhotoController extends BaseController {
     ResponseObject<CommentDto> addPhotoComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId, @ApiBodyObject @RequestBody String commentText) {
         sessionValidator.validate(httpHeaders);
         return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),photoId, commentText));
+    }
+
+    @ApiMethod(
+            path = Path.Photos.LIKE,
+            verb = ApiVerb.POST,
+            description = "like photo",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Photos.LIKE, method = RequestMethod.POST)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseObject<Boolean> likePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestBody Long photoId) {
+        sessionValidator.validate(httpHeaders);
+        return new ResponseObject<>(photoService.likePhoto(photoId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
     }
 }

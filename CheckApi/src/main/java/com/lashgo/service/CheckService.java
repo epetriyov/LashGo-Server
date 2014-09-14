@@ -1,5 +1,6 @@
 package com.lashgo.service;
 
+import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VotePhotosResult;
@@ -20,4 +21,6 @@ public interface CheckService {
     boolean likeCheck(Integer checkId, String sessionId);
 
     CheckDto getCheckById(String sessionId, int checkId);
+
+    CheckCounters getCheckCounters(int checkId);
 }

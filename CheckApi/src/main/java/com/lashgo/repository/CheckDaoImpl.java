@@ -1,6 +1,8 @@
 package com.lashgo.repository;
 
+import com.lashgo.mappers.CheckCountersMapper;
 import com.lashgo.mappers.CheckMapper;
+import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -29,38 +31,24 @@ public class CheckDaoImpl implements CheckDao {
 
     @Override
     public List<CheckDto> getAllChecks(int userId) {
-        return jdbcTemplate.query("SELECT count(lc.id) as likes_count, " +
-                "                         count(p.id) as players_count," +
-                "                         count(com.id) as comments_count ," +
+        return jdbcTemplate.query("SELECT " +
                 "                         c.id as check_id, c.name as check_name," +
                 "                         c.description as check_description," +
                 "                         c.start_date as check_start_date, " +
                 "                         c.duration as check_duration, " +
                 "                         c.task_photo as check_task_photo," +
                 "                         c.vote_duration as check_vote_duration," +
-                "                         COUNT(pc.id) AS u_p_comments_count,COUNT(pl.id) AS u_p_likes_count," +
-                "                         COUNT(pc1.id) AS w_p_comments_count,COUNT(pl1.id) AS w_p_likes_count," +
                 "                         p2.picture as user_photo," +
                 "                         ph.picture as winner_photo, w.id as winner_id, u.*" +
                 "                    FROM checks c " +
-                "                    LEFT JOIN photos p " +
-                "                      ON (p.check_id = c.id)" +
                 "                    LEFT JOIN photos p2 " +
                 "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +
-                "                    LEFT JOIN photo_comments pc ON (pc.photo_id = p2.id) " +
-                "                    LEFT JOIN user_photo_likes pl ON (pl.photo_id = p2.id) " +
-                "                    LEFT JOIN check_comments com " +
-                "                      ON (com.check_id = c.id)" +
-                "                    LEFT JOIN user_check_likes lc" +
-                "                      ON (lc.check_id = c.id)" +
                 "                    LEFT JOIN check_winners w" +
                 "                      ON (w.check_id = c.id) " +
                 "                   LEFT JOIN users u" +
                 "                      ON (u.id = w.winner_id) " +
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
-                "                    LEFT JOIN photo_comments pc1 ON (pc1.photo_id = ph.id) " +
-                "                    LEFT JOIN user_photo_likes pl1 ON (pl1.photo_id = ph.id) " +
                 "                   WHERE c.start_date <= current_timestamp" +
                 "                   GROUP BY c.id,ph.picture,w.id,u.id, p2.picture " +
                 "                   ORDER BY c.start_date DESC", new CheckMapper(), userId);
@@ -90,40 +78,34 @@ public class CheckDaoImpl implements CheckDao {
         );
     }
 
+    public CheckCounters getCheckCounters(int checkId) {
+        return jdbcTemplate.queryForObject(
+                "SELECT (SELECT COUNT (lc.id) FROM user_check_likes lc WHERE lc.check_id = ?) AS likes_count," +
+                        "(SELECT COUNT (p.id) FROM photos p WHERE p.check_id = ?) AS players_count," +
+                        "(SELECT COUNT (com.id) FROM check_comments com WHERE com.check_id = ?) AS comments_count;"
+                , new CheckCountersMapper(), checkId, checkId, checkId);
+    }
+
     @Override
     public CheckDto getCheckById(int userId, int checkId) {
-        return jdbcTemplate.queryForObject("SELECT count(lc.id) as likes_count, " +
-                "                         count(p.id) as players_count," +
-                "                         count(com.id) as comments_count ," +
+        return jdbcTemplate.queryForObject("SELECT " +
                 "                         c.id as check_id, c.name as check_name," +
                 "                         c.description as check_description," +
                 "                         c.start_date as check_start_date, " +
                 "                         c.duration as check_duration, " +
                 "                         c.task_photo as check_task_photo," +
                 "                         c.vote_duration as check_vote_duration," +
-                "                         COUNT(pc.id) AS u_p_comments_count,COUNT(pl.id) AS u_p_likes_count," +
-                "                         COUNT(pc1.id) AS w_p_comments_count,COUNT(pl1.id) AS w_p_likes_count," +
                 "                         p2.picture as user_photo," +
                 "                         ph.picture as winner_photo, w.id as winner_id, u.*" +
                 "                    FROM checks c " +
-                "                    LEFT JOIN photos p " +
-                "                      ON (p.check_id = c.id)" +
                 "                    LEFT JOIN photos p2 " +
                 "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +
-                "                    LEFT JOIN photo_comments pc ON (pc.photo_id = p2.id) " +
-                "                    LEFT JOIN user_photo_likes pl ON (pl.photo_id = p2.id) " +
-                "                    LEFT JOIN check_comments com " +
-                "                      ON (com.check_id = c.id)" +
-                "                    LEFT JOIN user_check_likes lc" +
-                "                      ON (lc.check_id = c.id)" +
                 "                    LEFT JOIN check_winners w" +
                 "                      ON (w.check_id = c.id) " +
                 "                   LEFT JOIN users u" +
                 "                      ON (u.id = w.winner_id) " +
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
-                "                    LEFT JOIN photo_comments pc1 ON (pc1.photo_id = ph.id) " +
-                "                    LEFT JOIN user_photo_likes pl1 ON (pl1.photo_id = ph.id) " +
                 "                   WHERE c.id = ?" +
                 "                   GROUP BY c.id,ph.picture,w.id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
     }

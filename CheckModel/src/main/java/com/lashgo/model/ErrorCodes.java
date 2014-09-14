@@ -16,11 +16,14 @@ public final class ErrorCodes {
     public static final String PHOTO_READ_ERROR = "photo.read_error";
     public static final String PHOTO_WRITE_ERROR = "photo.write_error";
     public static final String UNSUPPORTED_SOCIAL = "social.unsupported";
-    public static final String EMAIL_NEEDED = "email.is_needed";
-    public static final String TEMP_USER_NOT_EXISTS = "user.temp.not_exists";
     public static final String INTERNAL_SERVER_ERROR = "server.internal_error";
     public static final String CHECK_ID_NULL = "check.empty_id";
     public static final String USERS_DOESNT_MATCHES = "users.not_matches";
+    public static final String EMPTY_EMAIL = "email.is_empty";
+    public static final String SOCIAL_WRONG_DATA = "social.wrong_data";
+    public static final String USER_WITH_LOGIN_ALREADY_EXISTS = "login.already_exists";
+    public static final String USER_WITH_EMAIL_ALREADY_EXISTS = "email.already_exists";
+    public static final String PHOTO_ID_NULL = "photo.empty_id";
 
     private ErrorCodes() {
 
