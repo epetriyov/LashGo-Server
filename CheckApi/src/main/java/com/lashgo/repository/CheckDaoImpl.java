@@ -67,14 +67,16 @@ public class CheckDaoImpl implements CheckDao {
     @Override
     public void addWinners() {
         jdbcTemplate.update(
-                "INSERT INTO check_winners (check_id,winner_id) " +
-                        "(SELECT c.id,p.user_id FROM checks c " +
-                        "LEFT JOIN photos p ON (p.check_id = c.id)" +
-                        "INNER JOIN (SELECT uv.user_id AS user_id, MAX(uv.votes_count)" +
-                        "FROM (SELECT user_id, COUNT(id) AS votes_count FROM user_votes GROUP BY user_id) uv GROUP BY uv.user_id) res ON (res.user_id = p.user_id)" +
-                        " WHERE c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'> current_date" +
-                        " AND c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour' < current_date + INTERVAL '1 hour'" +
-                        " GROUP BY c.id,p.user_id)"
+                "           INSERT INTO check_winners (check_id,winner_id) " +
+                        "  (SELECT c.id,p.user_id FROM checks c " +
+                        "    INNER JOIN photos p ON (p.check_id = c.id)" +
+                        "    INNER JOIN " +
+                        "(SELECT al1.photo_id as photo_id, MAX(al1.votes_count) as votes_count FROM" +
+                        "(SELECT photo_id, COUNT(id) AS votes_count FROM user_votes GROUP BY photo_id) al1 GROUP BY al1.photo_id order by votes_count desc limit 1) al2" +
+                        " on (al2.photo_id = p.id)" +
+                        "    WHERE c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'< current_timestamp" +
+                        "      AND c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'+ INTERVAL '1 hour' > current_timestamp" +
+                        "    GROUP BY c.id,p.user_id)"
         );
     }
 
@@ -96,7 +98,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                         c.task_photo as check_task_photo," +
                 "                         c.vote_duration as check_vote_duration," +
                 "                         p2.picture as user_photo," +
-                "                         ph.picture as winner_photo, w.id as winner_id, u.*" +
+                "                         ph.id as winner_photo_id, ph.picture as winner_photo, w.winner_id as winner_id, u.*" +
                 "                    FROM checks c " +
                 "                    LEFT JOIN photos p2 " +
                 "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +
@@ -107,6 +109,6 @@ public class CheckDaoImpl implements CheckDao {
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                 "                   WHERE c.id = ?" +
-                "                   GROUP BY c.id,ph.picture,w.id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
+                "                   GROUP BY c.id,ph.id,ph.picture,w.id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
     }
 }

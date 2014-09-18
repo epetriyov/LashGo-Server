@@ -1,9 +1,9 @@
 package com.lashgo.mappers;
 
-import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.UserDto;
+import com.lashgo.utils.CheckUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +35,9 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<Chec
             userDto.setId(winnerId);
             check.setWinnerInfo(userDto);
             PhotoDto winnerPhotoDto = new PhotoDto();
+            if (CheckUtils.hasColumn(resultSet, "winner_photo_id")) {
+                winnerPhotoDto.setId(resultSet.getLong("winner_photo_id"));
+            }
             winnerPhotoDto.setUrl(resultSet.getString("winner_photo"));
             check.setWinnerPhotoDto(winnerPhotoDto);
         }

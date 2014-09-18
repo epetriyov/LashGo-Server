@@ -91,7 +91,7 @@ public class CheckServiceImpl implements CheckService {
         return checkDao.getCheckCounters(checkId);
     }
 
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "0 1 * * * *")
     public void chooseWinner() {
         checkDao.addWinners();
     }

@@ -40,7 +40,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -142,7 +141,7 @@ public class UserServiceImpl implements UserService {
                 userDao.updatePassword(email, CheckUtils.md5(newPassword));
                 SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
                 mailMessage.setTo(email);
-                mailMessage.setText(messageSource.getMessage("password.new", new Object[]{email, newPassword}, Locale.ENGLISH));
+                mailMessage.setText(String.format("New password for user %s: %s", email, newPassword));
                 mailSender.send(mailMessage);
             } else {
                 throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
@@ -344,7 +343,7 @@ public class UserServiceImpl implements UserService {
         Users userDto = getUserBySession(sessionId);
         MainScreenInfoDto mainScreenInfoDto = new MainScreenInfoDto();
         mainScreenInfoDto.setUserAvatar(userDto.getAvatar());
-        mainScreenInfoDto.setUserName(userDto.getFio() != null ? userDto.getFio(): userDto.getLogin());
+        mainScreenInfoDto.setUserName(userDto.getFio() != null ? userDto.getFio() : userDto.getLogin());
         mainScreenInfoDto.setNewsCount(newsDao.getNewerNews(userLastViews.getNewsLastView()));
         mainScreenInfoDto.setSubscribesCount(subscriptionsDao.getNewerSubscriptions(userDto.getId(), userLastViews.getSubscribesLastView()));
         mainScreenInfoDto.setTasksCount(checkDao.getActiveChecksCount());
