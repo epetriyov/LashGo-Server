@@ -47,9 +47,9 @@ public class SessionValidator {
             long currentTimestamp = System.currentTimeMillis();
             logger.info("Current timestamp - " + currentTimestamp);
             logger.info("Session start date timestamp - " + session.getStartTime().getTime());
-            if (currentTimestamp - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
-                throw new ValidationException(ErrorCodes.SESSION_EXPIRED);
-            }
+//            if (currentTimestamp - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
+//                throw new ValidationException(ErrorCodes.SESSION_EXPIRED);
+//            }
         }
     }
 

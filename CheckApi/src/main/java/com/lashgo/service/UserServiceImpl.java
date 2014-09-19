@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
             userInterfaceDao.addUserInteface(userId, interfaceId);
         }
         Sessions session = sessionDao.getSessionByUser(userId);
-        if (session == null || System.currentTimeMillis() - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
+        if (session == null) {
             session = sessionDao.createSession(userId);
         }
         return new SessionInfo(session.getSessionId(), userId);

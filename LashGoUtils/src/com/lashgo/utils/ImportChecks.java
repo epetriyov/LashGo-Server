@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class ImportChecks {
 
-    private static final String CHECKS_FILE_NAME = "D:\\LashGo\\projects\\LashGo\\Server\\LashGoUtils\\checks.xml";
+    private static final String CHECKS_FILE_NAME = "D:\\LashGo\\projects\\LashGo\\Server\\LashGoUtils\\checks_new.xml";
 
     private static List<Check> parseChecks() {
         XmlMapper xmlMapper = new XmlMapper();
@@ -53,7 +53,7 @@ public class ImportChecks {
         pgSimpleDataSource.setDatabaseName("lashgo");
         pgSimpleDataSource.setPassword("Javageeks58");
         pgSimpleDataSource.setPortNumber(5432);
-        pgSimpleDataSource.setServerName("localhost");
+        pgSimpleDataSource.setServerName("78.47.39.245");
         pgSimpleDataSource.setUser("postgres");
         JdbcTemplate jdbcTemplate = new JdbcTemplate(pgSimpleDataSource);
         try {

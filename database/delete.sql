@@ -2,7 +2,7 @@ drop table social_users cascade;
 drop table users cascade;
 drop table socials cascade;
 drop table client_interfaces cascade;
-drop table user_interfaces cascade;
+drop table users_interfaces cascade;
 drop table sessions cascade;
 drop table gcm_registrations cascade;
 drop table checks cascade;
