@@ -18,6 +18,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,7 @@ import static com.lashgo.gcm.Constants.*;
  */
 @Service
 @Transactional(readOnly = true)
+@EnableScheduling
 public class GcmServiceImpl implements GcmService {
 
     @Autowired
@@ -126,9 +128,10 @@ public class GcmServiceImpl implements GcmService {
         logger.info("There is no check to send");
     }
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 15 * * * *")
     @Override
     public void multicastSend() {
+        System.out.print("GCM FIRED");
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override

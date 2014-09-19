@@ -30,7 +30,7 @@ public class ImportChecks {
 
     private static List<Check> parseChecks() {
         XmlMapper xmlMapper = new XmlMapper();
-        xmlMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"));
+        xmlMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss Z"));
         XMLInputFactory f = XMLInputFactory.newFactory();
         try {
             XMLStreamReader xmlStreamReader = f.createXMLStreamReader(new FileInputStream(new File(CHECKS_FILE_NAME)));

@@ -11,7 +11,7 @@ public final class CheckConstants {
     public static final String TWITTER_CONSUMER_SECRET_KEY = "pIkZnc7NJ8CW0WG5sCFLgPD5BOrak2Gtca3hmpy5dg";
     public static final String FAKE_EMAIL = "fake@email.com";
     public static final String FACEBOOK_DATE_FORMAT = "dd/MM/yyyy";
-    public static final String GCM_PROJECT_API = "AIzaSyD0LL29286WEtv9jOe9H5ke6tO-J8PXb5k";
+    public static final String GCM_PROJECT_API = "AIzaSyCssrjPsEfhk9ZYFpMlFmlLTJj28jAYWW8";
     public static final long SESSION_EXPIRE_PERIOD_MILLIS = 3600000l;
     public static final String DATE_FORMAT = "dd.MM.yyyy HH:mm:ss Z";
     public static final String PHOTOS_FOLDER = "D:/LashGo/photos/";

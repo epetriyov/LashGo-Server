@@ -4,14 +4,17 @@ import com.lashgo.CheckConstants;
 import com.lashgo.domain.Users;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
-import com.lashgo.model.dto.*;
+import com.lashgo.model.dto.CheckCounters;
+import com.lashgo.model.dto.CheckDto;
+import com.lashgo.model.dto.PhotoDto;
+import com.lashgo.model.dto.VotePhotosResult;
 import com.lashgo.repository.CheckDao;
 import com.lashgo.repository.CheckLikesDao;
 import com.lashgo.repository.PhotoDao;
 import com.lashgo.repository.UserShownPhotosDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.social.facebook.api.Photo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true)
+@EnableScheduling
 public class CheckServiceImpl implements CheckService {
 
     @Autowired
@@ -42,7 +46,7 @@ public class CheckServiceImpl implements CheckService {
     @Override
     public List<CheckDto> getChecks(String sessionId) {
         int userId = -1;
-        if(sessionId != null) {
+        if (sessionId != null) {
             userId = userService.getUserBySession(sessionId).getId();
         }
         return checkDao.getAllChecks(userId);
@@ -80,7 +84,7 @@ public class CheckServiceImpl implements CheckService {
     @Override
     public CheckDto getCheckById(String sessionId, int checkId) {
         int userId = -1;
-        if(sessionId != null) {
+        if (sessionId != null) {
             userId = userService.getUserBySession(sessionId).getId();
         }
         return checkDao.getCheckById(userId, checkId);
@@ -91,9 +95,15 @@ public class CheckServiceImpl implements CheckService {
         return checkDao.getCheckCounters(checkId);
     }
 
-    @Scheduled(cron = "0 1 * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void chooseWinner() {
-        checkDao.addWinners();
-    }
+        System.out.print("CHOOSE WINNER FIRED");
+        List<Integer> voteCheckIds = checkDao.getVoteChecks();
+        if (voteCheckIds != null) {
+            for (Integer id : voteCheckIds) {
+                checkDao.addWinners(id);
+            }
 
+        }
+    }
 }

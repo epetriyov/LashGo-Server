@@ -23,7 +23,7 @@ public class CheckDaoImpl implements CheckDao {
     @Override
     public CheckDto getNextCheck() {
         try {
-            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date + c.duration * INTERVAL '1 hour' > current_date ORDER BY c.start_date ASC LIMIT 1", new CheckMapper());
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date + c.duration * INTERVAL '1 hour' >= current_timestamp ORDER BY c.start_date ASC LIMIT 1", new CheckMapper());
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -64,19 +64,25 @@ public class CheckDaoImpl implements CheckDao {
         }
     }
 
+    public List<Integer> getVoteChecks() {
+        return jdbcTemplate.queryForList("SELECT id FROM checks c WHERE " +
+                        "c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'< current_timestamp" +
+                        "      AND c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'+ INTERVAL '1 hour' > current_timestamp",
+                Integer.class
+        );
+    }
+
     @Override
-    public void addWinners() {
+    public void addWinners(int checkId) {
         jdbcTemplate.update(
                 "           INSERT INTO check_winners (check_id,winner_id) " +
-                        "  (SELECT c.id,p.user_id FROM checks c " +
-                        "    INNER JOIN photos p ON (p.check_id = c.id)" +
+                        "  (SELECT p.check_id,p.user_id FROM photos p " +
                         "    INNER JOIN " +
                         "(SELECT al1.photo_id as photo_id, MAX(al1.votes_count) as votes_count FROM" +
-                        "(SELECT photo_id, COUNT(id) AS votes_count FROM user_votes GROUP BY photo_id) al1 GROUP BY al1.photo_id order by votes_count desc limit 1) al2" +
+                        "(SELECT uvv.photo_id, COUNT(uvv.id) AS votes_count FROM user_votes uvv " +
+                        "INNER JOIN photos pp ON (pp.id = uvv.photo_id AND pp.check_id = ?) GROUP BY photo_id) al1 GROUP BY al1.photo_id order by votes_count desc limit 1) al2" +
                         " on (al2.photo_id = p.id)" +
-                        "    WHERE c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'< current_timestamp" +
-                        "      AND c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'+ INTERVAL '1 hour' > current_timestamp" +
-                        "    GROUP BY c.id,p.user_id)"
+                        "    GROUP BY p.check_id,p.user_id)", checkId
         );
     }
 
