@@ -1,9 +1,10 @@
 <configuration>
 
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
-<!--		<file>D:\LashGo\projects\LashGo\Server\logs\lashgo.log</file>
--->
+		<file>D:\LashGo\projects\LashGo\Server\logs\lashgo.log</file>
+        <!--
         <file>\var\log\lashgo\lashgo.log</file>
+-->
 		<append>true</append>
 		
    <!-- encoders are assigned the type

@@ -1,7 +1,9 @@
 package com.lashgo.repository;
 
+import com.lashgo.domain.Check;
 import com.lashgo.mappers.CheckCountersMapper;
 import com.lashgo.mappers.CheckMapper;
+import com.lashgo.mappers.GcmCheckMapper;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,8 @@ public class CheckDaoImpl implements CheckDao {
     @Override
     public CheckDto getNextCheck() {
         try {
-            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date + c.duration * INTERVAL '1 hour' >= current_timestamp ORDER BY c.start_date ASC LIMIT 1", new CheckMapper());
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date >= current_timestamp " +
+                    "AND c.start_date <= current_timestamp + INTERVAL '1 hour' ORDER BY c.start_date ASC LIMIT 1", new CheckMapper());
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -116,5 +119,17 @@ public class CheckDaoImpl implements CheckDao {
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                 "                   WHERE c.id = ?" +
                 "                   GROUP BY c.id,ph.id,ph.picture,w.id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
+    }
+
+    @Override
+    public Check getCurrentCheck() {
+        try {
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date <= current_timestamp " +
+                    "AND c.start_date + INTERVAL '1 hour' >= current_timestamp " +
+                    "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

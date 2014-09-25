@@ -1,5 +1,6 @@
 package com.lashgo.repository;
 
+import com.lashgo.domain.Check;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 
@@ -23,4 +24,6 @@ public interface CheckDao {
     void addWinners(int checkId);
 
     CheckDto getCheckById(int userdId, int checkId);
+
+    Check getCurrentCheck();
 }

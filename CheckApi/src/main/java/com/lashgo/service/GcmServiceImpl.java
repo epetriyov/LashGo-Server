@@ -1,11 +1,11 @@
 package com.lashgo.service;
 
 import com.lashgo.CheckConstants;
+import com.lashgo.domain.Check;
 import com.lashgo.error.ValidationException;
 import com.lashgo.gcm.InvalidRequestException;
 import com.lashgo.gcm.Message;
 import com.lashgo.model.ErrorCodes;
-import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.GcmRegistrationDto;
 import com.lashgo.model.dto.MulticastResult;
 import com.lashgo.repository.CheckDao;
@@ -28,7 +28,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.lashgo.gcm.Constants.*;
 
@@ -55,6 +57,8 @@ public class GcmServiceImpl implements GcmService {
     private final Logger logger = LoggerFactory.getLogger("FILE");
 
     private static final String CURRENT_CHECK_ID = "check_id";
+
+    private static final String CURRENT_CHECK_NAME = "check_name";
 
     /**
      * Sends a message without retrying in case of service unavailability. See
@@ -119,31 +123,19 @@ public class GcmServiceImpl implements GcmService {
 
     public void sendChecks() {
         List<String> registrationIds = gcmDao.getAllRegistrationIds();
-        CheckDto check = checkDao.getNextCheck();
+        Check check = checkDao.getCurrentCheck();
         if (check != null) {
+            System.out.println("Send check");
             Message.Builder messageBuilder = new Message.Builder();
             messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
+            messageBuilder.addData(CURRENT_CHECK_NAME, check.getName());
             sendNoRetry(messageBuilder.build(), registrationIds);
         }
-        logger.info("There is no check to send");
     }
 
-    @Scheduled(cron = "0 15 * * * *")
+    @Scheduled(cron = "1 0 * * * *")
     @Override
     public void multicastSend() {
-        System.out.print("GCM FIRED");
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                sendChecks();
-            }
-        };
-        CheckDto check = checkDao.getNextCheck();
-        if (check != null) {
-            timer.schedule(timerTask, check.getStartDate());
-        } else {
-            logger.info("There is no check to send");
-        }
+        sendChecks();
     }
 }

@@ -65,7 +65,7 @@ public class GCMController extends BaseController {
 
     @ApiMethod(
             path = Path.Gcm.TEST,
-            verb = ApiVerb.POST,
+            verb = ApiVerb.GET,
             description = "send current check to all devices through gcm",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
@@ -77,11 +77,12 @@ public class GCMController extends BaseController {
     @ApiErrors(apierrors = {
             @ApiError(code = "400", description = "Headers or request body validation failed")
     })
-    @RequestMapping(value = Path.Gcm.TEST, method = RequestMethod.POST)
+    @RequestMapping(value = Path.Gcm.TEST, method = RequestMethod.GET)
     public
     @ApiResponseObject
     @ResponseBody
-    void sendMultiCast() {
+    ResponseObject sendMultiCast() {
         gcmService.sendChecks();
+        return new ResponseObject();
     }
 }
