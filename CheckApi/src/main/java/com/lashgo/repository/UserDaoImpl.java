@@ -28,9 +28,6 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private MessageSource messageSource;
-
     private static final Logger logger = LoggerFactory.getLogger("FILE");
 
     @Override
@@ -53,7 +50,7 @@ public class UserDaoImpl implements UserDao {
         try {
             jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE u.email = ? OR u.login = ?", Integer.class, email, email);
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{email}, Locale.ENGLISH));
+            logger.info("Пользователь {} с паролем {} не существует", email);
             return false;
         }
         return true;

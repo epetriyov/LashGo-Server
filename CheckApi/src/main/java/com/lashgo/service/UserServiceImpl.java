@@ -50,9 +50,6 @@ import java.util.Random;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private MessageSource messageSource;
-
-    @Autowired
     private UserDao userDao;
 
     @Autowired

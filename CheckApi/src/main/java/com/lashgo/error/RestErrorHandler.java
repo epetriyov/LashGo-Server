@@ -23,9 +23,6 @@ public class RestErrorHandler {
 
     private static Logger logger = LoggerFactory.getLogger("FILE");
 
-    @Autowired
-    private MessageSource messageSource;
-
     private ResponseObject buildErrorResponse(LashgoRuntimeError exception) {
         logger.info("Error code {}",exception.getErrorCode());
         ResponseObject responseObject = new ResponseObject();
