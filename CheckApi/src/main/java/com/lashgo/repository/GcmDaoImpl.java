@@ -20,18 +20,13 @@ public class GcmDaoImpl implements GcmDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private MessageSource messageSource;
-
-    private static final Logger logger = LoggerFactory.getLogger("FILE");
-
     public boolean isRegistrationIdExists(String registrationId) {
         try {
             Integer registrationIdsCount = jdbcTemplate.queryForObject("SELECT COUNT(gr.registration_id) FROM gcm_registrations gr WHERE gr.registration_id = ?",
                     Integer.class, registrationId);
             return registrationIdsCount > 0;
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage("registration_id.empty", new String[]{registrationId}, Locale.ENGLISH));
+            e.printStackTrace();
             return false;
         }
     }

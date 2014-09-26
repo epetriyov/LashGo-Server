@@ -12,6 +12,8 @@ import com.lashgo.repository.CheckDao;
 import com.lashgo.repository.CheckLikesDao;
 import com.lashgo.repository.PhotoDao;
 import com.lashgo.repository.UserShownPhotosDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -27,6 +29,8 @@ import java.util.List;
 @Transactional(readOnly = true)
 @EnableScheduling
 public class CheckServiceImpl implements CheckService {
+
+    private final Logger logger = LoggerFactory.getLogger("FILE");
 
     @Autowired
     private CheckLikesDao userLikesDao;
@@ -97,7 +101,7 @@ public class CheckServiceImpl implements CheckService {
 
     @Scheduled(cron = "0 0 * * * *")
     public void chooseWinner() {
-        System.out.print("CHOOSE WINNER FIRED");
+        logger.debug("Winner choosing");
         List<Integer> voteCheckIds = checkDao.getVoteChecks();
         if (voteCheckIds != null) {
             for (Integer id : voteCheckIds) {

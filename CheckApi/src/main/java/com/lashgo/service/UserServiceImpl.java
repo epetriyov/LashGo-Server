@@ -95,6 +95,7 @@ public class UserServiceImpl implements UserService {
     public SessionInfo login(String interfaceTypeCode, LoginInfo loginInfo) throws ValidationException, UnautharizedException {
         SessionInfo sessionInfo = innerLogin(interfaceTypeCode, loginInfo);
         if (sessionInfo == null) {
+            logger.error("Пользователь {} с паролем {} не существует", loginInfo.getLogin(), loginInfo.getPasswordHash());
             throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
         }
         return sessionInfo;
@@ -128,6 +129,7 @@ public class UserServiceImpl implements UserService {
             userDao.createUser(registerInfo);
             return buildRegisterResponse(interfaceTypeCode, registerInfo);
         } else {
+            logger.error("Пользователь {} уже существует", registerInfo.getLogin());
             throw new ValidationException(ErrorCodes.USER_ALREADY_EXISTS);
         }
     }
@@ -144,9 +146,11 @@ public class UserServiceImpl implements UserService {
                 mailMessage.setText(String.format("New password for user %s: %s", email, newPassword));
                 mailSender.send(mailMessage);
             } else {
+                logger.error("Пользователь с email {} не существует", email);
                 throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
             }
         } else {
+            logger.error("Отправлен пустой email");
             throw new ValidationException(ErrorCodes.EMPTY_EMAIL);
         }
     }
@@ -215,12 +219,15 @@ public class UserServiceImpl implements UserService {
     public void updateProfile(String sessionId, UserDto userDto) {
         Users user = getUserBySession(sessionId);
         if (user.getId() != userDto.getId()) {
+            logger.error("Пользователь из профиля {} не совпадает с пользователем из сессии {}", userDto.getId(), user.getId());
             throw new ValidationException(ErrorCodes.USERS_DOESNT_MATCHES);
         }
         if (!StringUtils.isEmpty(userDto.getLogin()) && userDao.isUserExists(user.getId(), userDto.getLogin())) {
+            logger.error("Пользователь с логином {} уже существует", userDto.getLogin());
             throw new ValidationException(ErrorCodes.USER_WITH_LOGIN_ALREADY_EXISTS);
         }
         if (!StringUtils.isEmpty(userDto.getEmail()) && userDao.isUserExists(user.getId(), userDto.getEmail())) {
+            logger.error("Пользователь с email {} уже существует", userDto.getEmail());
             throw new ValidationException(ErrorCodes.USER_WITH_EMAIL_ALREADY_EXISTS);
         }
         userDao.updateProfile(user.getId(), userDto);
@@ -272,7 +279,7 @@ public class UserServiceImpl implements UserService {
                     try {
                         registerInfo.setBirthDate(new SimpleDateFormat(CheckConstants.FACEBOOK_DATE_FORMAT).parse(facebookProfile.getBirthday()));
                     } catch (ParseException e) {
-                        e.printStackTrace();
+                        logger.error(e.getMessage());
                     }
                     if (facebookProfile.getLocation() != null) {
                         registerInfo.setCity(facebookProfile.getLocation().getName());
@@ -298,9 +305,11 @@ public class UserServiceImpl implements UserService {
                     registerInfo.setBirthDate(calender.getTime());
                     break;
                 default:
+                    logger.error("Социальной сети {} не существует",socialInfo.getSocialName());
                     throw new ValidationException(ErrorCodes.UNSUPPORTED_SOCIAL);
             }
         } catch (ApiException e) {
+            logger.error(e.getMessage());
             throw new ValidationException(ErrorCodes.SOCIAL_WRONG_DATA);
         }
 
@@ -318,9 +327,6 @@ public class UserServiceImpl implements UserService {
             socialDao.createSocial(registerInfo.getLogin(), registerInfo.getPasswordHash());
             userDao.createUser(registerInfo);
             Users users = userDao.findUser(registerInfo);
-            System.out.println("Login: " + registerInfo.getLogin());
-            System.out.println("Password: " + registerInfo.getPasswordHash());
-            System.out.println("UserId: " + users.getId());
             userSocialDao.createUserSocial(users.getId(), registerInfo.getLogin());
             return buildRegisterResponse(interfaceTypeCode, registerInfo);
         }
@@ -334,6 +340,7 @@ public class UserServiceImpl implements UserService {
             registerResponse.setSessionId(sessionInfo.getSessionId());
             return registerResponse;
         } else {
+            logger.error("Пользователь {} с паролем {} не существует",loginInfo.getLogin(),loginInfo.getPasswordHash());
             throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
         }
     }

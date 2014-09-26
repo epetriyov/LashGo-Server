@@ -13,11 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ClientInterfaceDaoImpl implements ClientInterfaceDao {
 
-    private static final Logger logger = LoggerFactory.getLogger("FILE");
-
-    @Autowired
-    private MessageSource messageSource;
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 

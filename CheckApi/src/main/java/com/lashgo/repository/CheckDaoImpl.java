@@ -6,6 +6,8 @@ import com.lashgo.mappers.CheckMapper;
 import com.lashgo.mappers.GcmCheckMapper;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,6 +30,7 @@ public class CheckDaoImpl implements CheckDao {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date >= current_timestamp " +
                     "AND c.start_date <= current_timestamp + INTERVAL '1 hour' ORDER BY c.start_date ASC LIMIT 1", new CheckMapper());
         } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -63,6 +66,7 @@ public class CheckDaoImpl implements CheckDao {
             return jdbcTemplate.queryForObject("SELECT count(c.id) FROM checks c WHERE c.start_date <= current_timestamp " +
                     "                              AND c.start_date + c.duration * INTERVAL '1 hour' > current_timestamp", Integer.class);
         } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
             return 0;
         }
     }

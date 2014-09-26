@@ -18,22 +18,27 @@ public class UserDto implements Serializable {
     @Min(1)
     @ApiObjectField(description = "identifier")
     private int id;
-    @Size(min = 1)
+    @Size(min = 1,max = 35)
     @ApiObjectField(description = "login")
     private String login;
+    @Size(max = 100)
     @ApiObjectField(description = "fio")
     private String fio;
+    @Size(max = 500)
     @ApiObjectField(description = "about")
     private String about;
+    @Size(max = 30)
     @ApiObjectField(description = "city")
     private String city;
     @ApiObjectField(description = "birthDate")
     private Date birthDate;
+    @Size(max = 150)
     @ApiObjectField(description = "avatar")
     private String avatar;
-    @Size(min = 1)
+    @Size(min = 1,max = 35)
     @ApiObjectField(description = "email")
     private String email;
+    @Size(max = 250)
     @ApiObjectField(description = "passwordHash")
     private String passwordHash;
     @ApiObjectField(description = "count of user's subscribes")

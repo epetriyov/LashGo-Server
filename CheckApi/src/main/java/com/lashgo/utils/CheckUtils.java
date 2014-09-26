@@ -40,7 +40,7 @@ public final class CheckUtils {
         if (result != null && result.hasErrors()) {
             List<ObjectError> errors = result.getAllErrors();
             ObjectError error = errors.get(0);
-            logger.error("Validation error: " + error.toString());
+            logger.error("Validation error: {}",error.toString());
             String[] codes = error.getCodes();
             throw new ValidationException(codes[0].toString());
         }

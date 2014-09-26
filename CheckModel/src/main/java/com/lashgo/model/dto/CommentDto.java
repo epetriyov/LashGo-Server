@@ -20,7 +20,7 @@ public class CommentDto implements Serializable {
     @Min(1)
     @ApiObjectField(description = "identifier")
     private long id;
-    @Size(min = 1)
+    @Size(min = 1,max = 500)
     @ApiObjectField(description = "comment text")
     private String content;
     @NotNull

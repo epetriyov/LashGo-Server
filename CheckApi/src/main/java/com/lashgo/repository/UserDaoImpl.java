@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
         try {
             return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE (u.login = ? OR u.email = ?) AND u.password = ?", new UsersMapper(), loginInfo.getLogin(), loginInfo.getLogin(), loginInfo.getPasswordHash());
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{loginInfo.getLogin()}, Locale.ENGLISH));
+            e.printStackTrace();
             return null;
 
         }
@@ -144,7 +144,6 @@ public class UserDaoImpl implements UserDao {
                         (userDto.getFio() == null && userDto.getLogin() == null && userDto.getCity() == null && userDto.getEmail() == null && userDto.getAbout() == null ? "SET " : "") +
                         (userDto.getPasswordHash() != null ? " password = ?" : "") +
                         "             WHERE id = ?";
-        System.out.println(sql);
         jdbcTemplate.update(sql, args.toArray(new Object[args.size()])
         );
     }
@@ -154,7 +153,7 @@ public class UserDaoImpl implements UserDao {
         try {
             jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE (u.email = ? OR u.login = ?) AND u.id <> ?", Integer.class, email, email, userId);
         } catch (EmptyResultDataAccessException e) {
-            logger.info(messageSource.getMessage(ErrorCodes.USER_NOT_EXISTS, new String[]{email}, Locale.ENGLISH));
+            e.printStackTrace();
             return false;
         }
         return true;

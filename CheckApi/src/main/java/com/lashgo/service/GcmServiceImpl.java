@@ -73,7 +73,7 @@ public class GcmServiceImpl implements GcmService {
     private void sendNoRetry(Message message,
                              List<String> registrationIds) {
         if (StringUtils.isEmpty(registrationIds)) {
-            logger.error(ErrorCodes.REGISTRATION_ID_IS_EMPTY);
+            logger.debug("Список gcm-клиентов пуст");
         }
         Map<Object, Object> jsonRequest = new HashMap<>();
         setJsonField(jsonRequest, PARAM_TIME_TO_LIVE, message.getTimeToLive());
@@ -93,8 +93,7 @@ public class GcmServiceImpl implements GcmService {
         headers.add("Authorization", "key=" + CheckConstants.GCM_PROJECT_API);
         HttpEntity entity = new HttpEntity(jsonRequest, headers);
         try {
-            ResponseEntity<MulticastResult> responseEntity = restTemplate.exchange(GCM_SEND_ENDPOINT, HttpMethod.POST, entity, MulticastResult.class);
-            logger.info(responseEntity.getBody().toString());
+            restTemplate.exchange(GCM_SEND_ENDPOINT, HttpMethod.POST, entity, MulticastResult.class);
         } catch (RestClientException e) {
             logger.error(e.getMessage());
         }
@@ -125,7 +124,7 @@ public class GcmServiceImpl implements GcmService {
         List<String> registrationIds = gcmDao.getAllRegistrationIds();
         Check check = checkDao.getCurrentCheck();
         if (check != null) {
-            System.out.println("Send check");
+            logger.debug("Check sending: ", check.getName());
             Message.Builder messageBuilder = new Message.Builder();
             messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
             messageBuilder.addData(CURRENT_CHECK_NAME, check.getName());

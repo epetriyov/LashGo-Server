@@ -15,13 +15,10 @@ import java.text.SimpleDateFormat;
 @Component
 public class LashGoObjectMapper extends ObjectMapper {
 
-    private static final Logger logger = LoggerFactory.getLogger("FILE");
-
     public LashGoObjectMapper() {
         super();
         configure(SerializationFeature.
                 WRITE_DATES_AS_TIMESTAMPS, false);
         setDateFormat(new SimpleDateFormat(CheckConstants.DATE_FORMAT));
-        logger.info("LashGoObjectMapper creation");
     }
 }

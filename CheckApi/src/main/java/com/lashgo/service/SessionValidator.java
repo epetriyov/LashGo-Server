@@ -37,16 +37,16 @@ public class SessionValidator {
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         if (CollectionUtils.isEmpty(sessionId)) {
             if (throwUnauth) {
+                logger.error("Отправлена пустая сессия");
                 throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);
             }
         } else {
             Sessions session = sessionDao.getSessionById(sessionId.get(0));
             if (session == null) {
+                logger.error("Сессия {} не существует",session);
                 throw new ValidationException(ErrorCodes.WRONG_SESSION);
             }
-            long currentTimestamp = System.currentTimeMillis();
-            logger.info("Current timestamp - " + currentTimestamp);
-            logger.info("Session start date timestamp - " + session.getStartTime().getTime());
+//            long currentTimestamp = System.currentTimeMillis();
 //            if (currentTimestamp - session.getStartTime().getTime() > CheckConstants.SESSION_EXPIRE_PERIOD_MILLIS) {
 //                throw new ValidationException(ErrorCodes.SESSION_EXPIRED);
 //            }

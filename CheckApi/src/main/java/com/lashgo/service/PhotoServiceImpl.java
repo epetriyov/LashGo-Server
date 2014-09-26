@@ -86,6 +86,7 @@ public class PhotoServiceImpl implements PhotoService {
                 photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
             }
         } else {
+            logger.error("Пользоваткль {} попытался отправить 2-е фото для задания {}",userDto.getId(),checkId);
             throw new ValidationException(ErrorCodes.PHOTO_ALREADY_EXISTS);
         }
     }

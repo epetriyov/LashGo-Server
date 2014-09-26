@@ -45,6 +45,7 @@ public class SessionDaoImpl implements SessionDao {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.user_id = ?", new SessionsMapper(), userId);
         } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -54,6 +55,7 @@ public class SessionDaoImpl implements SessionDao {
         try {
             return jdbcTemplate.queryForObject("SELECT s.* FROM sessions s WHERE s.session_id = ?", new SessionsMapper(), sessionId);
         } catch (DataAccessException e) {
+            e.printStackTrace();
             return null;
         }
     }
