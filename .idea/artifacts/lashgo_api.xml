@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="lashgo-api">
     <output-path>$PROJECT_DIR$/classes/artifacts/lashgo_api</output-path>
-    <root id="archive" name="lashgo-api.war">
+    <root id="archive" name="CheckModel.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="CheckApi" />

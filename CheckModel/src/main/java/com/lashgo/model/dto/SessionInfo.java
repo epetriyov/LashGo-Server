@@ -19,22 +19,22 @@ public class SessionInfo implements Serializable {
     @ApiObjectField(description = "identifier of session")
     private String sessionId;
     @Min(1)
-    private long userId;
+    private int userId;
 
     public SessionInfo() {
 
     }
 
-    public SessionInfo(String sessionId, long userId) {
+    public SessionInfo(String sessionId, int userId) {
         this.sessionId = sessionId;
         this.userId = userId;
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

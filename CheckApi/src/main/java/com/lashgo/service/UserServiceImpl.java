@@ -14,7 +14,6 @@ import com.lashgo.utils.CheckUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.social.ApiException;
@@ -208,6 +207,10 @@ public class UserServiceImpl implements UserService {
                 throw new PhotoWriteException();
             }
             userDao.updateAvatar(photoName, users.getId());
+            File oldAvatar = new File(CheckConstants.PHOTOS_FOLDER + users.getAvatar());
+            if (oldAvatar.exists()) {
+                oldAvatar.delete();
+            }
         }
     }
 
@@ -231,9 +234,11 @@ public class UserServiceImpl implements UserService {
     }
 
     private String buildNewPhotoName(int userId) {
-        StringBuilder photoNameBuilder = new StringBuilder("avatar_");
+        StringBuilder photoNameBuilder = new StringBuilder("avatar");
         photoNameBuilder.append("_user_");
         photoNameBuilder.append(userId);
+        photoNameBuilder.append("_");
+        photoNameBuilder.append(System.currentTimeMillis());
         photoNameBuilder.append(".jpg");
         return photoNameBuilder.toString();
     }
@@ -302,7 +307,7 @@ public class UserServiceImpl implements UserService {
                     registerInfo.setBirthDate(calender.getTime());
                     break;
                 default:
-                    logger.error("Социальной сети {} не существует",socialInfo.getSocialName());
+                    logger.error("Социальной сети {} не существует", socialInfo.getSocialName());
                     throw new ValidationException(ErrorCodes.UNSUPPORTED_SOCIAL);
             }
         } catch (ApiException e) {
@@ -337,7 +342,7 @@ public class UserServiceImpl implements UserService {
             registerResponse.setSessionId(sessionInfo.getSessionId());
             return registerResponse;
         } else {
-            logger.error("Пользователь {} с паролем {} не существует",loginInfo.getLogin(),loginInfo.getPasswordHash());
+            logger.error("Пользователь {} с паролем {} не существует", loginInfo.getLogin(), loginInfo.getPasswordHash());
             throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
         }
     }
