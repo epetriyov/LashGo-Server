@@ -3,7 +3,6 @@ package com.lashgo.mappers;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.UserDto;
-import com.lashgo.utils.CheckUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,7 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<Chec
         check.setDuration(resultSet.getInt("check_duration"));
         check.setTaskPhotoUrl(resultSet.getString("check_task_photo"));
         check.setVoteDuration(resultSet.getInt("check_vote_duration"));
+        check.setPlayersCount(resultSet.getInt("players_count"));
         String userPhoto = resultSet.getString("user_photo");
         if (userPhoto != null) {
             PhotoDto userPhotoDto = new PhotoDto();
@@ -35,9 +35,9 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<Chec
             userDto.setId(winnerId);
             check.setWinnerInfo(userDto);
             PhotoDto winnerPhotoDto = new PhotoDto();
-            if (CheckUtils.hasColumn(resultSet, "winner_photo_id")) {
-                winnerPhotoDto.setId(resultSet.getLong("winner_photo_id"));
-            }
+            winnerPhotoDto.setId(resultSet.getLong("winner_photo_id"));
+            winnerPhotoDto.setLikesCount(resultSet.getInt("likes_count"));
+            winnerPhotoDto.setCommentsCount(resultSet.getInt("comments_count"));
             winnerPhotoDto.setUrl(resultSet.getString("winner_photo"));
             check.setWinnerPhotoDto(winnerPhotoDto);
         }

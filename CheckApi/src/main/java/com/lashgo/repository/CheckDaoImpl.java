@@ -6,8 +6,6 @@ import com.lashgo.mappers.CheckMapper;
 import com.lashgo.mappers.GcmCheckMapper;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,17 +23,6 @@ public class CheckDaoImpl implements CheckDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public CheckDto getNextCheck() {
-        try {
-            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date >= current_timestamp " +
-                    "AND c.start_date <= current_timestamp + INTERVAL '1 hour' ORDER BY c.start_date ASC LIMIT 1", new CheckMapper());
-        } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
     public List<CheckDto> getAllChecks(int userId) {
         return jdbcTemplate.query("SELECT " +
                 "                         c.id as check_id, c.name as check_name," +
@@ -45,7 +32,11 @@ public class CheckDaoImpl implements CheckDao {
                 "                         c.task_photo as check_task_photo," +
                 "                         c.vote_duration as check_vote_duration," +
                 "                         p2.picture as user_photo," +
-                "                         ph.picture as winner_photo, w.id as winner_id, u.*" +
+                "                         ph.id as winner_photo_id," +
+                "                         ph.picture as winner_photo, w.id as winner_id, u.*," +
+                "                         (SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = ph.id) AS likes_count," +
+                "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
+                "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
                 "                    FROM checks c " +
                 "                    LEFT JOIN photos p2 " +
                 "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +
@@ -56,7 +47,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                 "                   WHERE c.start_date <= current_timestamp" +
-                "                   GROUP BY c.id,ph.picture,w.id,u.id, p2.picture " +
+                "                   GROUP BY c.id,ph.id,ph.picture,w.id,u.id, p2.picture " +
                 "                   ORDER BY c.start_date DESC", new CheckMapper(), userId);
     }
 
@@ -111,7 +102,11 @@ public class CheckDaoImpl implements CheckDao {
                 "                         c.task_photo as check_task_photo," +
                 "                         c.vote_duration as check_vote_duration," +
                 "                         p2.picture as user_photo," +
-                "                         ph.id as winner_photo_id, ph.picture as winner_photo, w.winner_id as winner_id, u.*" +
+                "                         ph.id as winner_photo_id," +
+                "                         ph.picture as winner_photo, w.id as winner_id, u.*," +
+                "                         (SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = ph.id) AS likes_count," +
+                "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
+                "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
                 "                    FROM checks c " +
                 "                    LEFT JOIN photos p2 " +
                 "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +

@@ -42,6 +42,7 @@ public class CheckDto implements Serializable {
     private PhotoDto userPhotoDto;
     @ApiObjectField(description = "winner photo info")
     private PhotoDto winnerPhotoDto;
+    private int playersCount;
 
     public CheckDto() {
 
@@ -140,5 +141,13 @@ public class CheckDto implements Serializable {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public void setPlayersCount(int playersCount) {
+        this.playersCount = playersCount;
+    }
+
+    public int getPlayersCount() {
+        return playersCount;
     }
 }

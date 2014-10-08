@@ -11,8 +11,6 @@ import java.util.List;
  */
 public interface CheckDao {
 
-    CheckDto getNextCheck();
-
     List<CheckDto> getAllChecks(int userId);
 
     CheckCounters getCheckCounters(int checkId);

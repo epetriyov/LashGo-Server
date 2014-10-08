@@ -278,10 +278,12 @@ public class UserServiceImpl implements UserService {
                     FacebookProfile facebookProfile = facebook.userOperations().getUserProfile();
                     registerInfo = new RegisterInfo(buildSocialUserName(SocialNames.FACEBOOK, facebookProfile.getId()), socialInfo.getAccessToken(), facebookProfile.getEmail());
                     registerInfo.setAbout(facebookProfile.getAbout());
-                    try {
-                        registerInfo.setBirthDate(new SimpleDateFormat(CheckConstants.FACEBOOK_DATE_FORMAT).parse(facebookProfile.getBirthday()));
-                    } catch (ParseException e) {
-                        logger.error(e.getMessage());
+                    if (facebookProfile.getBirthday() != null) {
+                        try {
+                            registerInfo.setBirthDate(new SimpleDateFormat(CheckConstants.FACEBOOK_DATE_FORMAT).parse(facebookProfile.getBirthday()));
+                        } catch (ParseException e) {
+                            logger.error(e.getMessage());
+                        }
                     }
                     if (facebookProfile.getLocation() != null) {
                         registerInfo.setCity(facebookProfile.getLocation().getName());
@@ -302,9 +304,11 @@ public class UserServiceImpl implements UserService {
                     registerInfo = new RegisterInfo(buildSocialUserName(SocialNames.VK, vKontakteProfile.getUid()), socialInfo.getAccessToken(), null);
                     registerInfo.setAvatar(vKontakteProfile.getPhotoMedium());
                     registerInfo.setFio(vKontakteProfile.getFirstName() + " " + vKontakteProfile.getLastName());
-                    Calendar calender = Calendar.getInstance();
-                    calender.set(vKontakteProfile.getBirthDate().getYear(), vKontakteProfile.getBirthDate().getMonth(), vKontakteProfile.getBirthDate().getDay());
-                    registerInfo.setBirthDate(calender.getTime());
+                    if (vKontakteProfile.getBirthDate() != null) {
+                        Calendar calender = Calendar.getInstance();
+                        calender.set(vKontakteProfile.getBirthDate().getYear(), vKontakteProfile.getBirthDate().getMonth(), vKontakteProfile.getBirthDate().getDay());
+                        registerInfo.setBirthDate(calender.getTime());
+                    }
                     break;
                 default:
                     logger.error("Социальной сети {} не существует", socialInfo.getSocialName());

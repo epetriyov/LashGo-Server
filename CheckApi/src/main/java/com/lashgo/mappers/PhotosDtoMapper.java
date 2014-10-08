@@ -22,12 +22,13 @@ public class PhotosDtoMapper implements RowMapper<PhotoDto> {
         this.mapType = mapType;
     }
 
-
     @Override
     public PhotoDto mapRow(ResultSet resultSet, int position) throws SQLException {
         PhotoDto photos = new PhotoDto();
         photos.setId(resultSet.getInt("id_photo"));
         photos.setUrl(resultSet.getString("picture"));
+        photos.setLikesCount(resultSet.getInt("likes_count"));
+        photos.setCommentsCount(resultSet.getInt("comments_count"));
         if (mapType.equals(MapType.USER_JOIN)) {
             photos.setBanned(resultSet.getInt("is_banned") == 1);
             photos.setWinner(resultSet.getInt("is_winner") == 1);
