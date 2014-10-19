@@ -266,15 +266,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public void unsubscribe(String sessionId, int userId) {
         Users users = getUserBySession(sessionId);
-        subscriptionsDao.removeSubscription(users.getId(), userId);
+        if (subscriptionsDao.isSubscriptionExists(users.getId(), userId)) {
+            subscriptionsDao.removeSubscription(users.getId(), userId);
+        } else {
+            throw new ValidationException(ErrorCodes.SUBSCRIPTION_NOT_EXISTS);
+        }
     }
 
     @Transactional
     @Override
     public void subscribe(String sessionId, int userId) {
         Users users = getUserBySession(sessionId);
-        subscriptionsDao.addSubscription(users.getId(), userId);
-        eventDao.addSibscribeEvent(users.getId(), userId);
+        if (subscriptionsDao.isSubscriptionExists(users.getId(), userId)) {
+            throw new ValidationException(ErrorCodes.SUBSCRIPTION_ALREADY_EXISTS);
+        } else {
+            subscriptionsDao.addSubscription(users.getId(), userId);
+            eventDao.addSibscribeEvent(users.getId(), userId);
+        }
     }
 
     private String buildSocialUserName(String socialName, String userId) {

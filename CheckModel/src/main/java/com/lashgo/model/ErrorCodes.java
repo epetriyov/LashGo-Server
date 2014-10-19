@@ -24,6 +24,8 @@ public final class ErrorCodes {
     public static final String USER_WITH_LOGIN_ALREADY_EXISTS = "login.already_exists";
     public static final String USER_WITH_EMAIL_ALREADY_EXISTS = "email.already_exists";
     public static final String PHOTO_ID_NULL = "photo.empty_id";
+    public static final String SUBSCRIPTION_ALREADY_EXISTS = "subscription.already_exists";
+    public static final String SUBSCRIPTION_NOT_EXISTS = "subscription_not_exists";
 
     private ErrorCodes() {
 

@@ -33,6 +33,11 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
         jdbcTemplate.update("DELETE FROM subscriptions WHERE user_id = ? AND checklist_id = ?", userId, checkistId);
     }
 
+    public boolean isSubscriptionExists(int userId, int checklistId) {
+        Integer subscriptionsCount = jdbcTemplate.queryForObject("SELECT count(s.id) FROM subscriptions s WHERE s.user_id = ? AND s.checklist_id = ?", Integer.class, userId, checklistId);
+        return subscriptionsCount > 0;
+    }
+
     @Override
     public void addSubscription(int userId, int checkistId) {
         jdbcTemplate.update("INSERT INTO subscriptions (user_id,checklist_id) VALUES (?,?)", userId, checkistId);

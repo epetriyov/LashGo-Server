@@ -22,4 +22,6 @@ public interface SubscriptionsDao {
     int getSubscriptionsCount(int usersId);
 
     int getSubscribersCount(int usersId);
+
+    boolean isSubscriptionExists(int userId, int checklistId);
 }

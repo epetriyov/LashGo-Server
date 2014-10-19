@@ -152,7 +152,7 @@ CREATE TABLE events (
   user_id        int                        REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
   photo_id       bigint                     REFERENCES photos (id) ON DELETE RESTRICT ON UPDATE CASCADE,
   check_id       int                        REFERENCES checks (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  action         varchar(50)                NOT NULL UNIQUE CHECK (action <> ''),
+  action         varchar(50)                NOT NULL CHECK (action <> ''),
   event_date     timestamp with time zone   NOT NULL CHECK (event_date <= current_timestamp) DEFAULT current_timestamp,
   object_user_id int                        REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
