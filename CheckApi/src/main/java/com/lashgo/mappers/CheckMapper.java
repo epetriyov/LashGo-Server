@@ -36,7 +36,6 @@ public class CheckMapper implements org.springframework.jdbc.core.RowMapper<Chec
             check.setWinnerInfo(userDto);
             PhotoDto winnerPhotoDto = new PhotoDto();
             winnerPhotoDto.setId(resultSet.getLong("winner_photo_id"));
-            winnerPhotoDto.setLikesCount(resultSet.getInt("likes_count"));
             winnerPhotoDto.setCommentsCount(resultSet.getInt("comments_count"));
             winnerPhotoDto.setUrl(resultSet.getString("winner_photo"));
             check.setWinnerPhotoDto(winnerPhotoDto);

@@ -15,12 +15,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Eugene on 13.02.14.
@@ -195,8 +197,9 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject<UserDto> getProfile(@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        return new ResponseObject<>(userService.getProfile(userId));
+    ResponseObject<UserDto> getProfile(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        return new ResponseObject<>(userService.getProfile(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
 
     @ApiMethod(
@@ -251,6 +254,31 @@ public class UserController extends BaseController {
     }
 
     @ApiMethod(
+            path = Path.Users.SUBSCRIBERS,
+            verb = ApiVerb.GET,
+            description = "get list of user's subscribers",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Users.SUBSCRIBERS, method = RequestMethod.GET)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseList<SubscriptionDto> getSubscribers(@RequestHeader HttpHeaders httpHeaders) {
+        sessionValidator.validate(httpHeaders);
+        return new ResponseList<>(userService.getSubscribers(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+    }
+
+    @ApiMethod(
             path = Path.Users.SUBSCRIPTION,
             verb = ApiVerb.DELETE,
             description = "unsubscribe from user",
@@ -277,7 +305,7 @@ public class UserController extends BaseController {
     }
 
     @ApiMethod(
-            path = Path.Users.SUBSCRIPTION,
+            path = Path.Users.SUBSCRIPTIONS,
             verb = ApiVerb.POST,
             description = "subscribe to user",
             produces = {MediaType.APPLICATION_JSON_VALUE},
@@ -292,13 +320,14 @@ public class UserController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Users.SUBSCRIPTION, method = RequestMethod.POST)
+    @RequestMapping(value = Path.Users.SUBSCRIPTIONS, method = RequestMethod.POST)
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject subscribe(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
+    ResponseObject subscribe(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SubscribeDto subscribeDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
-        userService.subscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), userId);
+        CheckUtils.handleBindingResult(logger, result);
+        userService.subscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), subscribeDto.getUserId());
         return new ResponseObject();
     }
 
@@ -349,7 +378,7 @@ public class UserController extends BaseController {
     ResponseObject saveProfile(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody UserDto userDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
         CheckUtils.handleBindingResult(logger, result);
-        userService.updateProfile(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),userDto);
+        userService.updateProfile(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), userDto);
         return new ResponseObject<>();
     }
 
@@ -373,8 +402,7 @@ public class UserController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject saveUserAvatar(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestParam("avatar") MultipartFile file)
-    {
+    ResponseObject saveUserAvatar(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestParam("avatar") MultipartFile file) {
         sessionValidator.validate(httpHeaders);
         userService.saveAvatar(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), file);
         return new ResponseObject();

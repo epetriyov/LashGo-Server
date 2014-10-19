@@ -24,6 +24,11 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
     }
 
     @Override
+    public List<SubscriptionDto> getSubscribers(int userId) {
+        return jdbcTemplate.query("SELECT s.id,s.user_id,u.login,u.avatar FROM subscriptions s, users u WHERE s.checklist_id = ? AND s.user_id = u.id ORDER BY s.id ASC", new SubscriptionsMapper(), userId);
+    }
+
+    @Override
     public void removeSubscription(int userId, int checkistId) {
         jdbcTemplate.update("DELETE FROM subscriptions WHERE user_id = ? AND checklist_id = ?", userId, checkistId);
     }

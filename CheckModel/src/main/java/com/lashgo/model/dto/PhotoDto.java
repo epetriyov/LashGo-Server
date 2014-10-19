@@ -31,7 +31,8 @@ public class PhotoDto implements Serializable {
     private boolean isBanned;
     @ApiObjectField(description = "is photo winner")
     private boolean isWinner;
-    private int likesCount;
+    @Min(0)
+    @ApiObjectField(description = "count of comments")
     private int commentsCount;
 
     public PhotoDto() {
@@ -91,14 +92,6 @@ public class PhotoDto implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public void setLikesCount(int likesCount) {
-        this.likesCount = likesCount;
-    }
-
-    public int getLikesCount() {
-        return likesCount;
     }
 
     public void setCommentsCount(int commentsCount) {

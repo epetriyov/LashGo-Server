@@ -42,6 +42,8 @@ public class CheckDto implements Serializable {
     private PhotoDto userPhotoDto;
     @ApiObjectField(description = "winner photo info")
     private PhotoDto winnerPhotoDto;
+    @Min(0)
+    @ApiObjectField(description = "count of players")
     private int playersCount;
 
     public CheckDto() {

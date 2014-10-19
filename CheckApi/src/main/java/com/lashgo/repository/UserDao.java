@@ -24,11 +24,13 @@ public interface UserDao {
 
     void updatePassword(String email, String newPassword);
 
-    UserDto getUserProfile(int userId);
+    UserDto getUserProfile(int currentUserId,int userId);
 
     void updateAvatar(String photoName, int userId);
 
     void updateProfile(int userId, UserDto userDto);
 
     boolean isUserExists(int userId, String email);
+
+    UserDto getUserProfile(int userId);
 }

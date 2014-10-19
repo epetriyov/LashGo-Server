@@ -27,7 +27,6 @@ public class PhotosDtoMapper implements RowMapper<PhotoDto> {
         PhotoDto photos = new PhotoDto();
         photos.setId(resultSet.getInt("id_photo"));
         photos.setUrl(resultSet.getString("picture"));
-        photos.setLikesCount(resultSet.getInt("likes_count"));
         photos.setCommentsCount(resultSet.getInt("comments_count"));
         if (mapType.equals(MapType.USER_JOIN)) {
             photos.setBanned(resultSet.getInt("is_banned") == 1);

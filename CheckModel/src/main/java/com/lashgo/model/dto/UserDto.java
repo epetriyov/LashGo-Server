@@ -51,6 +51,9 @@ public class UserDto implements Serializable {
     private int commentsCount;
     @ApiObjectField(description = "count of user's likes")
     private int likesCount;
+    @ApiObjectField(description = "true if user is in subscriptions of current user")
+    private boolean isSubscription;
+
     public UserDto() {
     }
     public UserDto(int id, String login, String fio, String about, String city, Date birthDate, String avatar, String email) {
@@ -181,5 +184,17 @@ public class UserDto implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public void setIsSubscription(boolean isSubscription) {
+        this.isSubscription = isSubscription;
+    }
+
+    public boolean isSubscription() {
+        return isSubscription;
+    }
+
+    public void setSubscription(boolean isSubscription) {
+        this.isSubscription = isSubscription;
     }
 }

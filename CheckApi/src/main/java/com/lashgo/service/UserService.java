@@ -19,9 +19,11 @@ public interface UserService {
 
     void sendRecoverPassword(String email) throws ValidationException;
 
-    UserDto getProfile(int userId);
+    UserDto getProfile(String sessionId,int userId);
 
     List<PhotoDto> getPhotos(String sessionId);
+
+    List<SubscriptionDto> getSubscribers(String sessionId);
 
     List<SubscriptionDto> getSubscriptions(String sessionId);
 

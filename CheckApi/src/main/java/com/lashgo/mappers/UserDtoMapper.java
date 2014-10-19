@@ -33,6 +33,7 @@ public class UserDtoMapper implements org.springframework.jdbc.core.RowMapper<Us
             users.setLikesCount(resultSet.getInt("likes_count"));
             users.setUserSubscribers(resultSet.getInt("user_subscribers"));
             users.setUserSubscribes(resultSet.getInt("user_subscribes"));
+            users.setIsSubscription(resultSet.getInt("is_subscription") > 0 ? true : false);
         }
         return users;
     }

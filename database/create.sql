@@ -147,3 +147,13 @@ CREATE TABLE user_photo_likes (
 
 CREATE UNIQUE INDEX user_photo_likes_idx ON user_photo_likes (photo_id, user_id);
 
+CREATE TABLE events (
+  id             bigserial                  NOT NULL PRIMARY KEY,
+  user_id        int                        REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  photo_id       bigint                     REFERENCES photos (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  check_id       int                        REFERENCES checks (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  action         varchar(50)                NOT NULL UNIQUE CHECK (action <> ''),
+  event_date     timestamp with time zone   NOT NULL CHECK (event_date <= current_timestamp) DEFAULT current_timestamp,
+  object_user_id int                        REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+

@@ -11,6 +11,10 @@ public final class Path {
 
     public static final String JSONDOC = "/";
 
+    public static final class Events {
+        public static final String GET = "/events";
+    }
+
     public static final class Checks {
         public static final String GET = "/checks";
         public static final String CHECK = "/checks/{checkId}";
@@ -51,7 +55,8 @@ public final class Path {
         public static final String MY_PHOTOS = "/users/photos";
         public static final String PHOTOS = "/users/{userId}/photos";
         public static final String SUBSCRIPTIONS = "/users/subscriptions";
-        public static final String SUBSCRIPTION = "/users/{userId}/subscriptions";
+        public static final String SUBSCRIBERS = "/users/subscribers";
+        public static final String SUBSCRIPTION = "/users/subscriptions/{userId}";
         public static final String SOCIAL_SIGN_IN = "/users/social-sign-in";
         public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
         public static final String AVATAR = "/users/avatar";

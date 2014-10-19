@@ -33,7 +33,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                         c.vote_duration as check_vote_duration," +
                 "                         p2.picture as user_photo," +
                 "                         ph.id as winner_photo_id," +
-                "                         ph.picture as winner_photo, w.id as winner_id, u.*," +
+                "                         ph.picture as winner_photo, w.winner_id as winner_id, u.*," +
                 "                         (SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = ph.id) AS likes_count," +
                 "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
                 "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
@@ -47,7 +47,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                 "                   WHERE c.start_date <= current_timestamp" +
-                "                   GROUP BY c.id,ph.id,ph.picture,w.id,u.id, p2.picture " +
+                "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture " +
                 "                   ORDER BY c.start_date DESC", new CheckMapper(), userId);
     }
 
@@ -70,20 +70,6 @@ public class CheckDaoImpl implements CheckDao {
         );
     }
 
-    @Override
-    public void addWinners(int checkId) {
-        jdbcTemplate.update(
-                "           INSERT INTO check_winners (check_id,winner_id) " +
-                        "  (SELECT p.check_id,p.user_id FROM photos p " +
-                        "    INNER JOIN " +
-                        "(SELECT al1.photo_id as photo_id, MAX(al1.votes_count) as votes_count FROM" +
-                        "(SELECT uvv.photo_id, COUNT(uvv.id) AS votes_count FROM user_votes uvv " +
-                        "INNER JOIN photos pp ON (pp.id = uvv.photo_id AND pp.check_id = ?) GROUP BY photo_id) al1 GROUP BY al1.photo_id order by votes_count desc limit 1) al2" +
-                        " on (al2.photo_id = p.id)" +
-                        "    GROUP BY p.check_id,p.user_id)", checkId
-        );
-    }
-
     public CheckCounters getCheckCounters(int checkId) {
         return jdbcTemplate.queryForObject(
                 "SELECT (SELECT COUNT (lc.id) FROM user_check_likes lc WHERE lc.check_id = ?) AS likes_count," +
@@ -103,7 +89,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                         c.vote_duration as check_vote_duration," +
                 "                         p2.picture as user_photo," +
                 "                         ph.id as winner_photo_id," +
-                "                         ph.picture as winner_photo, w.id as winner_id, u.*," +
+                "                         ph.picture as winner_photo, w.winner_id as winner_id, u.*," +
                 "                         (SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = ph.id) AS likes_count," +
                 "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
                 "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
@@ -117,7 +103,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                 "                   WHERE c.id = ?" +
-                "                   GROUP BY c.id,ph.id,ph.picture,w.id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
+                "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
     }
 
     @Override

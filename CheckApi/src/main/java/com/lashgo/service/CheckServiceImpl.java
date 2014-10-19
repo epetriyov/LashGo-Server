@@ -8,10 +8,7 @@ import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VotePhotosResult;
-import com.lashgo.repository.CheckDao;
-import com.lashgo.repository.CheckLikesDao;
-import com.lashgo.repository.PhotoDao;
-import com.lashgo.repository.UserShownPhotosDao;
+import com.lashgo.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +30,16 @@ public class CheckServiceImpl implements CheckService {
     private final Logger logger = LoggerFactory.getLogger("FILE");
 
     @Autowired
+    private CheckWinnersDao checkWinnersDao;
+
+    @Autowired
     private CheckLikesDao userLikesDao;
 
     @Autowired
     private CheckDao checkDao;
+
+    @Autowired
+    private EventDao eventDao;
 
     @Autowired
     private PhotoDao photoDao;
@@ -105,7 +108,11 @@ public class CheckServiceImpl implements CheckService {
         List<Integer> voteCheckIds = checkDao.getVoteChecks();
         if (voteCheckIds != null) {
             for (Integer id : voteCheckIds) {
-                checkDao.addWinners(id);
+                checkWinnersDao.addCheckWinner(id);
+                int userId = checkWinnersDao.getCheckWinner(id);
+                if (userId > 0) {
+                    eventDao.addWinEvent(id, userId);
+                }
             }
 
         }

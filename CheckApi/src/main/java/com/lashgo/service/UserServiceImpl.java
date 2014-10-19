@@ -49,6 +49,9 @@ import java.util.Random;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    private EventDao eventDao;
+
+    @Autowired
     private UserDao userDao;
 
     @Autowired
@@ -159,8 +162,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getProfile(int userId) {
-        return userDao.getUserProfile(userId);
+    public UserDto getProfile(String sessionId, int userId) {
+        Users users = null;
+        if (sessionId != null) {
+            users = getUserBySession(sessionId);
+        }
+        return userDao.getUserProfile(users != null ? users.getId() : -1, userId);
     }
 
     @Override
@@ -249,6 +256,12 @@ public class UserServiceImpl implements UserService {
         return subscriptionsDao.getSubscriptions(users.getId());
     }
 
+    @Override
+    public List<SubscriptionDto> getSubscribers(String sessionId) {
+        Users users = getUserBySession(sessionId);
+        return subscriptionsDao.getSubscribers(users.getId());
+    }
+
     @Transactional
     @Override
     public void unsubscribe(String sessionId, int userId) {
@@ -261,6 +274,7 @@ public class UserServiceImpl implements UserService {
     public void subscribe(String sessionId, int userId) {
         Users users = getUserBySession(sessionId);
         subscriptionsDao.addSubscription(users.getId(), userId);
+        eventDao.addSibscribeEvent(users.getId(), userId);
     }
 
     private String buildSocialUserName(String socialName, String userId) {

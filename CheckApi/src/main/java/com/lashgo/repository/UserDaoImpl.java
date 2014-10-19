@@ -3,21 +3,18 @@ package com.lashgo.repository;
 import com.lashgo.domain.Users;
 import com.lashgo.mappers.UserDtoMapper;
 import com.lashgo.mappers.UsersMapper;
-import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.model.dto.RegisterInfo;
 import com.lashgo.model.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Eugene on 12.02.14.
@@ -80,18 +77,19 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate.update("UPDATE users SET password = ? WHERE email = ?", newPassword, email);
     }
 
-    public UserDto getUserProfile(int userId) {
+    public UserDto getUserProfile(int currentUserId, int userId) {
         return jdbcTemplate.queryForObject(
                 "SELECT u.* ," +
                         " (SELECT COUNT(ph2.id) FROM photos ph2 WHERE (ph2.user_id = u.id)) AS checks_count," +
                         " (SELECT COUNT(comm.id) FROM comments comm WHERE (comm.user_id = u.id)) AS comments_count," +
                         " (SELECT COUNT(likes.id) FROM user_photo_likes likes WHERE (likes.user_id = u.id)) AS likes_count," +
                         " (SELECT COUNT(subs.id) FROM subscriptions subs WHERE (subs.user_id = u.id)) AS user_subscribes," +
-                        " (SELECT COUNT(subs2.id) FROM subscriptions subs2 WHERE (subs2.checklist_id = u.id)) AS user_subscribers" +
+                        " (SELECT COUNT(subs2.id) FROM subscriptions subs2 WHERE (subs2.checklist_id = u.id)) AS user_subscribers," +
+                        " (SELECT COUNT(subs3.id) FROM subscriptions subs3 WHERE (subs3.user_id = ? AND subs3.checklist_id = u.id)) AS is_subscription" +
                         "  FROM users u" +
                         " WHERE u.id = ?" +
                         " GROUP BY u.id"
-                , new UserDtoMapper(true), userId);
+                , new UserDtoMapper(true), currentUserId, userId);
     }
 
     @Override
@@ -154,5 +152,10 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public UserDto getUserProfile(int userId) {
+        return getUserProfile(-1, userId);
     }
 }
