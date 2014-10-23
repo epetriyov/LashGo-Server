@@ -175,7 +175,8 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseList<PhotoDto> getUserPhotos(@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
+    ResponseList<PhotoDto> getUserPhotos(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseList<>(userService.getPhotos(userId));
     }
 
@@ -198,6 +199,7 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject<UserDto> getProfile(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         return new ResponseObject<>(userService.getProfile(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
@@ -248,9 +250,10 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseList<SubscriptionDto> getSubscriptions(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId ) {
-        sessionValidator.validate(httpHeaders);
-        return new ResponseList<>(userService.getSubscriptions(userId));
+    ResponseList<SubscriptionDto> getSubscriptions(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        return new ResponseList<>(userService.getSubscriptions(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
 
     @ApiMethod(
@@ -273,9 +276,10 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseList<SubscriptionDto> getSubscribers(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId ) {
-        sessionValidator.validate(httpHeaders);
-        return new ResponseList<>(userService.getSubscribers(userId));
+    ResponseList<SubscriptionDto> getSubscribers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        return new ResponseList<>(userService.getSubscribers(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
 
     @ApiMethod(
@@ -406,5 +410,31 @@ public class UserController extends BaseController {
         sessionValidator.validate(httpHeaders);
         userService.saveAvatar(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), file);
         return new ResponseObject();
+    }
+
+    @ApiMethod(
+            path = Path.Users.GET,
+            verb = ApiVerb.GET,
+            description = "get user's list",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Users.GET, method = RequestMethod.GET)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseList<SubscriptionDto> getUsers(@RequestHeader HttpHeaders httpHeaders, @RequestParam(value = "search_text", required = false, defaultValue = "") String searchText) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        return new ResponseList<>(userService.findUsers(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0),searchText));
     }
 }

@@ -9,9 +9,9 @@ import java.util.List;
  * Created by Eugene on 05.05.2014.
  */
 public interface SubscriptionsDao {
-    List<SubscriptionDto> getSubscribers(int userId);
+    List<SubscriptionDto> getSubscribers(int userId, int currentUser);
 
-    List<SubscriptionDto> getSubscriptions(int userId);
+    List<SubscriptionDto> getSubscriptions(int userId, int currentUser);
 
     void removeSubscription(int userId, int checkistId);
 

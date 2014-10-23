@@ -19,17 +19,17 @@ public interface UserService {
 
     void sendRecoverPassword(String email) throws ValidationException;
 
-    UserDto getProfile(String sessionId,int userId);
+    UserDto getProfile(String sessionId, int userId);
 
     List<PhotoDto> getPhotos(String sessionId);
 
-    List<SubscriptionDto> getSubscribers(int userId);
+    List<SubscriptionDto> getSubscribers(String sessionId, int userId);
 
     List<SubscriptionDto> getMySubscriptions(String sessionId);
 
     List<SubscriptionDto> getMySubscribers(String sessionId);
 
-    List<SubscriptionDto> getSubscriptions(int userId);
+    List<SubscriptionDto> getSubscriptions(String sessionId, int userId);
 
     void unsubscribe(String sessionId, int userId);
 
@@ -48,4 +48,6 @@ public interface UserService {
     void saveAvatar(String sessionId, MultipartFile file);
 
     void updateProfile(String sessionId, UserDto userDto);
+
+    List<SubscriptionDto> findUsers(String sessionId, String searchText);
 }

@@ -1,9 +1,9 @@
 package com.lashgo.repository;
 
-import com.lashgo.model.dto.RegisterInfo;
+import com.lashgo.model.dto.*;
 import com.lashgo.domain.Users;
-import com.lashgo.model.dto.LoginInfo;
-import com.lashgo.model.dto.UserDto;
+
+import java.util.List;
 
 /**
  * Created by Eugene on 12.02.14.
@@ -33,4 +33,8 @@ public interface UserDao {
     boolean isUserExists(int userId, String email);
 
     UserDto getUserProfile(int userId);
+
+    List<SubscriptionDto> findUsers(String searchText, int userId);
+
+    List<SubscriptionDto> getUsersByCheck(int checkId);
 }

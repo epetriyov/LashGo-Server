@@ -1,7 +1,7 @@
 package com.lashgo.repository;
 
-import com.lashgo.mappers.PhotosDtoMapper;
-import com.lashgo.model.dto.PhotoDto;
+import com.lashgo.mappers.UserVotesMapper;
+import com.lashgo.model.dto.VotePhoto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,15 +17,15 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<PhotoDto> getUserShownPhotos(int userId, int checkId, int limit) {
+    public List<VotePhoto> getUserShownPhotos(int userId, int checkId) {
         return jdbcTemplate.query(
                 "SELECT p.id as id_photo, p.picture, u.id, u.login, u.fio,u.avatar," +
-                        "(SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = p.id) AS likes_count," +
-                        "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count"     +
+                        "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count," +
+                        "(SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = p.id AND uv.user_id = ?) AS user_votes_count," +
+                        "(SELECT COUNT (us.id) FROM user_shown_photos us WHERE us.photo_id = p.id AND us.user_id = ?) AS user_shown_count" +
                         "                    FROM photos p, users u " +
-                        "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 AND p.id NOT IN " +
-                        "                        (SELECT uv.photo_id FROM user_shown_photos uv " +
-                        "                         WHERE uv.user_id = ?) LIMIT ?", new PhotosDtoMapper(PhotosDtoMapper.MapType.CHECK_JOIN), checkId, userId, limit);
+                        "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 " +
+                        "ORDER BY p.make_date", new UserVotesMapper(), userId, userId, checkId);
     }
 
     @Override

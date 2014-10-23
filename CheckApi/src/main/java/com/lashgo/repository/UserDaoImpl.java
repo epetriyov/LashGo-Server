@@ -1,10 +1,12 @@
 package com.lashgo.repository;
 
 import com.lashgo.domain.Users;
+import com.lashgo.mappers.SubscriptionsMapper;
 import com.lashgo.mappers.UserDtoMapper;
 import com.lashgo.mappers.UsersMapper;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.model.dto.RegisterInfo;
+import com.lashgo.model.dto.SubscriptionDto;
 import com.lashgo.model.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -157,5 +159,27 @@ public class UserDaoImpl implements UserDao {
     @Override
     public UserDto getUserProfile(int userId) {
         return getUserProfile(-1, userId);
+    }
+
+    @Override
+    public List<SubscriptionDto> findUsers(String searchText, int userId) {
+        return jdbcTemplate.query("" +
+                "SELECT u.id as uid,u.login,u.fio,u.avatar, " +
+                "COUNT(sub.id) AS sub_count " +
+                "FROM users u LEFT JOIN subscriptions sub " +
+                "ON (sub.user_id = ? AND sub.checklist_id= u.id) " +
+                "WHERE u.login LIKE '%?%' OR u.fio LIKE '%?%' OR u.email LIKE '%?%'"
+                , new SubscriptionsMapper(), searchText, searchText, searchText);
+    }
+
+    @Override
+    public List<SubscriptionDto> getUsersByCheck(int checkId) {
+        return jdbcTemplate.query("" +
+                "SELECT u.id as uid,u.login,u.fio,u.avatar, " +
+                "COUNT(sub.id) AS sub_count " +
+                "FROM users u  INNER JOIN photos p ON (p.user_id = u.id) " +
+                "INNER JOIN checks c ON (c.id = p.check_id AND c.id = ?) LEFT JOIN subscriptions sub " +
+                "ON (sub.user_id = ? AND sub.checklist_id= u.id) "
+                , new SubscriptionsMapper(), checkId);
     }
 }

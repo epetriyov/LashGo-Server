@@ -13,11 +13,10 @@ public class UserVotesMapper implements RowMapper<VotePhoto> {
     @Override
     public VotePhoto mapRow(ResultSet rs, int rowNum) throws SQLException {
         VotePhoto votePhoto = new VotePhoto();
-        votePhoto.setPhotoUrl(rs.getString("photo"));
-        votePhoto.setUserAvatar(rs.getString("user_avatar"));
-        votePhoto.setUserId(rs.getInt("user_id"));
-        votePhoto.setUserLogin(rs.getString("user_login"));
-        votePhoto.setPhotoId(rs.getLong("photo_id"));
+        PhotosDtoMapper photosDtoMapper = new PhotosDtoMapper(PhotosDtoMapper.MapType.CHECK_JOIN);
+        votePhoto.setPhotoDto(photosDtoMapper.mapRow(rs, rowNum));
+        votePhoto.setShown(rs.getInt("user_shown_count") > 0);
+        votePhoto.setVoted(rs.getInt("user_votes_count") > 0);
         return votePhoto;
     }
 }

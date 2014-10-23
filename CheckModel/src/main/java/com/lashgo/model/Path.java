@@ -23,6 +23,7 @@ public final class Path {
         public static final String VOTE_PHOTOS = "/checks/{checkId}/vote/photos";
         public static final String LIKE = "/checks/like";
         public static final String COUNTERS = "/checks/{checkId}/counters";
+        public static final String USERS = "/checks/{checkId}/users";
     }
 
     public static final class Comments {
@@ -60,5 +61,6 @@ public final class Path {
         public static final String SOCIAL_SIGN_IN = "/users/social-sign-in";
         public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
         public static final String AVATAR = "/users/avatar";
+        public static final String GET = "/users";
     }
 }

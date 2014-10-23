@@ -7,7 +7,6 @@ import com.lashgo.service.CheckService;
 import com.lashgo.service.CommentService;
 import com.lashgo.service.PhotoService;
 import com.lashgo.service.SessionValidator;
-import com.lashgo.utils.CheckUtils;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiParamType;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -16,12 +15,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,10 +60,10 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<CheckDto> getChecks(@RequestHeader HttpHeaders httpHeaders) {
+    ResponseList<CheckDto> getChecks(@RequestParam(value = "search_text", required = false, defaultValue = "") String searchText, @RequestHeader HttpHeaders httpHeaders) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
-        return new ResponseList<>(checkService.getChecks(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null));
+        return new ResponseList<>(checkService.getChecks(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, searchText));
     }
 
     @ApiMethod(
@@ -87,10 +84,10 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject<CheckDto> getCheckById(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+    ResponseObject<CheckDto> getCheckById(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
-        return new ResponseObject<>(checkService.getCheckById(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null,checkId));
+        return new ResponseObject<>(checkService.getCheckById(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, checkId));
     }
 
     @ApiMethod(
@@ -111,7 +108,7 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject<CheckCounters> getCheckCounters(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+    ResponseObject<CheckCounters> getCheckCounters(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseObject<>(checkService.getCheckCounters(checkId));
     }
@@ -136,7 +133,7 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<PhotoDto> getCheckPhotos(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+    ResponseList<PhotoDto> getCheckPhotos(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseList<>(checkService.getPhotos(checkId));
     }
@@ -161,9 +158,34 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<CommentDto> getCheckComments(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+    ResponseList<CommentDto> getCheckComments(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseList<CommentDto>(commentService.getCheckComments(checkId));
+    }
+
+    @ApiMethod(
+            path = Path.Checks.USERS,
+            verb = ApiVerb.GET,
+            description = "Gets list of check's users",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Checks.USERS, method = RequestMethod.GET)
+    public
+    @ApiResponseObject
+    @ResponseBody
+    ResponseList<SubscriptionDto> getCheckUsers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        return new ResponseList<SubscriptionDto>(checkService.getCheckUsers(checkId));
     }
 
     @ApiMethod(
@@ -188,7 +210,7 @@ public class CheckController extends BaseController {
     @ResponseBody
     ResponseObject<CommentDto> addCheckComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId, @ApiBodyObject @Valid @RequestBody String commentText) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject(commentService.addCheckComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),checkId, commentText));
+        return new ResponseObject(commentService.addCheckComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), checkId, commentText));
     }
 
     @ApiMethod(
@@ -237,9 +259,9 @@ public class CheckController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject<VotePhotosResult> getVotePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId, @RequestParam(value = "is_count_included", required = false, defaultValue = "false") boolean isCountIncluded) {
+    ResponseList<VotePhoto> getVotePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject<>(checkService.getVotePhotos(checkId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), isCountIncluded));
+        return new ResponseList<>(checkService.getVotePhotos(checkId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
     }
 
     @ApiMethod(

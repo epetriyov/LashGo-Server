@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class CheckDaoImpl implements CheckDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<CheckDto> getAllChecks(int userId) {
+    public List<CheckDto> getAllChecks(int userId, String searchText) {
         return jdbcTemplate.query("SELECT " +
                 "                         c.id as check_id, c.name as check_name," +
                 "                         c.description as check_description," +
@@ -47,8 +48,9 @@ public class CheckDaoImpl implements CheckDao {
                 "                   LEFT JOIN photos ph" +
                 "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                 "                   WHERE c.start_date <= current_timestamp" +
+                (StringUtils.isEmpty(searchText) ? "" : " AND (check_name LIKE '%?%' OR check_description LIKE '%?%')") +
                 "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture " +
-                "                   ORDER BY c.start_date DESC", new CheckMapper(), userId);
+                "                   ORDER BY c.start_date DESC", new CheckMapper(), userId, searchText,searchText);
     }
 
     @Override

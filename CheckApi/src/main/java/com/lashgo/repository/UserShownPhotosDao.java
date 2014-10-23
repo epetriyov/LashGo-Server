@@ -1,6 +1,5 @@
 package com.lashgo.repository;
 
-import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VotePhoto;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
  * Created by Eugene on 31.08.2014.
  */
 public interface UserShownPhotosDao {
-    List<PhotoDto> getUserShownPhotos(int userId, int checkId, int limit);
+    List<VotePhoto> getUserShownPhotos(int userId, int checkId);
 
     void addUserShownPhotos(int userId, long[] photoIds);
 

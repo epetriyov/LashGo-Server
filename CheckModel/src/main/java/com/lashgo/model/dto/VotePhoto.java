@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -15,71 +14,40 @@ import java.io.Serializable;
 @ApiObject(name = "votePhoto", description = "photo for vote")
 public class VotePhoto implements Serializable {
 
-    @Size(min = 1)
-    @ApiObjectField(description = "photoUrl")
-    private String photoUrl;
+    @NotNull
+    @ApiObjectField(description = "photoDto")
+    private PhotoDto photoDto;
 
-    @Min(1)
-    @ApiObjectField(description = "userId")
-    private int userId;
-    @Size(min = 1)
-    @ApiObjectField(description = "userAvatar")
-    private String userAvatar;
-    @Size(min = 1)
-    @ApiObjectField(description = "userLogin")
-    private String userLogin;
-    @Min(1)
-    @ApiObjectField(description = "photoId")
-    private long photoId;
+    @ApiObjectField(description = "isShown")
+    private boolean isShown;
+
+    @ApiObjectField(description = "isVoted")
+    private boolean isVoted;
 
     public VotePhoto() {
     }
-    public VotePhoto(String photoUrl, int userId, String userAvatar, String userLogin, long photoId) {
-        this.photoUrl = photoUrl;
-        this.userId = userId;
-        this.userAvatar = userAvatar;
-        this.userLogin = userLogin;
-        this.photoId = photoId;
+
+    public PhotoDto getPhotoDto() {
+        return photoDto;
     }
 
-    public String getPhotoUrl() {
-
-        return photoUrl;
+    public void setPhotoDto(PhotoDto photoDto) {
+        this.photoDto = photoDto;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public boolean isShown() {
+        return isShown;
     }
 
-    public int getUserId() {
-        return userId;
+    public void setShown(boolean isShown) {
+        this.isShown = isShown;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public boolean isVoted() {
+        return isVoted;
     }
 
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
-    }
-
-    public String getUserLogin() {
-        return userLogin;
-    }
-
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
-    }
-
-    public long getPhotoId() {
-        return photoId;
-    }
-
-    public void setPhotoId(long photoId) {
-        this.photoId = photoId;
+    public void setVoted(boolean isVoted) {
+        this.isVoted = isVoted;
     }
 }

@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -240,6 +241,18 @@ public class UserServiceImpl implements UserService {
         userDao.updateProfile(user.getId(), userDto);
     }
 
+    @Override
+    public List<SubscriptionDto> findUsers(String sessionId,String searchText) {
+        Users users = null;
+        if (sessionId != null) {
+            users = getUserBySession(sessionId);
+        }
+        if (!StringUtils.isEmpty(searchText)) {
+            return userDao.findUsers(searchText,users != null ? users.getId() : -1);
+        }
+        return Collections.EMPTY_LIST;
+    }
+
     private String buildNewPhotoName(int userId) {
         StringBuilder photoNameBuilder = new StringBuilder("avatar");
         photoNameBuilder.append("_user_");
@@ -253,23 +266,31 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<SubscriptionDto> getMySubscriptions(String sessionId) {
         Users users = getUserBySession(sessionId);
-        return subscriptionsDao.getSubscriptions(users.getId());
+        return subscriptionsDao.getSubscriptions(users.getId(), users.getId());
     }
 
     @Override
-    public List<SubscriptionDto> getSubscriptions(int userId) {
-        return subscriptionsDao.getSubscriptions(userId);
+    public List<SubscriptionDto> getSubscriptions(String sessionId, int userId) {
+        Users users = null;
+        if (sessionId != null) {
+            users = getUserBySession(sessionId);
+        }
+        return subscriptionsDao.getSubscriptions(userId, users != null ? users.getId() : -1);
     }
 
     @Override
     public List<SubscriptionDto> getMySubscribers(String sessionId) {
         Users users = getUserBySession(sessionId);
-        return subscriptionsDao.getSubscribers(users.getId());
+        return subscriptionsDao.getSubscribers(users.getId(), users.getId());
     }
 
     @Override
-    public List<SubscriptionDto> getSubscribers(int userId) {
-        return subscriptionsDao.getSubscribers(userId);
+    public List<SubscriptionDto> getSubscribers(String sessionId, int userId) {
+        Users users = null;
+        if (sessionId != null) {
+            users = getUserBySession(sessionId);
+        }
+        return subscriptionsDao.getSubscribers(userId, users != null ? users.getId() : -1);
     }
 
     @Transactional

@@ -4,10 +4,7 @@ import com.lashgo.CheckConstants;
 import com.lashgo.domain.Users;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
-import com.lashgo.model.dto.CheckCounters;
-import com.lashgo.model.dto.CheckDto;
-import com.lashgo.model.dto.PhotoDto;
-import com.lashgo.model.dto.VotePhotosResult;
+import com.lashgo.model.dto.*;
 import com.lashgo.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +25,9 @@ import java.util.List;
 public class CheckServiceImpl implements CheckService {
 
     private final Logger logger = LoggerFactory.getLogger("FILE");
+
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
     private CheckWinnersDao checkWinnersDao;
@@ -51,12 +51,12 @@ public class CheckServiceImpl implements CheckService {
     private UserShownPhotosDao userShownPhotosDao;
 
     @Override
-    public List<CheckDto> getChecks(String sessionId) {
+    public List<CheckDto> getChecks(String sessionId, String searchText) {
         int userId = -1;
         if (sessionId != null) {
             userId = userService.getUserBySession(sessionId).getId();
         }
-        return checkDao.getAllChecks(userId);
+        return checkDao.getAllChecks(userId,searchText);
     }
 
     @Override
@@ -65,11 +65,9 @@ public class CheckServiceImpl implements CheckService {
     }
 
     @Override
-    public VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded) {
+    public List<VotePhoto> getVotePhotos(int checkId, String sessionId) {
         Users users = userService.getUserBySession(sessionId);
-        List<PhotoDto> votePhotoList = userShownPhotosDao.getUserShownPhotos(users.getId(), checkId, CheckConstants.VOTE_PHOTOS_LIMIT);
-        Integer photosCount = isCountIncluded ? userShownPhotosDao.getUserShownPhotosCount(users.getId(), checkId) : null;
-        return new VotePhotosResult(votePhotoList, photosCount);
+        return userShownPhotosDao.getUserShownPhotos(users.getId(), checkId);
     }
 
     @Override
@@ -100,6 +98,11 @@ public class CheckServiceImpl implements CheckService {
     @Override
     public CheckCounters getCheckCounters(int checkId) {
         return checkDao.getCheckCounters(checkId);
+    }
+
+    @Override
+    public List<SubscriptionDto> getCheckUsers(int checkId) {
+        return userDao.getUsersByCheck(checkId);
     }
 
     @Scheduled(cron = "0 0 * * * *")

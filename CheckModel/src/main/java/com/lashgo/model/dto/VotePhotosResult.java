@@ -16,7 +16,7 @@ import java.util.List;
 @ApiObject(name = "votePhotosResult", description = "list of photos for vote")
 public class VotePhotosResult implements Serializable {
     @ApiObjectField(description = "votePhotoList")
-    private List<PhotoDto> votePhotoList;
+    private List<VotePhoto> votePhotoList;
     @Min(1)
     @ApiObjectField(description = "photosCount")
     private Integer photosCount;
@@ -24,16 +24,16 @@ public class VotePhotosResult implements Serializable {
     public VotePhotosResult() {
     }
 
-    public VotePhotosResult(List<PhotoDto> votePhotoList, Integer photosCount) {
+    public VotePhotosResult(List<VotePhoto> votePhotoList, Integer photosCount) {
         this.votePhotoList = new ArrayList<>(votePhotoList);
         this.photosCount = photosCount;
     }
 
-    public List<PhotoDto> getVotePhotoList() {
+    public List<VotePhoto> getVotePhotoList() {
         return votePhotoList;
     }
 
-    public void setVotePhotoList(List<PhotoDto> votePhotoList) {
+    public void setVotePhotoList(List<VotePhoto> votePhotoList) {
         this.votePhotoList = votePhotoList;
     }
 

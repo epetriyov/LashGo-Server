@@ -1,9 +1,6 @@
 package com.lashgo.service;
 
-import com.lashgo.model.dto.CheckCounters;
-import com.lashgo.model.dto.CheckDto;
-import com.lashgo.model.dto.PhotoDto;
-import com.lashgo.model.dto.VotePhotosResult;
+import com.lashgo.model.dto.*;
 
 import java.util.List;
 
@@ -12,15 +9,17 @@ import java.util.List;
  */
 
 public interface CheckService {
-    List<CheckDto> getChecks(String sessionId);
+    List<CheckDto> getChecks(String sessionId, String searchText);
 
     List<PhotoDto> getPhotos(int checkId);
 
-    VotePhotosResult getVotePhotos(int checkId, String sessionId, boolean isCountIncluded);
+    List<VotePhoto> getVotePhotos(int checkId, String sessionId);
 
     boolean likeCheck(Integer checkId, String sessionId);
 
     CheckDto getCheckById(String sessionId, int checkId);
 
     CheckCounters getCheckCounters(int checkId);
+
+    List<SubscriptionDto> getCheckUsers(int checkId);
 }
