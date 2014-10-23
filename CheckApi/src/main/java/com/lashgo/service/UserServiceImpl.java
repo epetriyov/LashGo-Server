@@ -251,15 +251,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<SubscriptionDto> getSubscriptions(String sessionId) {
+    public List<SubscriptionDto> getMySubscriptions(String sessionId) {
         Users users = getUserBySession(sessionId);
         return subscriptionsDao.getSubscriptions(users.getId());
     }
 
     @Override
-    public List<SubscriptionDto> getSubscribers(String sessionId) {
+    public List<SubscriptionDto> getSubscriptions(int userId) {
+        return subscriptionsDao.getSubscriptions(userId);
+    }
+
+    @Override
+    public List<SubscriptionDto> getMySubscribers(String sessionId) {
         Users users = getUserBySession(sessionId);
         return subscriptionsDao.getSubscribers(users.getId());
+    }
+
+    @Override
+    public List<SubscriptionDto> getSubscribers(int userId) {
+        return subscriptionsDao.getSubscribers(userId);
     }
 
     @Transactional

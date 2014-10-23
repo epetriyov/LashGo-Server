@@ -30,6 +30,12 @@ public class SubscriptionDto implements Serializable {
     private String userLogin;
     @ApiObjectField(description = "subscribe_date")
     private Date subscriptionDate;
+    @Size(min = 1)
+    @ApiObjectField(description = "fio")
+    private String fio;
+
+    @ApiObjectField(description = "true if current user is subscribed to subscription")
+    private boolean amISubscribed = true;
 
     public SubscriptionDto() {
     }
@@ -40,6 +46,14 @@ public class SubscriptionDto implements Serializable {
         this.userAvatar = userAvatar;
         this.userLogin = userLogin;
         this.subscriptionDate = subscriptionDate;
+    }
+
+    public boolean isAmISubscribed() {
+        return amISubscribed;
+    }
+
+    public void setAmISubscribed(boolean amISubscribed) {
+        this.amISubscribed = amISubscribed;
     }
 
     public Date getSubscriptionDate() {
@@ -80,5 +94,13 @@ public class SubscriptionDto implements Serializable {
 
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
+    }
+
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 }

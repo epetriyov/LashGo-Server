@@ -23,9 +23,13 @@ public interface UserService {
 
     List<PhotoDto> getPhotos(String sessionId);
 
-    List<SubscriptionDto> getSubscribers(String sessionId);
+    List<SubscriptionDto> getSubscribers(int userId);
 
-    List<SubscriptionDto> getSubscriptions(String sessionId);
+    List<SubscriptionDto> getMySubscriptions(String sessionId);
+
+    List<SubscriptionDto> getMySubscribers(String sessionId);
+
+    List<SubscriptionDto> getSubscriptions(int userId);
 
     void unsubscribe(String sessionId, int userId);
 

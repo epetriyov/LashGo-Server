@@ -1,6 +1,7 @@
 package com.lashgo.mappers;
 
 import com.lashgo.model.dto.SubscriptionDto;
+import com.lashgo.utils.CheckUtils;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -15,10 +16,13 @@ public class SubscriptionsMapper implements RowMapper<SubscriptionDto> {
     public SubscriptionDto mapRow(ResultSet resultSet, int i) throws SQLException {
         SubscriptionDto subscriptionDto = new SubscriptionDto();
         subscriptionDto.setId(resultSet.getInt("id"));
-        subscriptionDto.setUserId(resultSet.getInt("user_id"));
+        subscriptionDto.setUserId(resultSet.getInt("uid"));
         subscriptionDto.setUserLogin(resultSet.getString("login"));
         subscriptionDto.setUserAvatar(resultSet.getString("avatar"));
-        subscriptionDto.setSubscriptionDate(resultSet.getTimestamp("subscribe_date"));
+        subscriptionDto.setFio(resultSet.getString("fio"));
+        if (CheckUtils.hasColumn(resultSet, "sub_count")) {
+            subscriptionDto.setAmISubscribed(resultSet.getInt("sub_count") > 0);
+        }
         return subscriptionDto;
     }
 }

@@ -3,6 +3,8 @@ package com.lashgo.repository;
 import com.lashgo.mappers.EventMapper;
 import com.lashgo.model.DbCodes;
 import com.lashgo.model.dto.EventDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -35,7 +37,7 @@ public class EventDaoImpl implements EventDao {
 
     @Override
     public List<EventDto> getEventsByUser(int userId) {
-        return jdbcTemplate.query("SELECT e.id, u1.id as uid1, u1.login as ulogin1, u1.fio as ufio1,u1.avatar as uavatar1, " +
+        return jdbcTemplate.query("SELECT e.id as id, u1.id as uid1, u1.login as ulogin1, u1.fio as ufio1,u1.avatar as uavatar1, " +
                 "                  p.id as pid, p.picture as picture, c.id as cid, c.name as cname,c.task_photo as ctask_photo, " +
                 "                  u2.id as uid2,u2.login as ulogin2,u2.fio as ufio2,u2.avatar as uavatar2,e.action as action,e.event_date as event_date" +
                 "             FROM events e LEFT JOIN users u1 ON (u1.id = e.user_id)" +

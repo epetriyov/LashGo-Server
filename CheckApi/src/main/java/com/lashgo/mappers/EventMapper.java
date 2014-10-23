@@ -4,6 +4,8 @@ import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.EventDto;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.UserDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -13,11 +15,12 @@ import java.sql.SQLException;
  * Created by Eugene on 19.10.2014.
  */
 public class EventMapper implements RowMapper<EventDto> {
+
     @Override
     public EventDto mapRow(ResultSet rs, int rowNum) throws SQLException {
         EventDto eventDto = new EventDto();
         eventDto.setId(rs.getLong("id"));
-        int userId1 = rs.getInt(rs.getInt("uid1"));
+        int userId1 = rs.getInt("uid1");
         if (userId1 > 0) {
             UserDto userDto = new UserDto();
             userDto.setId(userId1);
@@ -41,7 +44,7 @@ public class EventMapper implements RowMapper<EventDto> {
             checkDto.setTaskPhotoUrl(rs.getString("ctask_photo"));
             eventDto.setCheck(checkDto);
         }
-        int userId2 = rs.getInt(rs.getInt("uid2"));
+        int userId2 = rs.getInt("uid2");
         if (userId2 > 0) {
             UserDto userDto = new UserDto();
             userDto.setId(userId2);

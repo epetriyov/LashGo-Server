@@ -248,9 +248,9 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseList<SubscriptionDto> getSubscriptions(@RequestHeader HttpHeaders httpHeaders) {
+    ResponseList<SubscriptionDto> getSubscriptions(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId ) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseList<>(userService.getSubscriptions(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+        return new ResponseList<>(userService.getSubscriptions(userId));
     }
 
     @ApiMethod(
@@ -273,9 +273,9 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseList<SubscriptionDto> getSubscribers(@RequestHeader HttpHeaders httpHeaders) {
+    ResponseList<SubscriptionDto> getSubscribers(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId ) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseList<>(userService.getSubscribers(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+        return new ResponseList<>(userService.getSubscribers(userId));
     }
 
     @ApiMethod(

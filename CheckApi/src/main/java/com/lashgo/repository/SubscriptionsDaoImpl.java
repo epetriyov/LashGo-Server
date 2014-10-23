@@ -20,12 +20,12 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
 
     @Override
     public List<SubscriptionDto> getSubscriptions(int userId) {
-        return jdbcTemplate.query("SELECT s.id,s.user_id,u.login,u.avatar FROM subscriptions s, users u WHERE s.user_id = ? AND s.checklist_id = u.id ORDER BY s.id ASC", new SubscriptionsMapper(), userId);
+        return jdbcTemplate.query("SELECT s.id,u.id as uid,u.login,u.fio,u.avatar FROM subscriptions s, users u WHERE s.user_id = ? AND s.checklist_id = u.id ORDER BY s.id ASC", new SubscriptionsMapper(), userId);
     }
 
     @Override
     public List<SubscriptionDto> getSubscribers(int userId) {
-        return jdbcTemplate.query("SELECT s.id,s.user_id,u.login,u.avatar FROM subscriptions s, users u WHERE s.checklist_id = ? AND s.user_id = u.id ORDER BY s.id ASC", new SubscriptionsMapper(), userId);
+        return jdbcTemplate.query("SELECT s.id,u.id as uid,u.login,u.fio,u.avatar, COUNT(sub.id) AS sub_count FROM subscriptions s, users u LEFT JOIN subscriptions sub ON (sub.user_id = ? AND sub.checklist_id = u.id) WHERE s.checklist_id = ? AND s.user_id = u.id GROUP BY s.id,u.id,u.login,u.fio,u.avatar ORDER BY s.id ASC", new SubscriptionsMapper(), userId, userId);
     }
 
     @Override

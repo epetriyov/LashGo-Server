@@ -54,8 +54,8 @@ public final class Path {
         public static final String PROFILE = "/users/{userId}/profile";
         public static final String MY_PHOTOS = "/users/photos";
         public static final String PHOTOS = "/users/{userId}/photos";
-        public static final String SUBSCRIPTIONS = "/users/subscriptions";
-        public static final String SUBSCRIBERS = "/users/subscribers";
+        public static final String SUBSCRIPTIONS = "/users/{userId}/subscriptions";
+        public static final String SUBSCRIBERS = "/users/{userId}/subscribers";
         public static final String SUBSCRIPTION = "/users/subscriptions/{userId}";
         public static final String SOCIAL_SIGN_IN = "/users/social-sign-in";
         public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
