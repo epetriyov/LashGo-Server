@@ -36,5 +36,5 @@ public interface UserDao {
 
     List<SubscriptionDto> findUsers(String searchText, int userId);
 
-    List<SubscriptionDto> getUsersByCheck(int checkId);
+    List<SubscriptionDto> getUsersByCheck(int userId, int checkId);
 }

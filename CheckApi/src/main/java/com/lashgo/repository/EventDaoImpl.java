@@ -3,12 +3,12 @@ package com.lashgo.repository;
 import com.lashgo.mappers.EventMapper;
 import com.lashgo.model.DbCodes;
 import com.lashgo.model.dto.EventDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Types;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,5 +47,17 @@ public class EventDaoImpl implements EventDao {
                 "            WHERE e.user_id = ? OR e.object_user_id = ?" +
                 "               OR e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
                 "               OR e.object_user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)", new EventMapper(), userId, userId, userId, userId);
+    }
+
+    @Override
+    public int getEventsCountByUser(int userId, Date lastView) {
+        return jdbcTemplate.queryForObject("SELECT count(e.id)" +
+                        "             FROM events e" +
+                        "            WHERE (e.user_id = ? OR e.object_user_id = ?" +
+                        "               OR e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
+                        "               OR e.object_user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?))" +
+                        (lastView != null ?
+                                " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{userId, userId, userId, userId, lastView} : new Object[]{userId, userId, userId, userId}),
+                (lastView != null ? new int[]{Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER}), Integer.class);
     }
 }

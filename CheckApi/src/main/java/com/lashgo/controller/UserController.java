@@ -309,7 +309,7 @@ public class UserController extends BaseController {
     }
 
     @ApiMethod(
-            path = Path.Users.SUBSCRIPTIONS,
+            path = Path.Users.SUBSCRIPTION_POST,
             verb = ApiVerb.POST,
             description = "subscribe to user",
             produces = {MediaType.APPLICATION_JSON_VALUE},
@@ -324,7 +324,7 @@ public class UserController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Users.SUBSCRIPTIONS, method = RequestMethod.POST)
+    @RequestMapping(value = Path.Users.SUBSCRIPTION_POST, method = RequestMethod.POST)
     public
     @ApiResponseObject
     @ResponseBody

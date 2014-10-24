@@ -26,7 +26,7 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
                 "FROM subscriptions s, users u " +
                 "LEFT JOIN subscriptions sub " +
                 "ON (sub.user_id = ? AND sub.checklist_id= u.id) " +
-                "WHERE s.user_id = ? AND s.checklist_id = u.id ORDER BY s.id ASC", new SubscriptionsMapper(), currentUser,userId);
+                "WHERE s.user_id = ? AND s.checklist_id = u.id GROUP BY s.id,u.id,u.login,u.fio,u.avatar ORDER BY s.id ASC", new SubscriptionsMapper(), currentUser,userId);
     }
 
     @Override
@@ -54,15 +54,6 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
     @Override
     public void addSubscription(int userId, int checkistId) {
         jdbcTemplate.update("INSERT INTO subscriptions (user_id,checklist_id) VALUES (?,?)", userId, checkistId);
-    }
-
-    @Override
-    public int getNewerSubscriptions(int userId, Date lastView) {
-        return jdbcTemplate.queryForObject(
-                "SELECT count(s.id) FROM subscriptions s " +
-                        " WHERE s.user_id = ?" + (lastView != null ? " AND s.subscribe_date > ?" : ""),
-                (lastView != null ? new Object[]{userId, lastView} : new Object[]{userId}),
-                (lastView != null ? new int[]{Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.INTEGER}), Integer.class);
     }
 
     @Override

@@ -101,8 +101,14 @@ public class CheckServiceImpl implements CheckService {
     }
 
     @Override
-    public List<SubscriptionDto> getCheckUsers(int checkId) {
-        return userDao.getUsersByCheck(checkId);
+    public List<SubscriptionDto> getCheckUsers(String sessionId, int checkId) {
+        int userId = -1;
+        if (sessionId != null) {
+            userId = userService.getUserBySession(sessionId).getId();
+        }
+        return userDao.getUsersByCheck(
+         userId,
+                checkId);
     }
 
     @Scheduled(cron = "0 0 * * * *")

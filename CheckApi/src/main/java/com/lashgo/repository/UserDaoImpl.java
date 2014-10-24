@@ -168,18 +168,18 @@ public class UserDaoImpl implements UserDao {
                 "COUNT(sub.id) AS sub_count " +
                 "FROM users u LEFT JOIN subscriptions sub " +
                 "ON (sub.user_id = ? AND sub.checklist_id= u.id) " +
-                "WHERE u.login LIKE '%?%' OR u.fio LIKE '%?%' OR u.email LIKE '%?%'"
-                , new SubscriptionsMapper(), searchText, searchText, searchText);
+                "WHERE u.login LIKE ? OR u.fio LIKE ? OR u.email LIKE ?  GROUP BY u.id"
+                , new SubscriptionsMapper(),userId, "%" + searchText + "%", "%" + searchText + "%", "%" + searchText + "%");
     }
 
     @Override
-    public List<SubscriptionDto> getUsersByCheck(int checkId) {
+    public List<SubscriptionDto> getUsersByCheck(int userId, int checkId) {
         return jdbcTemplate.query("" +
                 "SELECT u.id as uid,u.login,u.fio,u.avatar, " +
                 "COUNT(sub.id) AS sub_count " +
                 "FROM users u  INNER JOIN photos p ON (p.user_id = u.id) " +
                 "INNER JOIN checks c ON (c.id = p.check_id AND c.id = ?) LEFT JOIN subscriptions sub " +
-                "ON (sub.user_id = ? AND sub.checklist_id= u.id) "
-                , new SubscriptionsMapper(), checkId);
+                "ON (sub.user_id = ? AND sub.checklist_id= u.id)"
+                , new SubscriptionsMapper(), checkId, userId);
     }
 }

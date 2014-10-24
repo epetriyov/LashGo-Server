@@ -17,8 +17,6 @@ public interface SubscriptionsDao {
 
     void addSubscription(int usersId, int checkistId);
 
-    int getNewerSubscriptions(int userId, Date lastView);
-
     int getSubscriptionsCount(int usersId);
 
     int getSubscribersCount(int usersId);

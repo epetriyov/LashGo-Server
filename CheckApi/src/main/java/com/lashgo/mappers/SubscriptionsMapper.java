@@ -15,7 +15,9 @@ public class SubscriptionsMapper implements RowMapper<SubscriptionDto> {
     @Override
     public SubscriptionDto mapRow(ResultSet resultSet, int i) throws SQLException {
         SubscriptionDto subscriptionDto = new SubscriptionDto();
-        subscriptionDto.setId(resultSet.getInt("id"));
+        if (CheckUtils.hasColumn(resultSet, "id")) {
+            subscriptionDto.setId(resultSet.getInt("id"));
+        }
         subscriptionDto.setUserId(resultSet.getInt("uid"));
         subscriptionDto.setUserLogin(resultSet.getString("login"));
         subscriptionDto.setUserAvatar(resultSet.getString("avatar"));

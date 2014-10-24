@@ -2,6 +2,7 @@ package com.lashgo.repository;
 
 import com.lashgo.model.dto.EventDto;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,4 +17,6 @@ public interface EventDao {
     void addSibscribeEvent(int userId, int subscriptionId);
 
     List<EventDto> getEventsByUser(int userId);
+
+    int getEventsCountByUser(int userId, Date lastView);
 }

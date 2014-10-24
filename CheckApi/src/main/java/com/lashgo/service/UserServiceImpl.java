@@ -242,13 +242,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<SubscriptionDto> findUsers(String sessionId,String searchText) {
+    public List<SubscriptionDto> findUsers(String sessionId, String searchText) {
         Users users = null;
         if (sessionId != null) {
             users = getUserBySession(sessionId);
         }
         if (!StringUtils.isEmpty(searchText)) {
-            return userDao.findUsers(searchText,users != null ? users.getId() : -1);
+            return userDao.findUsers(searchText, users != null ? users.getId() : -1);
         }
         return Collections.EMPTY_LIST;
     }
@@ -411,7 +411,7 @@ public class UserServiceImpl implements UserService {
         mainScreenInfoDto.setUserAvatar(userDto.getAvatar());
         mainScreenInfoDto.setUserName(userDto.getFio() != null ? userDto.getFio() : userDto.getLogin());
         mainScreenInfoDto.setNewsCount(newsDao.getNewerNews(userLastViews.getNewsLastView()));
-        mainScreenInfoDto.setSubscribesCount(subscriptionsDao.getNewerSubscriptions(userDto.getId(), userLastViews.getSubscribesLastView()));
+        mainScreenInfoDto.setSubscribesCount(eventDao.getEventsCountByUser(userDto.getId(), userLastViews.getSubscribesLastView()));
         mainScreenInfoDto.setTasksCount(checkDao.getActiveChecksCount());
         return mainScreenInfoDto;
     }

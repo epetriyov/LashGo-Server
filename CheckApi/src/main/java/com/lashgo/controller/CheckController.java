@@ -185,7 +185,8 @@ public class CheckController extends BaseController {
     @ResponseBody
     ResponseList<SubscriptionDto> getCheckUsers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
-        return new ResponseList<SubscriptionDto>(checkService.getCheckUsers(checkId));
+        List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        return new ResponseList<SubscriptionDto>(checkService.getCheckUsers(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, checkId));
     }
 
     @ApiMethod(

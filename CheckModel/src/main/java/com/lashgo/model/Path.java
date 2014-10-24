@@ -58,6 +58,7 @@ public final class Path {
         public static final String SUBSCRIPTIONS = "/users/{userId}/subscriptions";
         public static final String SUBSCRIBERS = "/users/{userId}/subscribers";
         public static final String SUBSCRIPTION = "/users/subscriptions/{userId}";
+        public static final String SUBSCRIPTION_POST = "/users/subscriptions";
         public static final String SOCIAL_SIGN_IN = "/users/social-sign-in";
         public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
         public static final String AVATAR = "/users/avatar";
