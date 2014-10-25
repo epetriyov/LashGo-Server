@@ -179,7 +179,7 @@ public class UserDaoImpl implements UserDao {
                 "COUNT(sub.id) AS sub_count " +
                 "FROM users u  INNER JOIN photos p ON (p.user_id = u.id) " +
                 "INNER JOIN checks c ON (c.id = p.check_id AND c.id = ?) LEFT JOIN subscriptions sub " +
-                "ON (sub.user_id = ? AND sub.checklist_id= u.id)"
+                "ON (sub.user_id = ? AND sub.checklist_id= u.id) GROUP BY u.id,u.login,u.fio,u.avatar"
                 , new SubscriptionsMapper(), checkId, userId);
     }
 }
