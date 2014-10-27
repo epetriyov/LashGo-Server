@@ -8,6 +8,7 @@ import com.lashgo.error.PhotoWriteException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.CheckCounters;
+import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VoteAction;
 import com.lashgo.repository.PhotoDao;
 import com.lashgo.repository.PhotoLikesDao;
@@ -32,6 +33,9 @@ import java.io.IOException;
 @Service
 @Transactional(readOnly = true)
 public class PhotoServiceImpl implements PhotoService {
+
+    @Autowired
+    private CheckService checkService;
 
     @Autowired
     private PhotoLikesDao userLikesDao;
@@ -63,31 +67,33 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void savePhoto(String sessionId, int checkId, MultipartFile photo) {
         Users userDto = userService.getUserBySession(sessionId);
-        if (!photoDao.isPhotoExists(userDto.getId(), checkId)) {
-
-            if (!photo.isEmpty()) {
-                BufferedImage src = null;
-                try {
-                    src = ImageIO.read(new ByteArrayInputStream(photo.getBytes()));
-                } catch (IOException e) {
-                    logger.error(e.getMessage());
-                    throw new PhotoReadException();
-                }
-                StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
-                String photoName = buildNewPhotoName(checkId, userDto.getId());
-                String photoPath = photoDestinationBuilder.append(photoName).toString();
-                File destination = new File(photoPath);
-                try {
-                    ImageIO.write(src, "jpg", destination);
-                } catch (IOException e) {
-                    logger.error(e.getMessage());
-                    throw new PhotoWriteException();
-                }
-                photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
-            }
-        } else {
-            logger.error("Пользоваткль {} попытался отправить 2-е фото для задания {}",userDto.getId(),checkId);
+        if (photoDao.isPhotoExists(userDto.getId(), checkId)) {
+            logger.error("Пользователь {} попытался отправить 2-е фото для задания {}", userDto.getId(), checkId);
             throw new ValidationException(ErrorCodes.PHOTO_ALREADY_EXISTS);
+        }
+        if (!checkService.isCheckActive(checkId)) {
+            logger.error("Пользователь {} попытался отправить фото после завершения задания {}", userDto.getId(), checkId);
+            throw new ValidationException(ErrorCodes.CHECK_IS_NOT_ACTIVE);
+        }
+        if (!photo.isEmpty()) {
+            BufferedImage src = null;
+            try {
+                src = ImageIO.read(new ByteArrayInputStream(photo.getBytes()));
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+                throw new PhotoReadException();
+            }
+            StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
+            String photoName = buildNewPhotoName(checkId, userDto.getId());
+            String photoPath = photoDestinationBuilder.append(photoName).toString();
+            File destination = new File(photoPath);
+            try {
+                ImageIO.write(src, "jpg", destination);
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+                throw new PhotoWriteException();
+            }
+            photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
         }
     }
 
@@ -95,6 +101,10 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void ratePhoto(String sessionId, VoteAction voteAction) {
         Users users = userService.getUserBySession(sessionId);
+        if (!checkService.isVoteGoing(voteAction.getCheckId())) {
+            logger.error("Пользователь {} проголосовать не во время голосования", users.getId());
+            throw new ValidationException(ErrorCodes.CHECK_IS_NOT_ACTIVE);
+        }
         userVotesDao.addUserVote(users.getId(), voteAction.getVotedPhotoId());
         userShownPhotosDao.addUserShownPhotos(users.getId(), voteAction.getPhotoIds());
     }
@@ -117,5 +127,10 @@ public class PhotoServiceImpl implements PhotoService {
             userLikesDao.likeCheck(users.getId(), photoId);
             return true;
         }
+    }
+
+    @Override
+    public PhotoDto getPhotoById(long photoId) {
+        return photoDao.getPhotoById(photoId);
     }
 }

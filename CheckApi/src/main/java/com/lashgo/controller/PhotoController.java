@@ -60,12 +60,12 @@ public class PhotoController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseEntity<FileSystemResource> getFile(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
+    ResponseEntity<FileSystemResource> getFile(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "fileName", paramType = ApiParamType.PATH) @PathVariable("fileName") String fileName) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         if (fileName != null) {
-            logger.debug("File name {}",fileName);
+            logger.debug("File name {}", fileName);
             File file = new File(CheckConstants.PHOTOS_FOLDER, fileName);
-            if(file.exists()) {
+            if (file.exists()) {
                 FileSystemResource resource = new FileSystemResource(file);
                 logger.debug("Resource get {}", resource.getPath());
                 ResponseEntity<FileSystemResource> responseEntity = new ResponseEntity<>(resource, HttpStatus.OK);
@@ -95,7 +95,7 @@ public class PhotoController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject<CheckCounters> getPhotoCounters(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+    ResponseObject<CheckCounters> getPhotoCounters(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseObject<>(photoService.getPhotoCounters(photoId));
     }
@@ -147,7 +147,7 @@ public class PhotoController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<CommentDto> getPhotoComments(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+    ResponseList<CommentDto> getPhotoComments(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
         sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseList<>(commentService.getPhotoComments(photoId));
     }
@@ -174,7 +174,7 @@ public class PhotoController extends BaseController {
     @ApiResponseObject
     ResponseObject<CommentDto> addPhotoComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId, @ApiBodyObject @RequestBody String commentText) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0),photoId, commentText));
+        return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), photoId, commentText));
     }
 
     @ApiMethod(
@@ -200,5 +200,30 @@ public class PhotoController extends BaseController {
     ResponseObject<Boolean> likePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestBody Long photoId) {
         sessionValidator.validate(httpHeaders);
         return new ResponseObject<>(photoService.likePhoto(photoId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+    }
+
+    @ApiMethod(
+            path = Path.Photos.PHOTO,
+            verb = ApiVerb.GET,
+            description = "get photo by id",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Photos.PHOTO, method = RequestMethod.GET)
+    public
+    @ResponseBody
+    @ApiResponseObject
+    ResponseObject<PhotoDto> getPhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        return new ResponseObject<>(photoService.getPhotoById(photoId));
     }
 }

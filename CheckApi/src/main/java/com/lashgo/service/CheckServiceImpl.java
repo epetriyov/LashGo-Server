@@ -111,6 +111,16 @@ public class CheckServiceImpl implements CheckService {
                 checkId);
     }
 
+    @Override
+    public boolean isCheckActive(int checkId) {
+        return checkDao.isCheckActive(checkId);
+    }
+
+    @Override
+    public boolean isVoteGoing(int checkId) {
+        return checkDao.isVoteGoing(checkId);
+    }
+
     @Scheduled(cron = "0 0 * * * *")
     public void chooseWinner() {
         logger.debug("Winner choosing");

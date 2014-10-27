@@ -6,8 +6,6 @@ import com.lashgo.mappers.CheckMapper;
 import com.lashgo.mappers.GcmCheckMapper;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -119,6 +117,32 @@ public class CheckDaoImpl implements CheckDao {
         try {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date <= current_timestamp " +
                     "AND c.start_date + INTERVAL '1 hour' >= current_timestamp " +
+                    "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean isCheckActive(int checkId) {
+        return jdbcTemplate.queryForObject("SELECT COUNT(c.id) FROM checks c where c.id = ? " +
+                "AND c.start_date + INTERVAL '1 hour' * c.duration > current_timestamp " +
+                "AND c.start_date <= current_timestamp", Integer.class, checkId) > 0;
+    }
+
+    @Override
+    public boolean isVoteGoing(int checkId) {
+        return jdbcTemplate.queryForObject("SELECT COUNT(c.id) FROM checks c where c.id = ? " +
+                "AND c.start_date + INTERVAL '1 hour' * (c.vote_duration + c.duration) > current_timestamp " +
+                "AND c.start_date + INTERVAL '1 hour' * c.duration  <= current_timestamp", Integer.class, checkId) > 0;
+    }
+
+    @Override
+    public Check getVoteCheck() {
+        try {
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date + INTERVAL '1 hour' * c.duration <= current_timestamp " +
+                    "AND c.start_date + INTERVAL '1 hour' * (c.duration + c.vote_duration) > current_timestamp " +
                     "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();

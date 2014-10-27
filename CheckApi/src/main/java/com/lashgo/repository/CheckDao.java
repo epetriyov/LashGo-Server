@@ -22,4 +22,10 @@ public interface CheckDao {
     CheckDto getCheckById(int userdId, int checkId);
 
     Check getCurrentCheck();
+
+    boolean isCheckActive(int checkId);
+
+    boolean isVoteGoing(int checkId);
+
+    Check getVoteCheck();
 }

@@ -5,7 +5,6 @@ import com.lashgo.domain.Check;
 import com.lashgo.error.ValidationException;
 import com.lashgo.gcm.InvalidRequestException;
 import com.lashgo.gcm.Message;
-import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.GcmRegistrationDto;
 import com.lashgo.model.dto.MulticastResult;
 import com.lashgo.repository.CheckDao;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -124,7 +122,15 @@ public class GcmServiceImpl implements GcmService {
         List<String> registrationIds = gcmDao.getAllRegistrationIds();
         Check check = checkDao.getCurrentCheck();
         if (check != null) {
-            logger.debug("Check sending: ", check.getName());
+            logger.debug("Active Check sending: ", check.getName());
+            Message.Builder messageBuilder = new Message.Builder();
+            messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
+            messageBuilder.addData(CURRENT_CHECK_NAME, check.getName());
+            sendNoRetry(messageBuilder.build(), registrationIds);
+        }
+        check = checkDao.getVoteCheck();
+        if (check != null) {
+            logger.debug("Vote Check sending: ", check.getName());
             Message.Builder messageBuilder = new Message.Builder();
             messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
             messageBuilder.addData(CURRENT_CHECK_NAME, check.getName());

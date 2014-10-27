@@ -22,4 +22,8 @@ public interface CheckService {
     CheckCounters getCheckCounters(int checkId);
 
     List<SubscriptionDto> getCheckUsers(String sessionId, int checkId);
+
+    boolean isCheckActive(int checkId);
+
+    boolean isVoteGoing(int checkId);
 }

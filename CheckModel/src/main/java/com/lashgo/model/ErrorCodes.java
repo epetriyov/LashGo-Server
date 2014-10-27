@@ -26,6 +26,7 @@ public final class ErrorCodes {
     public static final String PHOTO_ID_NULL = "photo.empty_id";
     public static final String SUBSCRIPTION_ALREADY_EXISTS = "subscription.already_exists";
     public static final String SUBSCRIPTION_NOT_EXISTS = "subscription_not_exists";
+    public static final String CHECK_IS_NOT_ACTIVE = "check.is_not_active";
 
     private ErrorCodes() {
 

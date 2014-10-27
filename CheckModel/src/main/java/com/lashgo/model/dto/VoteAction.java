@@ -20,14 +20,25 @@ public class VoteAction implements Serializable {
     @Min(1)
     @ApiObjectField(description = "votedPhotoId")
     private long votedPhotoId;
+    @Min(1)
+    @ApiObjectField(description = "checkId")
+    private int checkId;
 
     public VoteAction() {
     }
 
-    public VoteAction(long[] photoIds, long votedPhotoId) {
-
+    public VoteAction(long[] photoIds, long votedPhotoId, int checkId) {
+        this.checkId = checkId;
         this.photoIds = photoIds;
         this.votedPhotoId = votedPhotoId;
+    }
+
+    public int getCheckId() {
+        return checkId;
+    }
+
+    public void setCheckId(int checkId) {
+        this.checkId = checkId;
     }
 
     public long[] getPhotoIds() {
