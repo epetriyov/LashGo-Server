@@ -25,7 +25,7 @@ public class CheckDaoImpl implements CheckDao {
 
     @Override
     public List<CheckDto> getAllChecks(int userId, String searchText) {
-        Object[] params = StringUtils.isEmpty(searchText) ? new Object[]{userId} : new Object[]{userId, "%" + searchText + "%", "%" + searchText + "%"};
+        Object[] params = StringUtils.isEmpty(searchText) ? new Object[]{userId} : new Object[]{userId, "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%"};
         String sql =
                 "SELECT " +
                         "                         c.id as check_id, c.name as check_name," +
@@ -51,7 +51,7 @@ public class CheckDaoImpl implements CheckDao {
                         "                   LEFT JOIN photos ph" +
                         "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                         "                   WHERE c.start_date <= current_timestamp" +
-                        (StringUtils.isEmpty(searchText) ? "" : " AND (c.name LIKE ? OR c.description LIKE ?)") +
+                        (StringUtils.isEmpty(searchText) ? "" : " AND (LOWER(c.name) LIKE ? OR LOWER(c.description) LIKE ?)") +
                         "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture " +
                         "                   ORDER BY c.start_date DESC";
         return jdbcTemplate.query(sql, params, new CheckMapper());

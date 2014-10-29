@@ -46,7 +46,7 @@ public class EventDaoImpl implements EventDao {
                 "             LEFT JOIN users u2 ON (u2.id = e.object_user_id)" +
                 "            WHERE e.user_id = ? OR e.object_user_id = ?" +
                 "               OR e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
-                "               OR e.object_user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)", new EventMapper(), userId, userId, userId, userId);
+                "               OR e.object_user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?) ORDER BY event_date desc", new EventMapper(), userId, userId, userId, userId);
     }
 
     @Override

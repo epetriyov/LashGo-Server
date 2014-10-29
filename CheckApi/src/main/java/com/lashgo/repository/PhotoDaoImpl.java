@@ -43,7 +43,7 @@ public class PhotoDaoImpl implements PhotoDao {
                         "  LEFT JOIN  check_winners w ON (w.check_id = p.check_id AND w.winner_id = p.user_id)" +
                         " WHERE p.user_id = ?" +
                         " GROUP BY p.id,c.id" +
-                        " ORDER BY make_date ASC", new PhotosDtoMapper(PhotosDtoMapper.MapType.USER_JOIN), userId);
+                        " ORDER BY make_date DESC", new PhotosDtoMapper(PhotosDtoMapper.MapType.USER_JOIN), userId);
     }
 
     public CheckCounters getPhotoCounters(long photoId) {
@@ -60,7 +60,7 @@ public class PhotoDaoImpl implements PhotoDao {
                 "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count" +
                 "                    FROM photos p" +
                 "                   INNER JOIN users u ON (u.id = p.user_id)" +
-                "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 ORDER BY make_date ASC", new PhotosDtoMapper(PhotosDtoMapper.MapType.CHECK_JOIN), checkId);
+                "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 ORDER BY make_date DESC", new PhotosDtoMapper(PhotosDtoMapper.MapType.CHECK_JOIN), checkId);
     }
 
     @Override

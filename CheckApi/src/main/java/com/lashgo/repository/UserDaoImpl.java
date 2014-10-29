@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -163,13 +164,16 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<SubscriptionDto> findUsers(String searchText, int userId) {
-        return jdbcTemplate.query("" +
-                "SELECT u.id as uid,u.login,u.fio,u.avatar, " +
-                "COUNT(sub.id) AS sub_count " +
-                "FROM users u LEFT JOIN subscriptions sub " +
-                "ON (sub.user_id = ? AND sub.checklist_id= u.id) " +
-                "WHERE u.login LIKE ? OR u.fio LIKE ? OR u.email LIKE ?  GROUP BY u.id"
-                , new SubscriptionsMapper(),userId, "%" + searchText + "%", "%" + searchText + "%", "%" + searchText + "%");
+        if (searchText != null) {
+            return jdbcTemplate.query("" +
+                    "SELECT u.id as uid,u.login,u.fio,u.avatar, " +
+                    "COUNT(sub.id) AS sub_count " +
+                    "FROM users u LEFT JOIN subscriptions sub " +
+                    "ON (sub.user_id = ? AND sub.checklist_id= u.id) " +
+                    "WHERE LOWER(u.login) LIKE ? OR LOWER(u.fio) LIKE ? OR LOWER(u.email) LIKE ?  GROUP BY u.id"
+                    , new SubscriptionsMapper(), userId, "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%");
+        }
+        return Collections.emptyList();
     }
 
     @Override
