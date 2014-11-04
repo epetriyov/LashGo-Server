@@ -19,4 +19,6 @@ public interface PhotoService {
     Boolean likePhoto(Long photoid, String sessionId);
 
     PhotoDto getPhotoById(long photoId);
+
+    void complainPhoto(String sessionId, long photoId);
 }

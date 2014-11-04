@@ -46,6 +46,8 @@ public final class Path {
         public static final String COUNTERS = "/photos/{photoId}/counters";
         public static final String LIKE = "/photos/like";
         public static final String PHOTO = "/photos/by/id/{photoId}";
+        public static final String VOTES = "/photos/{photoId}/votes";
+        public static final String COMPLAIN = "/photos/{photoId}/complain";
     }
 
     public static final class Users {

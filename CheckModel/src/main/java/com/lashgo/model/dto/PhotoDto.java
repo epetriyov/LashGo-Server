@@ -34,6 +34,9 @@ public class PhotoDto implements Serializable {
     @Min(0)
     @ApiObjectField(description = "count of comments")
     private int commentsCount;
+    @Min(0)
+    @ApiObjectField(description = "count of likes")
+    private int likesCount;
 
     public PhotoDto() {
 
@@ -100,5 +103,13 @@ public class PhotoDto implements Serializable {
 
     public int getCommentsCount() {
         return commentsCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
+    public int getLikesCount() {
+        return likesCount;
     }
 }

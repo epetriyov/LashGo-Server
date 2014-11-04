@@ -10,10 +10,7 @@ import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.model.dto.VoteAction;
-import com.lashgo.repository.PhotoDao;
-import com.lashgo.repository.PhotoLikesDao;
-import com.lashgo.repository.UserShownPhotosDao;
-import com.lashgo.repository.UserVotesDao;
+import com.lashgo.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +30,12 @@ import java.io.IOException;
 @Service
 @Transactional(readOnly = true)
 public class PhotoServiceImpl implements PhotoService {
+
+    @Autowired
+    private UserComplainDao userComplainDao;
+
+    @Autowired
+    private EventDao eventDao;
 
     @Autowired
     private CheckService checkService;
@@ -94,6 +97,7 @@ public class PhotoServiceImpl implements PhotoService {
                 throw new PhotoWriteException();
             }
             photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
+            eventDao.addCheckParticipateEvent(userDto.getId(), checkId);
         }
     }
 
@@ -106,6 +110,7 @@ public class PhotoServiceImpl implements PhotoService {
             throw new ValidationException(ErrorCodes.CHECK_IS_NOT_ACTIVE);
         }
         userVotesDao.addUserVote(users.getId(), voteAction.getVotedPhotoId());
+        eventDao.addVoteEvent(users.getId(), voteAction.getVotedPhotoId());
         userShownPhotosDao.addUserShownPhotos(users.getId(), voteAction.getPhotoIds());
     }
 
@@ -132,5 +137,14 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public PhotoDto getPhotoById(long photoId) {
         return photoDao.getPhotoById(photoId);
+    }
+
+    @Transactional
+    @Override
+    public void complainPhoto(String sessionId, long photoId) {
+        Users users = userService.getUserBySession(sessionId);
+        if(!userComplainDao.isComplainExists(users.getId(),photoId)) {
+            userComplainDao.makeComplain(users.getId(), photoId);
+        }
     }
 }

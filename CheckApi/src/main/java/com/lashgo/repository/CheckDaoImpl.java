@@ -40,6 +40,7 @@ public class CheckDaoImpl implements CheckDao {
                         "                         w.winner_id as winner_id, " +
                         "                         u.*," +
                         "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
+                        "                         (SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = ph.id) AS likes_count," +
                         "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
                         "                    FROM checks c " +
                         "                    LEFT JOIN photos p2 " +
@@ -96,7 +97,7 @@ public class CheckDaoImpl implements CheckDao {
                 "                         p2.picture as user_photo," +
                 "                         ph.id as winner_photo_id," +
                 "                         ph.picture as winner_photo, w.winner_id as winner_id, u.*," +
-                "                         (SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = ph.id) AS likes_count," +
+                "                         (SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = ph.id) AS likes_count," +
                 "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
                 "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
                 "                    FROM checks c " +
@@ -142,7 +143,7 @@ public class CheckDaoImpl implements CheckDao {
     public Check getVoteCheck() {
         try {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date + INTERVAL '1 hour' * c.duration <= current_timestamp " +
-                    "AND c.start_date + INTERVAL '1 hour' * (c.duration + c.vote_duration) > current_timestamp " +
+                    "AND c.start_date + INTERVAL '1 hour' * (c.duration + 1) > current_timestamp " +
                     "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();

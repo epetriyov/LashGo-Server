@@ -44,9 +44,11 @@ public class EventDaoImpl implements EventDao {
                 "             LEFT JOIN photos p ON (p.id = e.photo_id) " +
                 "             LEFT JOIN checks c ON (c.id = e.check_id) " +
                 "             LEFT JOIN users u2 ON (u2.id = e.object_user_id)" +
-                "            WHERE e.user_id = ? OR e.object_user_id = ?" +
-                "               OR e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
-                "               OR e.object_user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?) ORDER BY event_date desc", new EventMapper(), userId, userId, userId, userId);
+                "            WHERE e.object_user_id = ?" +
+                "               OR e.action = ?" +
+                "               OR e.photo_id IN (SELECT ph.id FROM photos ph WHERE ph.user_id = ?)" +
+                "               OR (e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
+                "              AND e.action = ?) ORDER BY event_date desc", new EventMapper(), userId, DbCodes.EventActions.WIN.name(), userId, userId, DbCodes.EventActions.CHECK.name());
     }
 
     @Override
@@ -59,5 +61,15 @@ public class EventDaoImpl implements EventDao {
                         (lastView != null ?
                                 " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{userId, userId, userId, userId, lastView} : new Object[]{userId, userId, userId, userId}),
                 (lastView != null ? new int[]{Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER}), Integer.class);
+    }
+
+    @Override
+    public void addVoteEvent(int userId, long photoId) {
+        jdbcTemplate.update("INSERT INTO events (user_id, action, photo_id) VALUES (?,?,?)", userId, DbCodes.EventActions.VOTE.name(), photoId);
+    }
+
+    @Override
+    public void addCheckParticipateEvent(int userId, int checkId) {
+        jdbcTemplate.update("INSERT INTO events (user_id, action, check_id) VALUES (?,?,?)", userId, DbCodes.EventActions.CHECK.name(), checkId);
     }
 }

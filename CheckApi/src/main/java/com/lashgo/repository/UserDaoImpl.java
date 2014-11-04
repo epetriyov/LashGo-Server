@@ -186,4 +186,14 @@ public class UserDaoImpl implements UserDao {
                 "ON (sub.user_id = ? AND sub.checklist_id= u.id) GROUP BY u.id,u.login,u.fio,u.avatar"
                 , new SubscriptionsMapper(), checkId, userId);
     }
+
+    @Override
+    public List<SubscriptionDto> getUsersByVotes(int userId, long photoId) {
+        return jdbcTemplate.query(
+                "SELECT u.id as uid,u.login,u.fio,u.avatar, " +
+                "COUNT(sub.id) AS sub_count " +
+                "FROM users u  INNER JOIN user_votes uv ON (uv.photo_id = ? AND uv.user_id = u.id) LEFT JOIN subscriptions sub " +
+                "ON (sub.user_id = ? AND sub.checklist_id= u.id) GROUP BY u.id,u.login,u.fio,u.avatar"
+                , new SubscriptionsMapper(), photoId, userId);
+    }
 }

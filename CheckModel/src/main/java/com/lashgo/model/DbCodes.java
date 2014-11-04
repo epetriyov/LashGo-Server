@@ -11,6 +11,6 @@ public final class DbCodes {
     }
 
     public static enum EventActions{
-        COMMENT, WIN, SUBSCRIBE
+        COMMENT, WIN, VOTE, SUBSCRIBE, CHECK
     }
 }

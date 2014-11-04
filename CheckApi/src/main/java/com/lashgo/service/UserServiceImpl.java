@@ -415,4 +415,13 @@ public class UserServiceImpl implements UserService {
         mainScreenInfoDto.setTasksCount(checkDao.getActiveChecksCount());
         return mainScreenInfoDto;
     }
+
+    public List<SubscriptionDto> getUsersByVotes(String sessionId, long photoId) {
+        int userId = -1;
+        if (sessionId != null) {
+            Users userDto = getUserBySession(sessionId);
+            userId = userDto.getId();
+        }
+        return userDao.getUsersByVotes(userId, photoId);
+    }
 }

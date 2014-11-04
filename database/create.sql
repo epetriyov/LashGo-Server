@@ -157,3 +157,11 @@ CREATE TABLE events (
   object_user_id int                        REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE TABLE user_complains (
+  id             bigserial                  NOT NULL PRIMARY KEY,
+  user_id        int                        REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  complain_date  timestamp with time zone   NOT NULL CHECK (complain_date <= current_timestamp) DEFAULT current_timestamp,
+  photo_id       bigint                     REFERENCES photos (id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE UNIQUE INDEX user_complains_idx ON user_complains (photo_id, user_id);

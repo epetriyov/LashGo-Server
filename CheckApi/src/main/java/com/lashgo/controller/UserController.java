@@ -437,4 +437,31 @@ public class UserController extends BaseController {
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         return new ResponseList<>(userService.findUsers(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0),searchText));
     }
+
+    @ApiMethod(
+            path = Path.Photos.VOTES,
+            verb = ApiVerb.GET,
+            description = "Gets list of photo's vote users",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    @ApiHeaders(headers = {
+            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
+            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
+            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
+    })
+    @ApiErrors(apierrors = {
+            @ApiError(code = "400", description = "Headers validation failed"),
+            @ApiError(code = "401", description = "Session is empty, wrong or expired")
+    })
+    @RequestMapping(value = Path.Photos.VOTES, method = RequestMethod.GET)
+    public
+    @ApiResponseObject
+    @ResponseBody
+    ResponseList<SubscriptionDto> getPhotoVotedUsers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
+        sessionValidator.validateWithoutUnauthEx(httpHeaders);
+        List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        return new ResponseList<SubscriptionDto>(userService.getUsersByVotes(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, photoId));
+    }
+
 }

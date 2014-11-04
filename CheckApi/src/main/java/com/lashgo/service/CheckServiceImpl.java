@@ -1,6 +1,5 @@
 package com.lashgo.service;
 
-import com.lashgo.CheckConstants;
 import com.lashgo.domain.Users;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;

@@ -36,7 +36,7 @@ public class PhotoDaoImpl implements PhotoDao {
         return jdbcTemplate.query(
                 "SELECT p.id as id_photo, p.picture,p.is_banned," +
                         " COUNT(w.id) as is_winner, c.id, c.name,c.task_photo," +
-                        "(SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = p.id) AS likes_count," +
+                        "(SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = p.id) AS likes_count," +
                         "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count" +
                         "  FROM photos p" +
                         " INNER JOIN checks c ON (p.check_id = c.id)" +
@@ -48,7 +48,7 @@ public class PhotoDaoImpl implements PhotoDao {
 
     public CheckCounters getPhotoCounters(long photoId) {
         return jdbcTemplate.queryForObject(
-                "SELECT (SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = ?) AS likes_count," +
+                "SELECT (SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = ?) AS likes_count," +
                         "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ?) AS comments_count;"
                 , new CheckCountersMapper(), photoId, photoId);
     }
@@ -56,7 +56,7 @@ public class PhotoDaoImpl implements PhotoDao {
     @Override
     public List<PhotoDto> getPhotosByCheckId(int checkId) {
         return jdbcTemplate.query("SELECT p.id as id_photo, p.picture, u.id, u.login, u.fio, u.avatar," +
-                "(SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = p.id) AS likes_count," +
+                "(SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = p.id) AS likes_count," +
                 "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count" +
                 "                    FROM photos p" +
                 "                   INNER JOIN users u ON (u.id = p.user_id)" +
@@ -66,7 +66,7 @@ public class PhotoDaoImpl implements PhotoDao {
     @Override
     public PhotoDto getPhotoById(long photoId) {
         return jdbcTemplate.queryForObject("SELECT p.id as id_photo, p.picture, u.id, u.login, u.fio, u.avatar," +
-                "(SELECT COUNT (lc.id) FROM user_photo_likes lc WHERE lc.photo_id = p.id) AS likes_count," +
+                "(SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = p.id) AS likes_count," +
                 "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count " +
                 " FROM photos p " +
                 " INNER JOIN users u ON (u.id = p.user_id)" +

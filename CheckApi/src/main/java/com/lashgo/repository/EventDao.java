@@ -19,4 +19,8 @@ public interface EventDao {
     List<EventDto> getEventsByUser(int userId);
 
     int getEventsCountByUser(int userId, Date lastView);
+
+    void addVoteEvent(int userId, long photoId);
+
+    void addCheckParticipateEvent(int userId, int checkId);
 }

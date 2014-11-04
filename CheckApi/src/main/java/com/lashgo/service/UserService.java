@@ -50,4 +50,6 @@ public interface UserService {
     void updateProfile(String sessionId, UserDto userDto);
 
     List<SubscriptionDto> findUsers(String sessionId, String searchText);
+
+    List<SubscriptionDto> getUsersByVotes(String sessionId, long photoId);
 }

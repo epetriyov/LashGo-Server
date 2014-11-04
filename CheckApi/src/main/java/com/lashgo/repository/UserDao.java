@@ -37,4 +37,6 @@ public interface UserDao {
     List<SubscriptionDto> findUsers(String searchText, int userId);
 
     List<SubscriptionDto> getUsersByCheck(int userId, int checkId);
+
+    List<SubscriptionDto> getUsersByVotes(int userId, long photoId);
 }
