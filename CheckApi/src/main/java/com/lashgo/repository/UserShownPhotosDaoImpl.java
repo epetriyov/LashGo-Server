@@ -21,6 +21,7 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
         return jdbcTemplate.query(
                 "SELECT p.id as id_photo, p.picture, u.id, u.login, u.fio,u.avatar," +
                         "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count," +
+                        "(SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = p.id) AS likes_count," +
                         "(SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = p.id AND uv.user_id = ?) AS user_votes_count," +
                         "(SELECT COUNT (us.id) FROM user_shown_photos us WHERE us.photo_id = p.id AND us.user_id = ?) AS user_shown_count" +
                         "                    FROM photos p, users u " +

@@ -243,7 +243,7 @@ public class PhotoController extends BaseController {
             @ApiError(code = "400", description = "Headers validation failed"),
             @ApiError(code = "401", description = "Session is empty, wrong or expired")
     })
-    @RequestMapping(value = Path.Photos.COMPLAIN, method = RequestMethod.GET)
+    @RequestMapping(value = Path.Photos.COMPLAIN, method = RequestMethod.POST)
     public
     @ResponseBody
     @ApiResponseObject
