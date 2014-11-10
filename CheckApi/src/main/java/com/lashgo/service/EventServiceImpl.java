@@ -23,8 +23,8 @@ public class EventServiceImpl implements EventService {
     private UserService userService;
 
     @Override
-    public List<EventDto> getEvents(String sessionId) {
+    public List<EventDto> getEvents(String sessionId, boolean subscribesEvents) {
         Users users = userService.getUserBySession(sessionId);
-        return eventDao.getEventsByUser(users.getId());
+        return eventDao.getEventsByUser(users.getId(),subscribesEvents);
     }
 }

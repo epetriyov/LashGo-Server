@@ -16,7 +16,7 @@ public interface EventDao {
 
     void addSibscribeEvent(int userId, int subscriptionId);
 
-    List<EventDto> getEventsByUser(int userId);
+    List<EventDto> getEventsByUser(int userId, boolean subscribesEvents);
 
     int getEventsCountByUser(int userId, Date lastView);
 

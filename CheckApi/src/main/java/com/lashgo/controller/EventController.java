@@ -13,10 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,9 +50,9 @@ public class EventController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<EventDto> getEvents(@RequestHeader HttpHeaders httpHeaders) {
+    ResponseList<EventDto> getEvents(@RequestHeader HttpHeaders httpHeaders,@RequestParam(value = "subscriptions", required = false, defaultValue = "false") boolean subscriptions) {
         sessionValidator.validate(httpHeaders);
         List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
-        return new ResponseList<>(eventService.getEvents(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null));
+        return new ResponseList<>(eventService.getEvents(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, subscriptions));
     }
 }

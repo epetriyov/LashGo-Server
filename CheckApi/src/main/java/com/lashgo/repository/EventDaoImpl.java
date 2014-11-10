@@ -36,7 +36,7 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
-    public List<EventDto> getEventsByUser(int userId) {
+    public List<EventDto> getEventsByUser(int userId, boolean subscribesEvents) {
         return jdbcTemplate.query("SELECT e.id as id, u1.id as uid1, u1.login as ulogin1, u1.fio as ufio1,u1.avatar as uavatar1, " +
                 "                  p.id as pid, p.picture as picture, c.id as cid, c.name as cname,c.task_photo as ctask_photo, " +
                 "                  u2.id as uid2,u2.login as ulogin2,u2.fio as ufio2,u2.avatar as uavatar2,e.action as action,e.event_date as event_date" +
@@ -44,11 +44,12 @@ public class EventDaoImpl implements EventDao {
                 "             LEFT JOIN photos p ON (p.id = e.photo_id) " +
                 "             LEFT JOIN checks c ON (c.id = e.check_id) " +
                 "             LEFT JOIN users u2 ON (u2.id = e.object_user_id)" +
-                "            WHERE e.object_user_id = ?" +
+                "            WHERE " +
+                (!subscribesEvents ? "e.action != ?" : "e.action = ?") + " AND (e.object_user_id = ?" +
                 "               OR e.action = ?" +
                 "               OR e.photo_id IN (SELECT ph.id FROM photos ph WHERE ph.user_id = ?)" +
                 "               OR (e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
-                "              AND e.action = ?) ORDER BY event_date desc", new EventMapper(), userId, DbCodes.EventActions.WIN.name(), userId, userId, DbCodes.EventActions.CHECK.name());
+                "              AND e.action = ?)) ORDER BY event_date desc", new EventMapper(), userId, DbCodes.EventActions.SUBSCRIBE.name(), DbCodes.EventActions.WIN.name(), userId, userId, DbCodes.EventActions.CHECK.name());
     }
 
     @Override

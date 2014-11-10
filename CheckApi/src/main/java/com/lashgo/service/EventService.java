@@ -8,5 +8,5 @@ import java.util.List;
  * Created by Eugene on 19.10.2014.
  */
 public interface EventService {
-    List<EventDto> getEvents(String sessionId);
+    List<EventDto> getEvents(String sessionId, boolean subscribesEvents);
 }

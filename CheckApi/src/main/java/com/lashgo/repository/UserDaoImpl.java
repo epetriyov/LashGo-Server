@@ -81,18 +81,23 @@ public class UserDaoImpl implements UserDao {
     }
 
     public UserDto getUserProfile(int currentUserId, int userId) {
-        return jdbcTemplate.queryForObject(
-                "SELECT u.* ," +
-                        " (SELECT COUNT(ph2.id) FROM photos ph2 WHERE (ph2.user_id = u.id)) AS checks_count," +
-                        " (SELECT COUNT(comm.id) FROM comments comm WHERE (comm.user_id = u.id)) AS comments_count," +
-                        " (SELECT COUNT(likes.id) FROM user_photo_likes likes WHERE (likes.user_id = u.id)) AS likes_count," +
-                        " (SELECT COUNT(subs.id) FROM subscriptions subs WHERE (subs.user_id = u.id)) AS user_subscribes," +
-                        " (SELECT COUNT(subs2.id) FROM subscriptions subs2 WHERE (subs2.checklist_id = u.id)) AS user_subscribers," +
-                        " (SELECT COUNT(subs3.id) FROM subscriptions subs3 WHERE (subs3.user_id = ? AND subs3.checklist_id = u.id)) AS is_subscription" +
-                        "  FROM users u" +
-                        " WHERE u.id = ?" +
-                        " GROUP BY u.id"
-                , new UserDtoMapper(true), currentUserId, userId);
+        try {
+            return jdbcTemplate.queryForObject(
+                    "SELECT u.* ," +
+                            " (SELECT COUNT(ph2.id) FROM photos ph2 WHERE (ph2.user_id = u.id)) AS checks_count," +
+                            " (SELECT COUNT(comm.id) FROM comments comm WHERE (comm.user_id = u.id)) AS comments_count," +
+                            " (SELECT COUNT(likes.id) FROM user_photo_likes likes WHERE (likes.user_id = u.id)) AS likes_count," +
+                            " (SELECT COUNT(subs.id) FROM subscriptions subs WHERE (subs.user_id = u.id)) AS user_subscribes," +
+                            " (SELECT COUNT(subs2.id) FROM subscriptions subs2 WHERE (subs2.checklist_id = u.id)) AS user_subscribers," +
+                            " (SELECT COUNT(subs3.id) FROM subscriptions subs3 WHERE (subs3.user_id = ? AND subs3.checklist_id = u.id)) AS is_subscription" +
+                            "  FROM users u" +
+                            " WHERE u.id = ?" +
+                            " GROUP BY u.id"
+                    , new UserDtoMapper(true), currentUserId, userId);
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -170,8 +175,8 @@ public class UserDaoImpl implements UserDao {
                     "COUNT(sub.id) AS sub_count " +
                     "FROM users u LEFT JOIN subscriptions sub " +
                     "ON (sub.user_id = ? AND sub.checklist_id= u.id) " +
-                    "WHERE LOWER(u.login) LIKE ? OR LOWER(u.fio) LIKE ? OR LOWER(u.email) LIKE ?  GROUP BY u.id"
-                    , new SubscriptionsMapper(), userId, "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%");
+                    "WHERE u.id != ? AND (LOWER(u.login) LIKE ? OR LOWER(u.fio) LIKE ? OR LOWER(u.email) LIKE ?) GROUP BY u.id"
+                    , new SubscriptionsMapper(), userId, userId, "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%");
         }
         return Collections.emptyList();
     }
@@ -191,9 +196,9 @@ public class UserDaoImpl implements UserDao {
     public List<SubscriptionDto> getUsersByVotes(int userId, long photoId) {
         return jdbcTemplate.query(
                 "SELECT u.id as uid,u.login,u.fio,u.avatar, " +
-                "COUNT(sub.id) AS sub_count " +
-                "FROM users u  INNER JOIN user_votes uv ON (uv.photo_id = ? AND uv.user_id = u.id) LEFT JOIN subscriptions sub " +
-                "ON (sub.user_id = ? AND sub.checklist_id= u.id) GROUP BY u.id,u.login,u.fio,u.avatar"
+                        "COUNT(sub.id) AS sub_count " +
+                        "FROM users u  INNER JOIN user_votes uv ON (uv.photo_id = ? AND uv.user_id = u.id) LEFT JOIN subscriptions sub " +
+                        "ON (sub.user_id = ? AND sub.checklist_id= u.id) GROUP BY u.id,u.login,u.fio,u.avatar"
                 , new SubscriptionsMapper(), photoId, userId);
     }
 }
