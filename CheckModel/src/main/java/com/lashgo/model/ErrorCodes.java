@@ -27,6 +27,7 @@ public final class ErrorCodes {
     public static final String SUBSCRIPTION_ALREADY_EXISTS = "subscription.already_exists";
     public static final String SUBSCRIPTION_NOT_EXISTS = "subscription_not_exists";
     public static final String CHECK_IS_NOT_ACTIVE = "check.is_not_active";
+    public static final String CANT_SUBSCRIBE_TO_YOURSELF = "cant_subscribe_to_yourself";
 
     private ErrorCodes() {
 

@@ -168,7 +168,11 @@ public class UserServiceImpl implements UserService {
         if (sessionId != null) {
             users = getUserBySession(sessionId);
         }
-        return userDao.getUserProfile(users != null ? users.getId() : -1, userId);
+        UserDto userDto = userDao.getUserProfile(users != null ? users.getId() : -1, userId);
+        if (userDto == null) {
+            throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
+        }
+        return userDto;
     }
 
     @Override
@@ -311,6 +315,9 @@ public class UserServiceImpl implements UserService {
         if (subscriptionsDao.isSubscriptionExists(users.getId(), userId)) {
             throw new ValidationException(ErrorCodes.SUBSCRIPTION_ALREADY_EXISTS);
         } else {
+            if (userId == users.getId()) {
+                throw new ValidationException(ErrorCodes.CANT_SUBSCRIBE_TO_YOURSELF);
+            }
             subscriptionsDao.addSubscription(users.getId(), userId);
             eventDao.addSibscribeEvent(users.getId(), userId);
         }
@@ -378,7 +385,7 @@ public class UserServiceImpl implements UserService {
              */
             int userId = userSocialDao.getUserBySocial(registerInfo.getLogin());
             SessionInfo sessionInfo = getSessionByUser(userId, interfaceTypeCode);
-            return new RegisterResponse(sessionInfo.getSessionId());
+            return new RegisterResponse(userDao.getUserProfile(userId), sessionInfo.getSessionId());
         } else {
             /**
              * create social user
