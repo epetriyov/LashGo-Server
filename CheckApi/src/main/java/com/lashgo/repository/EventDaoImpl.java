@@ -49,7 +49,7 @@ public class EventDaoImpl implements EventDao {
                 "               OR e.action = ?" +
                 "               OR e.photo_id IN (SELECT ph.id FROM photos ph WHERE ph.user_id = ?)" +
                 "               OR (e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
-                "              AND e.action = ?)) ORDER BY event_date desc", new EventMapper(), userId, DbCodes.EventActions.SUBSCRIBE.name(), DbCodes.EventActions.WIN.name(), userId, userId, DbCodes.EventActions.CHECK.name());
+                "              AND e.action = ?)) ORDER BY event_date desc", new EventMapper(), DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(), userId, userId, DbCodes.EventActions.CHECK.name());
     }
 
     @Override
