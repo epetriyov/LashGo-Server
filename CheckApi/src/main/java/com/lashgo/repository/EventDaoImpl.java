@@ -63,7 +63,7 @@ public class EventDaoImpl implements EventDao {
                         "              AND e.action = ?))" +
                         (lastView != null ?
                                 " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId, DbCodes.EventActions.CHECK.name(),lastView} : new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId,DbCodes.EventActions.CHECK.name()}),
-                (lastView != null ? new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER}), Integer.class);
+                (lastView != null ? new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER, Types.VARCHAR,Types.TIMESTAMP} : new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER,Types.VARCHAR}), Integer.class);
     }
 
     @Override
