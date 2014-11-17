@@ -56,12 +56,14 @@ public class EventDaoImpl implements EventDao {
     public int getEventsCountByUser(int userId, Date lastView) {
         return jdbcTemplate.queryForObject("SELECT count(e.id)" +
                         "             FROM events e" +
-                        "            WHERE (e.user_id = ? OR e.object_user_id = ?" +
-                        "               OR e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
-                        "               OR e.object_user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?))" +
+                        "            WHERE e.action = ? AND (e.object_user_id = ?" +
+                        "               OR e.action = ?" +
+                        "               OR e.photo_id IN (SELECT ph.id FROM photos ph WHERE ph.user_id = ?)" +
+                        "               OR (e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
+                        "              AND e.action = ?))" +
                         (lastView != null ?
-                                " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{userId, userId, userId, userId, lastView} : new Object[]{userId, userId, userId, userId}),
-                (lastView != null ? new int[]{Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER}), Integer.class);
+                                " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId, lastView} : new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId}),
+                (lastView != null ? new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER}), Integer.class);
     }
 
     @Override
