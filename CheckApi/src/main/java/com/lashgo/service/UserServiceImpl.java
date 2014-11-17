@@ -385,7 +385,7 @@ public class UserServiceImpl implements UserService {
              */
             int userId = userSocialDao.getUserBySocial(registerInfo.getLogin());
             SessionInfo sessionInfo = getSessionByUser(userId, interfaceTypeCode);
-            return new RegisterResponse(userDao.getUserProfile(userId), sessionInfo.getSessionId());
+            return new RegisterResponse(sessionInfo);
         } else {
             /**
              * create social user
@@ -403,7 +403,7 @@ public class UserServiceImpl implements UserService {
         if (sessionInfo != null) {
             RegisterResponse registerResponse = new RegisterResponse();
             registerResponse.setUserDto(userDao.getUserProfile(userDao.findUser(loginInfo).getId()));
-            registerResponse.setSessionId(sessionInfo.getSessionId());
+            registerResponse.setSessionIInfo(sessionInfo);
             return registerResponse;
         } else {
             logger.error("Пользователь {} с паролем {} не существует", loginInfo.getLogin(), loginInfo.getPasswordHash());

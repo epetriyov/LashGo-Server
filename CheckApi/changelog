@@ -1,0 +1,3 @@
+v1.1
+- в RegisterResponse заменил String sessionId на SessionInfo sessionInfo. Теперь id пользователя на стороне клиента нужно брать из SessionInfo
+- при повторном входе через соц сети внутри RegistrationResponse UserDto пустой

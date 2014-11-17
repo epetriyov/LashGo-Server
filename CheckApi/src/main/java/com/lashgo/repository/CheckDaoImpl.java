@@ -71,8 +71,8 @@ public class CheckDaoImpl implements CheckDao {
 
     public List<Integer> getVoteChecks() {
         return jdbcTemplate.queryForList("SELECT id FROM checks c WHERE " +
-                        "c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'< current_timestamp" +
-                        "      AND c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'+ INTERVAL '1 hour' > current_timestamp",
+                        "(c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour')< current_timestamp" +
+                        "      AND (c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'+ INTERVAL '1 hour') > current_timestamp",
                 Integer.class
         );
     }
@@ -117,7 +117,7 @@ public class CheckDaoImpl implements CheckDao {
     public Check getCurrentCheck() {
         try {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date <= current_timestamp " +
-                    "AND c.start_date + INTERVAL '1 hour' >= current_timestamp " +
+                    "AND (c.start_date + INTERVAL '1 hour') >= current_timestamp " +
                     "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();
@@ -128,22 +128,22 @@ public class CheckDaoImpl implements CheckDao {
     @Override
     public boolean isCheckActive(int checkId) {
         return jdbcTemplate.queryForObject("SELECT COUNT(c.id) FROM checks c where c.id = ? " +
-                "AND c.start_date + INTERVAL '1 hour' * c.duration > current_timestamp " +
+                "AND (c.start_date + INTERVAL '1 hour' * c.duration) > current_timestamp " +
                 "AND c.start_date <= current_timestamp", Integer.class, checkId) > 0;
     }
 
     @Override
     public boolean isVoteGoing(int checkId) {
         return jdbcTemplate.queryForObject("SELECT COUNT(c.id) FROM checks c where c.id = ? " +
-                "AND c.start_date + INTERVAL '1 hour' * (c.vote_duration + c.duration) > current_timestamp " +
-                "AND c.start_date + INTERVAL '1 hour' * c.duration  <= current_timestamp", Integer.class, checkId) > 0;
+                "AND (c.start_date + INTERVAL '1 hour' * (c.vote_duration + c.duration)) > current_timestamp " +
+                "AND (c.start_date + INTERVAL '1 hour' * c.duration  <= current_timestamp)", Integer.class, checkId) > 0;
     }
 
     @Override
     public Check getVoteCheck() {
         try {
-            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date + INTERVAL '1 hour' * c.duration <= current_timestamp " +
-                    "AND c.start_date + INTERVAL '1 hour' * (c.duration + 1) > current_timestamp " +
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE (c.start_date + INTERVAL '1 hour' * c.duration) <= current_timestamp " +
+                    "AND (c.start_date + INTERVAL '1 hour' * (c.duration + 1)) > current_timestamp " +
                     "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();

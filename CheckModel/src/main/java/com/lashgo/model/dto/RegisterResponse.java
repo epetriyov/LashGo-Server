@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -17,19 +16,20 @@ public class RegisterResponse implements Serializable {
 
     private UserDto userDto;
     @Size(min = 1)
-    @ApiObjectField(description = "identifier of session")
-    private String sessionId;
+    @ApiObjectField(description = "session")
+    private SessionInfo sessionInfo;
 
-    public RegisterResponse(UserDto userDto, String sessionId) {
-        this.userDto= userDto;
-        this.sessionId = sessionId;
+    public RegisterResponse(UserDto userDto, SessionInfo sessionInfo) {
+        this.userDto = userDto;
+        this.sessionInfo = sessionInfo;
     }
+
     public RegisterResponse() {
 
     }
 
-    public RegisterResponse(String sessionId) {
-        this.sessionId = sessionId;
+    public RegisterResponse(SessionInfo sessionInfo) {
+        this.sessionInfo = sessionInfo;
     }
 
     public UserDto getUserDto() {
@@ -40,12 +40,12 @@ public class RegisterResponse implements Serializable {
         this.userDto = userDto;
     }
 
-    public String getSessionId() {
-        return sessionId;
+    public SessionInfo getSessionInfo() {
+        return sessionInfo;
     }
 
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+    public void setSessionIInfo(SessionInfo sessionInfo) {
+        this.sessionInfo = sessionInfo;
     }
 
 }

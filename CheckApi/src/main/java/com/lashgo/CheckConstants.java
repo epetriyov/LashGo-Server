@@ -12,8 +12,8 @@ public final class CheckConstants {
     public static final String FACEBOOK_DATE_FORMAT = "dd/MM/yyyy";
     public static final String GCM_PROJECT_API = "AIzaSyATgI7pv6bmHfuxa8nCy2O0IKUy36x_I8c";
     public static final String DATE_FORMAT = "dd.MM.yyyy HH:mm:ss Z";
-//    public static final String PHOTOS_FOLDER = "D:/LashGo/photos/";
-    public static final String PHOTOS_FOLDER = "/home/lashgo/photos/";
+    public static final String PHOTOS_FOLDER = "D:/LashGo/photos/";
+//    public static final String PHOTOS_FOLDER = "/home/lashgo/photos/";
 
     private CheckConstants() {
 

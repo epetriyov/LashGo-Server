@@ -5,6 +5,7 @@ import com.lashgo.domain.Check;
 import com.lashgo.error.ValidationException;
 import com.lashgo.gcm.InvalidRequestException;
 import com.lashgo.gcm.Message;
+import com.lashgo.model.GcmEventType;
 import com.lashgo.model.dto.GcmRegistrationDto;
 import com.lashgo.model.dto.MulticastResult;
 import com.lashgo.repository.CheckDao;
@@ -40,6 +41,7 @@ import static com.lashgo.gcm.Constants.*;
 @EnableScheduling
 public class GcmServiceImpl implements GcmService {
 
+    private static final String ACTION_TYPE = "action_type";
     @Autowired
     private RestTemplate restTemplate;
 
@@ -126,6 +128,7 @@ public class GcmServiceImpl implements GcmService {
             Message.Builder messageBuilder = new Message.Builder();
             messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
             messageBuilder.addData(CURRENT_CHECK_NAME, check.getName());
+            messageBuilder.addData(ACTION_TYPE, GcmEventType.CHECK_STARTED.name());
             sendNoRetry(messageBuilder.build(), registrationIds);
         }
         check = checkDao.getVoteCheck();
@@ -134,6 +137,7 @@ public class GcmServiceImpl implements GcmService {
             Message.Builder messageBuilder = new Message.Builder();
             messageBuilder.addData(CURRENT_CHECK_ID, String.valueOf(check.getId()));
             messageBuilder.addData(CURRENT_CHECK_NAME, check.getName());
+            messageBuilder.addData(ACTION_TYPE, GcmEventType.VOTE_STARTED.name());
             sendNoRetry(messageBuilder.build(), registrationIds);
         }
     }
