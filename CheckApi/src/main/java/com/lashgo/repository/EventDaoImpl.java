@@ -62,7 +62,7 @@ public class EventDaoImpl implements EventDao {
                         "               OR (e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
                         "              AND e.action = ?))" +
                         (lastView != null ?
-                                " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId, lastView} : new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId}),
+                                " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId, DbCodes.EventActions.CHECK.name(),lastView} : new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId,DbCodes.EventActions.CHECK.name()}),
                 (lastView != null ? new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER, Types.TIMESTAMP} : new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER}), Integer.class);
     }
 
