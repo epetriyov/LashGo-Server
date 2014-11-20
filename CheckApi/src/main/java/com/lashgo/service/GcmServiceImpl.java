@@ -21,6 +21,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
@@ -72,7 +73,7 @@ public class GcmServiceImpl implements GcmService {
      */
     private void sendNoRetry(Message message,
                              List<String> registrationIds) {
-        if (StringUtils.isEmpty(registrationIds)) {
+        if (CollectionUtils.isEmpty(registrationIds)) {
             logger.debug("Список gcm-клиентов пуст");
         }
         Map<Object, Object> jsonRequest = new HashMap<>();
