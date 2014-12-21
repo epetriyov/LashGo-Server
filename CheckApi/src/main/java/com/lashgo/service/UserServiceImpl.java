@@ -136,13 +136,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void sendRecoverPassword(String email) throws ValidationException {
-        if (email != null && email.length() > 0) {
-            if (userDao.isUserExists(email)) {
+    public void sendRecoverPassword(RecoverInfo email) throws ValidationException {
+        if (email != null && email.getEmail() != null && email.getEmail().length() > 0) {
+            if (userDao.isUserExists(email.getEmail())) {
                 String newPassword = generatePassword();
-                userDao.updatePassword(email, CheckUtils.md5(newPassword));
+                userDao.updatePassword(email.getEmail(), CheckUtils.md5(newPassword));
                 SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
-                mailMessage.setTo(email);
+                mailMessage.setTo(email.getEmail());
                 mailMessage.setText(String.format("New password for user %s: %s", email, newPassword));
                 mailSender.send(mailMessage);
             } else {

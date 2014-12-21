@@ -17,7 +17,7 @@ public interface UserService {
 
     RegisterResponse register(String interfaceTypeCode, LoginInfo registerInfo) throws ValidationException;
 
-    void sendRecoverPassword(String email) throws ValidationException;
+    void sendRecoverPassword(RecoverInfo email) throws ValidationException;
 
     UserDto getProfile(String sessionId, int userId);
 
