@@ -125,8 +125,7 @@ public class UserController extends BaseController {
     public
     @ResponseBody
     @ApiResponseObject
-    ResponseObject recover(@ApiBodyObject @Valid @RequestBody String email, BindingResult result) {
-        CheckUtils.handleBindingResult(logger, result);
+    ResponseObject recover(@ApiBodyObject @RequestBody String email) {
         userService.sendRecoverPassword(email);
         return new ResponseObject<>();
     }
