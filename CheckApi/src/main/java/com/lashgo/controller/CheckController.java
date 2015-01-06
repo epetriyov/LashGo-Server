@@ -234,10 +234,9 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseObject saveCheckPhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId, @ApiBodyObject @RequestParam("photo") MultipartFile file) {
+    ResponseObject<PhotoPath> saveCheckPhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "checkId", paramType = ApiParamType.PATH) @PathVariable("checkId") int checkId, @ApiBodyObject @RequestParam("photo") MultipartFile file) {
         sessionValidator.validate(httpHeaders);
-        photoService.savePhoto(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), checkId, file);
-        return new ResponseObject();
+        return new ResponseObject(photoService.savePhoto(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), checkId, file));
     }
 
     @ApiMethod(

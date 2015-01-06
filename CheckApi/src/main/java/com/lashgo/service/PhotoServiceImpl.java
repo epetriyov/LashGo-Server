@@ -9,6 +9,7 @@ import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.PhotoDto;
+import com.lashgo.model.dto.PhotoPath;
 import com.lashgo.model.dto.VoteAction;
 import com.lashgo.repository.*;
 import org.slf4j.Logger;
@@ -68,7 +69,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Transactional
     @Override
-    public void savePhoto(String sessionId, int checkId, MultipartFile photo) {
+    public PhotoPath savePhoto(String sessionId, int checkId, MultipartFile photo) {
         Users userDto = userService.getUserBySession(sessionId);
         if (photoDao.isPhotoExists(userDto.getId(), checkId)) {
             logger.error("Пользователь {} попытался отправить 2-е фото для задания {}", userDto.getId(), checkId);
@@ -98,6 +99,10 @@ public class PhotoServiceImpl implements PhotoService {
             }
             photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
             eventDao.addCheckParticipateEvent(userDto.getId(), checkId);
+            return new PhotoPath(photoName);
+        }
+        else {
+            throw new ValidationException(ErrorCodes.EMPTY_PHOTO);
         }
     }
 

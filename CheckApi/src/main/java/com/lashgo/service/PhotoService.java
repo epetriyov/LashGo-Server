@@ -2,6 +2,7 @@ package com.lashgo.service;
 
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.PhotoDto;
+import com.lashgo.model.dto.PhotoPath;
 import com.lashgo.model.dto.VoteAction;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface PhotoService {
 
-    void savePhoto(String sessionId, int checkId, MultipartFile photo);
+    PhotoPath savePhoto(String sessionId, int checkId, MultipartFile photo);
 
     void ratePhoto(String sessionId, VoteAction voteAction);
 
