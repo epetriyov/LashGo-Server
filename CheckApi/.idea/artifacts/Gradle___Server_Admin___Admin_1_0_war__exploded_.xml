@@ -1,0 +1,118 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : Server:Admin : Admin-1.0.war (exploded)">
+    <output-path>$PROJECT_DIR$/out/artifacts/Admin/exploded/Admin-1.0.war</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Admin/web/Web Gradle : Admin-1.0.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Admin" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: spring-core-4.1.4.RELEASE" />
+          <element id="archive" name="Server-CheckModel-1.0.jar">
+            <element id="module-output" name="CheckModel" />
+          </element>
+          <element id="library" level="project" name="Gradle: jsondoc-core" />
+          <element id="library" level="project" name="Gradle: jackson-annotations-2.4.0" />
+          <element id="library" level="project" name="Gradle: validation-api-1.1.0.Final" />
+          <element id="library" level="project" name="Gradle: persistence-api-1.0.2" />
+          <element id="library" level="project" name="Gradle: lightadmin-1.0.1.RELEASE" />
+          <element id="library" level="project" name="Gradle: javassist-3.18.1-GA" />
+          <element id="library" level="project" name="Gradle: aopalliance-1.0" />
+          <element id="library" level="project" name="Gradle: spring-aop-4.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-expression-4.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-context-4.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-web-4.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-webmvc-4.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-security-core-3.2.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-security-config-3.2.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-security-web-3.2.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-security-acl-3.2.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-security-taglibs-3.2.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: slf4j-api-1.7.7" />
+          <element id="library" level="project" name="Gradle: spring-data-commons-1.8.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: aspectjrt-1.8.1" />
+          <element id="library" level="project" name="Gradle: spring-data-jpa-1.6.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: jcl-over-slf4j-1.7.7" />
+          <element id="library" level="project" name="Gradle: jackson-core-2.3.4" />
+          <element id="library" level="project" name="Gradle: jackson-databind-2.3.4" />
+          <element id="library" level="project" name="Gradle: objenesis-2.1" />
+          <element id="library" level="project" name="Gradle: spring-hateoas-0.16.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-plugin-core-1.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: evo-inflector-1.2" />
+          <element id="library" level="project" name="Gradle: spring-data-rest-core-2.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-data-rest-webmvc-2.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: classmate-1.0.0" />
+          <element id="library" level="project" name="Gradle: jboss-logging-3.1.3.GA" />
+          <element id="library" level="project" name="Gradle: tiles-api-2.2.2" />
+          <element id="library" level="project" name="Gradle: commons-beanutils-1.8.0" />
+          <element id="library" level="project" name="Gradle: commons-digester-2.0" />
+          <element id="library" level="project" name="Gradle: tiles-core-2.2.2" />
+          <element id="library" level="project" name="Gradle: tiles-template-2.2.2" />
+          <element id="library" level="project" name="Gradle: tiles-servlet-2.2.2" />
+          <element id="library" level="project" name="Gradle: tiles-jsp-2.2.2" />
+          <element id="library" level="project" name="Gradle: tiles-el-2.2.2" />
+          <element id="library" level="project" name="Gradle: guava-18.0" />
+          <element id="library" level="project" name="Gradle: commons-lang3-3.3.2" />
+          <element id="library" level="project" name="Gradle: commons-collections4-4.0" />
+          <element id="library" level="project" name="Gradle: commons-io-2.4" />
+          <element id="library" level="project" name="Gradle: commons-fileupload-1.3.1" />
+          <element id="library" level="project" name="Gradle: collections-generic-4.01" />
+          <element id="library" level="project" name="Gradle: ehcache-core-2.4.6" />
+          <element id="library" level="project" name="Gradle: ehcache-web-2.0.4" />
+          <element id="library" level="project" name="Gradle: joda-time-2.3" />
+          <element id="library" level="project" name="Gradle: joda-time-hibernate-1.3" />
+          <element id="library" level="project" name="Gradle: usertype.spi-3.2.0.GA" />
+          <element id="library" level="project" name="Gradle: jboss-logging-annotations-1.2.0.Beta1" />
+          <element id="library" level="project" name="Gradle: xml-apis-1.0.b2" />
+          <element id="library" level="project" name="Gradle: dom4j-1.6.1" />
+          <element id="library" level="project" name="Gradle: hibernate-commons-annotations-4.0.4.Final" />
+          <element id="library" level="project" name="Gradle: hibernate-jpa-2.1-api-1.0.0.Final" />
+          <element id="library" level="project" name="Gradle: jboss-transaction-api_1.2_spec-1.0.0.Final" />
+          <element id="library" level="project" name="Gradle: antlr-2.7.7" />
+          <element id="library" level="project" name="Gradle: jandex-1.1.0.Final" />
+          <element id="library" level="project" name="Gradle: hibernate-core-4.3.4.Final" />
+          <element id="library" level="project" name="Gradle: hibernate-entitymanager-4.3.4.Final" />
+          <element id="library" level="project" name="Gradle: usertype.core-3.2.0.GA" />
+          <element id="library" level="project" name="Gradle: jackson-datatype-joda-2.3.4" />
+          <element id="library" level="project" name="Gradle: jackson-datatype-hibernate4-2.3.4" />
+          <element id="library" level="project" name="Gradle: imgscalr-lib-4.2" />
+          <element id="library" level="project" name="Gradle: tika-core-1.4" />
+          <element id="library" level="project" name="Gradle: jstl-api-1.2" />
+          <element id="library" level="project" name="Gradle: jstl-impl-1.2" />
+          <element id="library" level="project" name="Gradle: logback-core-1.1.2" />
+          <element id="library" level="project" name="Gradle: hibernate-validator-5.1.2.Final" />
+          <element id="library" level="project" name="Gradle: spring-context-support-4.0.5.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-social-facebook-1.1.1.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-social-twitter-1.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-orm-4.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: javax.servlet-api-3.1.0" />
+          <element id="library" level="project" name="Gradle: spring-beans-4.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-jdbc-4.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-tx-4.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: commons-logging-1.2" />
+          <element id="library" level="project" name="Gradle: spring-social-core-1.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: javax.inject-1" />
+          <element id="library" level="project" name="Gradle: spring-social-web-1.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-social-config-1.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-security-crypto-3.2.3.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT" />
+          <element id="library" level="project" name="Gradle: logback-classic-1.1.2" />
+          <element id="library" level="project" name="Gradle: log4j-1.2.17" />
+          <element id="library" level="project" name="Gradle: spring-webflow-2.4.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: thymeleaf-spring3-2.1.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: ognl-2.6.11" />
+          <element id="library" level="project" name="Gradle: spring-binding-2.4.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-js-resources-2.4.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: spring-js-2.4.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: ognl-3.0.8" />
+          <element id="library" level="project" name="Gradle: unbescape-1.1.0.RELEASE" />
+          <element id="library" level="project" name="Gradle: thymeleaf-2.1.4.RELEASE" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/Admin/exploded/Admin-1.0.war/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

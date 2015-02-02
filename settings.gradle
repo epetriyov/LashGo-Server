@@ -1,1 +1,1 @@
-include 'CheckApi','CheckModel','LashGoApiDoc','spring-social-vkontakte'
+include 'Admin','CheckApi','CheckModel','LashGoApiDoc','spring-social-vkontakte'

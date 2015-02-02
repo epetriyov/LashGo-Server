@@ -7,15 +7,28 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="D:\Check\projects\LashGo\Server" />
-            <option value="D:\Check\projects\LashGo\Server\CheckApi" />
-            <option value="D:\Check\projects\LashGo\Server\CheckModel" />
+            <option value="$PROJECT_DIR$/.." />
+            <option value="$PROJECT_DIR$/../Admin" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/../CheckModel" />
+            <option value="$PROJECT_DIR$/../LashGoApiDoc" />
+            <option value="$PROJECT_DIR$/../spring-social-vkontakte" />
           </set>
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/../LashGoApiDoc" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/.." />
+            <option value="$PROJECT_DIR$/../Admin" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/../CheckModel" />
+            <option value="$PROJECT_DIR$/../LashGoApiDoc" />
+            <option value="$PROJECT_DIR$/../spring-social-vkontakte" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
