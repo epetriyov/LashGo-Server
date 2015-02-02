@@ -1,17 +1,23 @@
 package com.lashgo.repository;
 
+import com.lashgo.CheckConstants;
 import com.lashgo.domain.Check;
 import com.lashgo.mappers.CheckCountersMapper;
+import com.lashgo.mappers.CheckDtoMapper;
 import com.lashgo.mappers.CheckMapper;
 import com.lashgo.mappers.GcmCheckMapper;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,8 +26,13 @@ import java.util.List;
 @Repository
 public class CheckDaoImpl implements CheckDao {
 
+    private final Logger logger = LoggerFactory.getLogger("FILE");
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Override
     public List<CheckDto> getAllChecks(int userId, String searchText) {
@@ -149,5 +160,17 @@ public class CheckDaoImpl implements CheckDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public void addNextCheck(String taskPhoto, Date startDate) {
+        jdbcTemplate.update("INSERT INTO checks (name,description,start_date,duration,task_photo,vote_duration)" +
+                "            VALUES (?,?,?,?,?,?)", CheckConstants.CHECK_NAME, CheckConstants.CHECK_DESCRIPTION, startDate, CheckConstants.DURATION, taskPhoto, CheckConstants.VOTE_DURATTON);
+        logger.debug("Next check added");
+    }
+
+    @Override
+    public CheckDto getCheckById(int checkId) {
+        return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE  c.id = ?", new CheckDtoMapper(), checkId);
     }
 }

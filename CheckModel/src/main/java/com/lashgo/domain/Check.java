@@ -1,9 +1,8 @@
 package com.lashgo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+//import org.lightadmin.api.config.annotation.FileReference;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -15,40 +14,42 @@ public class Check {
 
     @Id
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "duration")
-    private int duration;
+    private Integer duration;
     @Column(name = "description")
     private String description;
     @Column(name = "task_photo")
+//    @FileReference
     private String photo;
     @Column(name = "start_date")
+    @Temporal(TemporalType.DATE)
     private Date startDate;
     @Column(name = "vote_duration")
-    private int voteDuration;
+    private Integer voteDuration;
 
     public Check() {
     }
 
-    public Check(int id)
+    public Check(Integer id)
     {
         this.id = id;
     }
 
-    public Check(int id, String name, String photo, Date startDate) {
+    public Check(Integer id, String name, String photo, Date startDate) {
         this.id = id;
         this.name = name;
         this.photo = photo;
         this.startDate = startDate;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
@@ -60,11 +61,11 @@ public class Check {
         this.description = description;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -92,11 +93,11 @@ public class Check {
         this.startDate = startDate;
     }
 
-    public int getVoteDuration() {
+    public Integer getVoteDuration() {
         return voteDuration;
     }
 
-    public void setVoteDuration(int voteDuration) {
+    public void setVoteDuration(Integer voteDuration) {
         this.voteDuration = voteDuration;
     }
 }

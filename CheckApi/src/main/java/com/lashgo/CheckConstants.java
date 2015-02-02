@@ -12,8 +12,12 @@ public final class CheckConstants {
     public static final String FACEBOOK_DATE_FORMAT = "dd/MM/yyyy";
     public static final String GCM_PROJECT_API = "AIzaSyATgI7pv6bmHfuxa8nCy2O0IKUy36x_I8c";
     public static final String DATE_FORMAT = "dd.MM.yyyy HH:mm:ss Z";
-//    public static final String PHOTOS_FOLDER = "D:/LashGo/photos/";
-    public static final String PHOTOS_FOLDER = "/home/lashgo/photos/";
+    public static final String PHOTOS_FOLDER = "C:/DATA/Archive/LashGo/photos";
+    public static final int DURATION = 6;
+    public static final int VOTE_DURATTON = 3;
+    public static final String CHECK_NAME = "Селфи дня";
+    public static final String CHECK_DESCRIPTION = " ";
+//    public static final String PHOTOS_FOLDER = "/home/lashgo/photos/";
 
     private CheckConstants() {
 

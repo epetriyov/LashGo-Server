@@ -29,11 +29,11 @@ public class PhotosDtoMapper implements RowMapper<PhotoDto> {
         photos.setUrl(resultSet.getString("picture"));
         photos.setCommentsCount(resultSet.getInt("comments_count"));
         photos.setLikesCount(resultSet.getInt("likes_count"));
-        if (mapType.equals(MapType.USER_JOIN)) {
+        if (MapType.USER_JOIN.equals(mapType)) {
             photos.setBanned(resultSet.getInt("is_banned") == 1);
             photos.setWinner(resultSet.getInt("is_winner") == 1);
             photos.setCheck(new CheckDto(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("task_photo")));
-        } else {
+        } else if (MapType.CHECK_JOIN.equals(mapType)) {
             photos.setUser(new UserDto(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("fio"), resultSet.getString("avatar")));
         }
         return photos;

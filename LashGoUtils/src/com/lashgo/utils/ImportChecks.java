@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class ImportChecks {
 
-    private static final String CHECKS_FILE_NAME = "D:\\LashGo\\projects\\LashGo\\Server\\LashGoUtils\\checks_new.xml";
+    private static final String CHECKS_FILE_NAME = "C:\\DATA\\Archive\\LashGo\\projects\\LashGo\\Server\\LashGoUtils\\checks_new.xml";
 
     private static List<Check> parseChecks() {
         XmlMapper xmlMapper = new XmlMapper();

@@ -4,6 +4,7 @@ import com.lashgo.domain.Check;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,4 +29,8 @@ public interface CheckDao {
     boolean isVoteGoing(int checkId);
 
     Check getVoteCheck();
+
+    void addNextCheck(String taskPhoto, Date startDate);
+
+    CheckDto getCheckById(int checkId);
 }

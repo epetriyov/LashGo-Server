@@ -2,6 +2,7 @@ package com.lashgo.repository;
 
 import com.lashgo.domain.Photos;
 import com.lashgo.mappers.CheckCountersMapper;
+import com.lashgo.mappers.PhotoMapper;
 import com.lashgo.mappers.PhotosDtoMapper;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.PhotoDto;
@@ -72,5 +73,10 @@ public class PhotoDaoImpl implements PhotoDao {
                 " INNER JOIN users u ON (u.id = p.user_id)" +
                 " WHERE p.id = ?", new PhotosDtoMapper(PhotosDtoMapper.MapType.CHECK_JOIN), photoId);
 
+    }
+
+    @Override
+    public PhotoDto getPhoto(int checkId, int userId) {
+        return jdbcTemplate.queryForObject("SELECT p.* FROM photos p WHERE p.check_id = ? AND p.user_id = ?", new PhotoMapper(),checkId,userId);
     }
 }

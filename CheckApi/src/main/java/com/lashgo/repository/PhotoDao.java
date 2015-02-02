@@ -23,4 +23,6 @@ public interface PhotoDao {
     List<PhotoDto> getPhotosByCheckId(int checkId);
 
     PhotoDto getPhotoById(long photoId);
+
+    PhotoDto getPhoto(int checkId, int userId);
 }

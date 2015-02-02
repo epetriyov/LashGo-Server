@@ -1,0 +1,65 @@
+apply plugin:'war'
+apply plugin: 'rebel'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        // This repo is optional, as since version 1.1.2, we also always deploy to Maven central.
+        // Be aware that it could take a bit of time (couple of hours) before a published new
+        // version will appear in the central repository.
+        mavenRepo(
+                name: 'zt-public-snapshots',
+                url: 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+        )
+    }
+
+    dependencies {
+        classpath group: 'org.zeroturnaround', name: 'gradle-jrebel-plugin', version: '1.1.2'
+    }
+}
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    runtime 'ch.qos.logback:logback-classic:1.1.2'
+    compile 'ch.qos.logback:logback-core:1.1.2'
+    compile 'org.springframework:spring-core:4.0.5.RELEASE'
+    compile 'org.hibernate:hibernate-validator:5.1.2.Final'
+    compile 'org.springframework:spring-web:4.0.5.RELEASE'
+    compile 'org.springframework:spring-beans:4.0.5.RELEASE'
+    compile 'org.springframework:spring-context:4.0.5.RELEASE'
+    compile 'org.springframework:spring-context-support:4.0.5.RELEASE'
+    compile 'org.springframework:spring-tx:4.0.5.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.0.5.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.0.5.RELEASE'
+    compile 'org.springframework.social:spring-social-facebook:1.1.1.RELEASE'
+    compile 'org.springframework.social:spring-social-twitter:1.1.0.RELEASE'
+    compile 'org.springframework:spring-orm:4.1.4.RELEASE'
+    compile 'org.springframework.webflow:spring-webflow:2.4.0.RELEASE'
+    compile 'org.thymeleaf:thymeleaf-spring3:2.1.4.RELEASE'
+    compile 'org.thymeleaf:thymeleaf:2.1.4.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-tiles2:2.1.1.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.1.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-tiles2-spring4:2.1.1.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-tiles2:2.1.1.RELEASE'
+    compile 'javax.persistence:persistence-api:1.0.2'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'org.lightadmin:lightadmin:1.0.1.RELEASE'
+
+    runtime 'log4j:log4j:1.2.17'
+    compile project(':CheckModel')
+    compile files('../libs/spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT.jar')
+}
+
+repositories {
+    mavenCentral()
+}
+
+build.dependsOn(generateRebel)
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
