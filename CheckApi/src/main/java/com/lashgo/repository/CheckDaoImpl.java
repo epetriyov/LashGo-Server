@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Eugene on 23.03.2014.
@@ -165,8 +166,7 @@ public class CheckDaoImpl implements CheckDao {
     @Override
     public void addNextCheck(String taskPhoto, Date startDate) {
         jdbcTemplate.update("INSERT INTO checks (name,description,start_date,duration,task_photo,vote_duration)" +
-                "            VALUES (?,?,?,?,?,?)", CheckConstants.CHECK_NAME, CheckConstants.CHECK_DESCRIPTION, startDate, CheckConstants.DURATION, taskPhoto, CheckConstants.VOTE_DURATTON);
-        logger.debug("Next check added");
+                "            VALUES (?,?,?,?,?,?)", messageSource.getMessage("check.name",null, Locale.US), messageSource.getMessage("check.description",null, Locale.US), startDate, CheckConstants.DURATION, taskPhoto, CheckConstants.VOTE_DURATTON);
     }
 
     @Override

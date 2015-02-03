@@ -15,13 +15,9 @@ public final class CheckConstants {
     public static final String PHOTOS_FOLDER = "C:/DATA/Archive/LashGo/photos";
     public static final int DURATION = 6;
     public static final int VOTE_DURATTON = 3;
-    public static final String CHECK_NAME = "Селфи дня";
-    public static final String CHECK_DESCRIPTION = " ";
 //    public static final String PHOTOS_FOLDER = "/home/lashgo/photos/";
 
     private CheckConstants() {
 
     }
-
-
 }
