@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
 
     @Override
     public List<VotePhoto> getUserShownPhotos(int userId, int checkId) {
-        return jdbcTemplate.query(
+        List<VotePhoto> votePhotos = jdbcTemplate.query(
                 "SELECT p.id as id_photo, p.picture, u.id, u.login, u.fio,u.avatar," +
                         "(SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = p.id) AS comments_count," +
                         "(SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = p.id) AS likes_count," +
@@ -27,6 +28,10 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
                         "                    FROM photos p, users u " +
                         "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 " +
                         "ORDER BY p.make_date", new UserVotesMapper(), userId, userId, checkId);
+        if (votePhotos != null) {
+            Collections.shuffle(votePhotos);
+        }
+        return votePhotos;
     }
 
     @Override

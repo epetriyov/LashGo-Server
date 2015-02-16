@@ -1,4 +1,4 @@
-﻿package com.lashgo;
+package com.lashgo;
 
 /**
  * Created by Eugene on 19.03.14.
