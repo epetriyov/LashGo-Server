@@ -26,4 +26,6 @@ public interface CheckService {
     boolean isCheckActive(int checkId);
 
     boolean isVoteGoing(int checkId);
+
+    void createNewCheck(CheckDto checkDto);
 }

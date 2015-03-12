@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface CheckDao {
 
-    List<CheckDto> getAllChecks(int userId, String searchText);
+    List<CheckDto> getAllStartedChecks(int userId, String searchText);
 
     CheckCounters getCheckCounters(int checkId);
 
@@ -30,7 +30,9 @@ public interface CheckDao {
 
     Check getVoteCheck();
 
-    void addNextCheck(String taskPhoto, Date startDate);
-
     CheckDto getCheckById(int checkId);
+
+    Number addNewCheck(CheckDto checkDto);
+
+    boolean doesCheckNameExists(String checkName);
 }

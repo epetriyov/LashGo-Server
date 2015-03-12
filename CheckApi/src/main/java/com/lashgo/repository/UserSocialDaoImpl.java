@@ -24,7 +24,6 @@ public class UserSocialDaoImpl implements UserSocialDao {
         try {
             return jdbcTemplate.queryForObject("SELECT user_id FROM social_users WHERE social_login = ?", Integer.class, socialLogin);
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return -1;
         }
     }

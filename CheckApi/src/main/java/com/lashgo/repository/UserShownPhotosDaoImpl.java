@@ -29,7 +29,7 @@ public class UserShownPhotosDaoImpl implements UserShownPhotosDao {
                         "                   WHERE p.user_id = u.id AND p.check_id = ? AND p.is_banned = 0 " +
                         "ORDER BY p.make_date", new UserVotesMapper(), userId, userId, checkId);
         if (votePhotos != null) {
-            Collections.shuffle(votePhotos);
+//            Collections.shuffle(votePhotos);
         }
         return votePhotos;
     }

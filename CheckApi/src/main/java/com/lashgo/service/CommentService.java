@@ -1,6 +1,7 @@
 package com.lashgo.service;
 
 import com.lashgo.model.dto.CommentDto;
+import com.lashgo.model.dto.CommentInfo;
 
 import java.util.List;
 
@@ -13,9 +14,10 @@ public interface CommentService {
 
     List<CommentDto> getPhotoComments(long photoId);
 
-    CommentDto addCheckComment(String sessionId,int checkId, String commentText);
-
+    @Deprecated
     CommentDto addPhotoComment(String sessionId,long photoId, String commentText);
+
+    CommentDto addPhotoComment(String sessionId,long photoId, CommentInfo commentInfo);
 
     void deleteComment(long commentId);
 }

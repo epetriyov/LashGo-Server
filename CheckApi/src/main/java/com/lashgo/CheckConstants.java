@@ -15,6 +15,12 @@ public final class CheckConstants {
 //    public static final String PHOTOS_FOLDER = "C:/DATA/Archive/LashGo/photos";
     public static final int DURATION = 6;
     public static final int VOTE_DURATTON = 3;
+    public static final String CURRENT_CHECK_ID = "check_id";
+    public static final String CURRENT_CHECK_NAME = "check_name";
+    public static final String ACTION_TYPE = "action_type";
+    public static final String APNS_CERT_PATH = "/home/lashgo/LashGoAPNS.p12";
+    public static final String APNS_CERT_PASSWORD = "APNSLashGo15";
+    public static final boolean IS_APNS_SANDBOX = true;
     public static final String PHOTOS_FOLDER = "/home/lashgo/photos/";
 
     private CheckConstants() {

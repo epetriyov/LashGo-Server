@@ -5,7 +5,7 @@ CREATE TABLE users (
 	fio   	        varchar(100),
 	about           varchar(500),
 	city            varchar(30),
-	birth_date      timestamp with time zone  CHECK (birth_date < current_timestamp),
+	birth_date      timestamp with time zone  CHECK (birth_date < clock_timestamp()),
 	avatar	        varchar(150),
   email           varchar(50)               UNIQUE,
 	is_admin        boolean                   DEFAULT FALSE	
@@ -50,7 +50,7 @@ CREATE TABLE gcm_registrations (
 
 CREATE TABLE checks (
 	id              serial                    NOT NULL PRIMARY KEY,
-	name            varchar(50)               NOT NULL UNIQUE CHECK (name <> ''),
+	name            varchar(50)               NOT NULL CHECK (name <> ''),
 	description     varchar(500)              NOT NULL CHECK (description <> ''),
 	start_date      timestamp with time zone  NOT NULL DEFAULT current_timestamp,
 	duration        int     		              NOT NULL CHECK (duration > 0 AND duration < 12) DEFAULT 3,
@@ -67,7 +67,7 @@ CREATE TABLE check_winners (
 CREATE TABLE photos (
 	id              bigserial                 NOT NULL PRIMARY KEY,
 	picture	        varchar(50)               NOT NULL UNIQUE CHECK (picture <> ''),
-	make_date       timestamp with time zone  NOT NULL CHECK (make_date <= current_timestamp) DEFAULT current_timestamp,
+	make_date       timestamp with time zone  NOT NULL CHECK (make_date <= clock_timestamp()) DEFAULT current_timestamp,
   user_id         int                       REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
   check_id        int                       REFERENCES checks (id) ON DELETE RESTRICT ON UPDATE CASCADE,
   is_banned       int                       DEFAULT 0
@@ -78,7 +78,7 @@ CREATE UNIQUE INDEX photo_idx ON photos (user_id, check_id);
 CREATE TABLE comments (
 	id 				      bigserial                 NOT NULL PRIMARY KEY,
 	content			    varchar(500)              NOT NULL,
-	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= current_timestamp) DEFAULT current_timestamp,
+	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= clock_timestamp()) DEFAULT current_timestamp,
   user_id         int                       REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -102,7 +102,7 @@ CREATE TABLE subscriptions (
   id              bigserial                 NOT NULL PRIMARY KEY,
   user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
   checklist_id    int                       CHECK (checklist_id <> user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  subscribe_date  timestamp with time zone  NOT NULL CHECK (subscribe_date <= current_timestamp) DEFAULT current_timestamp
+  subscribe_date  timestamp with time zone  NOT NULL CHECK (subscribe_date <= clock_timestamp()) DEFAULT current_timestamp
 );
 
 CREATE UNIQUE INDEX subscriptions_idx ON subscriptions (user_id, checklist_id);
@@ -111,7 +111,7 @@ CREATE TABLE news (
 	id 				      serial				            NOT NULL PRIMARY KEY,
 	theme           varchar(150)              NOT NULL UNIQUE CHECK (theme <> ''),
 	content         varchar(500)              NOT NULL CHECK (content <> ''),	
-	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= current_timestamp) DEFAULT current_timestamp,
+	create_date     timestamp with time zone  NOT NULL CHECK (create_date <= clock_timestamp()) DEFAULT current_timestamp,
 	image_url       varchar(50)
 );
 
@@ -153,15 +153,22 @@ CREATE TABLE events (
   photo_id       bigint                     REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE,
   check_id       int                        REFERENCES checks (id) ON DELETE CASCADE ON UPDATE CASCADE,
   action         varchar(50)                NOT NULL CHECK (action <> ''),
-  event_date     timestamp with time zone   NOT NULL CHECK (event_date <= current_timestamp) DEFAULT current_timestamp,
+  event_date     timestamp with time zone   NOT NULL CHECK (event_date <= clock_timestamp()) DEFAULT current_timestamp,
   object_user_id int                        REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE user_complains (
   id             bigserial                  NOT NULL PRIMARY KEY,
   user_id        int                        REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  complain_date  timestamp with time zone   NOT NULL CHECK (complain_date <= current_timestamp) DEFAULT current_timestamp,
+  complain_date  timestamp with time zone   NOT NULL CHECK (complain_date <= clock_timestamp()) DEFAULT current_timestamp,
   photo_id       bigint                     REFERENCES photos (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE UNIQUE INDEX user_complains_idx ON user_complains (photo_id, user_id);
+
+CREATE TABLE apns_registrations (
+  id              serial            		NOT NULL PRIMARY KEY,
+  register_date   timestamp with time zone  NOT NULL CHECK (register_date <= clock_timestamp()) DEFAULT clock_timestamp(),
+  token           varchar(200)              NOT NULL UNIQUE CHECK (token <> ''),
+  user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);

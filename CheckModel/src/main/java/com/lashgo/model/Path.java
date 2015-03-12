@@ -48,6 +48,8 @@ public final class Path {
         public static final String PHOTO = "/photos/by/id/{photoId}";
         public static final String VOTES = "/photos/{photoId}/votes";
         public static final String COMPLAIN = "/photos/{photoId}/complain";
+        public static final String COMMENTS_NEW = "/photos/{photoId}/comments/new";
+        public static final String LIKE_NEW = "/photos/like/new";
     }
 
     public static final class Users {
@@ -66,5 +68,15 @@ public final class Path {
         public static final String MAIN_SCREEN_INFO = "/users/main-screen-info";
         public static final String AVATAR = "/users/avatar";
         public static final String GET = "/users";
+    }
+
+    public static final class Apns {
+        public static final String REGISTER = "/apns/register";
+        public static final String TEST = "/apns/test";
+    }
+
+    public static final class Notifications {
+        public static final String GCM_SEND = "/gcm/send";
+        public static final String APNS_SEND = "/apns/send";
     }
 }

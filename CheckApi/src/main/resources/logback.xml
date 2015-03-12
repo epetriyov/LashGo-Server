@@ -3,7 +3,7 @@
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <!--
 <file>C:\DATA\Archive\LashGo\projects\LashGo\logs\lashgo.log</file>
-                                   -->
+                                                   -->
 <file>/var/log/lashgo/lashgo.log</file>
 
 <append>true</append>

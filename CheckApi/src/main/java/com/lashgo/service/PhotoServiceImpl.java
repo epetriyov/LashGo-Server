@@ -7,10 +7,7 @@ import com.lashgo.error.PhotoReadException;
 import com.lashgo.error.PhotoWriteException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
-import com.lashgo.model.dto.CheckCounters;
-import com.lashgo.model.dto.PhotoDto;
-import com.lashgo.model.dto.PhotoPath;
-import com.lashgo.model.dto.VoteAction;
+import com.lashgo.model.dto.*;
 import com.lashgo.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,8 +97,7 @@ public class PhotoServiceImpl implements PhotoService {
             photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
             eventDao.addCheckParticipateEvent(userDto.getId(), checkId);
             return new PhotoPath(photoName);
-        }
-        else {
+        } else {
             throw new ValidationException(ErrorCodes.EMPTY_PHOTO);
         }
     }
@@ -124,6 +120,7 @@ public class PhotoServiceImpl implements PhotoService {
         return photoDao.getPhotoCounters(photoId);
     }
 
+    @Transactional
     @Override
     public Boolean likePhoto(Long photoId, String sessionId) {
         if (photoId == null) {
@@ -148,8 +145,14 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void complainPhoto(String sessionId, long photoId) {
         Users users = userService.getUserBySession(sessionId);
-        if(!userComplainDao.isComplainExists(users.getId(),photoId)) {
+        if (!userComplainDao.isComplainExists(users.getId(), photoId)) {
             userComplainDao.makeComplain(users.getId(), photoId);
         }
+    }
+
+    @Transactional
+    @Override
+    public Boolean likePhoto(LikedPhotoDto photoDto, String sessionId) {
+        return likePhoto(photoDto.getPhotoId(), sessionId);
     }
 }

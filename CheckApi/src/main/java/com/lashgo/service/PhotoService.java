@@ -1,9 +1,6 @@
 package com.lashgo.service;
 
-import com.lashgo.model.dto.CheckCounters;
-import com.lashgo.model.dto.PhotoDto;
-import com.lashgo.model.dto.PhotoPath;
-import com.lashgo.model.dto.VoteAction;
+import com.lashgo.model.dto.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -17,9 +14,12 @@ public interface PhotoService {
 
     CheckCounters getPhotoCounters(long photoId);
 
+    @Deprecated
     Boolean likePhoto(Long photoid, String sessionId);
 
     PhotoDto getPhotoById(long photoId);
 
     void complainPhoto(String sessionId, long photoId);
+
+    Boolean likePhoto(LikedPhotoDto photoDto, String sessionId);
 }

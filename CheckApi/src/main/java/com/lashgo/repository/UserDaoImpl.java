@@ -13,11 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Eugene on 12.02.14.
@@ -27,8 +26,6 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    private static final Logger logger = LoggerFactory.getLogger("FILE");
 
     @Override
     public int getCount() {
@@ -40,7 +37,6 @@ public class UserDaoImpl implements UserDao {
         try {
             return jdbcTemplate.queryForObject("SELECT u.* FROM users u WHERE (u.login = ? OR u.email = ?) AND u.password = ?", new UsersMapper(), loginInfo.getLogin(), loginInfo.getLogin(), loginInfo.getPasswordHash());
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return null;
 
         }
@@ -50,7 +46,6 @@ public class UserDaoImpl implements UserDao {
         try {
             jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE u.email = ? OR u.login = ?", Integer.class, email, email);
         } catch (EmptyResultDataAccessException e) {
-            logger.info("Пользователь {} с паролем {} не существует", email);
             return false;
         }
         return true;
@@ -62,17 +57,23 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void createUser(LoginInfo registerInfo) {
-        jdbcTemplate.update("INSERT INTO users (login,password,email) " +
-                        "VALUES (?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(),
-                registerInfo.getLogin()
-        );
+    public Number createUser(LoginInfo registerInfo) {
+        return createUser(new RegisterInfo(registerInfo.getLogin(),registerInfo.getPasswordHash(),registerInfo.getLogin()));
     }
 
     @Override
-    public void createUser(RegisterInfo registerInfo) {
-        jdbcTemplate.update("INSERT INTO users (login, password, fio,about,city,birth_date,avatar,email) " +
-                "VALUES (?,?,?,?,?,?,?,?)", registerInfo.getLogin(), registerInfo.getPasswordHash(), registerInfo.getFio(), registerInfo.getAbout(), registerInfo.getCity(), registerInfo.getBirthDate(), registerInfo.getAvatar(), registerInfo.getEmail());
+    public Number createUser(RegisterInfo registerInfo) {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        Map<String, Object> params = new HashMap<>();
+        params.put("login", registerInfo.getLogin());
+        params.put("password", registerInfo.getPasswordHash());
+        params.put("fio", registerInfo.getFio());
+        params.put("about", registerInfo.getAbout());
+        params.put("city", registerInfo.getCity());
+        params.put("birth_date", registerInfo.getBirthDate());
+        params.put("avatar", registerInfo.getAvatar());
+        params.put("email", registerInfo.getEmail());
+        return simpleJdbcInsert.withTableName("users").usingGeneratedKeyColumns("id").usingColumns("login", "password", "fio","about","city","birth_date","avatar","email").executeAndReturnKey(params);
     }
 
     @Override
@@ -95,7 +96,6 @@ public class UserDaoImpl implements UserDao {
                             " GROUP BY u.id"
                     , new UserDtoMapper(true), currentUserId, userId);
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -156,7 +156,6 @@ public class UserDaoImpl implements UserDao {
         try {
             jdbcTemplate.queryForObject("SELECT u.id FROM users u WHERE (u.email = ? OR u.login = ?) AND u.id <> ?", Integer.class, email, email, userId);
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return false;
         }
         return true;

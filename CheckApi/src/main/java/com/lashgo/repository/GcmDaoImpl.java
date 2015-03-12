@@ -1,15 +1,11 @@
 package com.lashgo.repository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Eugene on 19.03.14.
@@ -26,7 +22,6 @@ public class GcmDaoImpl implements GcmDao {
                     Integer.class, registrationId);
             return registrationIdsCount > 0;
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return false;
         }
     }

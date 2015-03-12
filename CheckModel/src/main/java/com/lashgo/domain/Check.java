@@ -38,6 +38,19 @@ public class Check {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Check{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", duration=" + duration +
+                ", description='" + description + '\'' +
+                ", photo='" + photo + '\'' +
+                ", startDate=" + startDate +
+                ", voteDuration=" + voteDuration +
+                '}';
+    }
+
     public Check(Integer id, String name, String photo, Date startDate) {
         this.id = id;
         this.name = name;

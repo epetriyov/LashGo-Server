@@ -50,8 +50,7 @@ public class CheckDto implements Serializable {
 
     }
 
-    public CheckDto(int id, String name, String description, Date startDate, int duration, int voteDuration) {
-        this.id = id;
+    public CheckDto(String name, String description, Date startDate, int duration, int voteDuration) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
@@ -59,10 +58,19 @@ public class CheckDto implements Serializable {
         this.voteDuration = voteDuration;
     }
 
-    public CheckDto(int id, String name,String taskPhotoUrl) {
+    public CheckDto(int id, String name, String taskPhotoUrl) {
         this.id = id;
         this.name = name;
         this.taskPhotoUrl = taskPhotoUrl;
+    }
+
+    public CheckDto(String name, String description, Date startDate, int duration, int voteDuratton, String taskPhoto) {
+        this(name, description, startDate, duration, voteDuratton);
+        this.taskPhotoUrl = taskPhoto;
+    }
+
+    public CheckDto(int id) {
+        this.id = id;
     }
 
     public PhotoDto getUserPhotoDto() {

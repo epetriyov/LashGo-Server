@@ -30,9 +30,11 @@ public class RegisterInfo extends LoginInfo {
     @Size(min = 1)
     @ApiObjectField(description = "email")
     private String email;
+
     public RegisterInfo() {
         super();
     }
+
     public RegisterInfo(String login, String passwordHash, String email) {
         super(login, passwordHash);
         this.email = email;

@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface PhotoDao {
 
-    void savePhoto(Photos photos);
+    Number savePhoto(Photos photos);
 
     boolean isPhotoExists(int userId, int checkId);
 
@@ -25,4 +25,6 @@ public interface PhotoDao {
     PhotoDto getPhotoById(long photoId);
 
     PhotoDto getPhoto(int checkId, int userId);
+
+    PhotoDto getJustPhotoById(long photoId);
 }

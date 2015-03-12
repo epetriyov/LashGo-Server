@@ -14,13 +14,13 @@ public interface UserDao {
 
     Users findUser(LoginInfo loginInfo);
 
-    void createUser(LoginInfo registerInfo);
+    Number createUser(LoginInfo registerInfo);
 
     boolean isUserExists(String email);
 
     Users getUserById(int userId);
 
-    void createUser(RegisterInfo registerInfo);
+    Number createUser(RegisterInfo registerInfo);
 
     void updatePassword(String email, String newPassword);
 

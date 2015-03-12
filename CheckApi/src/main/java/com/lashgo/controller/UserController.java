@@ -56,7 +56,7 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject<SessionInfo> login(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody LoginInfo loginInfo, BindingResult result) {
-        CheckUtils.handleBindingResult(logger, result);
+        CheckUtils.handleBindingResult(result);
         return new ResponseObject<>(userService.login(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), loginInfo));
     }
 
@@ -79,7 +79,7 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject<RegisterResponse> register(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody LoginInfo registerInfo, BindingResult result) {
-        CheckUtils.handleBindingResult(logger, result);
+        CheckUtils.handleBindingResult(result);
         return new ResponseObject<>(userService.register(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), registerInfo));
     }
 
@@ -102,7 +102,7 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject<RegisterResponse> socialSignIn(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SocialInfo socialInfo, BindingResult result) {
-        CheckUtils.handleBindingResult(logger, result);
+        CheckUtils.handleBindingResult(result);
         return new ResponseObject<>(userService.socialSignIn(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
     }
 
@@ -126,7 +126,7 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject recover(@ApiBodyObject @Valid @RequestBody RecoverInfo email, BindingResult result) {
-        CheckUtils.handleBindingResult(logger, result);
+        CheckUtils.handleBindingResult(result);
         userService.sendRecoverPassword(email);
         return new ResponseObject<>();
     }
@@ -176,7 +176,6 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseList<PhotoDto> getUserPhotos(@RequestHeader HttpHeaders httpHeaders,@ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         return new ResponseList<>(userService.getPhotos(userId));
     }
 
@@ -199,7 +198,6 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseObject<UserDto> getProfile(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         return new ResponseObject<>(userService.getProfile(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
@@ -251,7 +249,6 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseList<SubscriptionDto> getSubscriptions(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         return new ResponseList<>(userService.getSubscriptions(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
@@ -277,7 +274,6 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseList<SubscriptionDto> getSubscribers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         return new ResponseList<>(userService.getSubscribers(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
@@ -330,7 +326,7 @@ public class UserController extends BaseController {
     @ResponseBody
     ResponseObject subscribe(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SubscribeDto subscribeDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
-        CheckUtils.handleBindingResult(logger, result);
+        CheckUtils.handleBindingResult(result);
         userService.subscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), subscribeDto.getUserId());
         return new ResponseObject();
     }
@@ -381,7 +377,7 @@ public class UserController extends BaseController {
     @ApiResponseObject
     ResponseObject saveProfile(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody UserDto userDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
-        CheckUtils.handleBindingResult(logger, result);
+        CheckUtils.handleBindingResult(result);
         userService.updateProfile(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), userDto);
         return new ResponseObject<>();
     }
@@ -433,7 +429,6 @@ public class UserController extends BaseController {
     @ResponseBody
     @ApiResponseObject
     ResponseList<SubscriptionDto> getUsers(@RequestHeader HttpHeaders httpHeaders, @RequestParam(value = "search_text", required = false, defaultValue = "") String searchText) {
-        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         return new ResponseList<>(userService.findUsers(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0),searchText));
     }
@@ -459,7 +454,6 @@ public class UserController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseList<SubscriptionDto> getPhotoVotedUsers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
-        sessionValidator.validateWithoutUnauthEx(httpHeaders);
         List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
         return new ResponseList<SubscriptionDto>(userService.getUsersByVotes(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, photoId));
     }

@@ -1,7 +1,5 @@
 package com.lashgo.repository;
 
-import com.lashgo.model.dto.GcmRegistrationDto;
-
 import java.util.List;
 
 /**

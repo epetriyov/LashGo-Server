@@ -19,7 +19,6 @@ public class SocialDaoImpl implements SocialDao {
         try {
             return jdbcTemplate.queryForObject("SELECT COUNT(login) FROM socials WHERE login = ?", Integer.class, socialLogin) > 0;
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return false;
         }
     }

@@ -1,5 +1,6 @@
 package com.lashgo.service;
 
+import com.lashgo.CheckConstants;
 import com.lashgo.domain.Users;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
@@ -8,6 +9,7 @@ import com.lashgo.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Eugene on 14.04.2014.
@@ -50,13 +53,16 @@ public class CheckServiceImpl implements CheckService {
     @Autowired
     private UserShownPhotosDao userShownPhotosDao;
 
+    @Autowired
+    private MessageSource messageSource;
+
     @Override
     public List<CheckDto> getChecks(String sessionId, String searchText) {
         int userId = -1;
         if (sessionId != null) {
             userId = userService.getUserBySession(sessionId).getId();
         }
-        return checkDao.getAllChecks(userId, searchText);
+        return checkDao.getAllStartedChecks(userId, searchText);
     }
 
     @Override
@@ -122,16 +128,26 @@ public class CheckServiceImpl implements CheckService {
     }
 
     @Transactional
+    @Override
+    public void createNewCheck(CheckDto checkDto) {
+        if (!checkDao.doesCheckNameExists(checkDto.getName())) {
+            checkDao.addNewCheck(checkDto);
+        } else {
+            throw new ValidationException(ErrorCodes.CHECK_NAME_EXISTS);
+        }
+    }
+
+    @Transactional
     private void addNextCheck(int checkId, int userId) {
         PhotoDto photo = photoDao.getPhoto(checkId, userId);
         CheckDto check = checkDao.getCheckById(checkId);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(check.getStartDate());
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-        checkDao.addNextCheck(photo.getUrl(), calendar.getTime());
+        checkDao.addNewCheck(new CheckDto(messageSource.getMessage("check.name", null, Locale.US), messageSource.getMessage("check.description", null, Locale.US), calendar.getTime(), CheckConstants.DURATION, CheckConstants.VOTE_DURATTON, photo.getUrl()));
     }
 
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "1 * * * * *")
     @Transactional
     public void chooseWinner() {
         List<Integer> voteCheckIds = checkDao.getVoteChecks();
@@ -143,7 +159,10 @@ public class CheckServiceImpl implements CheckService {
                 if (userId > 0) {
                     eventDao.addWinEvent(id, userId);
                 }
-                addNextCheck(id, userId);
+                CheckDto checkDto = checkDao.getCheckById(id);
+                if (checkDto.getName().equals(messageSource.getMessage("check.name", null, Locale.US))) {
+                    addNextCheck(id, userId);
+                }
             }
 
         }

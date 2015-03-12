@@ -1,7 +1,8 @@
 package com.lashgo.service;
 
-import com.lashgo.model.dto.GcmRegistrationDto;
+import com.lashgo.domain.Check;
 import com.lashgo.error.ValidationException;
+import com.lashgo.model.dto.GcmRegistrationDto;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +14,7 @@ import com.lashgo.error.ValidationException;
 public interface GcmService {
     void addRegistrationId(String sessionId, GcmRegistrationDto registrationDto) throws ValidationException;
 
-    void multicastSend();
+    void sendGcm(Check currentCheck, Check voteCheck);
 
-    void sendChecks();
+    void sendGcm(String registrationId);
 }

@@ -74,6 +74,10 @@ public class UserDto implements Serializable {
         this.avatar = avatar;
     }
 
+    public UserDto(int id) {
+        this.id = id;
+    }
+
     public String getPasswordHash() {
         return passwordHash;
     }

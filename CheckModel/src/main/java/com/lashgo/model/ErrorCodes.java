@@ -29,6 +29,7 @@ public final class ErrorCodes {
     public static final String CHECK_IS_NOT_ACTIVE = "check.is_not_active";
     public static final String CANT_SUBSCRIBE_TO_YOURSELF = "cant_subscribe_to_yourself";
     public static final String EMPTY_PHOTO = "empty.photo";
+    public static final String CHECK_NAME_EXISTS = "check.name_exists";
 
     private ErrorCodes() {
 

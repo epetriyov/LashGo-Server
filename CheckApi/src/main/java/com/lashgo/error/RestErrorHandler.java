@@ -21,10 +21,7 @@ import java.util.Locale;
 @ControllerAdvice
 public class RestErrorHandler {
 
-    private static Logger logger = LoggerFactory.getLogger("FILE");
-
     private ResponseObject buildErrorResponse(LashgoRuntimeError exception) {
-        logger.info("Error code {}",exception.getErrorCode());
         ResponseObject responseObject = new ResponseObject();
         responseObject.setError(new ErrorDto(exception.getErrorCode()));
         return responseObject;

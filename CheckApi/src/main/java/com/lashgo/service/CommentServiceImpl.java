@@ -2,6 +2,7 @@ package com.lashgo.service;
 
 import com.lashgo.domain.Users;
 import com.lashgo.model.dto.CommentDto;
+import com.lashgo.model.dto.CommentInfo;
 import com.lashgo.repository.CommentDao;
 import com.lashgo.repository.EventDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,18 +39,17 @@ public class CommentServiceImpl implements CommentService {
 
     @Transactional
     @Override
-    public CommentDto addCheckComment(String sessionId, int checkId, String commentText) {
-        Users users = userService.getUserBySession(sessionId);
-        return commentDao.addCheckComment(users.getId(), checkId, commentText, new Date());
-    }
-
-    @Transactional
-    @Override
     public CommentDto addPhotoComment(String sessionId, long photoId, String commentText) {
         Users users = userService.getUserBySession(sessionId);
         CommentDto commentDto = commentDao.addPhotoComment(users.getId(), photoId, commentText, new Date());
         eventDao.addCommentEvent(users.getId(), photoId);
         return commentDto;
+    }
+
+    @Transactional
+    @Override
+    public CommentDto addPhotoComment(String sessionId, long photoId, CommentInfo commentInfo) {
+        return addPhotoComment(sessionId,photoId,commentInfo.getComment());
     }
 
     @Transactional

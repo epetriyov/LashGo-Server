@@ -1,6 +1,5 @@
 package com.lashgo.repository;
 
-import com.lashgo.CheckConstants;
 import com.lashgo.domain.Check;
 import com.lashgo.mappers.CheckCountersMapper;
 import com.lashgo.mappers.CheckDtoMapper;
@@ -8,18 +7,17 @@ import com.lashgo.mappers.CheckMapper;
 import com.lashgo.mappers.GcmCheckMapper;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by Eugene on 23.03.2014.
@@ -27,16 +25,11 @@ import java.util.Locale;
 @Repository
 public class CheckDaoImpl implements CheckDao {
 
-    private final Logger logger = LoggerFactory.getLogger("FILE");
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private MessageSource messageSource;
-
     @Override
-    public List<CheckDto> getAllChecks(int userId, String searchText) {
+    public List<CheckDto> getAllStartedChecks(int userId, String searchText) {
         Object[] params = StringUtils.isEmpty(searchText) ? new Object[]{userId} : new Object[]{userId, "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%"};
         String sql =
                 "SELECT " +
@@ -63,7 +56,7 @@ public class CheckDaoImpl implements CheckDao {
                         "                      ON (u.id = w.winner_id) " +
                         "                   LEFT JOIN photos ph" +
                         "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
-                        "                   WHERE c.start_date <= current_timestamp" +
+                        "                   WHERE c.start_date <= clock_timestamp()" +
                         (StringUtils.isEmpty(searchText) ? "" : " AND (LOWER(c.name) LIKE ? OR LOWER(c.description) LIKE ?)") +
                         "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture " +
                         "                   ORDER BY c.start_date DESC";
@@ -73,18 +66,16 @@ public class CheckDaoImpl implements CheckDao {
     @Override
     public int getActiveChecksCount() {
         try {
-            return jdbcTemplate.queryForObject("SELECT count(c.id) FROM checks c WHERE c.start_date <= current_timestamp " +
-                    "                              AND c.start_date + c.duration * INTERVAL '1 hour' > current_timestamp", Integer.class);
+            return jdbcTemplate.queryForObject("SELECT count(c.id) FROM checks c WHERE c.start_date <= clock_timestamp() " +
+                    "                              AND c.start_date + c.duration * INTERVAL '1 hour' > clock_timestamp()", Integer.class);
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return 0;
         }
     }
 
     public List<Integer> getVoteChecks() {
-        return jdbcTemplate.queryForList("SELECT id FROM checks c WHERE " +
-                        "(c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour')< current_timestamp" +
-                        "      AND (c.start_date + c.duration * INTERVAL '1 hour'  + c.vote_duration * INTERVAL '1 hour'+ INTERVAL '1 hour') > current_timestamp",
+        return jdbcTemplate.queryForList("SELECT id FROM checks c WHERE (c.start_date + INTERVAL '1 hour' * c.duration) <= clock_timestamp() " +
+                        "AND (c.start_date + INTERVAL '1 hour' * c.duration  + INTERVAL '1 minute') > clock_timestamp() ",
                 Integer.class
         );
     }
@@ -99,40 +90,43 @@ public class CheckDaoImpl implements CheckDao {
 
     @Override
     public CheckDto getCheckById(int userId, int checkId) {
-        return jdbcTemplate.queryForObject("SELECT " +
-                "                         c.id as check_id, c.name as check_name," +
-                "                         c.description as check_description," +
-                "                         c.start_date as check_start_date, " +
-                "                         c.duration as check_duration, " +
-                "                         c.task_photo as check_task_photo," +
-                "                         c.vote_duration as check_vote_duration," +
-                "                         p2.picture as user_photo," +
-                "                         ph.id as winner_photo_id," +
-                "                         ph.picture as winner_photo, w.winner_id as winner_id, u.*," +
-                "                         (SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = ph.id) AS likes_count," +
-                "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
-                "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
-                "                    FROM checks c " +
-                "                    LEFT JOIN photos p2 " +
-                "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +
-                "                    LEFT JOIN check_winners w" +
-                "                      ON (w.check_id = c.id) " +
-                "                   LEFT JOIN users u" +
-                "                      ON (u.id = w.winner_id) " +
-                "                   LEFT JOIN photos ph" +
-                "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
-                "                   WHERE c.id = ?" +
-                "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
+        try {
+            return jdbcTemplate.queryForObject("SELECT " +
+                    "                         c.id as check_id, c.name as check_name," +
+                    "                         c.description as check_description," +
+                    "                         c.start_date as check_start_date, " +
+                    "                         c.duration as check_duration, " +
+                    "                         c.task_photo as check_task_photo," +
+                    "                         c.vote_duration as check_vote_duration," +
+                    "                         p2.picture as user_photo," +
+                    "                         ph.id as winner_photo_id," +
+                    "                         ph.picture as winner_photo, w.winner_id as winner_id, u.*," +
+                    "                         (SELECT COUNT (uv.id) FROM user_votes uv WHERE uv.photo_id = ph.id) AS likes_count," +
+                    "                         (SELECT COUNT (p.id) FROM photos p WHERE p.check_id = c.id) AS players_count," +
+                    "                         (SELECT COUNT (com.id) FROM photo_comments com WHERE com.photo_id = ph.id) AS comments_count" +
+                    "                    FROM checks c " +
+                    "                    LEFT JOIN photos p2 " +
+                    "                      ON (p2.check_id = c.id AND p2.user_id = ?)" +
+                    "                    LEFT JOIN check_winners w" +
+                    "                      ON (w.check_id = c.id) " +
+                    "                   LEFT JOIN users u" +
+                    "                      ON (u.id = w.winner_id) " +
+                    "                   LEFT JOIN photos ph" +
+                    "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
+                    "                   WHERE c.id = ?" +
+                    "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture ", new CheckMapper(), userId, checkId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public Check getCurrentCheck() {
         try {
-            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date <= current_timestamp " +
-                    "AND (c.start_date + INTERVAL '1 hour') >= current_timestamp " +
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE c.start_date <= clock_timestamp() " +
+                    "AND (c.start_date + INTERVAL '1 minute') >= clock_timestamp() " +
                     "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -140,37 +134,52 @@ public class CheckDaoImpl implements CheckDao {
     @Override
     public boolean isCheckActive(int checkId) {
         return jdbcTemplate.queryForObject("SELECT COUNT(c.id) FROM checks c where c.id = ? " +
-                "AND (c.start_date + INTERVAL '1 hour' * c.duration) > current_timestamp " +
-                "AND c.start_date <= current_timestamp", Integer.class, checkId) > 0;
+                "AND (c.start_date + INTERVAL '1 hour' * c.duration) > clock_timestamp() " +
+                "AND c.start_date <= clock_timestamp()", Integer.class, checkId) > 0;
     }
 
     @Override
     public boolean isVoteGoing(int checkId) {
         return jdbcTemplate.queryForObject("SELECT COUNT(c.id) FROM checks c where c.id = ? " +
-                "AND (c.start_date + INTERVAL '1 hour' * (c.vote_duration + c.duration)) > current_timestamp " +
-                "AND (c.start_date + INTERVAL '1 hour' * c.duration  <= current_timestamp)", Integer.class, checkId) > 0;
+                "AND (c.start_date + INTERVAL '1 hour' * (c.vote_duration + c.duration)) > clock_timestamp() " +
+                "AND (c.start_date + INTERVAL '1 hour' * c.duration  <= clock_timestamp())", Integer.class, checkId) > 0;
     }
 
     @Override
     public Check getVoteCheck() {
         try {
-            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE (c.start_date + INTERVAL '1 hour' * c.duration) <= current_timestamp " +
-                    "AND (c.start_date + INTERVAL '1 hour' * (c.duration + 1)) > current_timestamp " +
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE (c.start_date + INTERVAL '1 hour' * c.duration) <= clock_timestamp() " +
+                    "AND (c.start_date + INTERVAL '1 hour' * c.duration  + INTERVAL '1 minute') > clock_timestamp() " +
                     "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
         } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
             return null;
         }
     }
 
     @Override
-    public void addNextCheck(String taskPhoto, Date startDate) {
-        jdbcTemplate.update("INSERT INTO checks (name,description,start_date,duration,task_photo,vote_duration)" +
-                "            VALUES (?,?,?,?,?,?)", messageSource.getMessage("check.name",null, Locale.US), messageSource.getMessage("check.description",null, Locale.US), startDate, CheckConstants.DURATION, taskPhoto, CheckConstants.VOTE_DURATTON);
+    public CheckDto getCheckById(int checkId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE  c.id = ?", new CheckDtoMapper(), checkId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
-    public CheckDto getCheckById(int checkId) {
-        return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE  c.id = ?", new CheckDtoMapper(), checkId);
+    public Number addNewCheck(CheckDto checkDto) {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", checkDto.getName());
+        params.put("description", checkDto.getDescription());
+        params.put("start_date", new Timestamp(checkDto.getStartDate().getTime()));
+        params.put("duration", checkDto.getDuration());
+        params.put("task_photo", checkDto.getTaskPhotoUrl());
+        params.put("vote_duration", checkDto.getVoteDuration());
+        return simpleJdbcInsert.withTableName("checks").usingGeneratedKeyColumns("id").usingColumns("name", "description", "start_date", "duration", "vote_duration", "task_photo").executeAndReturnKey(params);
+    }
+
+    @Override
+    public boolean doesCheckNameExists(String checkName) {
+        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM checks WHERE name = ?", Integer.class, checkName) > 0;
     }
 }
