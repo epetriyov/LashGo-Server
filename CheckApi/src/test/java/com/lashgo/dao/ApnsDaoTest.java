@@ -1,10 +1,10 @@
-package com.lashgo.test;
+package com.lashgo.dao;
 
 
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.repository.ApnDao;
 import com.lashgo.repository.UserDao;
-import com.lashgo.test.components.TestHelper;
+import com.lashgo.dao.components.TestHelper;
 import com.lashgo.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -19,7 +19,7 @@ import java.util.Date;
 
 import static org.testng.Assert.*;
 
-@Test
+@Test(groups = "apnDao")
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class ApnsDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 

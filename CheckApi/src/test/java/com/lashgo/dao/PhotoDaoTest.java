@@ -1,10 +1,10 @@
-package com.lashgo.test;
+package com.lashgo.dao;
 
 import com.lashgo.domain.Photos;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.repository.PhotoDao;
-import com.lashgo.test.components.TestHelper;
+import com.lashgo.dao.components.TestHelper;
 import com.lashgo.utils.CheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -18,7 +18,7 @@ import static org.testng.Assert.assertNotNull;
 /**
  * Created by Eugene on 13.03.2015.
  */
-@Test
+@Test(groups = {"photoDao"})
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class PhotoDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 
@@ -29,7 +29,7 @@ public class PhotoDaoTest extends AbstractTransactionalTestNGSpringContextTests 
     private TestHelper testHelper;
 
     @Rollback
-    public void test() {
+    public void testSavePhoto() {
         Number userId = testHelper.addTestUser(new LoginInfo("test", CheckUtils.md5("test")));
         Number checkId = testHelper.addTestCheck();
         Number photoId = photoDao.savePhoto(new Photos("picture", userId.intValue(), checkId.intValue()));

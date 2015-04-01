@@ -1,4 +1,4 @@
-package com.lashgo.test.components;
+package com.lashgo.dao.components;
 
 import com.lashgo.domain.Photos;
 import com.lashgo.model.dto.CheckDto;
@@ -52,15 +52,22 @@ public class TestHelper {
         return checkId;
     }
 
-    public void assertCheckDto(CheckDto checkDto, int userId, long photoId) {
-        assertEquals(checkDto.getPlayersCount(), 1);
-        assertTrue(checkDto.getUserPhotoDto() != null);
-        assertEquals(checkDto.getUserPhotoDto().getUrl(), "url");
-        assertTrue(checkDto.getWinnerInfo() != null);
-        assertEquals(checkDto.getWinnerInfo().getId(), userId);
-        assertTrue(checkDto.getWinnerPhotoDto() != null);
-        assertEquals(checkDto.getWinnerPhotoDto().getUrl(), "url");
-        assertEquals(checkDto.getWinnerPhotoDto().getId(), photoId);
+    public void assertCheckDto(CheckDto actualCheckDto, CheckDto expectedCheckDto, int userId, long photoId, String expectedPhotoUrl) {
+        assertEquals(actualCheckDto.getDescription(), expectedCheckDto.getDescription());
+        assertEquals(actualCheckDto.getDuration(), expectedCheckDto.getDuration());
+        assertEquals(actualCheckDto.getName(), expectedCheckDto.getName());
+        assertEquals(actualCheckDto.getPlayersCount(), expectedCheckDto.getPlayersCount());
+        assertEquals(actualCheckDto.getStartDate(), expectedCheckDto.getStartDate());
+        assertEquals(actualCheckDto.getTaskPhotoUrl(), expectedCheckDto.getTaskPhotoUrl());
+        assertEquals(actualCheckDto.getVoteDuration(), expectedCheckDto.getVoteDuration());
+        assertEquals(actualCheckDto.getPlayersCount(), 1);
+        assertTrue(actualCheckDto.getUserPhotoDto() != null);
+        assertEquals(actualCheckDto.getUserPhotoDto().getUrl(), expectedPhotoUrl);
+        assertTrue(actualCheckDto.getWinnerInfo() != null);
+        assertEquals(actualCheckDto.getWinnerInfo().getId(), userId);
+        assertTrue(actualCheckDto.getWinnerPhotoDto() != null);
+        assertEquals(actualCheckDto.getWinnerPhotoDto().getUrl(), expectedPhotoUrl);
+        assertEquals(actualCheckDto.getWinnerPhotoDto().getId(), photoId);
     }
 
     public Number addTestUser(LoginInfo loginInfo) {
@@ -70,8 +77,18 @@ public class TestHelper {
     }
 
     public Number addTestPhoto(Number checkId, Number userId) {
-        Number photoId = photoDao.savePhoto(new Photos("url", userId.intValue(), checkId.intValue()));
+        return addTestPhoto("url", checkId, userId);
+    }
+
+    public Number addTestPhoto(String photoUrl, Number checkId, Number userId) {
+        Number photoId = photoDao.savePhoto(new Photos(photoUrl, userId.intValue(), checkId.intValue()));
         assertNotNull(photoDao.getPhotoById(photoId.longValue()));
         return photoId;
+    }
+
+    public Number addTestCheck(CheckDto checkDto) {
+        Number checkId = checkDao.addNewCheck(checkDto);
+        assertNotNull(checkDao.getCheckById(checkId.intValue()));
+        return checkId;
     }
 }

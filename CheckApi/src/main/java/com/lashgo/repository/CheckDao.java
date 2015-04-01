@@ -18,7 +18,7 @@ public interface CheckDao {
 
     int getActiveChecksCount();
 
-    List<Integer> getVoteChecks();
+    List<Integer> getFinishedChecks();
 
     CheckDto getCheckById(int userdId, int checkId);
 

@@ -73,9 +73,9 @@ public class CheckDaoImpl implements CheckDao {
         }
     }
 
-    public List<Integer> getVoteChecks() {
-        return jdbcTemplate.queryForList("SELECT id FROM checks c WHERE (c.start_date + INTERVAL '1 hour' * c.duration) <= clock_timestamp() " +
-                        "AND (c.start_date + INTERVAL '1 hour' * c.duration  + INTERVAL '1 minute') > clock_timestamp() ",
+    public List<Integer> getFinishedChecks() {
+        return jdbcTemplate.queryForList("SELECT id FROM checks c WHERE (c.start_date + INTERVAL '1 hour' * c.duration + INTERVAL '1 hour' * c.vote_duration) <= clock_timestamp() " +
+                        "AND (c.start_date + INTERVAL '1 hour' * c.duration + INTERVAL '1 hour' * c.vote_duration  + INTERVAL '1 minute') > clock_timestamp() ",
                 Integer.class
         );
     }
@@ -167,6 +167,9 @@ public class CheckDaoImpl implements CheckDao {
 
     @Override
     public Number addNewCheck(CheckDto checkDto) {
+        if (checkDto == null) {
+            throw new IllegalArgumentException("can't create null check");
+        }
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         Map<String, Object> params = new HashMap<>();
         params.put("name", checkDto.getName());

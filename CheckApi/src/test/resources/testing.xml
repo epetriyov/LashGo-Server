@@ -1,22 +1,35 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestAll">
-
     <test name="Apns">
         <classes>
-            <class name="com.lashgo.test.ApnsDaoTest"/>
+            <class name="com.lashgo.dao.ApnsDaoTest"/>
         </classes>
     </test>
-
     <test name="Checks">
         <classes>
-            <class name="com.lashgo.test.CheckDaoTest"/>
+            <class name="com.lashgo.dao.CheckDaoTest"/>
         </classes>
     </test>
 
     <test name="Users">
         <classes>
-            <class name="com.lashgo.test.UserDaoTest"/>
+            <class name="com.lashgo.dao.UserDaoTest"/>
+        </classes>
+    </test>
+    <test name="Photos">
+        <classes>
+            <class name="com.lashgo.dao.PhotoDaoTest"/>
+        </classes>
+    </test>
+    <test name="CheckWinners">
+        <classes>
+            <class name="com.lashgo.dao.CheckWinnersDaoTest"/>
+        </classes>
+    </test>
+    <test name="UserVotes">
+        <classes>
+            <class name="com.lashgo.dao.UserVotesDaoTest"/>
         </classes>
     </test>
 </suite>

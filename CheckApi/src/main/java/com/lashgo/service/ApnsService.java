@@ -14,4 +14,6 @@ public interface ApnsService {
     void sendApn(Check currentCheck, Check voteCheck);
 
     void sendApn(String token);
+
+    void feedbackService();
 }

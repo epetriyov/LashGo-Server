@@ -150,7 +150,7 @@ public class CheckServiceImpl implements CheckService {
     @Scheduled(cron = "1 * * * * *")
     @Transactional
     public void chooseWinner() {
-        List<Integer> voteCheckIds = checkDao.getVoteChecks();
+        List<Integer> voteCheckIds = checkDao.getFinishedChecks();
         if (voteCheckIds != null) {
             for (Integer id : voteCheckIds) {
                 checkWinnersDao.addCheckWinner(id);
@@ -164,7 +164,6 @@ public class CheckServiceImpl implements CheckService {
                     addNextCheck(id, userId);
                 }
             }
-
         }
     }
 }

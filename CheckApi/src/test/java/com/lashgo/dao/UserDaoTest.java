@@ -1,4 +1,4 @@
-package com.lashgo.test;
+package com.lashgo.dao;
 
 import com.lashgo.domain.Users;
 import com.lashgo.model.dto.LoginInfo;
@@ -18,7 +18,7 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by Eugene on 13.03.2015.
  */
-@Test
+@Test(groups = {"userDao"})
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests {
 

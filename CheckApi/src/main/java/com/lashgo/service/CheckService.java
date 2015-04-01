@@ -28,4 +28,6 @@ public interface CheckService {
     boolean isVoteGoing(int checkId);
 
     void createNewCheck(CheckDto checkDto);
+
+    void chooseWinner();
 }

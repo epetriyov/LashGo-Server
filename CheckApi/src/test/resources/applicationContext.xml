@@ -10,7 +10,8 @@
     <context:annotation-config/>
 
     <context:component-scan base-package="com.lashgo.repository"/>
-    <context:component-scan base-package="com.lashgo.test.components"/>
+    <context:component-scan base-package="com.lashgo.service"/>
+    <context:component-scan base-package="com.lashgo.dao.components"/>
 
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -35,6 +36,42 @@
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean name="objectMapper" class="com.lashgo.controller.LashGoObjectMapper"/>
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="objectMapper" ref="objectMapper"/>
+                </bean>
+            </list>
+        </property>
+        <property name="requestFactory">
+            <bean class="com.lashgo.gcm.CustomClientHttpRequestFactory"/>
+        </property>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="25"/>
+        <property name="username" value="support@lashgo.com"/>
+        <property name="password" value="en9jYw8srqluWubUTg7e"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- You can have some pre-configured messagess also which are ready to send -->
+    <bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="eugene.petriyov@gmail.com"></property>
+        <property name="subject" value="LashGo восстановление пароля"/>
     </bean>
 
 </beans>
