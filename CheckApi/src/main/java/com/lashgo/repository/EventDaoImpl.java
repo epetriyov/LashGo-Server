@@ -56,14 +56,36 @@ public class EventDaoImpl implements EventDao {
     public int getEventsCountByUser(int userId, Date lastView) {
         return jdbcTemplate.queryForObject("SELECT count(e.id)" +
                         "             FROM events e" +
-                        "            WHERE e.action = ? AND (e.object_user_id = ?" +
+                        "            WHERE ((e.action = ? AND e.object_user_id = ?)" +
                         "               OR e.action = ?" +
-                        "               OR e.photo_id IN (SELECT ph.id FROM photos ph WHERE ph.user_id = ?)" +
+                        "               OR (e.photo_id IN (SELECT ph.id FROM photos ph WHERE ph.user_id = ?))" +
                         "               OR (e.user_id IN (SELECT checklist_id FROM subscriptions WHERE user_id = ?)" +
                         "              AND e.action = ?))" +
                         (lastView != null ?
-                                " AND e.event_date > ?" : ""), (lastView != null ? new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId, DbCodes.EventActions.CHECK.name(),lastView} : new Object[]{DbCodes.EventActions.SUBSCRIBE.name(), userId, DbCodes.EventActions.WIN.name(),userId, userId,DbCodes.EventActions.CHECK.name()}),
-                (lastView != null ? new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER, Types.VARCHAR,Types.TIMESTAMP} : new int[]{Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER,Types.VARCHAR}), Integer.class);
+                                " AND e.event_date > ?" : ""),
+                (lastView != null ? new Object[]{
+                        DbCodes.EventActions.SUBSCRIBE.name(),
+                        userId,
+                        DbCodes.EventActions.WIN.name(),
+                        userId,
+                        userId,
+                        DbCodes.EventActions.CHECK.name(),
+                        lastView
+                } :
+                        new Object[]{
+                                DbCodes.EventActions.SUBSCRIBE.name(),
+                                userId,
+                                DbCodes.EventActions.WIN.name(),
+                                userId,
+                                userId,
+                                DbCodes.EventActions.CHECK.name()
+                        }),
+                (lastView != null ? new int[]{
+                        Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER, Types.VARCHAR,Types.TIMESTAMP
+                } :
+                        new int[]{
+                                Types.VARCHAR,Types.INTEGER,Types.VARCHAR,Types.INTEGER,Types.INTEGER,Types.VARCHAR
+                        }), Integer.class);
     }
 
     @Override

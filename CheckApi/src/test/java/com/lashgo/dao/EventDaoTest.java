@@ -2,7 +2,6 @@ package com.lashgo.dao;
 
 import com.lashgo.dao.components.TestHelper;
 import com.lashgo.mappers.EventDtoMapper;
-import com.lashgo.mappers.EventMapper;
 import com.lashgo.model.DbCodes;
 import com.lashgo.model.dto.EventDto;
 import com.lashgo.model.dto.LoginInfo;
@@ -15,6 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.Date;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -50,5 +51,11 @@ public class EventDaoTest extends AbstractTransactionalTestNGSpringContextTests 
         EventDto eventDto = jdbcTemplate.queryForObject("select * from events where user_id = ? and check_id = ?", new EventDtoMapper(), userId.intValue(), checkId.intValue());
         assertNotNull(eventDto);
         assertEquals(eventDto.getAction(), DbCodes.EventActions.WIN.name());
+    }
+
+    @Rollback
+    public void test() {
+        assertEquals(eventDao.getEventsCountByUser(1, null), 0);
+        assertEquals(eventDao.getEventsCountByUser(1, new Date()), 0);
     }
 }
