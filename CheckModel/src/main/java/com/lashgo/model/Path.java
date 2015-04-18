@@ -24,6 +24,7 @@ public final class Path {
         public static final String LIKE = "/checks/like";
         public static final String COUNTERS = "/checks/{checkId}/counters";
         public static final String USERS = "/checks/{checkId}/users";
+        public static final String PHOTOS_TEST = "/checks/photos/test";
     }
 
     public static final class Comments {

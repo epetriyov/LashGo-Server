@@ -31,15 +31,6 @@ public class NewsController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Contents.GET, method = RequestMethod.GET)
     public
     @ApiResponseObject

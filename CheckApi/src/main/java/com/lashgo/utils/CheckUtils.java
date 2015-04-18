@@ -65,4 +65,13 @@ public final class CheckUtils {
         return null;
     }
 
+    public static String buildNewPhotoName(int checkId, int userId) {
+        StringBuilder photoNameBuilder = new StringBuilder("check_");
+        photoNameBuilder.append(checkId);
+        photoNameBuilder.append("_user_");
+        photoNameBuilder.append(userId);
+        photoNameBuilder.append(".jpg");
+        return photoNameBuilder.toString();
+    }
+
 }

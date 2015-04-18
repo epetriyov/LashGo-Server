@@ -37,22 +37,13 @@ public class EventController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Events.GET, method = RequestMethod.GET)
     public
     @ApiResponseObject
     @ResponseBody
     ResponseList<EventDto> getEvents(@RequestHeader HttpHeaders httpHeaders,@RequestParam(value = "subscriptions", required = false, defaultValue = "false") boolean subscriptions) {
         sessionValidator.validate(httpHeaders);
-        List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.session_id.name());
         return new ResponseList<>(eventService.getEvents(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, subscriptions));
     }
 }

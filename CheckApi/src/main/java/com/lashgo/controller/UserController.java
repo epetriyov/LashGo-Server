@@ -44,20 +44,14 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed or user not found"),
-    })
+
     @RequestMapping(value = Path.Users.LOGIN, method = RequestMethod.POST)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject<SessionInfo> login(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody LoginInfo loginInfo, BindingResult result) {
         CheckUtils.handleBindingResult(result);
-        return new ResponseObject<>(userService.login(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), loginInfo));
+        return new ResponseObject<>(userService.login(httpHeaders.get(CheckApiHeaders.client_type.name()).get(0), loginInfo));
     }
 
     @ApiMethod(
@@ -67,20 +61,13 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed or user already exists"),
-    })
     @RequestMapping(value = Path.Users.REGISTER, method = RequestMethod.POST)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject<RegisterResponse> register(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody LoginInfo registerInfo, BindingResult result) {
         CheckUtils.handleBindingResult(result);
-        return new ResponseObject<>(userService.register(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), registerInfo));
+        return new ResponseObject<>(userService.register(httpHeaders.get(CheckApiHeaders.client_type.name()).get(0), registerInfo));
     }
 
     @ApiMethod(
@@ -90,20 +77,13 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed or user email is needed during registration"),
-    })
     @RequestMapping(value = Path.Users.SOCIAL_SIGN_IN, method = RequestMethod.POST)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject<RegisterResponse> socialSignIn(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SocialInfo socialInfo, BindingResult result) {
         CheckUtils.handleBindingResult(result);
-        return new ResponseObject<>(userService.socialSignIn(httpHeaders.get(CheckApiHeaders.CLIENT_TYPE).get(0), socialInfo));
+        return new ResponseObject<>(userService.socialSignIn(httpHeaders.get(CheckApiHeaders.client_type.name()).get(0), socialInfo));
     }
 
 
@@ -114,13 +94,6 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed or user already exists"),
-    })
     @RequestMapping(value = Path.Users.RECOVER, method = RequestMethod.PUT)
     public
     @ResponseBody
@@ -138,22 +111,13 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.MY_PHOTOS, method = RequestMethod.GET)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseList<PhotoDto> getMyPhotos(@RequestHeader HttpHeaders httpHeaders) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseList<>(userService.getPhotos(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+        return new ResponseList<>(userService.getPhotos(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0)));
     }
 
     @ApiMethod(
@@ -163,14 +127,6 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-
-    })
     @RequestMapping(value = Path.Users.PHOTOS, method = RequestMethod.GET)
     public
     @ResponseBody
@@ -186,19 +142,12 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-    })
     @RequestMapping(value = Path.Users.PROFILE, method = RequestMethod.GET)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject<UserDto> getProfile(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.session_id.name());
         return new ResponseObject<>(userService.getProfile(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
 
@@ -209,22 +158,13 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.MY_PROFILE, method = RequestMethod.GET)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject<UserDto> getMyProfile(@RequestHeader HttpHeaders httpHeaders) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject<>(userService.getProfile(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+        return new ResponseObject<>(userService.getProfile(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0)));
     }
 
 
@@ -235,21 +175,12 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.SUBSCRIPTIONS, method = RequestMethod.GET)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseList<SubscriptionDto> getSubscriptions(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.session_id.name());
         return new ResponseList<>(userService.getSubscriptions(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
 
@@ -260,21 +191,12 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.SUBSCRIBERS, method = RequestMethod.GET)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseList<SubscriptionDto> getSubscribers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
-        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.session_id.name());
         return new ResponseList<>(userService.getSubscribers(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0), userId));
     }
 
@@ -285,22 +207,13 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.SUBSCRIPTION, method = RequestMethod.DELETE)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject unsubscribe(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "userId", paramType = ApiParamType.PATH) @PathVariable("userId") int userId) {
         sessionValidator.validate(httpHeaders);
-        userService.unsubscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), userId);
+        userService.unsubscribe(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), userId);
         return new ResponseObject();
     }
 
@@ -311,15 +224,6 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.SUBSCRIPTION_POST, method = RequestMethod.POST)
     public
     @ApiResponseObject
@@ -327,7 +231,7 @@ public class UserController extends BaseController {
     ResponseObject subscribe(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody SubscribeDto subscribeDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
         CheckUtils.handleBindingResult(result);
-        userService.subscribe(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), subscribeDto.getUserId());
+        userService.subscribe(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), subscribeDto.getUserId());
         return new ResponseObject();
     }
 
@@ -338,22 +242,13 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.MAIN_SCREEN_INFO, method = RequestMethod.GET)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject<MainScreenInfoDto> getMainScreenInfo(@RequestHeader HttpHeaders httpHeaders, @RequestParam(value = "news_last_view") @DateTimeFormat(pattern = CheckConstants.DATE_FORMAT) Date newsLastView, @RequestParam(value = "subscriptions_last_view") @DateTimeFormat(pattern = CheckConstants.DATE_FORMAT) Date subscriptionsLastView) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject<>(userService.getMainScreenInfo(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), new UserLastViews(newsLastView, subscriptionsLastView)));
+        return new ResponseObject<>(userService.getMainScreenInfo(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), new UserLastViews(newsLastView, subscriptionsLastView)));
     }
 
     @ApiMethod(
@@ -363,14 +258,6 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed or user already exists"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.MY_PROFILE, method = RequestMethod.PUT)
     public
     @ResponseBody
@@ -378,7 +265,7 @@ public class UserController extends BaseController {
     ResponseObject saveProfile(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody UserDto userDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
         CheckUtils.handleBindingResult(result);
-        userService.updateProfile(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), userDto);
+        userService.updateProfile(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), userDto);
         return new ResponseObject<>();
     }
 
@@ -389,22 +276,13 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed or user already sent photo for this check"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.AVATAR, method = RequestMethod.POST)
     public
     @ApiResponseObject
     @ResponseBody
     ResponseObject saveUserAvatar(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestParam("avatar") MultipartFile file) {
         sessionValidator.validate(httpHeaders);
-        userService.saveAvatar(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), file);
+        userService.saveAvatar(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), file);
         return new ResponseObject();
     }
 
@@ -415,21 +293,12 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Users.GET, method = RequestMethod.GET)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseList<SubscriptionDto> getUsers(@RequestHeader HttpHeaders httpHeaders, @RequestParam(value = "search_text", required = false, defaultValue = "") String searchText) {
-        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.session_id.name());
         return new ResponseList<>(userService.findUsers(CollectionUtils.isEmpty(sessionId) ? null : sessionId.get(0),searchText));
     }
 
@@ -440,21 +309,12 @@ public class UserController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.VOTES, method = RequestMethod.GET)
     public
     @ApiResponseObject
     @ResponseBody
     ResponseList<SubscriptionDto> getPhotoVotedUsers(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
-        List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.session_id.name());
         return new ResponseList<SubscriptionDto>(userService.getUsersByVotes(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, photoId));
     }
 

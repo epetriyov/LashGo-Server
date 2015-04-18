@@ -77,7 +77,7 @@ public class ApnsServiceImpl implements ApnsService {
                         build();
                 List<String> apnTokens = apnDao.getAllApnsTokens();
                 if (!CollectionUtils.isEmpty(apnTokens)) {
-                    logger.debug("SEND APNS tokens {}, payload {}", StringUtils.collectionToCommaDelimitedString(apnTokens), payload);
+                    logger.debug("SEND APNS  payload {}", payload);
                     service.push(apnTokens, payload);
                 }
             }

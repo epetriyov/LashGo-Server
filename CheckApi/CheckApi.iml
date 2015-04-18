@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="Server" external.system.module.version="1.0" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":CheckApi" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="Server" external.system.module.version="1.0" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="web" name="Web Gradle : CheckApi-1.0.war">
       <configuration>
@@ -31,57 +31,74 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CheckModel" exported="" />
-    <orderEntry type="library" exported="" name="Gradle: spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: slf4j-api-1.7.7" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: logback-core-1.1.2" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-context-support-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-social-facebook-1.1.1.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-social-twitter-1.1.0.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: javax.servlet-api-3.1.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: jackson-databind-2.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: aopalliance-1.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-social-core-1.1.0.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: javax.inject-1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-social-web-1.1.0.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-social-config-1.1.0.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: jackson-annotations-2.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: jackson-core-2.4.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-security-crypto-3.2.3.RELEASE" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: logback-classic-1.1.2" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: mail-1.5.0-b01" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: reflections-0.9.9-RC1" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: log4j-1.2.17" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: activation-1.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: hibernate-validator-5.1.2.Final" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: validation-api-1.1.0.Final" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: jboss-logging-3.1.3.GA" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: classmate-1.0.0" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: commons-fileupload-1.3.1" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: xml-apis-1.0.b2" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: dom4j-1.6.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-web-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-beans-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-context-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-tx-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-webmvc-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-jdbc-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: persistence-api-1.0.2" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-aop-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-expression-4.0.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: jsr305-1.3.9" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: guava-11.0.2" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: javassist-3.16.1-GA" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: apns-1.0.0.Beta6" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: commons-codec-1.2" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: commons-httpclient-3.1" level="project" />
-    <orderEntry type="library" name="Gradle: commons-io-2.4" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-test-4.1.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: spring-core-4.1.5.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: commons-logging-1.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: testng-6.8.21" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: bsh-2.0b4" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: jcommander-1.27" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: postgresql-9.3-1100.jdbc41" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: ch.qos.logback:logback-core:1.1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.hibernate:hibernate-validator:5.1.2.Final" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-web:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-beans:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context-support:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-tx:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-webmvc:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-jdbc:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.social:spring-social-facebook:1.1.1.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.social:spring-social-twitter:1.1.0.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.persistence:persistence-api:1.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-io:commons-io:2.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-fileupload:commons-fileupload:1.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.notnoop.apns:apns:1.0.0.Beta6" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.validation:validation-api:1.1.0.Final" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.jboss.logging:jboss-logging:3.1.3.GA" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.fasterxml:classmate:1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-aop:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-expression:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.social:spring-social-core:1.1.0.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.social:spring-social-web:1.1.0.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.social:spring-social-config:1.1.0.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-crypto:3.2.3.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-httpclient:commons-httpclient:3.1" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library name="Gradle: spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../libs/spring-social-vkontakte-1.1.0.BUILD-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-core:4.0.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-logging:commons-logging:1.1.3" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: ch.qos.logback:logback-classic:1.1.2" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: javax.mail:mail:1.5.0-b01" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: org.reflections:reflections:0.9.9-RC1" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: com.google.code.findbugs:jsr305:1.3.9" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: com.google.guava:guava:11.0.2" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: org.javassist:javassist:3.16.1-GA" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: xml-apis:xml-apis:1.0.b2" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: dom4j:dom4j:1.6.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.springframework:spring-test:4.1.5.RELEASE" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.springframework:spring-core:4.1.5.RELEASE" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.beanshell:bsh:2.0b4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.27" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: postgresql-9.3-1100.jdbc41">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../libs/postgresql-9.3-1100.jdbc41.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="Gradle: javax.servlet:javax.servlet-api:3.0.1" level="project" />
   </component>
 </module>
-

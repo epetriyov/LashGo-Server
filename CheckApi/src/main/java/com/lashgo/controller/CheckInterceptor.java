@@ -37,15 +37,15 @@ public class CheckInterceptor implements HandlerInterceptor {
 
     private void validateCommonHeaders(HttpServletRequest httpServletRequest) {
         if (!httpServletRequest.getPathInfo().equals(Path.JSONDOC)) {
-            String uuid = httpServletRequest.getHeader(CheckApiHeaders.UUID);
+            String uuid = httpServletRequest.getHeader(CheckApiHeaders.uuid.name());
             if (StringUtils.isEmpty(uuid)) {
                 throw new ValidationException(ErrorCodes.UUID_IS_EMPTY);
             }
-            String clientType = httpServletRequest.getHeader(CheckApiHeaders.CLIENT_TYPE);
+            String clientType = httpServletRequest.getHeader(CheckApiHeaders.client_type.name());
             if (!ClientTypes.isClientTypeValid(clientType)) {
                 throw new ValidationException(ErrorCodes.INVALID_CLIENT_TYPE);
             }
-            String sessionId = httpServletRequest.getHeader(CheckApiHeaders.SESSION_ID);
+            String sessionId = httpServletRequest.getHeader(CheckApiHeaders.session_id.name());
             if (!StringUtils.isEmpty(sessionId)) {
                 Sessions session = sessionDao.getSessionById(sessionId);
                 if (session == null) {

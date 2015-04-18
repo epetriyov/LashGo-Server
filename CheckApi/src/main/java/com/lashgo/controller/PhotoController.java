@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -49,15 +50,6 @@ public class
             produces = {MediaType.MULTIPART_FORM_DATA_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.GET_FILE, method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public
     @ResponseBody
@@ -82,14 +74,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-    })
     @RequestMapping(value = Path.Photos.COUNTERS, method = RequestMethod.GET)
     public
     @ApiResponseObject
@@ -105,15 +89,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.VOTE, method = RequestMethod.POST)
     public
     @ApiResponseObject
@@ -121,7 +96,7 @@ public class
     ResponseObject ratePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody VoteAction voteAction, BindingResult result) {
         sessionValidator.validate(httpHeaders);
         CheckUtils.handleBindingResult(result);
-        photoService.ratePhoto(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), voteAction);
+        photoService.ratePhoto(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), voteAction);
         return new ResponseObject();
     }
 
@@ -132,15 +107,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.COMMENTS, method = RequestMethod.GET)
     public
     @ApiResponseObject
@@ -156,15 +122,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.COMMENTS_NEW, method = RequestMethod.POST)
     public
     @ResponseBody
@@ -172,7 +129,7 @@ public class
     ResponseObject<CommentDto> addPhotoComment(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId, @ApiBodyObject @RequestBody @Valid CommentInfo commentInfo, BindingResult bindingResult) {
         CheckUtils.handleBindingResult(bindingResult);
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), photoId, commentInfo));
+        return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), photoId, commentInfo));
     }
 
     @ApiMethod(
@@ -182,15 +139,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.COMMENTS, method = RequestMethod.POST)
     public
     @ResponseBody
@@ -198,7 +146,7 @@ public class
     @Deprecated
     ResponseObject<CommentDto> addPhotoCommentOld(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId, @ApiBodyObject @RequestBody String comment) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), photoId, comment));
+        return new ResponseObject(commentService.addPhotoComment(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), photoId, comment));
     }
 
     @ApiMethod(
@@ -208,15 +156,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.LIKE, method = RequestMethod.POST)
     public
     @ResponseBody
@@ -224,7 +163,7 @@ public class
     @Deprecated
     ResponseObject<Boolean> oldLikePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestBody Long photoId) {
         sessionValidator.validate(httpHeaders);
-        return new ResponseObject<>(photoService.likePhoto(photoId, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+        return new ResponseObject<>(photoService.likePhoto(photoId, httpHeaders.get(CheckApiHeaders.session_id.name()).get(0)));
     }
 
     @ApiMethod(
@@ -234,15 +173,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.LIKE_NEW, method = RequestMethod.POST)
     public
     @ResponseBody
@@ -250,7 +180,7 @@ public class
     ResponseObject<Boolean> likePhoto(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @RequestBody @Valid LikedPhotoDto photoDto, BindingResult bindingResult) {
         sessionValidator.validate(httpHeaders);
         CheckUtils.handleBindingResult(bindingResult);
-        return new ResponseObject<>(photoService.likePhoto(photoDto, httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0)));
+        return new ResponseObject<>(photoService.likePhoto(photoDto, httpHeaders.get(CheckApiHeaders.session_id.name()).get(0)));
     }
 
     @ApiMethod(
@@ -260,15 +190,6 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.PHOTO, method = RequestMethod.GET)
     public
     @ResponseBody
@@ -284,22 +205,21 @@ public class
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers validation failed"),
-            @ApiError(code = "401", description = "Session is empty, wrong or expired")
-    })
     @RequestMapping(value = Path.Photos.COMPLAIN, method = RequestMethod.POST)
     public
     @ResponseBody
     @ApiResponseObject
     ResponseObject complainPhoto(@RequestHeader HttpHeaders httpHeaders, @ApiParam(name = "photoId", paramType = ApiParamType.PATH) @PathVariable("photoId") long photoId) {
         sessionValidator.validate(httpHeaders);
-        photoService.complainPhoto(httpHeaders.get(CheckApiHeaders.SESSION_ID).get(0), photoId);
+        photoService.complainPhoto(httpHeaders.get(CheckApiHeaders.session_id.name()).get(0), photoId);
         return new ResponseObject<>();
+    }
+
+    @RequestMapping(value = Path.Checks.PHOTOS_TEST, method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseObject testSavePhoto(@RequestParam("photo") MultipartFile file)
+    {
+        photoService.savePhoto("test.jpg",file);
+        return new ResponseObject();
     }
 }

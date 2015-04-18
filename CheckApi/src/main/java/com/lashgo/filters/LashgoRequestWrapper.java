@@ -1,6 +1,7 @@
 package com.lashgo.filters;
 
-import javax.servlet.ReadListener;
+import org.apache.commons.io.IOUtils;
+
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -10,92 +11,54 @@ import java.io.*;
  * Created by Eugene on 06.03.2015.
  */
 public class LashgoRequestWrapper extends HttpServletRequestWrapper {
-    private ByteArrayInputStream bais = null;
-    private ByteArrayOutputStream baos = null;
-    private BufferedServletInputStream bsis = null;
-    private byte[] buffer = null;
 
+    private byte[] buffer = null;
 
     public LashgoRequestWrapper(HttpServletRequest req) throws IOException {
         super(req);
-        // Read InputStream and store its content in a buffer.
-        InputStream is = req.getInputStream();
-        this.baos = new ByteArrayOutputStream();
-        byte buf[] = new byte[1024];
-        int letti;
-        while ((letti = is.read(buf)) > 0) {
-            this.baos.write(buf, 0, letti);
-        }
-        this.buffer = this.baos.toByteArray();
+        InputStream is = super.getInputStream();
+        buffer = IOUtils.toByteArray(is);
     }
 
 
     @Override
     public ServletInputStream getInputStream() {
-        this.bais = new ByteArrayInputStream(this.buffer);
-        this.bsis = new BufferedServletInputStream(this.bais);
-        return this.bsis;
+        return new ServletInputStreamImpl(new ByteArrayInputStream(buffer));
     }
 
+    @Override
+    public BufferedReader getReader() throws IOException {
+        String enc = getCharacterEncoding();
+        if(enc == null) enc = "UTF-8";
+        return new BufferedReader(new InputStreamReader(getInputStream(), enc));
+    }
 
     public String getRequestBody() {
-        StringBuilder bodyBuilder = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(this.getInputStream()));
-        try {
-            String bodyLine;
-            do {
-                bodyLine = reader.readLine();
-                bodyBuilder.append(bodyLine);
-            } while (bodyLine != null);
-        } catch (IOException e) {
-
-        } finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return bodyBuilder.toString();
+        return new String(buffer);
     }
 
-    private static final class BufferedServletInputStream extends ServletInputStream {
+    private class ServletInputStreamImpl extends ServletInputStream {
 
-        private ByteArrayInputStream bais;
+        private InputStream is;
 
-        public BufferedServletInputStream(ByteArrayInputStream bais) {
-            this.bais = bais;
+        public ServletInputStreamImpl(InputStream is) {
+            this.is = is;
         }
 
-        @Override
-        public int available() {
-            return this.bais.available();
+        public int read() throws IOException {
+            return is.read();
         }
 
-        @Override
-        public int read() {
-            return this.bais.read();
+        public boolean markSupported() {
+            return is.markSupported();
         }
 
-        @Override
-        public int read(byte[] buf, int off, int len) {
-            return this.bais.read(buf, off, len);
+        public synchronized void mark(int i) {
+            is.mark(i);
         }
 
-
-        @Override
-        public boolean isFinished() {
-            return false;
-        }
-
-        @Override
-        public boolean isReady() {
-            return false;
-        }
-
-        @Override
-        public void setReadListener(ReadListener readListener) {
-
+        public synchronized void reset() throws IOException {
+            is.reset();
         }
     }
 }

@@ -42,6 +42,10 @@ public class PhotoDto implements Serializable {
 
     }
 
+    public PhotoDto(long id) {
+        this.id = id;
+    }
+
     public PhotoDto(long id, String url, CheckDto check, UserDto user) {
         this.id = id;
         this.url = url;

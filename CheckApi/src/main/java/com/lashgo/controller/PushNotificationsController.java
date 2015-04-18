@@ -53,14 +53,6 @@ public class PushNotificationsController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers or request body validation failed"),
-    })
     @RequestMapping(value = Path.Gcm.REGISTER, method = RequestMethod.POST)
     public
     @ApiResponseObject
@@ -68,7 +60,7 @@ public class PushNotificationsController extends BaseController {
     ResponseObject registerGcmToken(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody GcmRegistrationDto registrationDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
         CheckUtils.handleBindingResult(result);
-        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.session_id.name());
         String session = !CollectionUtils.isEmpty(sessionId) ? sessionId.get(0) : null;
         gcmService.addRegistrationId(session, registrationDto);
         return new ResponseObject();
@@ -81,14 +73,6 @@ public class PushNotificationsController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-            @ApiHeader(name = CheckApiHeaders.SESSION_ID, description = "User's session identifier")
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers or request body validation failed"),
-    })
     @RequestMapping(value = Path.Apns.REGISTER, method = RequestMethod.POST)
     public
     @ApiResponseObject
@@ -96,7 +80,7 @@ public class PushNotificationsController extends BaseController {
     ResponseObject registerApnToken(@RequestHeader HttpHeaders httpHeaders, @ApiBodyObject @Valid @RequestBody ApnTokenDto apnTokenDto, BindingResult result) {
         sessionValidator.validate(httpHeaders);
         CheckUtils.handleBindingResult(result);
-        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.session_id.name());
         String session = !CollectionUtils.isEmpty(sessionId) ? sessionId.get(0) : null;
         apnsService.addToken(session, apnTokenDto);
         return new ResponseObject();
@@ -109,13 +93,6 @@ public class PushNotificationsController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers or request body validation failed")
-    })
     @RequestMapping(value = Path.Gcm.TEST, method = RequestMethod.POST)
     public
     @ApiResponseObject
@@ -133,13 +110,6 @@ public class PushNotificationsController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers or request body validation failed")
-    })
     @RequestMapping(value = Path.Apns.TEST, method = RequestMethod.POST)
     public
     @ApiResponseObject
@@ -157,13 +127,6 @@ public class PushNotificationsController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers or request body validation failed")
-    })
     @RequestMapping(value = Path.Notifications.GCM_SEND, method = RequestMethod.GET)
     public
     @ApiResponseObject
@@ -180,13 +143,6 @@ public class PushNotificationsController extends BaseController {
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE}
     )
-    @ApiHeaders(headers = {
-            @ApiHeader(name = CheckApiHeaders.UUID, description = "Unique identifier of client"),
-            @ApiHeader(name = CheckApiHeaders.CLIENT_TYPE, description = "Type of client (ANDROID, IOS)"),
-    })
-    @ApiErrors(apierrors = {
-            @ApiError(code = "400", description = "Headers or request body validation failed")
-    })
     @RequestMapping(value = Path.Notifications.APNS_SEND, method = RequestMethod.GET)
     public
     @ApiResponseObject

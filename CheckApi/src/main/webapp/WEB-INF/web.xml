@@ -10,7 +10,6 @@
         <servlet-name>check</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
-    <!--
     <filter>
         <filter-name>loggingFilter</filter-name>
         <filter-class>com.lashgo.filters.LoggingFilter</filter-class>
@@ -19,5 +18,4 @@
         <filter-name>loggingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-        -->
 </web-app>

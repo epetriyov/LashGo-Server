@@ -1,5 +1,6 @@
 package com.lashgo.filters;
 
+import com.lashgo.model.CheckApiHeaders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.filter.GenericFilterBean;
@@ -11,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * Created by Eugene on 06.03.2015.
@@ -26,28 +28,29 @@ public class LoggingFilter extends GenericFilterBean {
         requestInfoBuilder.append(httpServletRequest.getRequestURI());
         requestInfoBuilder.append("; Headers: ");
         String headerName;
-        while (httpServletRequest.getHeaderNames().hasMoreElements()) {
-            headerName = httpServletRequest.getHeaderNames().nextElement();
+        Enumeration<String> headerNames = httpServletRequest.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            headerName = headerNames.nextElement();
+            try {
+                CheckApiHeaders.valueOf(headerName);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
             requestInfoBuilder.append(headerName);
             requestInfoBuilder.append(" = ");
             requestInfoBuilder.append(httpServletRequest.getHeader(headerName));
             requestInfoBuilder.append("; ");
         }
-        requestInfoBuilder.append(" Body: ");
-        requestInfoBuilder.append(httpServletRequest.getRequestBody());
+        if (!"multipart/form-data".equals(httpServletRequest.getContentType())) {
+            requestInfoBuilder.append(" Body: ");
+            requestInfoBuilder.append(httpServletRequest.getRequestBody());
+        }
         logger.debug(requestInfoBuilder.toString());
     }
 
     private void logResponse(LashGoResponseWrapper httpServletResponse) {
         StringBuilder requestInfoBuilder = new StringBuilder("RESPONSE INFO: ");
         requestInfoBuilder.append(httpServletResponse.getStatus());
-        requestInfoBuilder.append("; Headers: ");
-        for (String headerName : httpServletResponse.getHeaderNames()) {
-            requestInfoBuilder.append(headerName);
-            requestInfoBuilder.append(" = ");
-            requestInfoBuilder.append(httpServletResponse.getHeader(headerName));
-            requestInfoBuilder.append("; ");
-        }
         requestInfoBuilder.append(" Body: ");
         requestInfoBuilder.append(httpServletResponse.getContent());
         logger.debug(requestInfoBuilder.toString());
@@ -55,12 +58,18 @@ public class LoggingFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        LashgoRequestWrapper requestWrapper = new LashgoRequestWrapper((HttpServletRequest) request);
-        LashGoResponseWrapper responseWrapper = new LashGoResponseWrapper((HttpServletResponse) response);
-        if(!requestWrapper.getRequestURI().equals("/")) {
-            logRequest(requestWrapper);
-            logResponse(responseWrapper);
+        if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
+            LashgoRequestWrapper requestWrapper = new LashgoRequestWrapper((HttpServletRequest) request);
+            if (!"/".equals(requestWrapper.getPathInfo())) {
+                logRequest(requestWrapper);
+            }
+            LashGoResponseWrapper responseWrapper = new LashGoResponseWrapper((HttpServletResponse) response);
+            chain.doFilter(requestWrapper, responseWrapper);
+            if (!"/".equals(requestWrapper.getPathInfo())) {
+                logResponse(responseWrapper);
+            }
+        } else {
+            chain.doFilter(request, response);
         }
-        chain.doFilter(requestWrapper, responseWrapper);
     }
 }

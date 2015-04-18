@@ -81,7 +81,7 @@ public class GcmServiceImpl implements GcmService {
             headers.add("Content-Type", "application/json");
             headers.add("Authorization", "key=" + CheckConstants.GCM_PROJECT_API);
             HttpEntity entity = new HttpEntity(jsonRequest, headers);
-            logger.debug("SEND GCM registrationIds {}, payload {}", StringUtils.collectionToCommaDelimitedString(registrationIds), payload);
+            logger.debug("SEND GCM payload {}", payload);
             try {
                 restTemplate.exchange(GCM_SEND_ENDPOINT, HttpMethod.POST, entity, MulticastResult.class);
             } catch (RestClientException e) {

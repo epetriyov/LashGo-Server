@@ -18,7 +18,7 @@ import java.util.List;
 public class SessionValidator {
 
     public void validate(HttpHeaders httpHeaders) {
-        List<String> sessionId = httpHeaders.get(CheckApiHeaders.SESSION_ID);
+        List<String> sessionId = httpHeaders.get(CheckApiHeaders.session_id.name());
         if (CollectionUtils.isEmpty(sessionId)) {
             throw new UnautharizedException(ErrorCodes.SESSION_IS_EMPTY);
         }

@@ -9,6 +9,7 @@ import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.*;
 import com.lashgo.repository.*;
+import com.lashgo.utils.CheckUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by Eugene on 28.04.2014.
@@ -55,37 +56,40 @@ public class PhotoServiceImpl implements PhotoService {
 
     private final Logger logger = LoggerFactory.getLogger("FILE");
 
-    private String buildNewPhotoName(int checkId, int userId) {
-        StringBuilder photoNameBuilder = new StringBuilder("check_");
-        photoNameBuilder.append(checkId);
-        photoNameBuilder.append("_user_");
-        photoNameBuilder.append(userId);
-        photoNameBuilder.append(".jpg");
-        return photoNameBuilder.toString();
-    }
-
-    @Transactional
-    @Override
-    public PhotoPath savePhoto(String sessionId, int checkId, MultipartFile photo) {
-        Users userDto = userService.getUserBySession(sessionId);
-        if (photoDao.isPhotoExists(userDto.getId(), checkId)) {
-            logger.error("Пользователь {} попытался отправить 2-е фото для задания {}", userDto.getId(), checkId);
-            throw new ValidationException(ErrorCodes.PHOTO_ALREADY_EXISTS);
-        }
-        if (!checkService.isCheckActive(checkId)) {
-            logger.error("Пользователь {} попытался отправить фото после завершения задания {}", userDto.getId(), checkId);
-            throw new ValidationException(ErrorCodes.CHECK_IS_NOT_ACTIVE);
-        }
-        if (!photo.isEmpty()) {
-            BufferedImage src = null;
+    public void savePhoto(String photoName, MultipartFile photo) {
+        if (photo != null && !photo.isEmpty()) {
+            InputStream inputStream;
             try {
-                src = ImageIO.read(new ByteArrayInputStream(photo.getBytes()));
+                inputStream = photo.getInputStream();
+                savePhoto(photoName, inputStream);
             } catch (IOException e) {
                 logger.error(e.getMessage());
                 throw new PhotoReadException();
             }
+
+        } else {
+            throw new ValidationException(ErrorCodes.EMPTY_PHOTO);
+        }
+    }
+
+    @Override
+    public void savePhoto(String photoName, InputStream inputStream) {
+        if (inputStream != null) {
+            BufferedImage src;
+            try {
+                src = ImageIO.read(inputStream);
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+                throw new PhotoReadException();
+            } finally {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage());
+                    throw new PhotoReadException();
+                }
+            }
             StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
-            String photoName = buildNewPhotoName(checkId, userDto.getId());
             String photoPath = photoDestinationBuilder.append(photoName).toString();
             File destination = new File(photoPath);
             try {
@@ -94,12 +98,27 @@ public class PhotoServiceImpl implements PhotoService {
                 logger.error(e.getMessage());
                 throw new PhotoWriteException();
             }
-            photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
-            eventDao.addCheckParticipateEvent(userDto.getId(), checkId);
-            return new PhotoPath(photoName);
         } else {
-            throw new ValidationException(ErrorCodes.EMPTY_PHOTO);
+            logger.error("Image { } is empty", photoName);
+            throw new PhotoReadException();
         }
+    }
+
+    @Transactional
+    @Override
+    public PhotoPath savePhoto(String sessionId, int checkId, MultipartFile photo) {
+        Users userDto = userService.getUserBySession(sessionId);
+        if (photoDao.isPhotoExists(userDto.getId(), checkId)) {
+            throw new ValidationException(ErrorCodes.PHOTO_ALREADY_EXISTS);
+        }
+        if (!checkService.isCheckActive(checkId)) {
+            throw new ValidationException(ErrorCodes.CHECK_IS_NOT_ACTIVE);
+        }
+        String photoName = CheckUtils.buildNewPhotoName(checkId, userDto.getId());
+        savePhoto(photoName, photo);
+        photoDao.savePhoto(new Photos(photoName, userDto.getId(), checkId));
+        eventDao.addCheckParticipateEvent(userDto.getId(), checkId);
+        return new PhotoPath(photoName);
     }
 
     @Transactional
@@ -107,7 +126,6 @@ public class PhotoServiceImpl implements PhotoService {
     public void ratePhoto(String sessionId, VoteAction voteAction) {
         Users users = userService.getUserBySession(sessionId);
         if (!checkService.isVoteGoing(voteAction.getCheckId())) {
-            logger.error("Пользователь {} проголосовать не во время голосования", users.getId());
             throw new ValidationException(ErrorCodes.CHECK_IS_NOT_ACTIVE);
         }
         userVotesDao.addUserVote(users.getId(), voteAction.getVotedPhotoId());

@@ -3,8 +3,6 @@ package com.lashgo.service;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Sessions;
 import com.lashgo.domain.Users;
-import com.lashgo.error.PhotoReadException;
-import com.lashgo.error.PhotoWriteException;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
 import com.lashgo.model.ErrorCodes;
@@ -30,11 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,6 +45,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private EventDao eventDao;
+
+    @Autowired
+    private PhotoService photoService;
 
     @Autowired
     private UserDao userDao;
@@ -95,7 +92,6 @@ public class UserServiceImpl implements UserService {
     public SessionInfo login(String interfaceTypeCode, LoginInfo loginInfo) throws ValidationException, UnautharizedException {
         SessionInfo sessionInfo = innerLogin(interfaceTypeCode, loginInfo);
         if (sessionInfo == null) {
-            logger.error("Пользователь {} с паролем {} не существует", loginInfo.getLogin(), loginInfo.getPasswordHash());
             throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
         }
         return sessionInfo;
@@ -129,7 +125,6 @@ public class UserServiceImpl implements UserService {
             userDao.createUser(registerInfo);
             return buildRegisterResponse(interfaceTypeCode, registerInfo);
         } else {
-            logger.error("Пользователь {} уже существует", registerInfo.getLogin());
             throw new ValidationException(ErrorCodes.USER_ALREADY_EXISTS);
         }
     }
@@ -146,11 +141,10 @@ public class UserServiceImpl implements UserService {
                 mailMessage.setText(String.format("New password for user %s: %s", email, newPassword));
                 mailSender.send(mailMessage);
             } else {
-                logger.error("Пользователь с email {} не существует", email);
                 throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
             }
         } else {
-            logger.error("Отправлен пустой email");
+            logger.error("Empty email was sent");
             throw new ValidationException(ErrorCodes.EMPTY_EMAIL);
         }
     }
@@ -200,29 +194,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void saveAvatar(String sessionId, MultipartFile avatar) {
         Users users = getUserBySession(sessionId);
-        if (!avatar.isEmpty()) {
-            BufferedImage src = null;
-            try {
-                src = ImageIO.read(new ByteArrayInputStream(avatar.getBytes()));
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-                throw new PhotoReadException();
-            }
-            StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
-            String photoName = buildNewPhotoName(users.getId());
-            String photoPath = photoDestinationBuilder.append(photoName).toString();
-            File destination = new File(photoPath);
-            try {
-                ImageIO.write(src, "jpg", destination);
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-                throw new PhotoWriteException();
-            }
-            userDao.updateAvatar(photoName, users.getId());
-            File oldAvatar = new File(CheckConstants.PHOTOS_FOLDER + users.getAvatar());
-            if (oldAvatar.exists()) {
-                oldAvatar.delete();
-            }
+        String photoName = buildNewPhotoName(users.getId());
+        photoService.savePhoto(photoName, avatar);
+        userDao.updateAvatar(photoName, users.getId());
+        File oldAvatar = new File(CheckConstants.PHOTOS_FOLDER + users.getAvatar());
+        if (oldAvatar.exists()) {
+            oldAvatar.delete();
         }
     }
 
@@ -231,15 +208,12 @@ public class UserServiceImpl implements UserService {
     public void updateProfile(String sessionId, UserDto userDto) {
         Users user = getUserBySession(sessionId);
         if (user.getId() != userDto.getId()) {
-            logger.error("Пользователь из профиля {} не совпадает с пользователем из сессии {}", userDto.getId(), user.getId());
             throw new ValidationException(ErrorCodes.USERS_DOESNT_MATCHES);
         }
         if (!StringUtils.isEmpty(userDto.getLogin()) && userDao.isUserExists(user.getId(), userDto.getLogin())) {
-            logger.error("Пользователь с логином {} уже существует", userDto.getLogin());
             throw new ValidationException(ErrorCodes.USER_WITH_LOGIN_ALREADY_EXISTS);
         }
         if (!StringUtils.isEmpty(userDto.getEmail()) && userDao.isUserExists(user.getId(), userDto.getEmail())) {
-            logger.error("Пользователь с email {} уже существует", userDto.getEmail());
             throw new ValidationException(ErrorCodes.USER_WITH_EMAIL_ALREADY_EXISTS);
         }
         userDao.updateProfile(user.getId(), userDto);
@@ -371,7 +345,6 @@ public class UserServiceImpl implements UserService {
                     }
                     break;
                 default:
-                    logger.error("Социальной сети {} не существует", socialInfo.getSocialName());
                     throw new ValidationException(ErrorCodes.UNSUPPORTED_SOCIAL);
             }
         } catch (ApiException e) {
@@ -406,7 +379,6 @@ public class UserServiceImpl implements UserService {
             registerResponse.setSessionIInfo(sessionInfo);
             return registerResponse;
         } else {
-            logger.error("Пользователь {} с паролем {} не существует", loginInfo.getLogin(), loginInfo.getPasswordHash());
             throw new ValidationException(ErrorCodes.USER_NOT_EXISTS);
         }
     }

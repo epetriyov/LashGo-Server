@@ -3,6 +3,8 @@ package com.lashgo.service;
 import com.lashgo.model.dto.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
+
 /**
  * Created by Eugene on 28.04.2014.
  */
@@ -22,4 +24,8 @@ public interface PhotoService {
     void complainPhoto(String sessionId, long photoId);
 
     Boolean likePhoto(LikedPhotoDto photoDto, String sessionId);
+
+    void savePhoto(String photoName, MultipartFile photo);
+
+    void savePhoto(String photoName, InputStream photo);
 }

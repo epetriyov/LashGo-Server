@@ -154,8 +154,8 @@ public class CheckServiceImpl implements CheckService {
         if (voteCheckIds != null) {
             for (Integer id : voteCheckIds) {
                 checkWinnersDao.addCheckWinner(id);
-                logger.debug("Winner added");
                 int userId = checkWinnersDao.getCheckWinner(id);
+                logger.debug("Winner added {}", userId);
                 if (userId > 0) {
                     eventDao.addWinEvent(id, userId);
                 }

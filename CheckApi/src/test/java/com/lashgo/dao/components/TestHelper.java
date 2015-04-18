@@ -3,6 +3,7 @@ package com.lashgo.dao.components;
 import com.lashgo.domain.Photos;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.LoginInfo;
+import com.lashgo.model.dto.PhotoDto;
 import com.lashgo.repository.ApnDao;
 import com.lashgo.repository.CheckDao;
 import com.lashgo.repository.PhotoDao;
@@ -90,5 +91,22 @@ public class TestHelper {
         Number checkId = checkDao.addNewCheck(checkDto);
         assertNotNull(checkDao.getCheckById(checkId.intValue()));
         return checkId;
+    }
+
+    public void assertPhotoDto(PhotoDto actualPhotoDto, PhotoDto expectedPhotoDto, boolean check, boolean user)
+    {
+        assertNotNull(actualPhotoDto);
+        assertEquals(actualPhotoDto.getId(), expectedPhotoDto.getId());
+        assertEquals(actualPhotoDto.getUrl(), expectedPhotoDto.getUrl());
+        if(user) {
+            assertNotNull(actualPhotoDto.getUser());
+            assertEquals(actualPhotoDto.getUser().getId(), expectedPhotoDto.getUser().getId());
+        }
+        assertEquals(actualPhotoDto.getLikesCount(),expectedPhotoDto.getLikesCount());
+        assertEquals(actualPhotoDto.getCommentsCount(), expectedPhotoDto.getCommentsCount());
+        if(check) {
+            assertNotNull(actualPhotoDto.getCheck());
+            assertEquals(actualPhotoDto.getCheck().getId(), expectedPhotoDto.getCheck().getId());
+        }
     }
 }
