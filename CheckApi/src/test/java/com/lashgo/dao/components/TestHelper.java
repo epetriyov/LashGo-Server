@@ -1,6 +1,7 @@
 package com.lashgo.dao.components;
 
 import com.lashgo.domain.Photos;
+import com.lashgo.model.CheckType;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.model.dto.PhotoDto;
@@ -37,6 +38,12 @@ public class TestHelper {
         addTestUser(loginInfo);
         apnDao.addApnsToken(token, userDao.findUser(loginInfo).getId());
         assertTrue(apnDao.isApnsTokenExists(token));
+    }
+
+    public Number addTestCheck(CheckType checkType) {
+        Number checkId = checkDao.addNewCheck(new CheckDto("test", "set", Calendar.getInstance().getTime(), 48, 10, checkType));
+        assertNotNull(checkDao.getCheckById(checkId.intValue()));
+        return checkId;
     }
 
     public Number addTestCheck() {
@@ -93,18 +100,17 @@ public class TestHelper {
         return checkId;
     }
 
-    public void assertPhotoDto(PhotoDto actualPhotoDto, PhotoDto expectedPhotoDto, boolean check, boolean user)
-    {
+    public void assertPhotoDto(PhotoDto actualPhotoDto, PhotoDto expectedPhotoDto, boolean check, boolean user) {
         assertNotNull(actualPhotoDto);
         assertEquals(actualPhotoDto.getId(), expectedPhotoDto.getId());
         assertEquals(actualPhotoDto.getUrl(), expectedPhotoDto.getUrl());
-        if(user) {
+        if (user) {
             assertNotNull(actualPhotoDto.getUser());
             assertEquals(actualPhotoDto.getUser().getId(), expectedPhotoDto.getUser().getId());
         }
-        assertEquals(actualPhotoDto.getLikesCount(),expectedPhotoDto.getLikesCount());
+        assertEquals(actualPhotoDto.getLikesCount(), expectedPhotoDto.getLikesCount());
         assertEquals(actualPhotoDto.getCommentsCount(), expectedPhotoDto.getCommentsCount());
-        if(check) {
+        if (check) {
             assertNotNull(actualPhotoDto.getCheck());
             assertEquals(actualPhotoDto.getCheck().getId(), expectedPhotoDto.getCheck().getId());
         }

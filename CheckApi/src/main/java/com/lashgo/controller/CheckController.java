@@ -1,6 +1,8 @@
 package com.lashgo.controller;
 
 import com.lashgo.model.CheckApiHeaders;
+import com.lashgo.model.CheckType;
+import com.lashgo.model.CheckTypesConstants;
 import com.lashgo.model.Path;
 import com.lashgo.model.dto.*;
 import com.lashgo.service.CheckService;
@@ -53,9 +55,11 @@ public class CheckController extends BaseController {
     public
     @ApiResponseObject
     @ResponseBody
-    ResponseList<CheckDto> getChecks(@RequestParam(value = "search_text", required = false, defaultValue = "") String searchText, @RequestHeader HttpHeaders httpHeaders) {
+    ResponseList<CheckDto> getChecks(@RequestParam(value = "search_text", required = false, defaultValue = "") String searchText,
+                                     @RequestParam(value = "check_type", required = false, defaultValue = CheckTypesConstants.SELFIE) String checkType,
+                                     @RequestHeader HttpHeaders httpHeaders) {
         List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.session_id.name());
-        return new ResponseList<>(checkService.getChecks(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, searchText));
+        return new ResponseList<>(checkService.getChecks(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, searchText,checkType));
     }
 
     @ApiMethod(

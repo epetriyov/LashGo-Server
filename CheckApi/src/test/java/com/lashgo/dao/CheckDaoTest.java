@@ -2,6 +2,7 @@ package com.lashgo.dao;
 
 import com.lashgo.dao.components.TestHelper;
 import com.lashgo.domain.Check;
+import com.lashgo.model.CheckType;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.LoginInfo;
@@ -166,7 +167,7 @@ public class CheckDaoTest extends AbstractTransactionalTestNGSpringContextTests 
                 checkWinnersDao.addCheckWinner(checkId.intValue());
             }
         }
-        assertEquals(checkDao.getAllStartedChecks(userId == null ? -1 : userId.intValue(), queryText).size(), expectedCheckCount);
+        assertEquals(checkDao.getAllStartedChecks(userId == null ? -1 : userId.intValue(), queryText, null).size(), expectedCheckCount);
 
     }
 
@@ -179,7 +180,7 @@ public class CheckDaoTest extends AbstractTransactionalTestNGSpringContextTests 
         Number checkId = testHelper.addTestCheck(expectedCheckDto);
         Number photoId = testHelper.addTestPhoto(expectedPhotoUrl, checkId, userId);
         checkWinnersDao.addCheckWinner(checkId.intValue());
-        List<CheckDto> checkDtoList = checkDao.getAllStartedChecks(userId.intValue(), null);
+        List<CheckDto> checkDtoList = checkDao.getAllStartedChecks(userId.intValue(), null, null);
         assertNotNull(checkDtoList);
         assertEquals(checkDtoList.size(), 1);
         CheckDto actualCheckDto = checkDtoList.iterator().next();
@@ -206,9 +207,15 @@ public class CheckDaoTest extends AbstractTransactionalTestNGSpringContextTests 
     }
 
     @Rollback
-    public void testGetActiveChecksCount() {
-        testHelper.addTestCheck();
-        assertEquals(checkDao.getActiveChecksCount(), 1);
+    public void testGetActiveSelfieCount() {
+        testHelper.addTestCheck(CheckType.SELFIE);
+        assertEquals(checkDao.getActiveChecksCount(CheckType.SELFIE), 1);
+    }
+
+    @Rollback
+    public void testGetActiveActionsCount() {
+        testHelper.addTestCheck(CheckType.ACTION);
+        assertEquals(checkDao.getActiveChecksCount(CheckType.ACTION), 1);
     }
 
     @Rollback

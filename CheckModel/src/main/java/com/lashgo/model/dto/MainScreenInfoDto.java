@@ -25,6 +25,8 @@ public class MainScreenInfoDto implements Serializable {
     private int newsCount;
     @ApiObjectField(description = "subscribesCount")
     private int subscribesCount;
+    @ApiObjectField(description = "actionsCount")
+    private int actionCount;
 
     public MainScreenInfoDto(String userName, String userAvatar, int tasksCount, int newsCount, int subscribesCount) {
         this.userName = userName;
@@ -35,6 +37,14 @@ public class MainScreenInfoDto implements Serializable {
     }
 
     public MainScreenInfoDto() {
+    }
+
+    public int getActionCount() {
+        return actionCount;
+    }
+
+    public void setActionCount(int actionCount) {
+        this.actionCount = actionCount;
     }
 
     public String getUserName() {

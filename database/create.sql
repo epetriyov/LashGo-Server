@@ -55,7 +55,8 @@ CREATE TABLE checks (
 	start_date      timestamp with time zone  NOT NULL DEFAULT clock_timestamp(),
 	duration        int     		              NOT NULL CHECK (duration > 0 AND duration < 12) DEFAULT 3,
 	task_photo      varchar(50),	
-	vote_duration   int 		                  NOT NULL CHECK (vote_duration > 0 AND vote_duration < 12) DEFAULT 3
+	vote_duration   int 		                  NOT NULL CHECK (vote_duration > 0 AND vote_duration < 12) DEFAULT 3,
+  check_type      varchar(50)               DEFAULT 'SELFIE' REFERENCES check_type (code) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE check_winners (
@@ -167,8 +168,15 @@ CREATE TABLE user_complains (
 CREATE UNIQUE INDEX user_complains_idx ON user_complains (photo_id, user_id);
 
 CREATE TABLE apns_registrations (
-  id              serial            		NOT NULL PRIMARY KEY,
+  id              serial            		    NOT NULL PRIMARY KEY,
   register_date   timestamp with time zone  NOT NULL CHECK (register_date <= clock_timestamp()) DEFAULT clock_timestamp(),
   token           varchar(200)              NOT NULL UNIQUE CHECK (token <> ''),
   user_id         int                       REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE check_type (
+  code            varchar(50)               NOT NULL PRIMARY KEY,
+  name            varchar(150)              NOT NULL CHECK (name <> '')
+);
+
+alter table checks add column   check_type      varchar(50)  DEFAULT 'SELFIE'            REFERENCES check_type (code) ON DELETE RESTRICT ON UPDATE CASCADE;

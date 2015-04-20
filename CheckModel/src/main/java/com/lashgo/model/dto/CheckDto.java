@@ -1,6 +1,7 @@
 package com.lashgo.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.lashgo.model.CheckType;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
@@ -19,7 +20,7 @@ public class CheckDto implements Serializable {
     @Min(1)
     @ApiObjectField(description = "identifier")
     private int id;
-
+    @Size(min = 1)
     @ApiObjectField(description = "name")
     private String name;
     @Size(min = 1)
@@ -45,9 +46,16 @@ public class CheckDto implements Serializable {
     @Min(0)
     @ApiObjectField(description = "count of players")
     private int playersCount;
+    @Size(min = 1)
+    private String checkType;
 
     public CheckDto() {
 
+    }
+
+    public CheckDto(String name, String description, Date startDate, int duration, int voteDuration, CheckType checkType) {
+        this(name, description, startDate, duration, voteDuration);
+        this.checkType = checkType.name();
     }
 
     public CheckDto(String name, String description, Date startDate, int duration, int voteDuration) {
@@ -71,6 +79,14 @@ public class CheckDto implements Serializable {
 
     public CheckDto(int id) {
         this.id = id;
+    }
+
+    public String getCheckType() {
+        return checkType;
+    }
+
+    public void setCheckType(String checkType) {
+        this.checkType = checkType;
     }
 
     public PhotoDto getUserPhotoDto() {
@@ -153,11 +169,11 @@ public class CheckDto implements Serializable {
         this.duration = duration;
     }
 
-    public void setPlayersCount(int playersCount) {
-        this.playersCount = playersCount;
-    }
-
     public int getPlayersCount() {
         return playersCount;
+    }
+
+    public void setPlayersCount(int playersCount) {
+        this.playersCount = playersCount;
     }
 }

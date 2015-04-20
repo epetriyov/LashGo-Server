@@ -41,7 +41,7 @@ public class LoggingFilter extends GenericFilterBean {
             requestInfoBuilder.append(httpServletRequest.getHeader(headerName));
             requestInfoBuilder.append("; ");
         }
-        if (!"multipart/form-data".equals(httpServletRequest.getContentType())) {
+        if (httpServletRequest.getContentType() == null || (!httpServletRequest.getContentType().contains("multipart/form-data"))) {
             requestInfoBuilder.append(" Body: ");
             requestInfoBuilder.append(httpServletRequest.getRequestBody());
         }

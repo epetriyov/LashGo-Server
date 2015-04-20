@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public interface CheckService {
-    List<CheckDto> getChecks(String sessionId, String searchText);
+    List<CheckDto> getChecks(String sessionId, String searchText, String checkType);
 
     List<PhotoDto> getPhotos(int checkId);
 

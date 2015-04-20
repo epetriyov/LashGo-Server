@@ -5,6 +5,7 @@ import com.lashgo.mappers.CheckCountersMapper;
 import com.lashgo.mappers.CheckDtoMapper;
 import com.lashgo.mappers.CheckMapper;
 import com.lashgo.mappers.GcmCheckMapper;
+import com.lashgo.model.CheckType;
 import com.lashgo.model.dto.CheckCounters;
 import com.lashgo.model.dto.CheckDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +31,16 @@ public class CheckDaoImpl implements CheckDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<CheckDto> getAllStartedChecks(int userId, String searchText) {
-        Object[] params = StringUtils.isEmpty(searchText) ? new Object[]{userId} : new Object[]{userId, "%" + searchText.toLowerCase() + "%", "%" + searchText.toLowerCase() + "%"};
+    public List<CheckDto> getAllStartedChecks(int userId, String searchText, String checkType) {
+        List<Object> params = new ArrayList<>();
+        params.add(userId);
+        if (!StringUtils.isEmpty(searchText)) {
+            params.add("%" + searchText.toLowerCase() + "%");
+            params.add("%" + searchText.toLowerCase() + "%");
+        }
+        if (!StringUtils.isEmpty(checkType)) {
+            params.add(checkType);
+        }
         String sql =
                 "SELECT " +
                         "                         c.id as check_id, c.name as check_name," +
@@ -58,16 +68,24 @@ public class CheckDaoImpl implements CheckDao {
                         "                      ON (ph.user_id = u.id AND ph.check_id = c.id) " +
                         "                   WHERE c.start_date <= clock_timestamp()" +
                         (StringUtils.isEmpty(searchText) ? "" : " AND (LOWER(c.name) LIKE ? OR LOWER(c.description) LIKE ?)") +
+                        (StringUtils.isEmpty(checkType) ? "" : " AND (c.check_type = ?)") +
                         "                   GROUP BY c.id,ph.id,ph.picture,w.winner_id,u.id, p2.picture " +
                         "                   ORDER BY c.start_date DESC";
-        return jdbcTemplate.query(sql, params, new CheckMapper());
+        return jdbcTemplate.query(sql, params.toArray(new Object[params.size()]), new CheckMapper());
     }
 
     @Override
-    public int getActiveChecksCount() {
+    public int getActiveChecksCount(CheckType checkType) {
+        List<String> params = new ArrayList<>();
+        if (checkType != null) {
+            params.add(checkType.name());
+        }
         try {
             return jdbcTemplate.queryForObject("SELECT count(c.id) FROM checks c WHERE c.start_date <= clock_timestamp() " +
-                    "                              AND c.start_date + c.duration * INTERVAL '1 hour' > clock_timestamp()", Integer.class);
+                    "                              AND c.start_date + c.duration * INTERVAL '1 hour' > clock_timestamp()" +
+                    (checkType != null ?
+                            "                              AND c.check_type = ?"
+                            : ""), Integer.class, params.toArray(new String[params.size()]));
         } catch (EmptyResultDataAccessException e) {
             return 0;
         }
@@ -178,7 +196,8 @@ public class CheckDaoImpl implements CheckDao {
         params.put("duration", checkDto.getDuration());
         params.put("task_photo", checkDto.getTaskPhotoUrl());
         params.put("vote_duration", checkDto.getVoteDuration());
-        return simpleJdbcInsert.withTableName("checks").usingGeneratedKeyColumns("id").usingColumns("name", "description", "start_date", "duration", "vote_duration", "task_photo").executeAndReturnKey(params);
+        params.put("check_type", checkDto.getCheckType());
+        return simpleJdbcInsert.withTableName("checks").usingGeneratedKeyColumns("id").usingColumns("name", "description", "start_date", "duration", "vote_duration", "task_photo", "check_type").executeAndReturnKey(params);
     }
 
     @Override

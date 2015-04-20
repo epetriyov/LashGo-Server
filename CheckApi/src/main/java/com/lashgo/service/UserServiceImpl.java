@@ -5,6 +5,7 @@ import com.lashgo.domain.Sessions;
 import com.lashgo.domain.Users;
 import com.lashgo.error.UnautharizedException;
 import com.lashgo.error.ValidationException;
+import com.lashgo.model.CheckType;
 import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.*;
 import com.lashgo.repository.*;
@@ -391,7 +392,8 @@ public class UserServiceImpl implements UserService {
         mainScreenInfoDto.setUserName(userDto.getFio() != null ? userDto.getFio() : userDto.getLogin());
         mainScreenInfoDto.setNewsCount(newsDao.getNewerNews(userLastViews.getNewsLastView()));
         mainScreenInfoDto.setSubscribesCount(eventDao.getEventsCountByUser(userDto.getId(), userLastViews.getSubscribesLastView()));
-        mainScreenInfoDto.setTasksCount(checkDao.getActiveChecksCount());
+        mainScreenInfoDto.setTasksCount(checkDao.getActiveChecksCount(CheckType.SELFIE));
+        mainScreenInfoDto.setActionCount(checkDao.getActiveChecksCount(CheckType.ACTION));
         return mainScreenInfoDto;
     }
 

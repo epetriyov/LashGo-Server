@@ -57,12 +57,12 @@ public class CheckServiceImpl implements CheckService {
     private MessageSource messageSource;
 
     @Override
-    public List<CheckDto> getChecks(String sessionId, String searchText) {
+    public List<CheckDto> getChecks(String sessionId, String searchText, String checkType) {
         int userId = -1;
         if (sessionId != null) {
             userId = userService.getUserBySession(sessionId).getId();
         }
-        return checkDao.getAllStartedChecks(userId, searchText);
+        return checkDao.getAllStartedChecks(userId, searchText,checkType);
     }
 
     @Override
