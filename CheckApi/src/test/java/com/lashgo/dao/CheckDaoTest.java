@@ -190,7 +190,7 @@ public class CheckDaoTest extends AbstractTransactionalTestNGSpringContextTests 
     @Rollback
     public void testAddNewCheck() {
         Date startDate = Calendar.getInstance().getTime();
-        Number checkId = checkDao.addNewCheck(new CheckDto("test", "set", startDate, 48, 10, "task"));
+        Number checkId = checkDao.addNewCheck(new CheckDto("test", "set", startDate, 48, 10, "task",CheckType.SELFIE.name()));
         CheckDto checkDto = checkDao.getCheckById(checkId.intValue());
         assertEquals(checkDto.getName(), "test");
         assertEquals(checkDto.getDescription(), "set");

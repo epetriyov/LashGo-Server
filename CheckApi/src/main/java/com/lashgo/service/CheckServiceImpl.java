@@ -3,6 +3,7 @@ package com.lashgo.service;
 import com.lashgo.CheckConstants;
 import com.lashgo.domain.Users;
 import com.lashgo.error.ValidationException;
+import com.lashgo.model.CheckType;
 import com.lashgo.model.ErrorCodes;
 import com.lashgo.model.dto.*;
 import com.lashgo.repository.*;
@@ -144,7 +145,7 @@ public class CheckServiceImpl implements CheckService {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(check.getStartDate());
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-        checkDao.addNewCheck(new CheckDto(messageSource.getMessage("check.name", null, Locale.US), messageSource.getMessage("check.description", null, Locale.US), calendar.getTime(), CheckConstants.DURATION, CheckConstants.VOTE_DURATTON, photo.getUrl()));
+        checkDao.addNewCheck(new CheckDto(messageSource.getMessage("check.name", null, Locale.US), messageSource.getMessage("check.description", null, Locale.US), calendar.getTime(), CheckConstants.DURATION, CheckConstants.VOTE_DURATTON, photo.getUrl(), CheckType.SELFIE.name()));
     }
 
     @Scheduled(cron = "1 * * * * *")

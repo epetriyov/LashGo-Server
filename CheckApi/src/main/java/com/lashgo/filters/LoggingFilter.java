@@ -52,7 +52,9 @@ public class LoggingFilter extends GenericFilterBean {
         StringBuilder requestInfoBuilder = new StringBuilder("RESPONSE INFO: ");
         requestInfoBuilder.append(httpServletResponse.getStatus());
         requestInfoBuilder.append(" Body: ");
-        requestInfoBuilder.append(httpServletResponse.getContent());
+        String response = httpServletResponse.getContent();
+        String responseBody = response != null && response.length() > 150 ? response.substring(0, 150) : response;
+        requestInfoBuilder.append(responseBody);
         logger.debug(requestInfoBuilder.toString());
     }
 

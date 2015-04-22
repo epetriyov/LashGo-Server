@@ -72,9 +72,10 @@ public class CheckDto implements Serializable {
         this.taskPhotoUrl = taskPhotoUrl;
     }
 
-    public CheckDto(String name, String description, Date startDate, int duration, int voteDuratton, String taskPhoto) {
+    public CheckDto(String name, String description, Date startDate, int duration, int voteDuratton, String taskPhoto, String checkType) {
         this(name, description, startDate, duration, voteDuratton);
         this.taskPhotoUrl = taskPhoto;
+        this.checkType = checkType;
     }
 
     public CheckDto(int id) {
