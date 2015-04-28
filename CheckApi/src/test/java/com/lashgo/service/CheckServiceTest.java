@@ -2,6 +2,7 @@ package com.lashgo.service;
 
 import com.lashgo.dao.components.TestHelper;
 import com.lashgo.mappers.CheckDtoMapper;
+import com.lashgo.model.CheckType;
 import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.repository.CheckWinnersDao;
@@ -67,12 +68,14 @@ public class CheckServiceTest extends AbstractTransactionalTestNGSpringContextTe
         fourthCalendar.add(Calendar.SECOND, -1);
         fourthCalendar.add(Calendar.HOUR, -3);
         return new Object[][]{
-                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", firstCalendar.getTime(), 2, 1)}, new String[]{"url"}, new boolean[]{false}},
-                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", secondCalendar.getTime(), 2, 1)}, new String[]{"url"}, new boolean[]{false}},
-                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", thirdCalendar.getTime(), 2, 1)}, new String[]{"url"}, new boolean[]{false}},
-                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1)}, new String[]{"url"}, new boolean[]{true}},
-                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1), new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", thirdCalendar.getTime(), 2, 1)}, new String[]{"url1", "url2"}, new boolean[]{true, false}},
-                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1), new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1)}, new String[]{"url1", "url2"}, new boolean[]{true, true}},
+//                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", firstCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url"}, new boolean[]{false}},
+//                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", secondCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url"}, new boolean[]{false}},
+//                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", thirdCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url"}, new boolean[]{false}},
+                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url"}, new boolean[]{true}},
+                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name()), new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", thirdCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url1", "url2"}, new boolean[]{true,false}},
+                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name()), new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url1", "url2"}, new boolean[]{true, true}}
+//                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name()), new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", thirdCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url1", "url2"}, new boolean[]{true, false}},
+//                {new CheckDto[]{new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name()), new CheckDto(messageSource.getMessage("check.name", null, Locale.US), "set", fourthCalendar.getTime(), 2, 1, "test",CheckType.SELFIE.name())}, new String[]{"url1", "url2"}, new boolean[]{true, true}},
         };
     }
 

@@ -47,7 +47,7 @@ public class TestHelper {
     }
 
     public Number addTestCheck() {
-        Number checkId = checkDao.addNewCheck(new CheckDto("test", "set", Calendar.getInstance().getTime(), 48, 10));
+        Number checkId = checkDao.addNewCheck(new CheckDto("test", "set", Calendar.getInstance().getTime(), 48, 10, "test",CheckType.SELFIE.name()));
         assertNotNull(checkDao.getCheckById(checkId.intValue()));
         return checkId;
     }
