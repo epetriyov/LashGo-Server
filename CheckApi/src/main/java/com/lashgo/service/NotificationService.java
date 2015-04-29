@@ -24,18 +24,24 @@ public class NotificationService {
     private CheckDao checkDao;
 
     @Scheduled(cron = "1 * * * * *")
-    public void sendNotifications() {
+    public void sendGcmNotifications() {
         Check currentCheck = checkDao.getCurrentCheck();
         Check voteCheck = checkDao.getVoteCheck();
         gcmService.sendGcm(currentCheck, voteCheck);
+    }
+
+    @Scheduled(cron = "1 * * * * *")
+    public void sendApnsNotifications() {
+        Check currentCheck = checkDao.getCurrentCheck();
+        Check voteCheck = checkDao.getVoteCheck();
         apnsService.sendApn(currentCheck, voteCheck);
     }
 
-    public void sendApn() {
+    public void sendGcm() {
 
     }
 
-    public void sendGcm() {
+    public void sendApn() {
 
     }
 }

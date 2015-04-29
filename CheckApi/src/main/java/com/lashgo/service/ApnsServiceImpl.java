@@ -54,20 +54,20 @@ public class ApnsServiceImpl implements ApnsService {
         }
     }
 
+    @Override
     public void sendApn(Check currentCheck, Check voteCheck) {
-        sendApns(currentCheck, GcmEventType.CHECK_STARTED);
-        sendApns(voteCheck, GcmEventType.VOTE_STARTED);
+        List<String> apnTokens = apnDao.getAllApnsTokens();
+        sendApns(currentCheck, GcmEventType.CHECK_STARTED,apnTokens);
+        sendApns(voteCheck, GcmEventType.VOTE_STARTED,apnTokens);
     }
 
-    private void sendApns(Check check, GcmEventType eventType) {
+    private void sendApns(Check check, GcmEventType eventType,List<String> apnTokens) {
         try {
             if (check != null) {
                 ApnsServiceBuilder apnsServiceBuilder =
                         APNS.newService()
                                 .withCert(CheckConstants.APNS_CERT_PATH, CheckConstants.APNS_CERT_PASSWORD);
-                if (CheckConstants.IS_APNS_SANDBOX) {
-                    apnsServiceBuilder.withSandboxDestination();
-                }
+                apnsServiceBuilder.withProductionDestination();
                 com.notnoop.apns.ApnsService service = apnsServiceBuilder.build();
                 String payload = APNS.newPayload().localizedKey(eventType.name()).
                         localizedArguments(new String[]{check.getName()}).
@@ -75,7 +75,6 @@ public class ApnsServiceImpl implements ApnsService {
                         sound("default").
                         badge(1).
                         build();
-                List<String> apnTokens = apnDao.getAllApnsTokens();
                 if (!CollectionUtils.isEmpty(apnTokens)) {
                     logger.debug("SEND APNS  payload {}", payload);
                     service.push(apnTokens, payload);
@@ -94,9 +93,7 @@ public class ApnsServiceImpl implements ApnsService {
             ApnsServiceBuilder apnsServiceBuilder =
                     APNS.newService()
                             .withCert(CheckConstants.APNS_CERT_PATH, CheckConstants.APNS_CERT_PASSWORD);
-            if (CheckConstants.IS_APNS_SANDBOX) {
-                apnsServiceBuilder.withSandboxDestination();
-            }
+            apnsServiceBuilder.withProductionDestination();
             com.notnoop.apns.ApnsService service = apnsServiceBuilder.build();
             Map<String, Date> inactiveDevices = service.getInactiveDevices();
             List<String> inactiveTokens = new ArrayList<>();
@@ -121,9 +118,7 @@ public class ApnsServiceImpl implements ApnsService {
             ApnsServiceBuilder apnsServiceBuilder =
                     APNS.newService()
                             .withCert(CheckConstants.APNS_CERT_PATH, CheckConstants.APNS_CERT_PASSWORD);
-            if (CheckConstants.IS_APNS_SANDBOX) {
-                apnsServiceBuilder.withSandboxDestination();
-            }
+            apnsServiceBuilder.withProductionDestination();
             com.notnoop.apns.ApnsService service = apnsServiceBuilder.build();
             String payload = APNS.newPayload().localizedKey(GcmEventType.CHECK_STARTED.name()).
                     localizedArguments(new String[]{"Check name"}).

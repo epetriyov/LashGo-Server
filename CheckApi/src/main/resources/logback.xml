@@ -1,15 +1,14 @@
 <configuration>
-
-	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+	<!--Daily rolling file appender -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<!--
 <file>C:\DATA\Archive\LashGo\projects\LashGo\logs\lashgo.log</file>
-                                                                   -->
-<file>/var/log/lashgo/lashgo.log</file>
+-->
+		<file>/var/log/lashgo/lashgo.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>lashgo.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
 
-<append>true</append>
-
-<!-- encoders are assigned the type
-ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
 		</encoder>
