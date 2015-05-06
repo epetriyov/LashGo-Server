@@ -6,9 +6,10 @@
 -->
 		<file>/var/log/lashgo/lashgo.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>lashgo.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<fileNamePattern>/var/log/lashgo/lashgo.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
 		</rollingPolicy>
-
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
 		</encoder>

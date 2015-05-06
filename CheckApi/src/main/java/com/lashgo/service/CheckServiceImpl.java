@@ -63,7 +63,7 @@ public class CheckServiceImpl implements CheckService {
         if (sessionId != null) {
             userId = userService.getUserBySession(sessionId).getId();
         }
-        return checkDao.getAllStartedChecks(userId, searchText,checkType);
+        return checkDao.getAllStartedChecks(userId, searchText, checkType);
     }
 
     @Override
@@ -145,7 +145,9 @@ public class CheckServiceImpl implements CheckService {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(check.getStartDate());
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-        checkDao.addNewCheck(new CheckDto(messageSource.getMessage("check.name", null, Locale.US), messageSource.getMessage("check.description", null, Locale.US), calendar.getTime(), CheckConstants.DURATION, CheckConstants.VOTE_DURATTON, photo.getUrl(), CheckType.SELFIE.name()));
+        CheckDto checkDto = new CheckDto(messageSource.getMessage("check.name", null, Locale.US), messageSource.getMessage("check.description", null, Locale.US), calendar.getTime(), CheckConstants.DURATION, CheckConstants.VOTE_DURATTON, photo.getUrl(), CheckType.SELFIE.name());
+        checkDao.addNewCheck(checkDto);
+        logger.debug("New check added {}", checkDto);
     }
 
     @Scheduled(cron = "1 * * * * *")
@@ -161,7 +163,7 @@ public class CheckServiceImpl implements CheckService {
                     eventDao.addWinEvent(id, userId);
                 }
                 CheckDto checkDto = checkDao.getCheckById(id);
-                if (checkDto.getName().equals(messageSource.getMessage("check.name", null, Locale.US))) {
+                if (CheckType.SELFIE.name().equals(checkDto.getCheckType())) {
                     addNextCheck(id, userId);
                 }
             }

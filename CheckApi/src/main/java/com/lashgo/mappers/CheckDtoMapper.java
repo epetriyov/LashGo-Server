@@ -20,6 +20,7 @@ public class CheckDtoMapper implements RowMapper<CheckDto> {
         check.setDuration(rs.getInt("duration"));
         check.setTaskPhotoUrl(rs.getString("task_photo"));
         check.setVoteDuration(rs.getInt("vote_duration"));
+        check.setCheckType(rs.getString("check_type"));
         return check;
     }
 }

@@ -48,7 +48,6 @@ public class CheckDto implements Serializable {
     private int playersCount;
     @Size(min = 1)
     private String checkType;
-
     public CheckDto() {
 
     }
@@ -80,6 +79,17 @@ public class CheckDto implements Serializable {
 
     public CheckDto(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "CheckDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", startDate=" + startDate +
+                ", taskPhotoUrl='" + taskPhotoUrl + '\'' +
+                ", checkType='" + checkType + '\'' +
+                '}';
     }
 
     public String getCheckType() {
