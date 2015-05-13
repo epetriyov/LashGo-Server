@@ -64,7 +64,7 @@ public class PhotoServiceImpl implements PhotoService {
                 savePhoto(photoName, inputStream);
             } catch (IOException e) {
                 logger.error(e.getMessage());
-                throw new PhotoReadException();
+//                throw new PhotoReadException();
             }
 
         } else {
@@ -75,28 +75,30 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void savePhoto(String photoName, InputStream inputStream) {
         if (inputStream != null) {
-            BufferedImage src;
+            BufferedImage src = null;
             try {
                 src = ImageIO.read(inputStream);
             } catch (IOException e) {
                 logger.error(e.getMessage());
-                throw new PhotoReadException();
+//                throw new PhotoReadException();
             } finally {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
                     logger.error(e.getMessage());
-                    throw new PhotoReadException();
+//                    throw new PhotoReadException();
                 }
             }
             StringBuilder photoDestinationBuilder = new StringBuilder(CheckConstants.PHOTOS_FOLDER);
             String photoPath = photoDestinationBuilder.append(photoName).toString();
             File destination = new File(photoPath);
-            try {
-                ImageIO.write(src, "jpg", destination);
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-                throw new PhotoWriteException();
+            if(src != null) {
+                try {
+                    ImageIO.write(src, "jpg", destination);
+                } catch (IOException e) {
+                    logger.error(e.getMessage());
+//                    throw new PhotoWriteException();
+                }
             }
         } else {
             logger.error("Image { } is empty", photoName);
