@@ -72,7 +72,7 @@ public class ApnsServiceImpl implements ApnsService {
                 String payload = APNS.newPayload().localizedKey(eventType.name()).
                         localizedArguments(new String[]{check.getName()}).
                         customField(CheckConstants.CURRENT_CHECK_ID, check.getId()).
-                        sound("default").
+                        sound(null).
                         badge(1).
                         build();
                 if (!CollectionUtils.isEmpty(apnTokens)) {
