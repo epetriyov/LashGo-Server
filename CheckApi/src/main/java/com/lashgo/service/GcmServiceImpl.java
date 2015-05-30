@@ -112,10 +112,11 @@ public class GcmServiceImpl implements GcmService {
     }
 
     @Override
-    public void sendGcm(Check currentCheck, Check voteCheck) {
+    public void sendGcm(Check currentCheck, Check voteCheck, Check finishedCheck) {
         List<String> registrationIds = gcmDao.getAllRegistrationIds();
         sendGcm(currentCheck,registrationIds,GcmEventType.CHECK_STARTED);
         sendGcm(voteCheck,registrationIds,GcmEventType.VOTE_STARTED);
+        sendGcm(finishedCheck,registrationIds,GcmEventType.CHECK_FINISHED);
     }
 
     @Override

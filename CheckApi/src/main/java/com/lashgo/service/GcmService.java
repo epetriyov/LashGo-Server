@@ -14,7 +14,7 @@ import com.lashgo.model.dto.GcmRegistrationDto;
 public interface GcmService {
     void addRegistrationId(String sessionId, GcmRegistrationDto registrationDto) throws ValidationException;
 
-    void sendGcm(Check currentCheck, Check voteCheck);
+    void sendGcm(Check currentCheck, Check voteCheck, Check finishedCheck);
 
     void sendGcm(String registrationId);
 }

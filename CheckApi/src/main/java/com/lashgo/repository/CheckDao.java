@@ -23,6 +23,8 @@ public interface CheckDao {
 
     CheckDto getCheckById(int userdId, int checkId);
 
+    Check getFinishedCheck();
+
     Check getCurrentCheck();
 
     boolean isCheckActive(int checkId);

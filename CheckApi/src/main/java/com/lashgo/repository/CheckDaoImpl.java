@@ -175,6 +175,18 @@ public class CheckDaoImpl implements CheckDao {
     }
 
     @Override
+    public Check getFinishedCheck() {
+        try {
+            return jdbcTemplate.queryForObject("SELECT c.* FROM checks c " +
+                    "WHERE (c.start_date + INTERVAL '1 hour' * c.duration + INTERVAL '1 hour' * c.vote_duration) <= clock_timestamp() " +
+                    "AND (c.start_date + INTERVAL '1 hour' * c.duration + INTERVAL '1 hour' * c.vote_duration  + INTERVAL '1 minute') > clock_timestamp() " +
+                    "ORDER BY c.start_date ASC LIMIT 1", new GcmCheckMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
     public CheckDto getCheckById(int checkId) {
         try {
             return jdbcTemplate.queryForObject("SELECT c.* FROM checks c WHERE  c.id = ?", new CheckDtoMapper(), checkId);

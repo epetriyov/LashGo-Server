@@ -18,7 +18,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,10 +54,11 @@ public class ApnsServiceImpl implements ApnsService {
     }
 
     @Override
-    public void sendApn(Check currentCheck, Check voteCheck) {
+    public void sendApn(Check currentCheck, Check voteCheck, Check finishedCheck) {
         List<String> apnTokens = apnDao.getAllApnsTokens();
         sendApns(currentCheck, GcmEventType.CHECK_STARTED,apnTokens);
         sendApns(voteCheck, GcmEventType.VOTE_STARTED,apnTokens);
+//        sendApns(finishedCheck, GcmEventType.CHECK_FINISHED,apnTokens);
     }
 
     private void sendApns(Check check, GcmEventType eventType,List<String> apnTokens) {

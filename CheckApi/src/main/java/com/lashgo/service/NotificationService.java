@@ -27,14 +27,16 @@ public class NotificationService {
     public void sendGcmNotifications() {
         Check currentCheck = checkDao.getCurrentCheck();
         Check voteCheck = checkDao.getVoteCheck();
-        gcmService.sendGcm(currentCheck, voteCheck);
+        Check finishedCheck = checkDao.getFinishedCheck();
+        gcmService.sendGcm(currentCheck, voteCheck,finishedCheck);
     }
 
     @Scheduled(cron = "1 * * * * *")
     public void sendApnsNotifications() {
         Check currentCheck = checkDao.getCurrentCheck();
         Check voteCheck = checkDao.getVoteCheck();
-        apnsService.sendApn(currentCheck, voteCheck);
+        Check finishedCheck = checkDao.getFinishedCheck();
+        apnsService.sendApn(currentCheck, voteCheck,finishedCheck);
     }
 
     public void sendGcm() {

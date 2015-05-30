@@ -11,7 +11,7 @@ public interface ApnsService {
 
     void addToken(String sessionId, ApnTokenDto apnTokenDto) throws ValidationException;
 
-    void sendApn(Check currentCheck, Check voteCheck);
+    void sendApn(Check currentCheck, Check voteCheck, Check finishedCheck);
 
     void sendApn(String token);
 

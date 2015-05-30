@@ -2,7 +2,6 @@ package com.lashgo.service;
 
 import com.lashgo.dao.components.TestHelper;
 import com.lashgo.domain.Check;
-import com.lashgo.model.dto.CheckDto;
 import com.lashgo.model.dto.LoginInfo;
 import com.lashgo.repository.ApnDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,6 @@ public class ApnsServiceTest extends AbstractTransactionalTestNGSpringContextTes
         apnDao.addApnsToken("116da1c616eb5f23cdcbc3a0ed12e4a163d5fe1cf5068d0df4991f2ae9af4b7d", userId.intValue());
         Check activeCheck = new Check(1);
         activeCheck.setName("test");
-        apnsService.sendApn(activeCheck,null);
+        apnsService.sendApn(activeCheck,null, finishedCheck);
     }
 }
