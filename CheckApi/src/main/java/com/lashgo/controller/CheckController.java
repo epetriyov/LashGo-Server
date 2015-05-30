@@ -56,7 +56,7 @@ public class CheckController extends BaseController {
     @ApiResponseObject
     @ResponseBody
     ResponseList<CheckDto> getChecks(@RequestParam(value = "search_text", required = false, defaultValue = "") String searchText,
-                                     @RequestParam(value = "check_type", required = false, defaultValue = CheckTypesConstants.SELFIE) String checkType,
+                                     @RequestParam(value = "check_type", required = false) String checkType,
                                      @RequestHeader HttpHeaders httpHeaders) {
         List<String> sessionHeader = httpHeaders.get(CheckApiHeaders.session_id.name());
         return new ResponseList<>(checkService.getChecks(!CollectionUtils.isEmpty(sessionHeader) ? sessionHeader.get(0) : null, searchText,checkType));
