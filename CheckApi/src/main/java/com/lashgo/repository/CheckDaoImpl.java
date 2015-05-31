@@ -49,6 +49,7 @@ public class CheckDaoImpl implements CheckDao {
                         "                         c.duration as check_duration, " +
                         "                         c.task_photo as check_task_photo," +
                         "                         c.vote_duration as check_vote_duration," +
+                        "                         c.check_type as check_type," +
                         "                         p2.picture as user_photo," +
                         "                         ph.id as winner_photo_id," +
                         "                         ph.picture as winner_photo, " +
@@ -116,6 +117,7 @@ public class CheckDaoImpl implements CheckDao {
                     "                         c.duration as check_duration, " +
                     "                         c.task_photo as check_task_photo," +
                     "                         c.vote_duration as check_vote_duration," +
+                    "                         c.check_type as check_type," +
                     "                         p2.picture as user_photo," +
                     "                         ph.id as winner_photo_id," +
                     "                         ph.picture as winner_photo, w.winner_id as winner_id, u.*," +
