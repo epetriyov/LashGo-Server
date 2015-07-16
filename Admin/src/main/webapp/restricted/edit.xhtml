@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Login Form</title>
+</h:head>
+<h:body>
+    <h:form id="form" enctype="multipart/form-data">
+        <h:panelGrid id="personDetail" columns="2">
+            <h:outputText value="Название:"/>
+            <p:inputText value="#{edit.check.name}" required="true" label="Name"/>
+            <h:outputText value="Описание:"/>
+            <p:inputTextarea rows="5" value="#{edit.check.description}" required="true" label="Description"/>
+            <h:outputText value="Дата начала:"/>
+            <p:calendar value="#{edit.check.startDate}" pattern="MM/dd/yyyy HH:mm"/>
+            <h:outputText value="Длительность:"/>
+            <p:inputText value="#{edit.check.duration}" required="true" label="Duration"/>
+            <h:outputText value="Длительность голосования:"/>
+            <p:inputText value="#{edit.check.voteDuration}" required="true" label="Vote duration"/>
+            <h:outputText value="Фото задания:"/>
+            <p:graphicImage style="height:30%" value="#{'/images/'.concat(edit.check.photo)}"/>
+            <p:fileUpload
+                           allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                           fileUploadListener="#{edit.fileUploaded}"
+                    />
+        </h:panelGrid>
+
+        <p:commandButton ajax="false" actionListener="#{edit.onAction}"
+                         style="margin-top:10px;" icon="ui-icon-disk"
+                         update=":form"
+                >
+        </p:commandButton>
+    </h:form>
+</h:body>
+</html>

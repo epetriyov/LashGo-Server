@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+        >
+<h:head>
+    <title>Login Form</title>
+</h:head>
+<f:event type="preRenderView" listener="#{checkBean.initChecks}" />
+<h:body>
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+        <p:commandButton action="edit.xhtml" icon="ui-icon-document"
+                >
+        </p:commandButton>
+        <p:dataTable var="check" value="#{checkBean.checks}"
+                >
+
+            <p:column headerText="Название">
+                <div align="center">
+                    <h:outputText value="#{check.name}" style="text-align: center;"/>
+                </div>
+            </p:column>
+
+            <p:column headerText="Описание">
+                <div align="center">
+                    <h:outputText value="#{check.description}"/>
+                </div>
+            </p:column>
+
+            <p:column headerText="Дата начала">
+                <div align="center">
+                    <h:outputText value="#{check.startDate}"/>
+                </div>
+            </p:column>
+
+            <p:column headerText="Длительность">
+                <div align="center">
+                    <h:outputText value="#{check.duration}"/>
+                </div>
+            </p:column>
+            <p:column headerText="Длительность голосования">
+                <div align="center">
+                    <h:outputText value="#{check.voteDuration}"/>
+                </div>
+            </p:column>
+            <p:column headerText="Фото задания">
+                <div align="center">
+                    <p:graphicImage height="100" value="#{'/images/'.concat(check.photo)}"/>
+                </div>
+            </p:column>
+            <p:column headerText="Действие">
+                <div align="center">
+                    <p:commandButton action="edit.xhtml" icon="ui-icon-pencil"
+                            >
+                        <f:param name="id" value="#{check.id}"/>
+                    </p:commandButton>
+                </div>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
