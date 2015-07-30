@@ -6,11 +6,13 @@
 <h:head>
     <title>Login Form</title>
 </h:head>
-<f:event type="preRenderView" listener="#{checkBean.initChecks}" />
+<f:metadata>
+    <f:viewAction action="#{checkBean.initChecks}"/>
+</f:metadata>
 <h:body>
     <h:form id="form">
         <p:growl id="msgs" showDetail="true"/>
-        <p:commandButton action="edit.xhtml" icon="ui-icon-document"
+        <p:commandButton action="edit.xhtml?faces-redirect=true" icon="ui-icon-document"
                 >
         </p:commandButton>
         <p:dataTable var="check" value="#{checkBean.checks}"
@@ -51,13 +53,22 @@
             </p:column>
             <p:column headerText="Действие">
                 <div align="center">
-                    <p:commandButton action="edit.xhtml" icon="ui-icon-pencil"
+                    <p:button outcome="edit.xhtml?faces-redirect=true" icon="ui-icon-pencil"
                             >
                         <f:param name="id" value="#{check.id}"/>
+                    </p:button>
+                    <p:commandButton process="@this" onclick="PF('confirmation').show()"  icon="ui-icon-trash"
+                            >
+                        <f:setPropertyActionListener value="#{check}" target="#{checkBean.selectedCheck}"/>
                     </p:commandButton>
+
                 </div>
             </p:column>
         </p:dataTable>
+        <p:confirmDialog id="confirmDialog" message="Ты уверен?" severity="alert" widgetVar="confirmation">
+            <p:commandButton id="confirm" value="ДА" onclick="confirmation.hide()" process="@this" action="#{checkBean.deleteCheck}" update="@form" />
+            <p:commandButton id="decline" value="НЕТ" onclick="confirmation.hide()"/>
+        </p:confirmDialog>
     </h:form>
 </h:body>
 </html>

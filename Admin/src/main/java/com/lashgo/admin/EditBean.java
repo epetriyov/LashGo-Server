@@ -22,8 +22,17 @@ import java.io.InputStream;
 @ViewScoped
 public class EditBean {
 
+    private  Integer id;
     private UploadedFile file;
     private Check check;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public UploadedFile getFile() {
         return file;
@@ -41,40 +50,25 @@ public class EditBean {
         this.check = check;
     }
 
-    @PostConstruct
-    public void test() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        String id = facesContext.getExternalContext().
-                getRequestParameterMap().get("id");
-        if (id != null) {
-            check = HibernateUtil.getSessionFactory().openSession().get(Check.class, Integer.valueOf(id));
-        } else {
-            check = new Check();
-        }
-    }
+   public void load(){
+       if (id != null) {
+           check = HibernateUtil.getSessionFactory().openSession().get(Check.class, id);
+       } else {
+           check = new Check();
+       }
+   }
 
-    public void saveSuccess() {
+    public String saveSuccess() {
         if (file != null) {
             check.setPhoto(file.getFileName());
         }
         Session session = HibernateUtil.getSessionFactory().openSession();
-        if (check.getId() > 0) {
-            session.update(check);
-        } else {
             session.save(check);
-        }
         session.flush();
         session.close();
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("checks.xhtml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+      return "checks.xhtml"     ;
     }
 
-    public void onAction(ActionEvent event) {
-        saveSuccess();
-    }
 
     public void fileUploaded(FileUploadEvent e) {
         file = e.getFile();
