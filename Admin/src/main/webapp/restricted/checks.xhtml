@@ -6,16 +6,16 @@
 <h:head>
     <title>Login Form</title>
 </h:head>
-<f:metadata>
-    <f:viewAction action="#{checkBean.initChecks}"/>
-</f:metadata>
 <h:body>
     <h:form id="form">
         <p:growl id="msgs" showDetail="true"/>
         <p:commandButton action="edit.xhtml?faces-redirect=true" icon="ui-icon-document"
                 >
         </p:commandButton>
-        <p:dataTable var="check" value="#{checkBean.checks}"
+        <p:dataTable var="check" value="#{checkBean.checksModel}"
+                     paginator="true" rows="10"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     lazy="true" rowsPerPageTemplate="10,15,50"
                 >
 
             <p:column headerText="Название">

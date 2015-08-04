@@ -1,20 +1,34 @@
 package com.lashgo.admin;
 
 import org.hibernate.Session;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Eugene on 17.06.2015.
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class CheckBean implements Serializable {
 
-    private List<Check> checks;
+
+    private LazyDataModel<Check> checksModel;
+    private Check selectedCheck;
+
+    public LazyDataModel<Check> getChecksModel() {
+        return checksModel;
+    }
+
+    public void setChecksModel(LazyDataModel<Check> checksModel) {
+        this.checksModel = checksModel;
+    }
 
     public Check getSelectedCheck() {
         return selectedCheck;
@@ -24,19 +38,28 @@ public class CheckBean implements Serializable {
         this.selectedCheck = selectedCheck;
     }
 
-    private Check selectedCheck;
+    @PostConstruct
+    public void init() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        final int totalCount = ((Long) session.createQuery("select count(*) from  Check")
+                .uniqueResult()).intValue();
+        session.close();
+        checksModel = new LazyDataModel<Check>() {
 
-    public List<Check> getChecks() {
-        return checks;
+            private List<Check> dataset;
+
+            @Override
+            public List<Check> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                dataset = session.createQuery("from Check order by startDate desc").setFirstResult(first).setMaxResults(pageSize).list();
+                session.close();
+                setRowCount(totalCount);
+                return dataset;
+            }
+        };
+
     }
 
-    public void setChecks(List<Check> checks) {
-        this.checks = checks;
-    }
-
-    public void initChecks() {
-        checks = HibernateUtil.getSessionFactory().openSession().createQuery("from Check order by startDate desc").setMaxResults(30).list();
-    }
 
     public void deleteCheck() {
         if (selectedCheck != null) {

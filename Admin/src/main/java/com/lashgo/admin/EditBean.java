@@ -4,11 +4,8 @@ import org.hibernate.Session;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -22,7 +19,7 @@ import java.io.InputStream;
 @ViewScoped
 public class EditBean {
 
-    private  Integer id;
+    private Integer id;
     private UploadedFile file;
     private Check check;
 
@@ -50,30 +47,32 @@ public class EditBean {
         this.check = check;
     }
 
-   public void load(){
-       if (id != null) {
-           check = HibernateUtil.getSessionFactory().openSession().get(Check.class, id);
-       } else {
-           check = new Check();
-       }
-   }
+    public void load() {
+        if (id != null) {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            check = session.get(Check.class, id);
+            session.close();
+        } else {
+            check = new Check();
+        }
+    }
 
     public String saveSuccess() {
         if (file != null) {
             check.setPhoto(file.getFileName());
         }
         Session session = HibernateUtil.getSessionFactory().openSession();
-            session.save(check);
+        session.save(check);
         session.flush();
         session.close();
-      return "checks.xhtml"     ;
+        return "checks.xhtml";
     }
 
 
     public void fileUploaded(FileUploadEvent e) {
         file = e.getFile();
         try {
-            savePhoto(file.getFileName(),file.getInputstream());
+            savePhoto(file.getFileName(), file.getInputstream());
         } catch (IOException e1) {
             e1.printStackTrace();
         }
